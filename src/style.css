@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.welcome-button {
+    @apply px-2 py-1 rounded-md text-white/70 text-sm bg-white/10 hover:bg-white/20 hover:text-white;
+}
