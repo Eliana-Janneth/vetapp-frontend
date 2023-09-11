@@ -7,3 +7,6 @@
     @apply px-2 py-1 rounded-md text-white/70 text-sm bg-indigo-500/80 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
 }
 
+.login-button{
+    @apply text-white/70 text-lg w-7/12 bg-indigo-500/80 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white rounded-full justify-center p-2 px-6 py-2;
+}

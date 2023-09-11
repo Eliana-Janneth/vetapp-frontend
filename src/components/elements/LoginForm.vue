@@ -28,8 +28,7 @@ const isPasswordFocused = ref(false);
                     @blur="isPasswordFocused = false">
             </label>
             <a href="" class="text-indigo-900">¿Olvidó su contraseña?</a>
-            <button
-                class=" text-white/70 text-sm bg-indigo-500/80 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white rounded-full justify-center  p-2 px-4 py-2 text-md ">
+            <button class="login-button">
                 Iniciar Sesión
             </button>
         </div>
