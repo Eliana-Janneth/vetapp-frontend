@@ -4,5 +4,6 @@
 @tailwind utilities;
 
 .welcome-button {
-    @apply px-2 py-1 rounded-md text-white/70 text-sm bg-white/10 hover:bg-white/20 hover:text-white;
+    @apply px-2 py-1 rounded-md text-white/70 text-sm bg-indigo-500/80 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
 }
+
