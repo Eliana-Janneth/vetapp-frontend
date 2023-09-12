@@ -6,14 +6,14 @@ import WelcomPage from './components/pages/WelcomePage.vue';
 import LoginPage from './components/pages/LoginPage.vue';
 import RegisterPage from './components/pages/RegisterPage.vue';
 import LoginFormVue from './components/elements/LoginForm.vue';
-import RegisterForm from './components/elements/RegisterForm.vue';
-import RegisterInput from './components/elements/RegisterInput.vue';
+import MenuPage from './components/pages/MenuPage.vue';
 
 const routes = [
     { path: '/', component: WelcomPage },
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
     { path: '/loginForm', component: LoginFormVue },
+    { path: '/menu', component: MenuPage },
 ];
 
 const router = createRouter({
