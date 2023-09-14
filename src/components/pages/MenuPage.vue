@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { HomeIcon, ChatBubbleLeftEllipsisIcon, ArrowPathRoundedSquareIcon } from '@heroicons/vue/24/solid';
 import SideBarItem from '../elements/sidebar/SideBarItem.vue';
-
+import AnimalRegisterPage from './AnimalRegisterPage.vue';
 </script>
 
 <template>
@@ -20,19 +20,24 @@ import SideBarItem from '../elements/sidebar/SideBarItem.vue';
                 </div>
             </div>
         </div>
+        <div class="flex flex-col  w-7/12 md:w-full lg:w-5/12 rounded-xl">
+            <AnimalRegisterPage></AnimalRegisterPage>
+        </div>
+       
+        <!--
         <div class="flex flex-col  w-7/12 lg:w-full rounded-xl">
             <div class="flex p-2 justify-end items-center ">
                 <p class="mr-2 text-xs text-white font-medium">Hola, ....</p>
                 <img src="https://picsum.photos/200/300" alt="" class="w-[50px] h-[50px] rounded-xl drop-shadow-xl">
 
             </div>
-            <div class="flex flex-col p-2 gap-1">
-                <div class="flex flex-row gap-1">
-                    <div class="bg-green-200">1</div>
-                    <div class="bg-green-300">2</div>
+            <div class="flex flex-col p-2 h-screen gap-1">
+                <div class="flex flex-col lg:flex-row h-2/5 gap-1">
+                    <div class="bg-white lg:w-3/4 rounded-xl">1</div>
+                    <div class="bg-white lg:w-1/4 rounded-xl">2</div>
                 </div>
-                <div class="bg-green-400">3</div>
+                <div class="bg-white flex h-3/5 rounded-xl">3</div>
             </div>
-        </div>
+        </div>-->
     </div>
 </template>

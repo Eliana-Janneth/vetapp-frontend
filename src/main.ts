@@ -7,6 +7,7 @@ import LoginPage from './components/pages/LoginPage.vue';
 import RegisterPage from './components/pages/RegisterPage.vue';
 import LoginFormVue from './components/elements/LoginForm.vue';
 import MenuPage from './components/pages/MenuPage.vue';
+import AnimalRegisterPage from './components/pages/AnimalRegisterPage.vue';
 
 const routes = [
     { path: '/', component: WelcomPage },
@@ -14,6 +15,7 @@ const routes = [
     { path: '/register', component: RegisterPage },
     { path: '/loginForm', component: LoginFormVue },
     { path: '/menu', component: MenuPage },
+    { path: '/animalRegister', component: AnimalRegisterPage },
 ];
 
 const router = createRouter({
