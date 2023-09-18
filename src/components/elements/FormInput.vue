@@ -1,20 +1,21 @@
 <script setup lang="ts">
-
 defineProps<{
     label: string;
     placeholder: string;
     type: string;
     name: string;
-
 }>();
-
 </script>
 
 <template>
-    <label class="relative block drop-shadow-xl w-full">
-        <span class="block font-medium text-fuchsia-700 text-lg">{{ label }}</span>
+    <label class="relative block w-full drop-shadow-xl">
+        <span class="block text-lg font-medium text-fuchsia-700">{{ label }}</span>
         <input
-            class="form-input placeholder:text-fuchsia-400/50 block w-full bg-white hover:bg-fuchsia-50 focus:bg-fuchsia-100 border border-fuchsia-700 rounded-lg py-2 px-2 shadow-md focus:outline-none focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:ring-1 text-md text-fuchsia-700"
-            :placeholder="placeholder" :type="type" :name="name" required>
+            class="text-md form-input block w-full rounded-lg border border-fuchsia-700 bg-white px-2 py-2 text-fuchsia-700 shadow-md placeholder:text-fuchsia-400/50 hover:bg-fuchsia-50 focus:border-fuchsia-500 focus:bg-fuchsia-100 focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
+            :placeholder="placeholder"
+            :type="type"
+            :name="name"
+            required
+        />
     </label>
 </template>

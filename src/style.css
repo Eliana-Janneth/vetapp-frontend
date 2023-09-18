@@ -4,9 +4,13 @@
 @tailwind utilities;
 
 .welcome-button {
-    @apply px-2 py-1 rounded-md text-white/70 text-sm bg-indigo-500/80 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
+    @apply rounded-md bg-indigo-500/80 px-2 py-1 text-lg text-white/70 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
 }
 
-.login-button{
-    @apply text-white/70 text-lg w-7/12 bg-indigo-500/80 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white rounded-full justify-center p-2 px-6 py-2;
+.login-button {
+    @apply w-7/12 justify-center rounded-full bg-indigo-500/80 p-2 px-6 py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
+}
+
+.form-button-farmer {
+    @apply flex w-1/4 justify-center rounded-md bg-fuchsia-500/80 py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:from-fuchsia-800 hover:via-fuchsia-600 hover:to-fuchsia-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-fuchsia-500 active:from-fuchsia-600 active:via-fuchsia-800 active:to-fuchsia-600 active:text-fuchsia-200;
 }
