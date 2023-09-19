@@ -8,23 +8,30 @@ import {
     HomeIcon,
 } from '@heroicons/vue/24/outline';
 import { RegisterInput } from '@elements';
-import { useForm, useFormValues } from 'vee-validate';
-import * as yup from 'yup';
+import { useForm } from 'vee-validate';
+// import * as yup from 'yup';
 
-const schema = yup.object({
-    name: yup.string().required('Por favor ingrese su nombre'),
-    lastName: yup.string().required('Por favor ingrese su apellido'),
-    identification: yup.number().required('Por favor ingrese su Cédula').max(10, 'La cédula debe tener 10 dígitos'),
-    phone: yup.number().required('Por favor ingrese su número de contacto').max(10, 'El número debe tener 10 dígitos'),
-    city: yup.string().required('Por favor ingrese su municipio'),
-    address: yup.string().required('Por favor ingrese su dirección de residencia'),
+
+// const schema = yup.object({
+//     name: yup
+//     .string().required('Por favor ingrese su nombre'),
+//     lastName: yup
+//     .string().required('Por favor ingrese su apellido'),
+//     identification: yup
+//     .number().required('Por favor ingrese su Cédula').max(10, 'La cédula debe tener 10 dígitos'),
+//     phone: yup
+//     .number().required('Por favor ingrese su número de contacto').max(10, 'El número debe tener 10 dígitos'),
+//     city: yup
+//     .string().required('Por favor ingrese su municipio'),
+//     address: yup
+//     .string().required('Por favor ingrese su dirección de residencia'),
+// });
+
+const {defineInputBinds, errors } = useForm({
+   // validationSchema: schema,
 });
 
-const { defineInputBinds, errors } = useForm({
-    validationSchema: schema,
-});
-
-const name = defineInputBinds('nombre');
+const name = defineInputBinds('name');
 const lastName = defineInputBinds('lastName');
 const identification = defineInputBinds('identification');
 const phone = defineInputBinds('phone');
@@ -33,8 +40,9 @@ const address = defineInputBinds('address');
 </script>
 
 <template>
-    <RegisterInput v-bind="name" label="Nombre" placeholder="Nombre" type="text" name="name" :icon="UserIcon" />
-    <span class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.name }}</span>
+    <div class="flex flex-col items-center gap-y-4 p-2">
+    <RegisterInput v-bind="name" label="Nombre" name="name" placeholder="Nombre" type="text" :icon="UserIcon" />
+    <span v-if="errors.name" class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.name }}</span>
 
     <RegisterInput
         v-bind="lastName"
@@ -44,17 +52,17 @@ const address = defineInputBinds('address');
         name="lastName"
         :icon="UserPlusIcon"
     />
-    <span class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.lastName }}</span>
+    <span v-if="errors.lastName" class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.lastName }}</span>
 
     <RegisterInput
         v-bind="identification"
         label="Identificación"
         placeholder="Cédula"
         type="text"
-        name="id"
+        name="identification"
         :icon="IdentificationIcon"
     />
-    <span class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.identification }}</span>
+    <span v-if="errors.identification" class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.identification }}</span>
 
     <RegisterInput
         v-bind="phone"
@@ -64,7 +72,7 @@ const address = defineInputBinds('address');
         name="phone"
         :icon="PhoneIcon"
     />
-    <span class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.phone }}</span>
+    <span v-if="errors.phone" class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.phone }}</span>
 
     <RegisterInput
         v-bind="city"
@@ -74,7 +82,7 @@ const address = defineInputBinds('address');
         name="city"
         :icon="BuildingOffice2Icon"
     />
-    <span class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.city }}</span>
+    <span v-if="errors.city" class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.city }}</span>
 
     <RegisterInput
         v-bind="address"
@@ -84,7 +92,8 @@ const address = defineInputBinds('address');
         name="address"
         :icon="HomeIcon"
     ></RegisterInput>
-    <span class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.address }}</span>
+    <span v-if="errors.address" class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ errors.address }}</span>
 
-    <button class="login-button">Registrate</button>
+    <button class="login-button" type="submit" >Registrate</button>
+</div>
 </template>

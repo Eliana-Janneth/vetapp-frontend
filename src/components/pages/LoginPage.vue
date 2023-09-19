@@ -8,7 +8,7 @@ const openFormRegister = ref(false);
 </script>
 
 <template>
-    <div class="h-screen items-center bg-indigo-100 p-4">
+    <div class="h-screen items-center bg-indigo-300 p-4">
         <div class="container mx-auto rounded-3xl bg-indigo-900 shadow-2xl lg:w-3/12">
             <div class="flex justify-center p-2">
                 <img src="/src/assets/imageLogin.png" alt="logo" class="rounded-2xl" />
