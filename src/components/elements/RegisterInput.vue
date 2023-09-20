@@ -1,17 +1,25 @@
 <script setup lang="ts">
 import { FunctionalComponent } from 'vue';
+defineEmits(['update:modelValue']);
 
-defineProps<{
-    label: string;
-    placeholder: string;
-    type: string;
-    name: string;
-    icon: FunctionalComponent;
-}>();
+withDefaults(
+    defineProps<{
+        error?: string;
+        label?: string;
+        placeholder?: string;
+        type?: string;
+        name?: string;
+        icon?: FunctionalComponent;
+        maxlength?: number;
+    }>(),
+    {
+        type: 'text',
+    },
+);
 </script>
 
 <template>
-    <label class="relative block w-full drop-shadow-xl">
+    <div class="relative block w-full drop-shadow-xl">
         <span class="block text-lg font-medium text-indigo-700">{{ label }}</span>
         <span class="absolute inset-y-12 left-0 flex items-center pl-2">
             <component :is="icon" class="h-6 w-6 text-indigo-700" />
@@ -21,7 +29,10 @@ defineProps<{
             :placeholder="placeholder"
             :type="type"
             :name="name"
+            :maxlength="maxlength"
+            @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
             required
         />
-    </label>
+    </div>
+    <span v-if="error" class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ error }}</span>
 </template>

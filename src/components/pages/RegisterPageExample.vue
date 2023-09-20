@@ -3,11 +3,11 @@ import { useForm } from 'vee-validate';
 
 const { handleSubmit, defineInputBinds } = useForm();
 
-const onSubmit = handleSubmit(values => {
-  fetch('https://apimocha.com/vetapp-api/farmers', {
-    method: 'POST',
-    body: JSON.stringify(values)
-  })
+const onSubmit = handleSubmit((values) => {
+    fetch('https://apimocha.com/vetapp-api/farmers', {
+        method: 'POST',
+        body: JSON.stringify(values),
+    });
 });
 
 const name = defineInputBinds('username');
@@ -23,17 +23,15 @@ const surname = defineInputBinds('surname');
             <form @submit="onSubmit">
                 <div class="flex flex-col">
                     <label for="name">Nombre</label>
-                    <input id="name" name="name" v-bind="name" type="text">
+                    <input id="name" name="name" v-bind="name" type="text" />
                 </div>
 
                 <div class="flex flex-col">
                     <label for="surname">Apellido</label>
-                    <input id="surname" name="surname" v-bind="surname" type="text">
+                    <input id="surname" name="surname" v-bind="surname" type="text" />
                 </div>
 
-                <button type="submit">
-                    Enviar
-                </button>
+                <button type="submit">Enviar</button>
             </form>
         </div>
     </div>

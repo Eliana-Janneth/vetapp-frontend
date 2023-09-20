@@ -1,67 +1,57 @@
 <script setup lang="ts">
 import { EnvelopeIcon, LockClosedIcon, LockOpenIcon } from '@heroicons/vue/24/outline';
 import { useForm } from 'vee-validate';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import * as yup from 'yup';
+import { VInput } from '@elements';
+
+const passwordIcon = ref(LockClosedIcon);
+const disabled = computed(() => {
+    return !values.email || !values.password;
+});
 
 const schema = yup.object({
-    email: yup.string().required().email('must be a valid email'),
-    password: yup.string().required().min(8),
+    email: yup
+        .string()
+        .required('Por favor ingrese un correo')
+        .email('Debes ingresar un correo valido "alguien@example.com"'),
+    password: yup.string().required('Por favor ingrese una contraseña'),
 });
 
-const isPasswordFocused = ref(false);
+const { values, defineComponentBinds, errors } = useForm({ validationSchema: schema });
 
-const { values, defineInputBinds, errors } = useForm({
-    validationSchema: schema,
-});
-
-const email = defineInputBinds('email');
-const password = defineInputBinds('password');
+const email = defineComponentBinds('email');
+const password = defineComponentBinds('password');
 </script>
 
 <template>
-    <pre>{{ values }}</pre>
-    <pre>{{ errors.email }}</pre>
-    <form id="formLogin">
-        <div class="items-center rounded-3xl border-4 border-indigo-900 bg-white p-2">
-            <div class="flex flex-col items-center gap-2 p-4">
-                <h1 class="text-2xl font-medium text-indigo-700">Iniciar Sesión</h1>
+    <!-- <pre>{{ JSON.stringify(values, null, 2) }}</pre> -->
+    <form class="flex flex-col items-center gap-2 rounded-xl bg-white p-4">
+        <h1 class="text-2xl font-medium text-indigo-900">Iniciar Sesión</h1>
 
-                <label class="relative block w-full">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                        <EnvelopeIcon class="h-6 w-6 text-indigo-600" />
-                    </span>
-                    <input
-                        v-bind="email"
-                        class="block w-full rounded-lg border border-indigo-300 bg-indigo-100 py-2 pl-9 pr-3 shadow-sm placeholder:text-indigo-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-                        placeholder="Email"
-                        type="text"
-                        id="email"
-                        name="email"
-                    />
-                    <span class="text-red-500">{{ errors.email }}</span>
-                </label>
-                <label class="relative block w-full">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                        <component
-                            :is="isPasswordFocused ? LockOpenIcon : LockClosedIcon"
-                            class="h-6 w-6 text-indigo-600"
-                        />
-                    </span>
-                    <input
-                        v-bind="password"
-                        class="block w-full rounded-lg border border-indigo-300 bg-indigo-100 py-2 pl-9 pr-3 shadow-sm placeholder:text-indigo-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-                        placeholder="Contraseña"
-                        type="password"
-                        id="password"
-                        name="password"
-                        @focus="isPasswordFocused = true"
-                        @blur="isPasswordFocused = false"
-                    />
-                </label>
-                <a href="" class="text-indigo-900">¿Olvidó su contraseña?</a>
-                <button class="login-button" type="submit" value="iniciarSesión">Iniciar Sesión</button>
-            </div>
-        </div>
+        <VInput
+            v-bind="email"
+            :icon="EnvelopeIcon"
+            placeholder="Correo Electrónico"
+            name="email"
+            type="email"
+            :error="errors.email"
+        />
+
+        <VInput
+            v-bind="password"
+            placeholder="Contraseña"
+            type="password"
+            name="password"
+            :icon="passwordIcon"
+            @focus="passwordIcon = LockOpenIcon"
+            @blur="passwordIcon = LockClosedIcon"
+            :error="errors.password"
+        />
+
+        <a href="" class="text-indigo-900">¿Olvidó su contraseña?</a>
+        <button :class="['btn btn-primary', disabled && 'btn-disabled']" type="submit" value="iniciarSesión">
+            Iniciar Sesión
+        </button>
     </form>
 </template>

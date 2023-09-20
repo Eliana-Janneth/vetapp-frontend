@@ -7,8 +7,20 @@
     @apply rounded-md bg-indigo-500/80 px-2 py-1 text-lg text-white/70 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
 }
 
+.btn {
+    @apply rounded-xl px-6 py-2 text-lg;
+}
+
+.btn-primary {
+    @apply bg-gradient-to-r from-indigo-800 via-indigo-600 to-indigo-800 text-white hover:from-indigo-900 hover:via-indigo-700 hover:to-indigo-900;
+}
+
+.btn-disabled {
+    @apply pointer-events-none opacity-50;
+}
+
 .login-button {
-    @apply w-7/12 justify-center rounded-full bg-indigo-500/80 p-2 px-6 py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
+    @apply w-7/12 justify-center rounded-xl bg-indigo-500/80 p-2 px-6 py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
 }
 
 .form-button-farmer {
