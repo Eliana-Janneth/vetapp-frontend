@@ -7,7 +7,7 @@ import {
     BuildingOffice2Icon,
     HomeIcon,
 } from '@heroicons/vue/24/outline';
-import { RegisterInput } from '@elements';
+import { RegisterInput, AlertInput } from '@elements';
 import { useForm } from 'vee-validate';
 // import * as yup from 'yup';
 
@@ -51,9 +51,8 @@ const address = defineInputBinds('address');
             name="lastName"
             :icon="UserPlusIcon"
         />
-        <span v-if="errors.lastName" class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{
-            errors.lastName
-        }}</span>
+        <AlertInput :error="errors.lastName" />
+     
 
         <RegisterInput
             v-bind="identification"

@@ -31,21 +31,32 @@ const schema = yup.object({
     email: yup
         .string()
         .required('Por favor ingrese un correo')
-        .email('Debes ingresar un correo valido "alguien@example.com"'),
+        .email('Debes ingresar un correo valido "alguien@example.com"')
+        .min(10, 'El correo debe tener al menos 10 caracteres'),
     password: yup
         .string()
         .required('Por favor ingrese una contraseña')
-        .min(8, 'La contraseña debe tener al menos 8 caracteres'),
-    first_name: yup.string().required('Por favor ingrese su nombre'),
-    last_name: yup.string().required('Por favor ingrese su apellido'),
+        .min(8, 'La contraseña debe tener al menos 8 caracteres')
+        .max(200, 'La contraseña debe tener un máximo de 200 caracteres'),
+    first_name: yup.string().required('Por favor ingrese su nombre')
+        .min(2, 'El nombre debe tener al menos 2 caracteres')
+        .max(40, 'El nombre debe tener un máximo de 40 caracteres'),
+    last_name: yup.string().required('Por favor ingrese su apellido')
+        .min(2, 'El apellido debe tener al menos 2 caracteres')
+        .max(40, 'El apellido debe tener un máximo de 40 caracteres'),
     document_number: yup.string().required('Por favor ingrese su Cédula')
         .matches(/^\d+$/, 'Por favor ingrese solo números')
         .max(10, 'La cédula debe tener un máximo de 10 dígitos'),
     phone_number: yup.string().required('Por favor ingrese su número de contacto')
         .matches(/^[\d+]+$/, 'Por favor ingrese solo números y el símbolo "+"')
-        .max(10, 'El número de contacto debe tener un máximo de 10 dígitos'),
-    city: yup.string().required('Por favor ingrese su municipio'),
-    address: yup.string().required('Por favor ingrese su dirección de residencia'),
+        .max(15, 'El número de contacto debe tener un máximo de 10 dígitos')
+        .min(7, 'El número de contacto debe tener al menos 7 dígitos'),
+    city: yup.string().required('Por favor ingrese su municipio')
+        .min(2, 'El municipio debe tener al menos 2 caracteres')
+        .max(50, 'El municipio debe tener un máximo de 50 caracteres'),
+    address: yup.string().required('Por favor ingrese su dirección de residencia')
+        .min(5, 'La dirección debe tener al menos 5 caracteres')
+        .max(100, 'La dirección debe tener un máximo de 100 caracteres'),
     repeat_password: yup
         .string()
         .required('Confirme su contraseña')
@@ -56,8 +67,6 @@ const schema = yup.object({
 
 const disabled = computed(() => {
     return (
-        !values.email ||
-        !values.password ||
         !values.first_name ||
         !values.last_name ||
         !values.document_number ||
@@ -80,22 +89,37 @@ const { handleSubmit, defineComponentBinds, errors, values } = useForm({
 });
 
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(async (values) => {
     const farmerUrl = 'http://127.0.0.1:9999/farmers/';
     const vetUrl = 'http://127.0.0.1:9999/vets/';
 
     const apiUrl = selected.value === 'farmer' ? farmerUrl : vetUrl;
 
     alert(JSON.stringify(values, null, 2));
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            body: JSON.stringify(values),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-    fetch(apiUrl, {
-        //fetch('https://apimocha.com/vetapp-api/farmers', {
-        method: 'POST',
-        body: JSON.stringify(values),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                alert(`Error del servidor: ${errorData.response}`);
+            } else {
+                alert('Error en la solicitud al servidor.');
+            }
+            return;
+        }
+        // Si la respuesta es exitosa
+        const responseData = await response.json();
+        console.log('Respuesta del backend:', responseData);
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
 });
 
 const first_name = defineComponentBinds('first_name');
@@ -110,7 +134,6 @@ const repeat_password = defineComponentBinds('repeat_password');
 
 //TODO: Organizar el select de perfil
 //TODO: Organizar tamaño imagen
-//TODO: Ocultar imagen cuando se llama desde el login
 //TODO: Quitar username
 </script>
 
@@ -144,10 +167,11 @@ const repeat_password = defineComponentBinds('repeat_password');
                     <RegisterInput v-bind="password" label="Contraseña" placeholder="Ingresa tu contraseña" type="password"
                         name="password" :icon="LockClosedIcon" :maxlength="30" :error="errors.password" />
 
-                    <RegisterInput v-bind="repeat_password" label="Confirmar contraseña" placeholder="Confirma tu contraseña" type="password"
-                        name="password" :icon="LockClosedIcon" :maxlength="30" :error="errors.repeat_password" />
-                    
-                        <div class="flex gap-4 w-full justify-center">
+                    <RegisterInput v-bind="repeat_password" label="Confirmar contraseña"
+                        placeholder="Confirma tu contraseña" type="password" name="password" :icon="LockClosedIcon"
+                        :maxlength="30" :error="errors.repeat_password" />
+
+                    <div class="flex gap-4 w-full justify-center">
                         <button @click="openFormRegister = true"
                             :class="['btn btn-primary', disabledUser && 'btn-disabled']">Siguiente</button>
                         <router-link :to="{ name: 'welcome' }" class="btn btn-primary">Cancelar</router-link>

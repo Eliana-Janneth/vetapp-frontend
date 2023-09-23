@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { FunctionalComponent } from 'vue';
-
+import { AlertInput } from '@elements';
 defineEmits(['update:modelValue', 'focus', 'blur']);
 
 withDefaults(
@@ -39,6 +39,5 @@ withDefaults(
             @blur="$emit('blur')"
         />
     </div>
-
-    <span v-if="error" class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ error }}</span>
+    <AlertInput :error="error" />
 </template>

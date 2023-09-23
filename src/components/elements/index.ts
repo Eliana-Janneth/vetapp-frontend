@@ -6,3 +6,4 @@ export { default as FormSelect } from './FormSelect.vue';
 export { default as FormTextArea } from './FormTextArea.vue';
 export { default as VInput } from './VInput.vue';
 export { default as DataForm } from './DataForm.vue';
+export { default as AlertInput } from './AlertInput.vue';
