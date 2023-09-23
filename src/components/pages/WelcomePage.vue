@@ -1,16 +1,20 @@
+<script setup lang="ts">
+</script>
+
 <template>
     <div>
         <div class="bg-gradient-to-r from-indigo-500/50 via-indigo-600/50 to-indigo-800/70">
             <div class="container mx-auto">
                 <header class="flex justify-between px-8 py-4">
                     <div>
-                        <h1 class="text-4xl font-semibold text-indigo-700 hover:text-indigo-900">VetApp</h1>
+                        <h1 class="lg:text-4xl text-3xl font-semibold text-indigo-700 hover:text-indigo-900">VetApp</h1>
                     </div>
                     <div class="flex items-center gap-2">
                         <router-link :to="{ name: 'login' }" class="welcome-button">Iniciar Sesión</router-link>
                         <router-link :to="{ name: 'register' }" class="welcome-button">Registrarse</router-link>
                     </div>
                 </header>
+                
                 <hr class="border-indigo-800" />    
                 <section class="flex flex-col lg:flex-row">
                     <div

@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 .welcome-button {
-    @apply rounded-md bg-indigo-500/80 px-2 py-1 text-lg text-white/70 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
+    @apply rounded-md bg-indigo-500/80 px-2 py-1 lg:text-lg text-base text-white/70 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
 }
 
 .btn {
@@ -25,4 +25,26 @@
 
 .form-button-farmer {
     @apply flex w-1/4 justify-center rounded-md bg-fuchsia-500/80 py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:from-fuchsia-800 hover:via-fuchsia-600 hover:to-fuchsia-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-fuchsia-500 active:from-fuchsia-600 active:via-fuchsia-800 active:to-fuchsia-600 active:text-fuchsia-200;
+}
+
+.form-button-vet {
+    @apply flex w-1/4 justify-center rounded-md bg-pink-500/80 py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:from-pink-800 hover:via-pink-600 hover:to-pink-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-pink-500 active:from-pink-600 active:via-pink-800 active:to-pink-600 active:text-fuchsia-200;
+}
+
+
+.focus-outline {
+    @apply focus:outline focus-visible:outline focus:outline-2 focus-visible:outline-2 focus:outline-offset-2 focus-visible:outline-offset-2;
+}
+
+.form-farmer{
+
+}
+
+.form-vet{
+
+}
+
+.form-index{
+   @apply block w-full rounded-lg border border-indigo-300 bg-indigo-100 py-2 pr-3 shadow-sm placeholder:text-indigo-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm;
+
 }

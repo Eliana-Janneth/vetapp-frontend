@@ -14,6 +14,8 @@ import { RegisterInput } from '@elements';
 import { ref, computed } from 'vue';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
+import { MenuPage } from '@pages';
+import { useRouter } from 'vue-router';
 
 //const openFormVet = ref(false);
 const openFormRegister = ref(false);
@@ -92,6 +94,7 @@ const { handleSubmit, defineComponentBinds, errors, values } = useForm({
 const onSubmit = handleSubmit(async (values) => {
     const farmerUrl = 'http://127.0.0.1:9999/farmers/';
     const vetUrl = 'http://127.0.0.1:9999/vets/';
+    const router = useRouter();
 
     const apiUrl = selected.value === 'farmer' ? farmerUrl : vetUrl;
 
@@ -117,7 +120,14 @@ const onSubmit = handleSubmit(async (values) => {
         // Si la respuesta es exitosa
         const responseData = await response.json();
         console.log('Respuesta del backend:', responseData);
-    } catch (error) {
+        alert('Usuario registrado exitosamente');
+        if (selected.value === 'farmer') {
+            router.push({ name: 'menu' });
+        } else if (selected.value === 'vet') {
+            router.push({ name: 'menu' });
+        }
+    }
+    catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
 });

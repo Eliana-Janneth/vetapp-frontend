@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { FunctionalComponent } from 'vue';
+import { AlertInput } from '@elements';
 defineEmits(['update:modelValue']);
 
 withDefaults(
@@ -26,13 +27,8 @@ withDefaults(
         </span>
         <input
             class="text-md block w-full rounded-lg border border-x-0 border-t-0 border-indigo-700 bg-white py-2 pl-9 pr-3 text-indigo-700 shadow-md placeholder:text-indigo-400/50 hover:bg-indigo-50 focus:border-indigo-500 focus:bg-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-            :placeholder="placeholder"
-            :type="type"
-            :name="name"
-            :maxlength="maxlength"
-            @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-            required
-        />
+            :placeholder="placeholder" :type="type" :name="name" :maxlength="maxlength"
+            @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" required />
     </div>
-    <span v-if="error" class="rounded-md bg-red-200 px-2 text-sm text-red-600">{{ error }}</span>
+    <AlertInput :error="error" />
 </template>

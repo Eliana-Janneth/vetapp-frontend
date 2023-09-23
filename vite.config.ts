@@ -9,6 +9,8 @@ export default defineConfig({
             '@': '/src',
             '@elements': '/src/components/elements',
             '@pages': '/src/components/pages',
+            '@sidebar': '/src/components/elements/sidebar',
+            '@forms': '/src/components/elements/forms',
         },
     },
 });
