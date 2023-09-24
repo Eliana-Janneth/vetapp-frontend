@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { VSidebar, VSidebarButton } from '@sidebar';
+import { SidebarFarmer, VSidebarButton } from '@sidebar';
 import { ref, watchEffect } from 'vue';
-import {VFormFarmer} from '@forms';
+import {VFormFarmer,VFormAnimal} from '@forms';
 
 const open = ref(true);
 const showSidebarButton = ref(!open.value);
@@ -33,9 +33,9 @@ const closeSidebar = () => {
 </script>
 
 <template>
-    <div class="flex h-screen w-screen bg-pink-900 p-2">
+    <div class="flex h-screen w-screen bg-emerald-950 p-2">
 
-        <VSidebar :open="open" @close="closeSidebar" />
+        <SidebarFarmer :open="open" @close="closeSidebar" />
 
         <div class="flex-1 flex flex-col p-4 gap-4 container mx-auto">
             <div class="flex gap-2">
@@ -46,7 +46,8 @@ const closeSidebar = () => {
                     <p class="mr-2 text-xs font-medium text-white">Hola, ....</p>
                     <img src="https://picsum.photos/200/300" alt="" class="h-[50px] w-[50px] rounded-xl drop-shadow-xl" />
                 </div>
-                <VFormFarmer/>
+               <!-- <VFormFarmer/>-->
+              <VFormAnimal/>
             </div>
 
         </div>
