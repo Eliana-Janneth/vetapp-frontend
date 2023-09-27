@@ -43,6 +43,7 @@ const onGet = handleSubmit(async () => {
     <form class="flex flex-col bg-white gap-2 p-2">
         <div class="flex gap-2 lg:flex-row flex-col ">
             <h1>{{ values.first_name }}</h1>
+            <h1>{{ values.last_name }}</h1>
             <VInput :set-value="values.first_name" custom-class="form-farmer" label-color="text-emerald-800" label="Nombre" placeholder="Escriba su nombre" type="text"
                 name="first_name" />
             <VInput custom-class="form-farmer" label-color="text-emerald-800" label="Apellido" placeholder="Escriba su apellido" type="text" name="last_name" />

@@ -24,9 +24,8 @@
         "paths": {
             "@/*": ["src/*"],
             "@elements": ["src/components/elements"],
+            "@elements/*": ["src/components/elements/*"],
             "@pages": ["src/components/pages"],
-            "@sidebar": ["src/components/elements/sidebar"],
-            "@forms":["src/components/elements/forms"],
         }
     },
     "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],

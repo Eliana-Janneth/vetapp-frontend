@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { VSidebar, VSidebarButton } from '@sidebar';
+import { VSidebar, VSidebarButton } from '@elements/sidebar';
 import { ref, watchEffect } from 'vue';
-import {VFormFarmer} from '@forms';
+import {VFormFarmer} from '@elements/forms';
 
 const open = ref(true);
 const showSidebarButton = ref(!open.value);

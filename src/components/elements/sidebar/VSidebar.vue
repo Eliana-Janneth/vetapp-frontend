@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { HomeIcon, ChatBubbleLeftEllipsisIcon, ArrowPathRoundedSquareIcon, UserCircleIcon } from '@heroicons/vue/24/solid';
-import { VSidebarItem, VSidebarButton } from '@sidebar';
+import { VSidebarItem, VSidebarButton } from '@elements/sidebar';
 
 defineProps<{
     open: boolean;
