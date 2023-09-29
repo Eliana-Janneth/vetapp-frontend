@@ -1,37 +1,142 @@
 <script setup lang="ts">
 import { EnvelopeIcon, LockClosedIcon, LockOpenIcon } from '@heroicons/vue/24/outline';
-import { ref } from 'vue';
+import { useForm } from 'vee-validate';
+import { ref, computed } from 'vue';
+import { VInput } from '@elements';
+import * as yup from 'yup';
+//import { useRouter } from 'vue-router';
 
-const isPasswordFocused = ref(false);
+const passwordIcon = ref(LockClosedIcon);
+
+const schema = yup.object({
+    email: yup
+        .string()
+        .required('Por favor ingrese un correo')
+        .email('Debes ingresar un correo valido "alguien@example.com"'),
+    password: yup.string().required('Por favor ingrese una contraseña'),
+});
+
+const {  handleSubmit, defineComponentBinds, errors, values } = useForm({
+    validationSchema: schema,
+});
+
+const email = defineComponentBinds('email');
+const password = defineComponentBinds('password');
+
+
+const errorMessage = ref<string | null>(null);
+
+// const disabled = computed(() => {
+//     return !values.email || !values.password;
+// });
+
+// Después de que el usuario inicia sesión y obtiene un token de acceso
+localStorage.setItem('accessToken', 'el-token-de-acceso'); // Almacena el token en el almacenamiento local
+// Función para obtener el token de acceso almacenado
+
+
+// const login = async () => {
+//   try {
+//     // Realizar una solicitud al servidor para autenticar al usuario y obtener el token de acceso
+//     // Esto depende de cómo esté configurado tu servidor
+//     const response = await fetch('http://localhost:9999/login', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         email: email.value,
+//         password: password.value,
+//       }),
+//     });
+//     if (!response.ok) {
+//       throw new Error('Credenciales incorrectas');
+//     }
+
+//     // Si la autenticación es exitosa, el servidor debe devolver un token de acceso
+//     const data = await response.json();
+//     const accessToken = data.accessToken;
+
+//     // Almacenar el token de acceso de forma segura (por ejemplo, en localStorage)
+//     localStorage.setItem('accessToken', accessToken);
+
+//     // Redirigir a la página protegida
+//     router.push('/pagina-protegida');
+//   } catch (error:any) {
+//     errorMessage.value = error.message;
+//   }
+// };
+const onSubmit = handleSubmit(async (values) => {
+    const apiUrl = 'http://127.0.0.1:9999/auth/login/';
+
+    alert(JSON.stringify(values, null, 2));
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            body: JSON.stringify(values),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                alert(`Error del servidor: ${errorData.response}`);
+            } else {
+                alert('Error en la solicitud al servidor.');
+            }
+            return;
+        }
+        // Si la respuesta es exitosa
+        const responseData = await response.json();
+        console.log('Respuesta del backend:', responseData);
+        alert('Usuario logueado exitosamente'); 
+    }
+    catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
+});
 
 </script>
 
 <template>
-    <div class="bg-white items-center p-2 rounded-3xl border-4  border-indigo-900">
-        <div class="flex flex-col items-center p-4 gap-2">
-            <h1 class="text-indigo-700 text-2xl font-medium ">Iniciar Sesión</h1>
-            <label class="relative block w-full">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                    <EnvelopeIcon class="h-6 w-6 text-indigo-600" />
-                </span>
-                <input
-                    class="placeholder:text-indigo-400 block bg-indigo-100 w-full border border-indigo-300 rounded-lg py-2 pl-9 pr-3  shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 focus:ring-1 sm:text-sm"
-                    placeholder="Email" type="text" name="email">
-            </label>
-            <label class="relative block w-full">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                    <component :is="isPasswordFocused ? LockOpenIcon : LockClosedIcon" class="h-6 w-6  text-indigo-600" />
-                </span>
-                <input
-                    class="placeholder:text-indigo-400 block bg-indigo-100 w-full border border-indigo-300 rounded-lg py-2 pl-9 pr-3  shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 focus:ring-1 sm:text-sm"
-                    placeholder="Contraseña" type="password" name="password" @focus="isPasswordFocused = true"
-                    @blur="isPasswordFocused = false">
-            </label>
-            <a href="" class="text-indigo-900">¿Olvidó su contraseña?</a>
-            <button
-                class=" text-white/70 text-sm bg-indigo-500/80 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white rounded-full justify-center  p-2 px-4 py-2 text-md ">
-                Iniciar Sesión
-            </button>
-        </div>
-    </div>
+    <pre>{{ JSON.stringify(values, null, 2) }}</pre> 
+    <form class="flex flex-col items-center gap-2 rounded-xl bg-white p-4" @submit="onSubmit" >
+        <h1 class="text-2xl font-medium text-indigo-900">Iniciar Sesión</h1>
+
+        <VInput
+            v-bind="email"
+            variant="farmer"
+            placeholder="Correo Electrónico"
+            name="email"
+            type="email"
+            :icon="EnvelopeIcon"
+            :error="errors.email"
+        />
+        
+
+        <VInput
+            v-bind="password"        
+            placeholder="Contraseña"
+            type="password"
+            name="password"
+            :icon="passwordIcon"
+            :error="errors.password"
+            @focus="passwordIcon = LockOpenIcon"
+            @blur="passwordIcon = LockClosedIcon"
+        />
+
+        <a href="" class="text-indigo-900">¿Olvidó su contraseña?</a>
+        <button @click="onSubmit" :class="['btn btn-primary']" type="submit" value="iniciarSesión">
+            Iniciar Sesión
+        </button>
+    </form>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+
 </template>
+<style>
+.error-message {
+  color: red;
+}
+</style>

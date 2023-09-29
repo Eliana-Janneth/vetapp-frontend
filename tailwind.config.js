@@ -3,16 +3,13 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts}",
-  ],
-  theme: {
-    extend: {
-      fontFamily: {
-        'sans': ['Catamaran', ...defaultTheme.fontFamily.sans],
-      },
+    content: ['./index.html', './src/**/*.{vue,js,ts}'],
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Catamaran', ...defaultTheme.fontFamily.sans],
+            },
+        },
     },
-  },
-  plugins: [],
-}
+    plugins: [require('@tailwindcss/forms')],
+};
