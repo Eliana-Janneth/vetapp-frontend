@@ -42,19 +42,14 @@ export const logout = async () => {
 
     try {
         console.log('Antes de la solicitud de logout');
-        const response = await fetch(`${API_URL}/api/auth/logout/`, {
+        await fetch(`${API_URL}/api/auth/logout/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Token ${localStorage.getItem('accessToken')}`
             },
         });
-
-        const data = await response.json();
-        console.log('Respuesta de logout:', data);
         localStorage.removeItem('accessToken');
-
-        return data;
     } catch (error) {
         console.error('Error al realizar la solicitud de logout:', error);
         throw error;

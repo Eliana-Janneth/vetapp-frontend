@@ -63,6 +63,7 @@ const onSubmit = handleSubmit(async (values) => {
         console.error('Error al realizar la solicitud:', error);
     }
 });
+
 const onLogout = (async () => {
     try {
         await vetappApi.logout();
@@ -77,20 +78,20 @@ const onLogout = (async () => {
     <form class="flex flex-col items-center gap-2 rounded-xl bg-white p-4" @submit="onSubmit">
         <h1 class="text-2xl font-medium text-indigo-900">Iniciar Sesión</h1>
 
-        <VInput v-bind="username" variant="farmer" placeholder="Correo Electrónico" name="username" type="email"
+        <VInput v-bind="username" placeholder="Correo Electrónico" name="username" type="email"
             :icon="EnvelopeIcon" :error="errors.username" />
 
         <VInput v-bind="password" placeholder="Contraseña" type="password" name="password" :icon="passwordIcon"
             :error="errors.password" @focus="passwordIcon = LockOpenIcon" @blur="passwordIcon = LockClosedIcon" />
 
         <a href="" class="text-indigo-900">¿Olvidó su contraseña?</a>
-        <button @click="onSubmit" :class="['btn btn-primary']" type="submit" value="iniciarSesión">
+        <button :class="['btn btn-primary']" type="submit" value="iniciarSesión">
             Iniciar Sesión
         </button>
       
     </form>
-    <form @submit="onLogout">
-    <button @click="onLogout" :class="['btn btn-primary']" type="submit" value="logout">
+    <form @submit.prevent="onLogout">
+    <button :class="['btn btn-primary']" type="submit" value="logout">
             Salir Sesión
         </button>
     </form>
