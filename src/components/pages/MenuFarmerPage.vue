@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { SidebarFarmer, VSidebarButton } from '@elements/sidebar';
 import { ref, watchEffect } from 'vue';
-import { VFormFarmer, VFormAnimal, VListAnimal } from '@elements/forms';
-
+import { VFormFarmer, VRegisterAnimal, VListAnimal } from '@elements/forms';
+import { VFormAnimal } from '@elements';
 const open = ref(true);
 const showSidebarButton = ref(!open.value);
 const isMediumScreen = ref(window.innerWidth <= 768);
@@ -21,39 +21,40 @@ watchEffect(() => {
 const openSidebar = () => {
     showSidebarButton.value = false;
     open.value = true;
-}
+};
 
 const closeSidebar = () => {
     open.value = false;
     setTimeout(() => {
         showSidebarButton.value = true;
     }, 500);
-}
-
+};
 </script>
 
 <template>
     <div class="flex h-full w-full bg-emerald-950 p-2">
-
         <SidebarFarmer :open="open" @close="closeSidebar" />
 
-        <div class="flex-1 flex flex-col p-4 gap-4 container mx-auto">
+        <div class="container mx-auto flex flex-1 flex-col gap-4 p-4">
             <div class="flex gap-2">
                 <VSidebarButton dark v-if="showSidebarButton" @click="openSidebar" />
             </div>
             <div classs=" flex-1 flex justify-center items-center">
-                <div class="flex justify-end ">
+                <div class="flex justify-end">
                     <p class="mr-2 text-xs font-medium text-white">Hola, ....</p>
-                    <img src="https://picsum.photos/200/300" alt="" class="h-[50px] w-[50px] rounded-xl drop-shadow-xl" />
+                    <img
+                        src="https://picsum.photos/200/300"
+                        alt=""
+                        class="h-[50px] w-[50px] rounded-xl drop-shadow-xl"
+                    />
                 </div>
-               <!-- <VFormFarmer/>
+                <!-- <VFormFarmer/>
                <VListAnimal/>
-              
-              -->
-              <VFormAnimal/>
-             
-            </div>
+                            <VRegisterAnimal/>
 
+              -->
+                <VFormAnimal />
+            </div>
         </div>
         <!--  <div class="flex w-7/12 flex-col rounded-xl md:w-full lg:w-5/12">
             <AnimalRegisterPage></AnimalRegisterPage>
