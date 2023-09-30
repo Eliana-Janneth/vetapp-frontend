@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive } from 'vue';
 import type { TRegisterFormAccount, TRegisterFormProfile } from './types';
-import AccountForm from './AccountForm.vue'
-import ProfileForm from './ProfileForm.vue'
-import { TRegisterPayload, vetappApi } from '@/services'
+import AccountForm from './AccountForm.vue';
+import ProfileForm from './ProfileForm.vue';
+import { TRegisterPayload, vetappApi } from '@/services';
 
 const values: TRegisterPayload = reactive({
     email: '',
@@ -16,7 +16,7 @@ const values: TRegisterPayload = reactive({
     phone_number: '',
     city: '',
     address: '',
-})
+});
 
 const formState = ref(0);
 const isFormState = (state: number) => formState.value === state;
@@ -26,8 +26,8 @@ const nextFormState = (accountValues: TRegisterFormAccount) => {
     values.password = accountValues.password;
     values.repeat_password = accountValues.confirmPassword;
 
-    formState.value++
-}
+    formState.value++;
+};
 
 const initialAccountValues = computed<TRegisterFormAccount>(() => ({
     email: values.email,
@@ -47,11 +47,11 @@ const onSubmit = (profileValues: TRegisterFormProfile) => {
     values.address = profileValues.address;
 
     console.log('Form submitted!', values);
-    vetappApi.register(values)
-}
+    vetappApi.register(values);
+};
 </script>
 
 <template>
-    <AccountForm v-if="isFormState(0)" @done="nextFormState" :initialValues="initialAccountValues"/>
+    <AccountForm v-if="isFormState(0)" @done="nextFormState" :initialValues="initialAccountValues" />
     <ProfileForm v-if="isFormState(1)" @done="onSubmit" @cancel="prevFormState" />
 </template>

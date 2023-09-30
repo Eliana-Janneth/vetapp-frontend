@@ -4,25 +4,24 @@
 @tailwind utilities;
 
 .welcome-button {
-    @apply rounded-md bg-indigo-500/80 px-2 py-1 lg:text-lg text-base text-white/70 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white;
+    @apply rounded-md bg-indigo-500/80 px-2 py-1 text-base text-white/70 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white lg:text-lg;
 }
 
 .btn {
-    @apply rounded-xl px-6 py-2 text-lg justify-center;
+    @apply justify-center rounded-xl px-6 py-2 text-lg;
 }
 
 .btn-primary {
     @apply bg-gradient-to-r from-indigo-800 via-indigo-600 to-indigo-800 text-white hover:from-indigo-900 hover:via-indigo-700 hover:to-indigo-900;
 }
 
-.btn-menu-farmer{
+.btn-menu-farmer {
     @apply bg-emerald-500/80 py-2 text-white/70 hover:bg-gradient-to-r hover:from-emerald-800 hover:via-emerald-600 hover:to-emerald-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-emerald-500 active:from-emerald-600 active:via-emerald-800 active:to-emerald-600 active:text-emerald-200;
 }
 
-.btn-menu-vet{
+.btn-menu-vet {
     @apply bg-pink-500/80 py-2 text-white/70 hover:bg-gradient-to-r hover:from-pink-800 hover:via-pink-600 hover:to-pink-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-pink-500 active:from-pink-600 active:via-pink-800 active:to-pink-600 active:text-pink-200;
 }
-
 
 .btn-disabled {
     @apply pointer-events-none opacity-50;
@@ -33,27 +32,24 @@
 }
 
 .form-button-farmer {
-    @apply  bg-emerald-600  hover:from-emerald-800 hover:via-emerald-600 hover:to-emerald-800 focus:ring-emerald-500 active:from-emerald-600 active:via-emerald-800 active:to-emerald-600 active:text-emerald-200;
+    @apply bg-emerald-600  hover:from-emerald-800 hover:via-emerald-600 hover:to-emerald-800 focus:ring-emerald-500 active:from-emerald-600 active:via-emerald-800 active:to-emerald-600 active:text-emerald-200;
 }
 
 .form-button-vet {
     @apply flex w-1/4 justify-center rounded-md bg-pink-500/80 py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:from-pink-800 hover:via-pink-600 hover:to-pink-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-pink-500 active:from-pink-600 active:via-pink-800 active:to-pink-600 active:text-fuchsia-200;
 }
 
-
 .focus-outline {
-    @apply focus:outline focus-visible:outline focus:outline-2 focus-visible:outline-2 focus:outline-offset-2 focus-visible:outline-offset-2;
+    @apply focus:outline focus:outline-2 focus:outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
 }
 
-.form-farmer{
+.form-farmer {
     @apply border-emerald-400 bg-emerald-100  placeholder:text-emerald-600 focus:border-emerald-500  focus:ring-emerald-500;
-
 }
 
-.form-vet{
-
+.form-vet {
 }
 
-.form-index{
-   @apply border-indigo-300 bg-indigo-100  placeholder:text-indigo-400 focus:border-indigo-500  focus:ring-indigo-500;
+.form-index {
+    @apply border-indigo-300 bg-indigo-100  placeholder:text-indigo-400 focus:border-indigo-500  focus:ring-indigo-500;
 }

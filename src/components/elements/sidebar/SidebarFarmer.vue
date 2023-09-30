@@ -12,9 +12,11 @@ defineEmits(['close']);
 <template>
     <Transition name="side">
         <div v-if="open" class="w-56 overflow-hidden">
-            <div class="flex flex-col p-4 bg-white rounded-lg h-full w-56">
+            <div class="flex h-full w-56 flex-col rounded-lg bg-white p-4">
                 <div class="flex justify-between p-2">
-                    <div class="flex flex-col items-center text-3xl font-semibold  text-emerald-700 hover:text-emerald-900    ">
+                    <div
+                        class="flex flex-col items-center text-3xl font-semibold text-emerald-700 hover:text-emerald-900"
+                    >
                         <h1>VetApp</h1>
                     </div>
                     <div class="flex items-center">
@@ -22,10 +24,14 @@ defineEmits(['close']);
                     </div>
                 </div>
                 <hr class="border-1 w-full border-emerald-700 hover:border-emerald-900" />
-                <div class="flex-1 mt-4">
+                <div class="mt-4 flex-1">
                     <ul class="flex flex-col gap-4">
                         <VSidebarItem custom-class="btn-menu-farmer" label="Home" :icon="HomeIcon" />
-                        <VSidebarItem custom-class="btn-menu-farmer" label="Consultas" :icon="ChatBubbleLeftEllipsisIcon" />
+                        <VSidebarItem
+                            custom-class="btn-menu-farmer"
+                            label="Consultas"
+                            :icon="ChatBubbleLeftEllipsisIcon"
+                        />
                         <VSidebarItem custom-class="btn-menu-farmer" label="Mis animales" :icon="StarIcon" />
                         <VSidebarItem custom-class="btn-menu-farmer" label="Perfil" :icon="UserCircleIcon" />
                     </ul>

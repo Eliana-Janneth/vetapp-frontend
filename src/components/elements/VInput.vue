@@ -15,7 +15,6 @@ withDefaults(
         icon?: FunctionalComponent;
         id?: string;
         label?: string;
-        labelColor?: string;
         modelValue?: string;
         name?: string;
         placeholder?: string;
@@ -51,20 +50,21 @@ const variantLabelClass = {
 
             <input
                 :class="[
-                    'block w-full rounded-lg form-input border py-2 pr-3 shadow-sm focus:outline-none focus:ring-1 sm:text-sm', 
-                    icon ? 'pl-10' : 'pl-3', 
+                    'form-input block w-full rounded-lg border py-2 pr-3 shadow-sm focus:outline-none focus:ring-1 sm:text-sm',
+                    icon ? 'pl-10' : 'pl-3',
                     customClass,
-                    variantInputClass[variant]
+                    variantInputClass[variant],
                 ]"
                 v-bind="$attrs"
-                :id="id" 
-                :placeholder="placeholder" 
-                :type="type" 
-                :name="name" 
+                :id="id"
+                :placeholder="placeholder"
+                :type="type"
+                :name="name"
                 :value="modelValue"
-                @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" 
+                @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
                 @focus="$emit('focus')"
-                @blur="$emit('blur')" />
+                @blur="$emit('blur')"
+            />
         </div>
     </div>
     <AlertInput :error="error" />

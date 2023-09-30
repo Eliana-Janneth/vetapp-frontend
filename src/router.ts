@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { WelcomePage, RegisterPage, MenuVetPage,MenuFarmerPage, LoginPage } from '@pages';
+import { WelcomePage, RegisterPage, MenuVetPage, MenuFarmerPage, LoginPage } from '@pages';
 
 // TODO: Nombrar rutas
 const routes = [

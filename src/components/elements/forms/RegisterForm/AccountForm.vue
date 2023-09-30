@@ -3,10 +3,7 @@ import { useForm } from 'vee-validate';
 import { VInput, VSelect } from '@elements';
 import type { TRegisterFormAccount } from './types';
 import * as yup from 'yup';
-import {
-    AtSymbolIcon,
-    LockClosedIcon,
-} from '@heroicons/vue/24/outline';
+import { AtSymbolIcon, LockClosedIcon } from '@heroicons/vue/24/outline';
 
 const emit = defineEmits(['done']);
 
@@ -34,7 +31,10 @@ const validationSchema = yup.object({
         .oneOf([yup.ref('password')], 'Las contraseñas deben coincidir'),
 });
 
-const { handleSubmit, defineComponentBinds, errors, meta } = useForm<TRegisterFormAccount>({ validationSchema, initialValues: props.initialValues });
+const { handleSubmit, defineComponentBinds, errors, meta } = useForm<TRegisterFormAccount>({
+    validationSchema,
+    initialValues: props.initialValues,
+});
 
 const profile = defineComponentBinds('profile');
 const email = defineComponentBinds('email');
@@ -54,35 +54,56 @@ const profiles = [
 <template>
     <form @submit="onSubmit" class="flex flex-col items-center gap-y-4 p-2">
         <VSelect
-            :options="profiles" 
-            v-bind="profile" 
-            label="Perfil" 
+            :options="profiles"
+            v-bind="profile"
+            label="Perfil"
             placeholder="Seleccione su pefil"
-            name="profile" 
-            :error="errors.profile" 
+            name="profile"
+            :error="errors.profile"
         />
 
-        <VInput 
-            v-bind="email" 
-            label="Email" 
-            placeholder="alguien@example.com" 
-            type="email" 
+        <VInput
+            v-bind="email"
+            label="Email"
+            placeholder="alguien@example.com"
+            type="email"
             name="email"
-            :icon="AtSymbolIcon"    
-            :maxlength="60" 
-            :error="errors.email" 
+            :icon="AtSymbolIcon"
+            :maxlength="60"
+            :error="errors.email"
         />
 
-        <VInput v-bind="password" label="Contraseña" placeholder="Ingresa tu contraseña" type="password"
-            name="password" :icon="LockClosedIcon" :maxlength="30" :error="errors.password" />
+        <VInput
+            v-bind="password"
+            label="Contraseña"
+            placeholder="Ingresa tu contraseña"
+            type="password"
+            name="password"
+            :icon="LockClosedIcon"
+            :maxlength="30"
+            :error="errors.password"
+        />
 
-        <VInput v-bind="confirmPassword" label="Confirmar contraseña" placeholder="Confirma tu contraseña"
-            type="password" name="password" :icon="LockClosedIcon" :maxlength="30" :error="errors.confirmPassword" />
+        <VInput
+            v-bind="confirmPassword"
+            label="Confirmar contraseña"
+            placeholder="Confirma tu contraseña"
+            type="password"
+            name="password"
+            :icon="LockClosedIcon"
+            :maxlength="30"
+            :error="errors.confirmPassword"
+        />
 
-        <div class="flex gap-4 w-full justify-center">
-            <button :disabled="!meta.valid" type="submit" :class="['btn btn-primary', !meta.valid && 'opacity-50 pointer-events-none']">Siguiente</button>
+        <div class="flex w-full justify-center gap-4">
+            <button
+                :disabled="!meta.valid"
+                type="submit"
+                :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
+            >
+                Siguiente
+            </button>
             <router-link :to="{ name: 'welcome' }" class="btn btn-primary">Cancelar</router-link>
         </div>
-
     </form>
 </template>
