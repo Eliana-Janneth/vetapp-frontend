@@ -10,7 +10,6 @@ defineOptions({
 withDefaults(
     defineProps<{
         customClass?: string;
-        variant?: 'farmer' | 'vet' | 'base';
         error?: string;
         icon?: FunctionalComponent;
         id?: string;
@@ -19,6 +18,7 @@ withDefaults(
         name?: string;
         placeholder?: string;
         type?: string;
+        variant?: 'farmer' | 'vet' | 'base';
     }>(),
     {
         type: 'text',
@@ -66,7 +66,7 @@ const variantLabelClass = {
                 @blur="$emit('blur')"
             />
         </div>
-        <AlertInput :error="error" />
+        <AlertInput :error="error" :variant="variant" />
     </div>
     
 </template>

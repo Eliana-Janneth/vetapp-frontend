@@ -45,6 +45,6 @@ const variantLabelClass = {
             @blur="$emit('blur')"
         >
         </textarea>
+        <AlertInput :error="error" :variant="variant" />
     </div>
-    <AlertInput :error="error" />
 </template>
