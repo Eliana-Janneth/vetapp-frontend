@@ -1,5 +1,5 @@
-import { notify } from "@kyvg/vue3-notification";
-import { TRegisterPayload } from "./types";
+import { notify } from '@kyvg/vue3-notification';
+import { TRegisterPayload, TLoginPayload } from './types';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -36,17 +36,52 @@ export const register = async (data: TRegisterPayload) => {
 
     return response;
 };
+export const login = async (data: TLoginPayload) => {
+    console.log('entro');
+    const apiUrl = `${API_URL}/auth/login/`;
+    alert(JSON.stringify(data, null, 2));
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                alert(`Error del servidor: ${errorData.response}`);
+            } else {
+                alert('Error en la solicitud al servidor.');
+            }
+            return;
+        }
+        // Si la respuesta es exitosa
+        const responseData = await response.json();
+
+        localStorage.setItem('accessToken', responseData.token);
+        localStorage.setItem('profile', responseData.role);
+        localStorage.setItem('name', responseData.name);
+
+        console.log('Respuesta del backend:', responseData.token);
+        console.log('perfil', responseData.role);
+        console.log('nombre', responseData.name);
+        alert('Usuario logueado exitosamente');
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
+};
 
 export const logout = async () => {
-
-
     try {
         console.log('Antes de la solicitud de logout');
         await fetch(`${API_URL}/api/auth/logout/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${localStorage.getItem('accessToken')}`
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
             },
         });
         localStorage.removeItem('accessToken');
@@ -55,5 +90,3 @@ export const logout = async () => {
         throw error;
     }
 };
-
-

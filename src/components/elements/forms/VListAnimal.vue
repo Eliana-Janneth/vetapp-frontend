@@ -42,10 +42,7 @@ onMounted(async () => {
                         <th class="px-6 py-3">Especie</th>
                         <th class="px-6 py-3">Raza</th>
                         <th class="px-6 py-3">Género</th>
-                        <th class="px-6 py-3">Fecha de Nacimiento</th>
-                        <th class="px-6 py-3">Color</th>
-                        <th class="px-6 py-3">Peso</th>
-                        <th class="px-6 py-3">Descripción</th>
+        
                     </tr>
                 </thead>
                 <tbody>
@@ -54,10 +51,7 @@ onMounted(async () => {
                         <td class="table-item">{{ animal.specie }}</td>
                         <td class="table-item">{{ animal.race }}</td>
                         <td class="table-item">{{ animal.gender }}</td>
-                        <td class="table-item">{{ animal.birth_date }}</td>
-                        <td class="table-item">{{ animal.color }}</td>
-                        <td class="table-item">{{ animal.weight }}</td>
-                        <td class="table-item">{{ animal.description }}</td>
+                       
                     </tr>
                 </tbody>
             </table>

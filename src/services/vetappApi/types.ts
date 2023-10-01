@@ -28,3 +28,8 @@ export type TRegisterAnimalPayload = {
     specie: string;
     weight: string;
 };
+
+export type TLoginPayload = {
+    username: string;
+    password: string;
+};

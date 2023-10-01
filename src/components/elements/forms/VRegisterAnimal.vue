@@ -39,6 +39,7 @@ onMounted(async () => {
     try {
         species.value = await vetappApi.getSpecies();
         console.log(species);
+
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }

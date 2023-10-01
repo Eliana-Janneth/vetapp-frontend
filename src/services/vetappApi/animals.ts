@@ -1,11 +1,13 @@
 import type { TOption as TAOption } from "./types";
 import type { TOption } from '@/types';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // export const createAnimal = async (data: TRegisterAnimalPayload) => {};
 
 export const getAnimals = async () => {
     try {
-        const response = await fetch('http://localhost:9999/animals/',{
+        const response = await fetch( `${API_URL}/animals/`,{
             headers: {
                 'Authorization': `Token ${localStorage.getItem('accessToken')}`
             }
@@ -22,13 +24,12 @@ export const getAnimals = async () => {
 
 export const getSpecies = async (): Promise<TOption[]> => {
     try {
-        // const token = `pasdfasdfasdfasdf`;
-        // const response = await fetch('http://localhost:9999/animal-species/', {
-        //     headers: {
-        //         'Authorization': `Token ${token}`
-        //     }
-        // });
-        const response = await fetch('http://localhost:9999/animal-species/');
+   
+        const response = await fetch(`${API_URL}/animal-species/`,{
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('accessToken')}`
+            }
+        });
         if (!response.ok) {
             throw new Error('No se pudo cargar los datos');
         }
@@ -37,14 +38,18 @@ export const getSpecies = async (): Promise<TOption[]> => {
     } catch (error) {
         console.error('Error al cargar los datos:', error);
 
-        return []; // Devuelve un arreglo vacío en caso de error
+        return []; 
     }
 };
 
 export const getRaces = async (specie: string) => {
     if (specie) {
         try {
-            const response = await fetch('http://localhost:9999/animal-races/');
+            const response = await fetch( `${API_URL}/animal-races/`,{
+                headers: {
+                    'Authorization': `Token ${localStorage.getItem('accessToken')}`
+                }
+            });
             if (!response.ok) {
                 throw new Error('No se pudo cargar los datos');
             }
