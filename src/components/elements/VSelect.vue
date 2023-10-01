@@ -50,6 +50,6 @@ const variantLabelClass = {
             <option value="" disabled selected hidden>{{ placeholder }}</option>
             <option v-for="option in options" :key="option.value" :value="option.value">{{ option.text }}</option>
         </select>
+        <AlertInput :error="error" />
     </div>
-    <AlertInput :error="error" />
 </template>
