@@ -40,6 +40,7 @@ const variantLabelClass = {
 </script>
 
 <template>
+    
     <div class="relative w-full">
         <span v-if="label" :class="['block text-lg font-medium', variantLabelClass[variant]]">{{ label }}</span>
 
@@ -47,7 +48,6 @@ const variantLabelClass = {
             <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                 <component :is="icon" class="h-6 w-6 text-indigo-600" />
             </span>
-
             <input
                 :class="[
                     'form-input block w-full rounded-lg border py-2 pr-3 shadow-sm focus:outline-none focus:ring-1 sm:text-sm',
@@ -66,6 +66,7 @@ const variantLabelClass = {
                 @blur="$emit('blur')"
             />
         </div>
+        <AlertInput :error="error" />
     </div>
-    <AlertInput :error="error" />
+    
 </template>

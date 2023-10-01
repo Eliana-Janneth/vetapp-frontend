@@ -43,7 +43,8 @@ const variantLabelClass = {
             @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
             @focus="$emit('focus')"
             @blur="$emit('blur')"
-        />
-        <AlertInput :error="error" />
+        >
+        </textarea>
     </div>
+    <AlertInput :error="error" />
 </template>
