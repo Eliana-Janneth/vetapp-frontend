@@ -9,8 +9,8 @@ const animals = ref<UserData[]>([]);
 interface UserData {
     id: string;
     name: string;
-    specie: string;
-    race: string;
+    specie_name: string;
+    race_name: string;
     color: string;
     gender: string;
     birth_date: string;
@@ -48,8 +48,8 @@ onMounted(async () => {
                 <tbody>
                     <tr class="outline outline-2 outline-emerald-400 divide-x-2 divide-emerald-400 -outline-offset-2" v-for="animal in animals" :key="animal.id">
                         <td class="table-item">{{ animal.name }}</td>
-                        <td class="table-item">{{ animal.specie }}</td>
-                        <td class="table-item">{{ animal.race }}</td>
+                        <td class="table-item">{{ animal.specie_name }}</td>
+                        <td class="table-item">{{ animal.race_name }}</td>
                         <td class="table-item">{{ animal.gender }}</td>
                        
                     </tr>

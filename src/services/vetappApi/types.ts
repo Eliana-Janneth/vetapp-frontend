@@ -17,12 +17,11 @@ export type TRegisterPayload = {
 };
 
 export type TRegisterAnimalPayload = {
-    birthdate: string;
+    birth_date: string;
     color: string;
     description: string;
-    farmer: string;
     gender: string;
-    heigth: string;
+    height: string;
     name: string;
     race: string;
     specie: string;

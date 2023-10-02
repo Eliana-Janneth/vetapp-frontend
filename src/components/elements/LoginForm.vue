@@ -21,7 +21,7 @@ const schema = yup.object({
     password: yup.string().required('Por favor ingrese una contraseña'),
 });
 
-const { handleSubmit, defineComponentBinds, errors } = useForm<TLoginPayload>({
+const { handleSubmit, defineComponentBinds, errors, meta } = useForm<TLoginPayload>({
     validationSchema: schema,
 });
 
@@ -29,14 +29,7 @@ const email = defineComponentBinds('username');
 const password = defineComponentBinds('password');
 
 const errorMessage = ref<string | null>(null);
-// const disabled = computed(() => {
-//     return !values.email || !values.password;
-// });
 
-// Almacena el token en el almacenamiento local
-
-
-//envia los datos al servidor
 const onSubmit = handleSubmit (async (loginValues: TLoginPayload) => {
     try {
         values.username = loginValues.username;
@@ -68,7 +61,7 @@ const onLogout = (async () => {
             :error="errors.password" @focus="passwordIcon = LockOpenIcon" @blur="passwordIcon = LockClosedIcon" />
 
         <a href="" class="text-indigo-900">¿Olvidó su contraseña?</a>
-        <button :class="['btn btn-primary']" type="submit" value="iniciarSesión">
+        <button :disabled="!meta.valid" :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']" type="submit" >
             Iniciar Sesión
         </button>
 
