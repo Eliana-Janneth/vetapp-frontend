@@ -1,21 +1,9 @@
 <script setup lang="ts">
 import { SidebarFarmer, VSidebarButton } from '@elements/sidebar';
 import { ref, watchEffect } from 'vue';
-import { FormFarmer, ViewFarmer } from '@elements/forms/UpdateUser';
+import { VFormFarmer, VRegisterAnimal, VListAnimal } from '@elements/forms';
 import { VFormAnimal } from '@elements';
-
-
 const open = ref(true);
-const openFormUser = () => {
-    openAnimal.value = false;
-    openUser.value = true;
-};
-const openFormAnimal = () => {
-    openAnimal.value = true;
-    openUser.value = false;
-};
-const openUser = ref(false);
-const openAnimal = ref(false);
 const showSidebarButton = ref(!open.value);
 const isMediumScreen = ref(window.innerWidth <= 768);
 
@@ -41,8 +29,6 @@ const closeSidebar = () => {
         showSidebarButton.value = true;
     }, 500);
 };
-
-const name = localStorage.getItem('name');
 </script>
 
 <template>
@@ -53,18 +39,21 @@ const name = localStorage.getItem('name');
             <div class="flex gap-2">
                 <VSidebarButton dark v-if="showSidebarButton" @click="openSidebar" />
             </div>
-            <div classs=" flex-1 flex-row">
+            <div classs=" flex-1 flex justify-center items-center">
                 <div class="flex justify-end">
-                    <p class="mr-2 text-xs font-medium text-white">Hola, {{ name }}</p>
-                    <img src="https://picsum.photos/200/300" alt="" class="h-[50px] w-[50px] rounded-xl drop-shadow-xl" />
+                    <p class="mr-2 text-xs font-medium text-white">Hola, ....</p>
+                    <img
+                        src="https://picsum.photos/200/300"
+                        alt=""
+                        class="h-[50px] w-[50px] rounded-xl drop-shadow-xl"
+                    />
                 </div>
-                <VFormAnimal v-if="openAnimal" @openAnimal="openFormAnimal" />
+                <!-- <VFormFarmer/>
+               <VListAnimal/>
+                            <VRegisterAnimal/>
 
-
-              <div class="flex flex-col lg:flex-row gap-4 ">
-                <ViewFarmer />
-                <FormFarmer />
-            </div>
+              -->
+                <VFormAnimal />
             </div>
         </div>
         <!--  <div class="flex w-7/12 flex-col rounded-xl md:w-full lg:w-5/12">

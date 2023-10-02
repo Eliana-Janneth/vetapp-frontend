@@ -119,3 +119,5 @@ export const getUser = async () => {
         console.error('Error al realizar la solicitud:', error);
     }
 };
+
+export const updateUser = async (data: TUserInformationPayload) => {};

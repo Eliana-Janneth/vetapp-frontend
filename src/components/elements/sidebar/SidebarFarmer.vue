@@ -6,7 +6,9 @@ defineProps<{
     open: boolean;
 }>();
 
-defineEmits(['close']);
+defineEmits(['close', 'openAnimal', 'openUser'])
+
+
 </script>
 
 <template>
@@ -32,8 +34,9 @@ defineEmits(['close']);
                             label="Consultas"
                             :icon="ChatBubbleLeftEllipsisIcon"
                         />
-                        <VSidebarItem custom-class="btn-menu-farmer" label="Mis animales" :icon="StarIcon" />
-                        <VSidebarItem custom-class="btn-menu-farmer" label="Perfil" :icon="UserCircleIcon" />
+                        <VSidebarItem custom-class="btn-menu-farmer" label="Mis animales" :icon="StarIcon" @click="$emit('openAnimal')" />
+                        <VSidebarItem custom-class="btn-menu-farmer" label="Perfil" :icon="UserCircleIcon" @click="$emit('openUser')" />
+                        
                     </ul>
                 </div>
             </div>

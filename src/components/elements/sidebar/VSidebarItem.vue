@@ -6,6 +6,8 @@ defineProps<{
     icon: FunctionalComponent;
     customClass: string;
 }>();
+defineEmits(['close', 'openAnimal', 'openUser'])
+
 </script>
 
 <template>

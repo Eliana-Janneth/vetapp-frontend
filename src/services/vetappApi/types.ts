@@ -1,7 +1,7 @@
 export type TOption = {
     name: string;
     id: string;
-}
+};
 
 export type TRegisterPayload = {
     email: string;
@@ -33,7 +33,7 @@ export type TLoginPayload = {
     password: string;
 };
 
-export type TUserInformationPayload ={
+export type TFarmerInformationPayload = {
     first_name: string;
     last_name: string;
     email: string;
@@ -41,4 +41,21 @@ export type TUserInformationPayload ={
     phone_number: string;
     city: string;
     address: string;
-}
+    password: string;
+    repeat_password: string;
+
+};
+export type TVetInformationPayload = {
+    first_name: string;
+    last_name: string;
+    email: string;
+    document_number: string;
+    phone_number: string;
+    city: string;
+    address: string;
+    password: string;
+    repeat_password: string;
+    license_number:string;
+    license_expirity_date: string;
+
+};

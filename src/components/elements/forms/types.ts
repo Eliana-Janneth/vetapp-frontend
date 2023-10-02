@@ -8,17 +8,7 @@ export type TRegisterAnimal = {
     weight: string;
     race: string;
     specie: string;
-    
 };
 
 //   "birth_date": "AAAA-MM-DD",
 
-export type TUserInformation = {
-    firstName: string;
-    lastName: string;
-    email: string;
-    document: string;
-    phone: string;
-    city: string;
-    address: string;
-};
