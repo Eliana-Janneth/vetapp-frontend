@@ -1,5 +1,5 @@
 import { notify } from '@kyvg/vue3-notification';
-import { TRegisterPayload, TLoginPayload } from './types';
+import { TRegisterPayload, TLoginPayload, TUserInformationPayload } from './types';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -88,5 +88,34 @@ export const logout = async () => {
     } catch (error) {
         console.error('Error al realizar la solicitud de logout:', error);
         throw error;
+    }
+};
+
+export const getUser = async () => {
+    const apiUrl = `${API_URL}/userinfo/`;
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                alert(`Error del servidor: ${errorData.response}`);
+            } else {
+                alert('Error en la solicitud al servidor.');
+            }
+            return;
+        }
+                
+        const responseData = await response.json();
+        return responseData;
+        
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
     }
 };

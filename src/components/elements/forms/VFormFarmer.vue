@@ -1,60 +1,65 @@
 <script setup lang="ts">
-import { VInput, VButton } from '@elements';
+import { VInput } from '@elements';
 import { useForm } from 'vee-validate';
+import { reactive, onMounted } from 'vue';
+import type { TUserInformation } from './types';
+import { TUserInformationPayload, vetappApi } from '@/services';
 
-const { handleSubmit, setValues, values } = useForm({
-    initialValues: {
-        first_name: '',
-        last_name: '',
-        document_number: '',
-        email: '',
-        address: '',
-        phone_number: '',
-    },
+let values: TUserInformationPayload = reactive({
+    email: '',
+    first_name: '',
+    last_name: '',
+    document_number: '',
+    phone_number: '',
+    city: '',
+    address: '',
 });
 
-const onGet = handleSubmit(async () => {
+onMounted(async () => {
     try {
-        const response = await fetch('http://localhost:9999/farmers/');
-        if (!response.ok) {
-            throw new Error('Error en la solicitud');
-        }
-        const data = await response.json();
-        console.log('Datos recibidos:', data);
-        if (data.length > 0) {
-            const userData = data[1];
-            console.log(userData);
-            setValues({
-                first_name: userData.first_name,
-                last_name: userData.last_name,
-                document_number: userData.document_number,
-                email: userData.email,
-                address: userData.address,
-                phone_number: userData.phone_number,
-            });
-        }
+        const userData = await vetappApi.getUser();
+
+        values.email = userData.email;
+        values.first_name = userData.first_name;
+        values.last_name = userData.last_name;
+        values.document_number = userData.document_number;
+        values.phone_number = userData.phone_number;
+        values.city = userData.city;
+        values.address = userData.address;
+
     } catch (error) {
-        // Manejar cualquier error que ocurra durante la solicitud
-        console.error('Error:', error);
+        console.error('Error al cargar los datos:', error);
     }
 });
+const {  defineComponentBinds } = useForm<TUserInformation>({  });
+
+const firstName = defineComponentBinds('firstName');
+const lastName = defineComponentBinds('lastName');
+const document = defineComponentBinds('document');
+const phone = defineComponentBinds('phone');
+const city = defineComponentBinds('city');
+const address = defineComponentBinds('address');
+const email= defineComponentBinds('email');
+
 </script>
 <template>
     <form class="flex flex-col gap-2 bg-white p-2">
         <div class="flex flex-col gap-2 lg:flex-row">
-            <h1>{{ values.first_name }}</h1>
-            <h1>{{ values.last_name }}</h1>
             <VInput
-                :set-value="values.first_name"
-                custom-class="form-farmer"
+                v-bind="firstName"
+                :model-value= "values.first_name"
+                variant="farmer"
                 label-color="text-emerald-800"
                 label="Nombre"
                 placeholder="Escriba su nombre"
                 type="text"
                 name="first_name"
+                :value="values.first_name"
             />
             <VInput
-                custom-class="form-farmer"
+                v-bind="lastName"
+                :model-value="values.last_name"
+                variant="farmer"
                 label-color="text-emerald-800"
                 label="Apellido"
                 placeholder="Escriba su apellido"
@@ -64,7 +69,9 @@ const onGet = handleSubmit(async () => {
         </div>
         <div class="flex flex-col gap-2 lg:flex-row">
             <VInput
-                custom-class="form-farmer"
+                v-bind="document"
+                :model-value="values.document_number"
+                variant="farmer"
                 label-color="text-emerald-800"
                 label="Documento de Identidad"
                 placeholder="Escriba su documento de identidad"
@@ -72,7 +79,9 @@ const onGet = handleSubmit(async () => {
                 name="document_number"
             />
             <VInput
-                custom-class="form-farmer"
+                v-bind="email"
+                :model-value="values.email"
+                variant="farmer"
                 label-color="text-emerald-800"
                 label="Correo Electrónico"
                 placeholder="Escriba su correo electrónico"
@@ -80,7 +89,9 @@ const onGet = handleSubmit(async () => {
                 name="email"
             />
             <VInput
-                custom-class="form-farmer"
+                v-bind="phone"
+                :model-value="values.phone_number"
+                variant="farmer"
                 label-color="text-emerald-800"
                 label="Número de Teléfono"
                 placeholder="Escriba su número de teléfono"
@@ -90,7 +101,9 @@ const onGet = handleSubmit(async () => {
         </div>
         <div class="flex flex-col gap-2 lg:flex-row">
             <VInput
-                custom-class="form-farmer"
+                v-bind="address"
+                :model-value="values.address"
+                variant="farmer"
                 label-color="text-emerald-800"
                 label="Dirección"
                 placeholder="Escriba su dirección"
@@ -98,7 +111,9 @@ const onGet = handleSubmit(async () => {
                 name="address"
             />
             <VInput
-                custom-class="form-farmer"
+                v-bind="city"
+                :model-value="values.city"
+                variant="farmer"
                 label-color="text-emerald-800"
                 label="Municipio"
                 placeholder="Escriba su municipio"
@@ -106,8 +121,6 @@ const onGet = handleSubmit(async () => {
                 name="city"
             />
         </div>
-        <div class="flex justify-center p-4">
-            <VButton @click="onGet" label="Pedir Datos" custom-class="btn form-button-farmer" />
-        </div>
+
     </form>
 </template>

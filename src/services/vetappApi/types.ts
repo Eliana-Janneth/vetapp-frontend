@@ -32,3 +32,13 @@ export type TLoginPayload = {
     username: string;
     password: string;
 };
+
+export type TUserInformationPayload ={
+    first_name: string;
+    last_name: string;
+    email: string;
+    document_number: string;
+    phone_number: string;
+    city: string;
+    address: string;
+}
