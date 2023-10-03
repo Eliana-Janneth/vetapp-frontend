@@ -51,7 +51,7 @@ const onSubmit = (profileValues: TRegisterFormProfile) => {
     console.log('Form submitted!', values);
     vetappApi.register(values).then(() => {
         console.log('User registered!');
-        router.push({ name: 'home' });
+        router.push({ name: 'login' });
     });
 };
 </script>

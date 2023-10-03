@@ -16,11 +16,11 @@
 }
 
 .btn-menu-farmer {
-    @apply bg-emerald-500/80 py-2 text-white/70 hover:bg-gradient-to-r hover:from-emerald-800 hover:via-emerald-600 hover:to-emerald-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-emerald-500 active:from-emerald-600 active:via-emerald-800 active:to-emerald-600 active:text-emerald-200;
+    @apply bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600  py-2 text-white/80 hover:bg-gradient-to-r hover:from-emerald-800 hover:via-emerald-600 hover:to-emerald-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-emerald-500 active:from-emerald-600 active:via-emerald-800 active:to-emerald-600 active:text-emerald-200;
 }
 
 .btn-menu-vet {
-    @apply bg-pink-500/80 py-2 text-white/70 hover:bg-gradient-to-r hover:from-pink-800 hover:via-pink-600 hover:to-pink-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-pink-500 active:from-pink-600 active:via-pink-800 active:to-pink-600 active:text-pink-200;
+    @apply bg-gradient-to-r from-sky-600 via-sky-500 to-sky-600  py-2 text-white/80 hover:bg-gradient-to-r hover:from-sky-800 hover:via-sky-600 hover:to-sky-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-sky-500 active:from-sky-600 active:via-sky-800 active:to-sky-600 active:text-sky-200;
 }
 
 .btn-disabled {
@@ -36,7 +36,7 @@
 }
 
 .form-button-vet {
-    @apply flex w-1/4 justify-center rounded-md bg-pink-500/80 py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:from-pink-800 hover:via-pink-600 hover:to-pink-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-pink-500 active:from-pink-600 active:via-pink-800 active:to-pink-600 active:text-fuchsia-200;
+    @apply flex w-1/4 justify-center rounded-md bg-sky-500/80 py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:from-sky-800 hover:via-sky-600 hover:to-sky-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-sky-500 active:from-sky-600 active:via-sky-800 active:to-sky-600 active:text-fuchsia-200;
 }
 
 .focus-outline {

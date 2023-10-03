@@ -28,13 +28,13 @@ withDefaults(
 
 const variantInputClass = {
     farmer: 'border-emerald-400 bg-emerald-100 placeholder:text-emerald-600 focus:border-emerald-500 focus:ring-emerald-500',
-    vet: 'border-pink-400 bg-pink-100 placeholder:text-pink-600 focus:border-pink-500 focus:ring-pink-500',
+    vet: 'border-sky-400 bg-sky-100 placeholder:text-sky-600 focus:border-sky-500 focus:ring-sky-500',
     base: 'border-indigo-400 bg-indigo-100 placeholder:text-indigo-600 focus:border-indigo-500 focus:ring-indigo-500',
 };
 
 const variantLabelClass = {
     farmer: 'text-emerald-700',
-    vet: 'text-pink-700',
+    vet: 'text-sky-700',
     base: 'text-indigo-700',
 };
 </script>

@@ -37,7 +37,6 @@ export const register = async (data: TRegisterPayload) => {
     return response;
 };
 export const login = async (data: TLoginPayload) => {
-    console.log('entro');
     const apiUrl = `${API_URL}/auth/login/`;
     console.log(JSON.stringify(data, null, 2));
     try {
@@ -80,6 +79,7 @@ export const logout = async () => {
             },
         });
         localStorage.removeItem('accessToken');
+        localStorage.removeItem('user');
     } catch (error) {
         console.error('Error al realizar la solicitud de logout:', error);
         throw error;

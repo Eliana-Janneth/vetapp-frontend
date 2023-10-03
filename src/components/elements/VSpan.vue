@@ -24,13 +24,13 @@ withDefaults(
 
 const variantIconClass = {
     farmer: 'text-emerald-500',
-    vet: 'text-pink-500',
+    vet: 'text-sky-500',
     base: 'text-indigo-500',
 };
 
 const variantLabelClass = {
     farmer: 'text-emerald-700',
-    vet: 'text-pink-700',
+    vet: 'text-sky-700',
     base: 'text-indigo-700',
 };
 </script>

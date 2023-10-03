@@ -4,12 +4,19 @@ import { ref, watchEffect } from 'vue';
 import { AnimalDiagnosis } from '@elements/forms';
 import { vetappApi } from '@/services';
 import { useRouter } from 'vue-router';
+import {  ViewVet } from '@elements/forms/';
+
 
 const router = useRouter();
 const open = ref(true);
 const showSidebarButton = ref(!open.value);
 const isMediumScreen = ref(window.innerWidth <= 768);
 const user = JSON.parse(localStorage.getItem('user') ?? '{}');
+const showUserForm = ref(false);
+
+const openFormUser = () => {
+    showUserForm.value = true;
+};
 
 watchEffect(() => {
     isMediumScreen.value = window.innerWidth <= 768;
@@ -45,8 +52,8 @@ const onLogout = () => {
 </script>
 
 <template>
-    <div class="flex h-screen w-screen bg-pink-900 p-2">
-        <VSidebar :open="open" @close="closeSidebar" @cerrarSesion="onLogout" />
+    <div class="flex h-screen w-screen bg-sky-900 p-2">
+        <VSidebar :open="open" @close="closeSidebar" @cerrarSesion="onLogout" @openUser="openFormUser" />
 
         <div class="container mx-auto flex flex-1 flex-col gap-4 p-4">
             <div class="flex gap-2">
@@ -54,14 +61,13 @@ const onLogout = () => {
             </div>
             <div classs=" flex-1 flex justify-center items-center">
                 <div class="flex justify-end">
-                    <p class="mr-2 text-xs font-medium text-white">Hola, {{ user.name }}</p>
-                    <img
-                        src="https://picsum.photos/200/300"
-                        alt=""
-                        class="h-[50px] w-[50px] rounded-xl drop-shadow-xl"
-                    />
+                    <p class="mr-2 text-xl font-medium text-white">Hola, {{ user.name }}</p>
+                
                 </div>
-                <AnimalDiagnosis />
+               <!-- <AnimalDiagnosis />-->
+                <div class="flex flex-col gap-4 lg:flex-row">
+                    <ViewVet v-if="showUserForm" />
+                </div>
             </div>
         </div>
         <!--  <div class="flex w-7/12 flex-col rounded-xl md:w-full lg:w-5/12">

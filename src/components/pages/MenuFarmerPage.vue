@@ -72,13 +72,9 @@ const onLogout = () => {
                 <VSidebarButton dark v-if="showSidebarButton" @click="openSidebar" />
             </div>
             <div classs=" flex-1 flex-row">
-                <div class="flex justify-end">
-                    <p class="mr-2 text-xs font-medium text-white">Hola, {{ user.name }}</p>
-                    <img
-                        src="https://picsum.photos/200/300"
-                        alt=""
-                        class="h-[50px] w-[50px] rounded-xl drop-shadow-xl"
-                    />
+                <div class="flex justify-end ">
+                    <p class="mr-2 text-xl font-medium text-white">Hola, {{ user.name }}</p>
+                
                 </div>
                 <VFormAnimal v-if="showAnimalForm" />
 

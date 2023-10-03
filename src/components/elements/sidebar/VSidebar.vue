@@ -20,14 +20,14 @@ defineEmits(['close', 'openUser', 'cerrarSesion']);
         <div v-if="open" class="w-56 overflow-hidden">
             <div class="flex h-full w-56 flex-col rounded-lg bg-white p-4">
                 <div class="flex justify-between p-2">
-                    <div class="flex flex-col items-center text-3xl font-semibold text-pink-700 hover:text-pink-900">
+                    <div class="flex flex-col items-center text-3xl font-semibold text-sky-700 hover:text-sky-900">
                         <h1>VetApp</h1>
                     </div>
                     <div class="flex items-center">
                         <VSidebarButton @click="$emit('close')" />
                     </div>
                 </div>
-                <hr class="border-1 w-full border-pink-700 hover:border-pink-900" />
+                <hr class="border-1 w-full border-sky-700 hover:border-sky-900" />
                 <div class="mt-4 flex-1">
                     <ul class="flex flex-col gap-4">
                         <VSidebarItem custom-class="btn-menu-vet" label="Home" :icon="HomeIcon" />
@@ -41,7 +41,7 @@ defineEmits(['close', 'openUser', 'cerrarSesion']);
                             label="Solicitudes"
                             :icon="ArrowPathRoundedSquareIcon"
                         />
-                        <VSidebarItem custom-class="btn-menu-vet" label="Perfil" :icon="UserCircleIcon" />
+                        <VSidebarItem custom-class="btn-menu-vet" label="Perfil" :icon="UserCircleIcon" @click="$emit('openUser')"/>
                         <VSidebarItem
                             custom-class="btn-menu-vet"
                             label="Cerrar Sesión"

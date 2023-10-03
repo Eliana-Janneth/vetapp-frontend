@@ -11,7 +11,7 @@ withDefaults(
 
 const varianteAlertClass = {
     farmer: 'bg-emerald-200 text-emerald-900',
-    vet: 'bg-pink-200 text-pink-900',
+    vet: 'bg-sky-200 text-sky-900',
     base: 'bg-indigo-200 text-indigo-900',
 };
 </script>

@@ -48,14 +48,14 @@ const email = defineComponentBinds('email');
         <div class="flex flex-col gap-2 lg:flex-row">
             <VSpan
                 v-bind="firstName"
-                custom-class="uppercase font-semibold"
+                custom-class="uppercase font-semibold text-xl"
                 variant="farmer"
                 :label="values.first_name"
                 name="first_name"
             />
             <VSpan
                 v-bind="lastName"
-                custom-class="uppercase font-semibold"
+                custom-class="uppercase font-semibold text-xl"
                 variant="farmer"
                 :label="values.last_name"
                 name="last_name"
