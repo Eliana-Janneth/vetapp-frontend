@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { WelcomePage, RegisterPage, MenuVetPage, MenuFarmerPage, LoginPage, HomePage, ShowAnimalsPage } from '@pages';
+import { WelcomePage, RegisterPage, MenuVetPage, MenuFarmerPage, LoginPage, HomePage, ShowAnimalsPage,DiagnosticoPage } from '@pages';
 
 // TODO: Nombrar rutas
 const routes = [
@@ -10,6 +10,7 @@ const routes = [
     { name: 'menuVet', path: '/menu-veterinario', component: MenuVetPage },
     { name: 'menuFarmer', path: '/menu-granjero', component: MenuFarmerPage },
     { name: 'animals.show', path: '/animales/:id', component: ShowAnimalsPage },
+    { name: 'diagnostico', path: '/diagnostico', component: DiagnosticoPage },
 ];
 
 export const router = createRouter({
