@@ -63,15 +63,7 @@ export const login = async (data: TLoginPayload) => {
 
         // Guardar el token en localStorage
         localStorage.setItem('accessToken', responseData.token);
-        localStorage.setItem('user', JSON.stringify(responseData.user.role, responseData.user.name));
-
-        // localStorage.setItem('profile', responseData.role);
-        // localStorage.setItem('name', responseData.name);
-
-        console.log('Respuesta del backend:', responseData.token);
-        console.log('perfil', responseData.user.role);
-        console.log('nombre', responseData.user.name);
-        alert('Usuario logueado exitosamente');
+        localStorage.setItem('user', JSON.stringify(responseData.user));
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
