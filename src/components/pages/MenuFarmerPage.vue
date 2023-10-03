@@ -7,7 +7,7 @@ import { vetappApi } from '@/services';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const user = JSON.parse(localStorage.getItem('user') ?? '{}')
+const user = JSON.parse(localStorage.getItem('user') ?? '{}');
 const open = ref(true);
 
 const openFormUser = () => {
@@ -50,18 +50,22 @@ const onLogout = () => {
     try {
         vetappApi.logout().then(() => {
             router.push({ name: 'welcome' });
-        })
+        });
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
 };
-
 </script>
 
 <template>
     <div class="flex h-full w-full bg-emerald-950 p-2">
-        <SidebarFarmer :open="open" @close="closeSidebar" @openAnimal="openFormAnimal" @openUser="openFormUser"
-            @cerrarSesion="onLogout" />
+        <SidebarFarmer
+            :open="open"
+            @close="closeSidebar"
+            @openAnimal="openFormAnimal"
+            @openUser="openFormUser"
+            @cerrarSesion="onLogout"
+        />
 
         <div class="container mx-auto flex flex-1 flex-col gap-4 p-4">
             <div class="flex gap-2">
@@ -70,12 +74,15 @@ const onLogout = () => {
             <div classs=" flex-1 flex-row">
                 <div class="flex justify-end">
                     <p class="mr-2 text-xs font-medium text-white">Hola, {{ user.name }}</p>
-                    <img src="https://picsum.photos/200/300" alt="" class="h-[50px] w-[50px] rounded-xl drop-shadow-xl" />
+                    <img
+                        src="https://picsum.photos/200/300"
+                        alt=""
+                        class="h-[50px] w-[50px] rounded-xl drop-shadow-xl"
+                    />
                 </div>
                 <VFormAnimal v-if="showAnimalForm" />
 
-
-                <div class="flex flex-col lg:flex-row gap-4 ">
+                <div class="flex flex-col gap-4 lg:flex-row">
                     <ViewFarmer v-if="showUserForm" />
                     <FormFarmer v-if="showUserForm" />
                 </div>

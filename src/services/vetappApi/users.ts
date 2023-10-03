@@ -106,10 +106,9 @@ export const getUser = async () => {
             }
             return;
         }
-                
+
         const responseData = await response.json();
         return responseData;
-        
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }

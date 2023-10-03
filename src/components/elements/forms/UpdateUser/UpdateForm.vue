@@ -28,8 +28,6 @@ const nextFormState = (accountValues: TFarmerInformationPayload) => {
     formState.value++;
 };
 
-
-
 const prevFormState = () => formState.value--;
 
 const onSubmit = (updateValues: TFarmerInformation) => {

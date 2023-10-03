@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VInput, VButton} from '@elements';
+import { VInput, VButton } from '@elements';
 import { useForm } from 'vee-validate';
 import { reactive, onMounted } from 'vue';
 import type { TFarmerInformation } from './types';
@@ -13,8 +13,8 @@ let values: TFarmerInformationPayload = reactive({
     phone_number: '',
     city: '',
     address: '',
-    password:'',
-    repeat_password:'',
+    password: '',
+    repeat_password: '',
 });
 
 const emit = defineEmits(['done', 'cancel']);
@@ -31,24 +31,20 @@ onMounted(async () => {
         values.city = userData.city;
         values.address = userData.address;
         values.password = userData.password;
-
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
 });
-const {  defineComponentBinds } = useForm<TFarmerInformation>({  });
-
+const { defineComponentBinds } = useForm<TFarmerInformation>({});
 
 const phone = defineComponentBinds('phone');
 const city = defineComponentBinds('city');
 const address = defineComponentBinds('address');
-const password= defineComponentBinds('password');
-
+const password = defineComponentBinds('password');
 </script>
 <template>
-    <form class="flex flex-col w-full gap-2 rounded-lg bg-white p-2">
-        <div class="flex flex-col gap-2 ">
-            
+    <form class="flex w-full flex-col gap-2 rounded-lg bg-white p-2">
+        <div class="flex flex-col gap-2">
             <VInput
                 v-bind="phone"
                 :model-value="values.phone_number"
@@ -59,7 +55,7 @@ const password= defineComponentBinds('password');
                 type="text"
                 name="phone_number"
             />
-        
+
             <VInput
                 v-bind="address"
                 :model-value="values.address"
@@ -92,6 +88,5 @@ const password= defineComponentBinds('password');
             />
         </div>
         <VButton label="Guardar" variant="farmer" type="button" custom-class="mt-4" />
-
     </form>
 </template>

@@ -40,7 +40,6 @@ const variantLabelClass = {
 </script>
 
 <template>
-    
     <div class="relative w-full">
         <span v-if="label" :class="['block text-lg font-medium', variantLabelClass[variant]]">{{ label }}</span>
 
@@ -68,5 +67,4 @@ const variantLabelClass = {
         </div>
         <AlertInput :error="error" :variant="variant" />
     </div>
-    
 </template>

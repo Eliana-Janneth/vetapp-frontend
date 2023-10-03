@@ -43,7 +43,6 @@ export type TFarmerInformationPayload = {
     address: string;
     password: string;
     repeat_password: string;
-
 };
 export type TVetInformationPayload = {
     first_name: string;
@@ -55,7 +54,6 @@ export type TVetInformationPayload = {
     address: string;
     password: string;
     repeat_password: string;
-    license_number:string;
+    license_number: string;
     license_expirity_date: string;
-
 };

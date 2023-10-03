@@ -1,5 +1,5 @@
 import type { TOption as TAOption, TRegisterAnimalPayload } from './types';
-import type { TOption} from '@/types';
+import type { TOption } from '@/types';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -14,7 +14,6 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
-
             },
         });
 
@@ -34,8 +33,6 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
         console.error('Error al realizar la solicitud:', error);
     }
 };
-
-
 
 export const getAnimals = async () => {
     try {
@@ -85,9 +82,8 @@ export const getRaces = async (specieId: string): Promise<TOption[]> => {
         }
         console.log('estoy en la api');
         const data = await response.json();
-        console.log('imprimo dato', data);  
+        console.log('imprimo dato', data);
         return data.map((race: TAOption) => ({ text: race.name, value: race.id }));
-       
     } catch (error) {
         console.error('Error al cargar los datos:', error);
 

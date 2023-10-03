@@ -11,4 +11,3 @@ export type TRegisterAnimal = {
 };
 
 //   "birth_date": "AAAA-MM-DD",
-

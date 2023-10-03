@@ -41,8 +41,9 @@ const variantLabelClass = {
             <span class="mr-2 flex items-center">
                 <component :is="icon" :class="['h-6 w-6', variantIconClass[variant]]" />
             </span>
-            <span v-if="label" :class="['block text-lg font-medium', variantLabelClass[variant], customClass]">{{ label }}</span>
-
+            <span v-if="label" :class="['block text-lg font-medium', variantLabelClass[variant], customClass]">{{
+                label
+            }}</span>
         </div>
     </div>
 </template>

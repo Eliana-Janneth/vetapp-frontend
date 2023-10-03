@@ -27,28 +27,28 @@ onMounted(async () => {
     } catch (error) {
         console.error('Error al cargar los datos:');
     }
-
 });
-
-
 </script>
 <template>
     <div class="bg-white">
         <div class="max-h-96 overflow-y-scroll">
             <table class="min-w-full table-auto">
                 <thead
-                    class="sticky top-0 leading-4tracking-wider bg-emerald-400 text-xs font-medium uppercase tracking-wider text-black">
+                    class="leading-4tracking-wider sticky top-0 bg-emerald-400 text-xs font-medium uppercase tracking-wider text-black"
+                >
                     <tr>
                         <th class="px-6 py-3">Nombre</th>
                         <th class="px-6 py-3">Especie</th>
                         <th class="px-6 py-3">Raza</th>
                         <th class="px-6 py-3">Género</th>
-
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="outline outline-2 outline-emerald-400 divide-x-2 divide-emerald-400 -outline-offset-2"
-                        v-for="animal in animals" :key="animal.id">
+                    <tr
+                        class="divide-x-2 divide-emerald-400 outline outline-2 -outline-offset-2 outline-emerald-400"
+                        v-for="animal in animals"
+                        :key="animal.id"
+                    >
                         <td class="table-item">{{ animal.name }}</td>
                         <td class="table-item">{{ animal.specie_name }}</td>
                         <td class="table-item">{{ animal.race_name }}</td>

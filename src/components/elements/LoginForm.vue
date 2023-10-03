@@ -31,37 +31,53 @@ const password = defineComponentBinds('password');
 
 const errorMessage = ref<string | null>(null);
 
-const onSubmit = handleSubmit ((loginValues: TLoginPayload) => {
+const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
     values.username = loginValues.username;
     values.password = loginValues.password;
-    vetappApi.login(values)
-    .then(() => {
-        router.push({ name: 'home' });
-    })
-    .catch((error) => {
-        console.error('Error de inicio de sesión:', error);
-        errorMessage.value = error.message;
-    });
+    vetappApi
+        .login(values)
+        .then(() => {
+            router.push({ name: 'home' });
+        })
+        .catch((error) => {
+            console.error('Error de inicio de sesión:', error);
+            errorMessage.value = error.message;
+        });
 });
-
-
 </script>
 
 <template>
     <form class="flex flex-col items-center gap-2 rounded-xl bg-white p-4" @submit.prevent="onSubmit">
         <h1 class="text-2xl font-medium text-indigo-900">Iniciar Sesión</h1>
 
-        <VInput v-bind="email" placeholder="Correo Electrónico" name="email" type="email" :icon="EnvelopeIcon"
-            :error="errors.username" />
+        <VInput
+            v-bind="email"
+            placeholder="Correo Electrónico"
+            name="email"
+            type="email"
+            :icon="EnvelopeIcon"
+            :error="errors.username"
+        />
 
-        <VInput v-bind="password" placeholder="Contraseña" type="password" name="password" :icon="passwordIcon"
-            :error="errors.password" @focus="passwordIcon = LockOpenIcon" @blur="passwordIcon = LockClosedIcon" />
+        <VInput
+            v-bind="password"
+            placeholder="Contraseña"
+            type="password"
+            name="password"
+            :icon="passwordIcon"
+            :error="errors.password"
+            @focus="passwordIcon = LockOpenIcon"
+            @blur="passwordIcon = LockClosedIcon"
+        />
 
         <a href="" class="text-indigo-900">¿Olvidó su contraseña?</a>
-        <button :disabled="!meta.valid" :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']" type="submit" >
+        <button
+            :disabled="!meta.valid"
+            :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
+            type="submit"
+        >
             Iniciar Sesión
         </button>
-
     </form>
     <!--<form @submit.prevent="onLogout">
     <button :class="['btn btn-primary']" type="submit" value="logout">

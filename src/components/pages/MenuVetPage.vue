@@ -9,7 +9,7 @@ const router = useRouter();
 const open = ref(true);
 const showSidebarButton = ref(!open.value);
 const isMediumScreen = ref(window.innerWidth <= 768);
-const user = JSON.parse(localStorage.getItem('user') ?? '{}')
+const user = JSON.parse(localStorage.getItem('user') ?? '{}');
 
 watchEffect(() => {
     isMediumScreen.value = window.innerWidth <= 768;
@@ -37,7 +37,7 @@ const onLogout = () => {
     try {
         vetappApi.logout().then(() => {
             router.push({ name: 'welcome' });
-        })
+        });
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
@@ -50,7 +50,7 @@ const onLogout = () => {
 
         <div class="container mx-auto flex flex-1 flex-col gap-4 p-4">
             <div class="flex gap-2">
-                <VSidebarButton dark v-if="showSidebarButton" @click="openSidebar"  />
+                <VSidebarButton dark v-if="showSidebarButton" @click="openSidebar" />
             </div>
             <div classs=" flex-1 flex justify-center items-center">
                 <div class="flex justify-end">
@@ -61,7 +61,7 @@ const onLogout = () => {
                         class="h-[50px] w-[50px] rounded-xl drop-shadow-xl"
                     />
                 </div>
-                <AnimalDiagnosis/>
+                <AnimalDiagnosis />
             </div>
         </div>
         <!--  <div class="flex w-7/12 flex-col rounded-xl md:w-full lg:w-5/12">

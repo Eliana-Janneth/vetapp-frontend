@@ -4,7 +4,7 @@ import {
     ChatBubbleLeftEllipsisIcon,
     ArrowPathRoundedSquareIcon,
     UserCircleIcon,
-    ArrowLeftOnRectangleIcon
+    ArrowLeftOnRectangleIcon,
 } from '@heroicons/vue/24/solid';
 import { VSidebarItem, VSidebarButton } from '@elements/sidebar';
 
@@ -12,7 +12,7 @@ defineProps<{
     open: boolean;
 }>();
 
-defineEmits(['close', 'openUser', 'cerrarSesion'])
+defineEmits(['close', 'openUser', 'cerrarSesion']);
 </script>
 
 <template>
@@ -42,8 +42,12 @@ defineEmits(['close', 'openUser', 'cerrarSesion'])
                             :icon="ArrowPathRoundedSquareIcon"
                         />
                         <VSidebarItem custom-class="btn-menu-vet" label="Perfil" :icon="UserCircleIcon" />
-                        <VSidebarItem custom-class="btn-menu-vet" label="Cerrar Sesión" :icon="ArrowLeftOnRectangleIcon"  @click="$emit('cerrarSesion')"  />
-
+                        <VSidebarItem
+                            custom-class="btn-menu-vet"
+                            label="Cerrar Sesión"
+                            :icon="ArrowLeftOnRectangleIcon"
+                            @click="$emit('cerrarSesion')"
+                        />
                     </ul>
                 </div>
             </div>
