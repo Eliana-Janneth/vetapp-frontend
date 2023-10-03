@@ -65,7 +65,7 @@ const onLogout = () => {
                 
                 </div>
                <!-- <AnimalDiagnosis />-->
-                <div class="flex flex-col gap-4 lg:flex-row">
+                <div class="flex flex-col gap-4 lg:flex-row justify-center">
                     <ViewVet v-if="showUserForm" />
                 </div>
             </div>

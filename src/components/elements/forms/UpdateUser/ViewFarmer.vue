@@ -6,7 +6,7 @@ import type { TFarmerInformation } from './types';
 import { TFarmerInformationPayload, vetappApi } from '@/services';
 import { EnvelopeIcon, PhoneIcon, MapPinIcon, IdentificationIcon, MapIcon } from '@heroicons/vue/24/outline';
 
-let values: TFarmerInformationPayload = reactive({
+const values: TFarmerInformationPayload = reactive({
     email: '',
     first_name: '',
     last_name: '',

@@ -48,6 +48,22 @@ export const getAnimals = async () => {
         console.error('Error al cargar los datos:', error);
     }
 };
+export const getAnimal = async (id: string) => {
+    try {
+        const response = await fetch(`${API_URL}/animals/${id}/`, {
+            headers: {
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+        if (!response.ok) {
+            throw new Error('No se pudo cargar los datos');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
+    }
+};
 
 export const getSpecies = async (): Promise<TOption[]> => {
     try {

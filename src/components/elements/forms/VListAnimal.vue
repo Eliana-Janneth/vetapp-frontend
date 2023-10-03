@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { vetappApi } from '@/services';
+import { LinkIcon } from '@heroicons/vue/24/outline';
 
 // Declara una propiedad ref para almacenar los datos
 
@@ -37,6 +38,7 @@ onMounted(async () => {
                     class="leading-4tracking-wider sticky top-0 bg-emerald-400 text-xs font-medium uppercase tracking-wider text-black"
                 >
                     <tr>
+                        <th class="px-6 py-3">Detalle</th>
                         <th class="px-6 py-3">Nombre</th>
                         <th class="px-6 py-3">Especie</th>
                         <th class="px-6 py-3">Raza</th>
@@ -49,6 +51,7 @@ onMounted(async () => {
                         v-for="animal in animals"
                         :key="animal.id"
                     >
+                        <td class="table-item"><router-link :to="{ name: 'animals.show', params: {id: animal.id }}"><LinkIcon class="w-5 h-5 text-black"/></router-link></td>
                         <td class="table-item">{{ animal.name }}</td>
                         <td class="table-item">{{ animal.specie_name }}</td>
                         <td class="table-item">{{ animal.race_name }}</td>

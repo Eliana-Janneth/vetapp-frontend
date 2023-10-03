@@ -58,7 +58,7 @@ const onLogout = () => {
 </script>
 
 <template>
-    <div class="flex h-full w-full bg-emerald-950 p-2">
+    <div class="flex h-screen w-full bg-emerald-950 p-2">
         <SidebarFarmer
             :open="open"
             @close="closeSidebar"

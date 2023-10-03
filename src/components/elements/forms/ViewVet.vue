@@ -24,7 +24,7 @@ let values: TVetInformationPayload = reactive({
     password: '',
     repeat_password: '',
     license_number: '',
-    license_expirity_date: '',
+    license_expiry_date: '',
 });
 
 onMounted(async () => {
@@ -39,7 +39,7 @@ onMounted(async () => {
         values.city = userData.city;
         values.address = userData.address;
         values.license_number = userData.license_number;
-        values.license_expirity_date = userData.license_expirity_date;
+        values.license_expiry_date = userData.license_expiry_date;
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
@@ -90,7 +90,7 @@ const licenseExpiration = defineComponentBinds('licenseExpiration');
             <VSpan
                 v-bind="licenseExpiration"
                 variant="vet"
-                :label="values.license_expirity_date"
+                :label="values.license_expiry_date"
                 name="city"
                 :icon="CalendarDaysIcon"
             />
