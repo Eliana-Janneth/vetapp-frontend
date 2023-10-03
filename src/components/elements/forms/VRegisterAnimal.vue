@@ -26,7 +26,7 @@ const validationSchema = yup.object({
     weight: yup.number().required('Por favor ingrese un peso'),
     height: yup.number().required('Por favor ingrese una altura'),
     color: yup.string().required('Por favor ingrese un color'),
-    description: yup.string().required('Por favor ingrese una descripción del animal'),
+    description: yup.string().required('Por favor ingrese una descripción'),
     gender: yup.string().required('Por favor seleccione un género'),
 });
 
@@ -40,7 +40,7 @@ let selectedSpeciesId = ref('');
 const name = defineComponentBinds('name');
 const specie = defineComponentBinds('specie');
 const race = defineComponentBinds('race');
-const gender = defineComponentBinds('gender');
+const gender =  defineComponentBinds('gender');
 const birthdate = defineComponentBinds('birthdate');
 const weight = defineComponentBinds('weight');
 const height = defineComponentBinds('height');
@@ -90,9 +90,7 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
         values.weight = registerValues.weight;
 
         await vetappApi.createAnimal(values);
-        alert(JSON.stringify(values, null, 2));
-
-        //router.push('/menu');
+       console.log(JSON.stringify(values, null, 2));
     } catch (error) {
         //  errorMessage.value = error.message;
     }
@@ -137,12 +135,14 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
         <div class="flex flex-col gap-2 lg:flex-row">
             <span class="block text-lg font-medium text-emerald-800">Género</span>
             <VInput
+                v-bind="gender"
                 custom-class="form-farmer w-min"
                 variant="farmer"
                 label="Macho"
                 type="radio"
                 name="gender"
-                value="Male"
+                model-value="Macho"
+                :error="errors.gender"
             />
             <VInput
                 v-bind="gender"
@@ -151,7 +151,7 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
                 label="Hembra"
                 type="radio"
                 name="gender"
-                value="Female"
+                model-value="Hembra"
                 :error="errors.gender"
             />
             <VInput

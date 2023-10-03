@@ -4,9 +4,7 @@ import type { TOption } from '@/types';
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const createAnimal = async (data: TRegisterAnimalPayload) => {
-    console.log('entro');
     const apiUrl = `${API_URL}/animals/`;
-    alert(JSON.stringify(data, null, 2));
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -28,7 +26,7 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
         }
         // Si la respuesta es exitosa
         const responseData = await response.json();
-        alert(JSON.stringify(responseData, null, 2));
+        console.log(JSON.stringify(responseData, null, 2));
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
@@ -80,9 +78,7 @@ export const getRaces = async (specieId: string): Promise<TOption[]> => {
         if (!response.ok) {
             throw new Error('No se pudo cargar los datos');
         }
-        console.log('estoy en la api');
         const data = await response.json();
-        console.log('imprimo dato', data);
         return data.map((race: TAOption) => ({ text: race.name, value: race.id }));
     } catch (error) {
         console.error('Error al cargar los datos:', error);
