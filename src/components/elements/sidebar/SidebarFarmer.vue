@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { HomeIcon, ChatBubbleLeftEllipsisIcon, StarIcon, UserCircleIcon } from '@heroicons/vue/24/solid';
+import { HomeIcon, ChatBubbleLeftEllipsisIcon, StarIcon, UserCircleIcon, ArrowLeftOnRectangleIcon} from '@heroicons/vue/24/solid';
 import { VSidebarItem, VSidebarButton } from '@elements/sidebar';
 
 defineProps<{
     open: boolean;
 }>();
 
-defineEmits(['close', 'openAnimal', 'openUser'])
+defineEmits(['close', 'openAnimal', 'openUser', 'cerrarSesion'])
 
 
 </script>
@@ -36,7 +36,8 @@ defineEmits(['close', 'openAnimal', 'openUser'])
                         />
                         <VSidebarItem custom-class="btn-menu-farmer" label="Mis animales" :icon="StarIcon" @click="$emit('openAnimal')" />
                         <VSidebarItem custom-class="btn-menu-farmer" label="Perfil" :icon="UserCircleIcon" @click="$emit('openUser')" />
-                        
+                        <VSidebarItem custom-class="btn-menu-farmer" label="Cerrar Sesión" :icon="ArrowLeftOnRectangleIcon" @click="$emit('cerrarSesion')" />
+
                     </ul>
                 </div>
             </div>

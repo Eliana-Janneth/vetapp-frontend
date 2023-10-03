@@ -5,8 +5,9 @@ import { ref, reactive } from 'vue';
 import { VInput } from '@elements';
 import * as yup from 'yup';
 import { TLoginPayload, vetappApi } from '@/services';
-//import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const passwordIcon = ref(LockClosedIcon);
 const values: TLoginPayload = reactive({
     username: '',
@@ -30,24 +31,20 @@ const password = defineComponentBinds('password');
 
 const errorMessage = ref<string | null>(null);
 
-const onSubmit = handleSubmit (async (loginValues: TLoginPayload) => {
-    try {
-        values.username = loginValues.username;
-        values.password = loginValues.password;
-        await vetappApi.login(values);
-        //router.push('/menu');
-    } catch (error) {
-        //  errorMessage.value = error.message;
-    }
+const onSubmit = handleSubmit ((loginValues: TLoginPayload) => {
+    values.username = loginValues.username;
+    values.password = loginValues.password;
+    vetappApi.login(values)
+    .then(() => {
+        router.push({ name: 'home' });
+    })
+    .catch((error) => {
+        console.error('Error de inicio de sesión:', error);
+        errorMessage.value = error.message;
+    });
 });
-const onLogout = (async () => {
-    try {
-        await vetappApi.logout();
 
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
-});
+
 </script>
 
 <template>

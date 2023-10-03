@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { VSidebar, VSidebarButton } from '@elements/sidebar';
 import { ref, watchEffect } from 'vue';
-import { VFormFarmer } from '@elements/forms';
+import { AnimalDiagnosis } from '@elements/forms';
+import { vetappApi } from '@/services';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const open = ref(true);
 const showSidebarButton = ref(!open.value);
 const isMediumScreen = ref(window.innerWidth <= 768);
+const user = JSON.parse(localStorage.getItem('user') ?? '{}')
 
 watchEffect(() => {
     isMediumScreen.value = window.innerWidth <= 768;
@@ -29,25 +33,35 @@ const closeSidebar = () => {
         showSidebarButton.value = true;
     }, 500);
 };
+const onLogout = () => {
+    try {
+        vetappApi.logout().then(() => {
+            router.push({ name: 'welcome' });
+        })
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
+    }
+};
 </script>
 
 <template>
     <div class="flex h-screen w-screen bg-pink-900 p-2">
-        <VSidebar :open="open" @close="closeSidebar" />
+        <VSidebar :open="open" @close="closeSidebar" @cerrarSesion="onLogout" />
 
         <div class="container mx-auto flex flex-1 flex-col gap-4 p-4">
             <div class="flex gap-2">
-                <VSidebarButton dark v-if="showSidebarButton" @click="openSidebar" />
+                <VSidebarButton dark v-if="showSidebarButton" @click="openSidebar"  />
             </div>
             <div classs=" flex-1 flex justify-center items-center">
                 <div class="flex justify-end">
-                    <p class="mr-2 text-xs font-medium text-white">Hola, ....</p>
+                    <p class="mr-2 text-xs font-medium text-white">Hola, {{ user.name }}</p>
                     <img
                         src="https://picsum.photos/200/300"
                         alt=""
                         class="h-[50px] w-[50px] rounded-xl drop-shadow-xl"
                     />
                 </div>
+                <AnimalDiagnosis/>
             </div>
         </div>
         <!--  <div class="flex w-7/12 flex-col rounded-xl md:w-full lg:w-5/12">

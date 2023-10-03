@@ -21,6 +21,7 @@ interface UserData {
 
 // Hacer una solicitud GET y cargar los datos cuando el componente se monta
 onMounted(async () => {
+
     try {
         const response = await vetappApi.getAnimals();
         animals.value = response;
@@ -29,8 +30,6 @@ onMounted(async () => {
     }
 
 });
-
-
 </script>
 <template>
     <div class="bg-white">
@@ -43,16 +42,16 @@ onMounted(async () => {
                         <th class="px-6 py-3">Especie</th>
                         <th class="px-6 py-3">Raza</th>
                         <th class="px-6 py-3">Género</th>
-
+        
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="outline outline-2 outline-emerald-400 divide-x-2 divide-emerald-400 -outline-offset-2"
-                        v-for="animal in animals" :key="animal.id">
+                    <tr class="outline outline-2 outline-emerald-400 divide-x-2 divide-emerald-400 -outline-offset-2" v-for="animal in animals" :key="animal.id">
                         <td class="table-item">{{ animal.name }}</td>
                         <td class="table-item">{{ animal.specie_name }}</td>
                         <td class="table-item">{{ animal.race_name }}</td>
                         <td class="table-item">{{ animal.gender }}</td>
+                       
                     </tr>
                 </tbody>
             </table>

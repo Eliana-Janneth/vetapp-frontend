@@ -39,7 +39,7 @@ export const register = async (data: TRegisterPayload) => {
 export const login = async (data: TLoginPayload) => {
     console.log('entro');
     const apiUrl = `${API_URL}/auth/login/`;
-    alert(JSON.stringify(data, null, 2));
+    console.log(JSON.stringify(data, null, 2));
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -61,13 +61,16 @@ export const login = async (data: TLoginPayload) => {
         // Si la respuesta es exitosa
         const responseData = await response.json();
 
+        // Guardar el token en localStorage
         localStorage.setItem('accessToken', responseData.token);
-        localStorage.setItem('profile', responseData.role);
-        localStorage.setItem('name', responseData.name);
+        localStorage.setItem('user', JSON.stringify(responseData.user.role, responseData.user.name));
+
+        // localStorage.setItem('profile', responseData.role);
+        // localStorage.setItem('name', responseData.name);
 
         console.log('Respuesta del backend:', responseData.token);
-        console.log('perfil', responseData.role);
-        console.log('nombre', responseData.name);
+        console.log('perfil', responseData.user.role);
+        console.log('nombre', responseData.user.name);
         alert('Usuario logueado exitosamente');
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
