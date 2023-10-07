@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { SidebarFarmer, VSidebarButton } from '@elements/sidebar';
-import { ref, watchEffect } from 'vue';
-import { FormFarmer, ViewFarmer } from '@elements/forms/UpdateUser';
-import { VFormAnimal } from '@elements';
+import { ref } from 'vue';
 import { vetappApi } from '@/services';
 import { useRouter } from 'vue-router';
 
@@ -10,29 +8,19 @@ const router = useRouter();
 const user = JSON.parse(localStorage.getItem('user') ?? '{}');
 const open = ref(true);
 
-const openFormUser = () => {
-    showUserForm.value = true;
-    showAnimalForm.value = false;
-};
-const openFormAnimal = () => {
-    showAnimalForm.value = true;
-    showUserForm.value = false;
-};
-const showUserForm = ref(false);
-const showAnimalForm = ref(false);
-
 const showSidebarButton = ref(!open.value);
 const isMediumScreen = ref(window.innerWidth <= 768);
 
-watchEffect(() => {
-    isMediumScreen.value = window.innerWidth <= 768;
-    if (isMediumScreen.value) {
-        open.value = false;
-        showSidebarButton.value = true;
-    } else {
-        open.value = true;
-        showSidebarButton.value = false;
-    }
+window.addEventListener('resize', () => {
+  isMediumScreen.value = window.innerWidth <= 768;
+
+  if (isMediumScreen.value) {
+    open.value = false;
+    showSidebarButton.value = true;
+  } else {
+    open.value = true;
+    showSidebarButton.value = false;
+  }
 });
 
 const openSidebar = () => {
@@ -62,8 +50,6 @@ const onLogout = () => {
         <SidebarFarmer
             :open="open"
             @close="closeSidebar"
-            @openAnimal="openFormAnimal"
-            @openUser="openFormUser"
             @cerrarSesion="onLogout"
         />
 
@@ -71,17 +57,17 @@ const onLogout = () => {
             <div class="flex gap-2">
                 <VSidebarButton dark v-if="showSidebarButton" @click="openSidebar" />
             </div>
-            <div classs=" flex-1 flex-row">
+            <div class=" flex-1 flex-row">
                 <div class="flex justify-end ">
                     <p class="mr-2 text-xl font-medium text-white">Hola, {{ user.name }}</p>
-                
                 </div>
-                <VFormAnimal v-if="showAnimalForm" />
 
-                <div class="flex flex-col gap-4 lg:flex-row">
-                    <ViewFarmer v-if="showUserForm" />
-                    <FormFarmer v-if="showUserForm" />
+                <div class="container">
+                    <router-view ></router-view>
                 </div>
+              <!--  <VFormAnimal v-if="showAnimalForm" />
+
+               -->
             </div>
         </div>
         <!--  <div class="flex w-7/12 flex-col rounded-xl md:w-full lg:w-5/12">

@@ -3,7 +3,6 @@ import { useRoute } from 'vue-router';
 import { ref } from 'vue';
 import { vetappApi } from '@/services';
 import { VSpan } from '@elements';
-import type { TRegisterAnimal } from '@elements/forms/types';
 
 const route = useRoute();
 const animal = ref();

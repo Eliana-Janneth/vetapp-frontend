@@ -30,24 +30,15 @@ defineEmits(['close', 'openUser', 'cerrarSesion']);
                 <hr class="border-1 w-full border-sky-700 hover:border-sky-900" />
                 <div class="mt-4 flex-1">
                     <ul class="flex flex-col gap-4">
-                        <VSidebarItem custom-class="btn-menu-vet" label="Home" :icon="HomeIcon" />
-                        <VSidebarItem
-                            custom-class="btn-menu-vet"
-                            label="Consultas"
-                            :icon="ChatBubbleLeftEllipsisIcon"
-                        />
-                        <VSidebarItem
-                            custom-class="btn-menu-vet"
-                            label="Solicitudes"
-                            :icon="ArrowPathRoundedSquareIcon"
-                        />
-                        <VSidebarItem custom-class="btn-menu-vet" label="Perfil" :icon="UserCircleIcon" @click="$emit('openUser')"/>
-                        <VSidebarItem
-                            custom-class="btn-menu-vet"
-                            label="Cerrar Sesión"
-                            :icon="ArrowLeftOnRectangleIcon"
-                            @click="$emit('cerrarSesion')"
-                        />
+                        <VSidebarItem route="" custom-class="btn-menu-vet" label="Home" :icon="HomeIcon" />
+                        <VSidebarItem route="" custom-class="btn-menu-vet" label="Consultas"
+                            :icon="ChatBubbleLeftEllipsisIcon" />
+                        <VSidebarItem route="" custom-class="btn-menu-vet" label="Solicitudes"
+                            :icon="ArrowPathRoundedSquareIcon" />
+                        <VSidebarItem route="" custom-class="btn-menu-vet" label="Perfil" :icon="UserCircleIcon"
+                            @click="$emit('openUser')" />
+                        <VSidebarItem route="" custom-class="btn-menu-vet" label="Cerrar Sesión"
+                            :icon="ArrowLeftOnRectangleIcon" @click="$emit('cerrarSesion')" />
                     </ul>
                 </div>
             </div>

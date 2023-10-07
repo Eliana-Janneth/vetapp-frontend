@@ -16,11 +16,11 @@
 }
 
 .btn-menu-farmer {
-    @apply bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600  py-2 text-white/80 hover:bg-gradient-to-r hover:from-emerald-800 hover:via-emerald-600 hover:to-emerald-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-emerald-500 active:from-emerald-600 active:via-emerald-800 active:to-emerald-600 active:text-emerald-200;
+    @apply bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600  py-2 text-white/80 hover:bg-gradient-to-r hover:from-emerald-800 hover:via-emerald-600 hover:to-emerald-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-emerald-500  active:bg-gradient-to-r active:from-emerald-700 active:via-emerald-900 active:to-emerald-700 active:text-emerald-500;
 }
 
 .btn-menu-vet {
-    @apply bg-gradient-to-r from-sky-600 via-sky-500 to-sky-600  py-2 text-white/80 hover:bg-gradient-to-r hover:from-sky-800 hover:via-sky-600 hover:to-sky-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-sky-500 active:from-sky-600 active:via-sky-800 active:to-sky-600 active:text-sky-200;
+    @apply bg-gradient-to-r from-sky-600 via-sky-500 to-sky-600  py-2 text-white/80 hover:bg-gradient-to-r hover:from-sky-800 hover:via-sky-600 hover:to-sky-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-sky-500 active:bg-gradient-to-r active:from-sky-700 active:via-sky-900 active:to-sky-700 active:text-sky-400;
 }
 
 .btn-disabled {

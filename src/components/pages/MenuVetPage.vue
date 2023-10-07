@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { VSidebar, VSidebarButton } from '@elements/sidebar';
 import { ref, watchEffect } from 'vue';
-import { AnimalDiagnosis } from '@elements/forms';
 import { vetappApi } from '@/services';
 import { useRouter } from 'vue-router';
 import {  ViewVet } from '@elements/forms/';
@@ -65,8 +64,10 @@ const onLogout = () => {
                 
                 </div>
                <!-- <AnimalDiagnosis />-->
+               <div class="container"></div>
                 <div class="flex flex-col gap-4 lg:flex-row justify-center">
-                    <ViewVet v-if="showUserForm" />
+                   <!-- <ViewVet v-if="showUserForm" /> -->
+                   <router-view></router-view>
                 </div>
             </div>
         </div>

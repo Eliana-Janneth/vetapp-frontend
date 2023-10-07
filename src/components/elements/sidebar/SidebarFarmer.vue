@@ -12,7 +12,7 @@ defineProps<{
     open: boolean;
 }>();
 
-defineEmits(['close', 'openAnimal', 'openUser', 'cerrarSesion']);
+defineEmits(['close', 'cerrarSesion']);
 </script>
 
 <template>
@@ -32,25 +32,27 @@ defineEmits(['close', 'openAnimal', 'openUser', 'cerrarSesion']);
                 <hr class="border-1 w-full border-emerald-700 hover:border-emerald-900" />
                 <div class="mt-4 flex-1">
                     <ul class="flex flex-col gap-4">
-                        <VSidebarItem custom-class="btn-menu-farmer" label="Home" :icon="HomeIcon" />
+                        <VSidebarItem route="animals" custom-class="btn-menu-farmer" label="Home" :icon="HomeIcon" />
                         <VSidebarItem
+                            route="animals"
                             custom-class="btn-menu-farmer"
                             label="Consultas"
                             :icon="ChatBubbleLeftEllipsisIcon"
                         />
                         <VSidebarItem
+                            route="animals"
                             custom-class="btn-menu-farmer"
                             label="Mis animales"
                             :icon="StarIcon"
-                            @click="$emit('openAnimal')"
                         />
                         <VSidebarItem
+                            route="farmer"
                             custom-class="btn-menu-farmer"
                             label="Perfil"
                             :icon="UserCircleIcon"
-                            @click="$emit('openUser')"
                         />
                         <VSidebarItem
+                            route="animals"
                             custom-class="btn-menu-farmer"
                             label="Cerrar Sesión"
                             :icon="ArrowLeftOnRectangleIcon"
