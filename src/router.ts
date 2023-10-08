@@ -26,12 +26,12 @@ const routes = [
         children: [
             {
                 name: 'animals.register',
-                path: '/registrar-animal',
+                path: 'registrar-animal',
                 component: VRegisterAnimal,
             },
             {
                 name: 'animals.list',
-                path: '/listar-animales',
+                path: 'listar-animales',
                 component: VListAnimal,
             }
         ],

@@ -10,7 +10,7 @@ defineExpose({ open, close });
 </script>
 
 <template>
-    <div v-if="state" class="absolute h-screen w-screen flex bg-black/60">
+    <div v-if="state" class="absolute z-40 h-screen w-screen flex bg-black/60">
         <slot />
 
         <button @click="close" class="absolute top-4 right-4">

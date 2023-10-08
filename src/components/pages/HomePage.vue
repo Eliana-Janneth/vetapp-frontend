@@ -4,6 +4,6 @@
 
 <template>
     <div class="border-2 border-dashed border-white h-full">
-        hjola
+        hola
     </div>
 </template>

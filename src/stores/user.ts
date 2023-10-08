@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 type UserState = {
-    name: string
-    role: string
-    token: string | null
-}
+    name: string;
+    role: string;
+    token: string | null;
+};
 
 export const useUserStore = defineStore('user', {
     state: (): UserState => ({
@@ -27,6 +27,7 @@ export const useUserStore = defineStore('user', {
         },
         isVet(): boolean {
             return this.role === 'veterinarian';
-        }
+        },
+      
     },
-})
+});
