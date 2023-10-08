@@ -86,7 +86,13 @@ const licenseExpiration = defineComponentBinds('licenseExpiration');
             <VSpan v-bind="phone" variant="vet" :label="values.phone_number" name="phone_number" :icon="PhoneIcon" />
             <VSpan v-bind="address" variant="vet" :label="values.address" name="address" :icon="MapPinIcon" />
             <VSpan v-bind="city" variant="vet" :label="values.city" name="city" :icon="MapIcon" />
-            <VSpan v-bind="license" variant="vet" :label="values.license_number" name="city" :icon="IdentificationIcon" />
+            <VSpan
+                v-bind="license"
+                variant="vet"
+                :label="values.license_number"
+                name="city"
+                :icon="IdentificationIcon"
+            />
             <VSpan
                 v-bind="licenseExpiration"
                 variant="vet"

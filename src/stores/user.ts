@@ -28,6 +28,5 @@ export const useUserStore = defineStore('user', {
         isVet(): boolean {
             return this.role === 'veterinarian';
         },
-      
     },
 });

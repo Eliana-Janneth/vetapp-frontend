@@ -3,6 +3,7 @@ import { useRoute } from 'vue-router';
 import { ref } from 'vue';
 import { vetappApi } from '@/services';
 import { VDetailsEdit } from '@elements';
+
 const route = useRoute();
 const animal = ref();
 
@@ -20,7 +21,7 @@ vetappApi
 <template>
     <p v-if="animal === undefined">Cargando animal...</p>
     <p v-else-if="animal === null">El animal no existe</p>
-    
+
     <VDetailsEdit label="Nombre" :description="animal.name" />
     <VDetailsEdit label="Especie" :description="animal.specie_name" />
     <VDetailsEdit label="Raza" :description="animal.race_name" />

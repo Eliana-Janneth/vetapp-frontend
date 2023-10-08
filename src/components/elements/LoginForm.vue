@@ -42,7 +42,6 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
         .catch((error) => {
             console.error('Error de inicio de sesión:', error);
             errorMessage.value = error.message;
-            
         });
 });
 </script>

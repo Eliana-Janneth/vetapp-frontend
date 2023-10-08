@@ -40,7 +40,7 @@ let selectedSpeciesId = ref('');
 const name = defineComponentBinds('name');
 const specie = defineComponentBinds('specie');
 const race = defineComponentBinds('race');
-const gender =  defineComponentBinds('gender');
+const gender = defineComponentBinds('gender');
 const birthdate = defineComponentBinds('birthdate');
 const weight = defineComponentBinds('weight');
 const height = defineComponentBinds('height');
@@ -90,7 +90,7 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
         values.weight = registerValues.weight;
 
         await vetappApi.createAnimal(values);
-       console.log(JSON.stringify(values, null, 2));
+        console.log(JSON.stringify(values, null, 2));
     } catch (error) {
         //  errorMessage.value = error.message;
     }

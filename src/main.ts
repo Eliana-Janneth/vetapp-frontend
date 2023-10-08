@@ -5,7 +5,7 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import Notifications from '@kyvg/vue3-notification';
 
-const pinia = createPinia()
+const pinia = createPinia();
 
 const app = createApp(App);
 app.use(pinia);

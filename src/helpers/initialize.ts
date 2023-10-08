@@ -10,4 +10,4 @@ export const initialize = async () => {
         userStore.role = user.role;
         userStore.token = localStorage.getItem('accessToken');
     }
-}
+};

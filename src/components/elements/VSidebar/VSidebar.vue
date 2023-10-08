@@ -12,7 +12,6 @@ import {
     ChevronUpIcon,
 } from '@heroicons/vue/24/solid';
 
-
 const userStore = useUserStore();
 const variantProfile = {
     farmer: 'btn-menu-farmer',
@@ -30,8 +29,6 @@ const vetSidebarItems = ref([
     { route: '', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
     { route: '', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
 ]);
-
-
 </script>
 
 <template>
@@ -82,8 +79,7 @@ const vetSidebarItems = ref([
                     </button>
                 </template>
 
-                    <VDropdown />
-                
+                <VDropdown />
             </VPopover>
         </div>
     </div>

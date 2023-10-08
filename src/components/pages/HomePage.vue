@@ -3,7 +3,5 @@
 </script>
 
 <template>
-    <div class="border-2 border-dashed border-white h-full">
-        hola
-    </div>
+    <div class="h-full border-2 border-dashed border-white">hola</div>
 </template>

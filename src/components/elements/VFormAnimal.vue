@@ -18,7 +18,7 @@ const toggleList = () => {
 </script>
 
 <template>
-    <div class="flex flex-col gap-4 bg-white p-2 rounded-lg">
+    <div class="flex flex-col gap-4 rounded-lg bg-white p-2">
         <div class="flex justify-center gap-4 p-2 lg:gap-6">
             <VButton variant="farmer" label="Registrar" @open="toggleRegister" />
             <VButton variant="farmer" label="Listar" @open="toggleList" />

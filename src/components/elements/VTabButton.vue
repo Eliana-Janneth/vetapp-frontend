@@ -7,7 +7,6 @@ defineProps<{
 }>();
 </script>
 <template>
-
     <router-link
         :to="{ name: route }"
         :class="[
@@ -20,4 +19,3 @@ defineProps<{
         {{ label }}
     </router-link>
 </template>
-
