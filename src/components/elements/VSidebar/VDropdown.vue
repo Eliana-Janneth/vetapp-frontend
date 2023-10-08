@@ -8,11 +8,11 @@ import { useRouter } from 'vue-router';
 const userStore = useUserStore();
 const router = useRouter();
 const route = ref(userStore.isFarmer ? 'profileFarmer' : 'profileFarmer');
-const variant = 'farmer' || 'vet';
+const variant = userStore.role;
 
 const variantClass = {
     farmer: 'text-md flex w-full justify-center hover:bg-emerald-600 hover:text-emerald-200',
-    vet: 'text-md flex w-full justify-center hover:bg-sky-600 hover:text-sky-200',
+    veterinarian: 'text-md flex w-full justify-center hover:bg-sky-600 hover:text-sky-200',
 };
 
 const onLogout = () => {

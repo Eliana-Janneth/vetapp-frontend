@@ -33,12 +33,16 @@ const routes = [
                 name: 'animals.list',
                 path: 'listar-animales',
                 component: VListAnimal,
+                children: [{
+                    name: 'animals.show',
+                    path: 'animales/:id',
+                    component: ShowAnimalsPage,
+                }]
             }
         ],
     },
 
-    { name: 'animals.show', path: '/animales/:id', component: ShowAnimalsPage },
-    { name: 'profileFarmer', path: '/perfil-granjero', component: FarmerPage, meta: { layout: MainTemplate } },
+        { name: 'profileFarmer', path: '/perfil-granjero', component: FarmerPage, meta: { layout: MainTemplate } },
     { name: 'test', path: '/test', component: TestPage, meta: { layout: MainTemplate } },
 ];
 
