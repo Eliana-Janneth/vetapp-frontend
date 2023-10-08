@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { initialize } from '@/helpers';
+
+initialize();
 </script>
 
 <template>

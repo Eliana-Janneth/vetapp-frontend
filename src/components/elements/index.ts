@@ -8,4 +8,8 @@ export { default as VButton } from './VButton.vue';
 export { default as VAlert } from './VAlert.vue';
 export { default as VFormAnimal } from './VFormAnimal.vue';
 export { default as VSpan } from './VSpan.vue';
+export { default as VPopover } from './VPopover.vue';
 export * from './VSidebar';
+export {default as VTopbar} from './VTopbar.vue';
+export {default as LeftContentModal} from './LeftContentModal.vue';
+export {default as VTabButton} from './VTabButton.vue';

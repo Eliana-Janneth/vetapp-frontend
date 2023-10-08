@@ -1,34 +1,22 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { VButton } from '@elements';
-import { VRegisterAnimal, VListAnimal } from '@elements/forms';
+import { VTabButton } from '@elements';
 
-const openRegister = ref(false);
-const openList = ref(true);
-
-const toggleRegister = () => {
-    openRegister.value = true;
-    openList.value = false;
-};
-
-const toggleList = () => {
-    openRegister.value = false;
-    openList.value = true;
+const activeTab = ref(1);
+const setActiveTab = (tab: number) => {
+    activeTab.value = tab;
 };
 </script>
 
 <template>
-    <div class="flex flex-col gap-4 bg-white p-2 rounded-lg">
+    <div class="flex flex-col gap-4 rounded-lg bg-white p-2">
         <div class="flex justify-center gap-4 p-2 lg:gap-6">
-            <VButton variant="farmer" label="Registrar" @open="toggleRegister" />
-            <VButton variant="farmer" label="Listar" @open="toggleList" />
-            <VButton variant="farmer" label="Actualizar" />
+            <VTabButton route="animals.register" label="Registrar" :active="activeTab === 1" @click="setActiveTab(1)" />
+            <VTabButton route="animals.list" label="Listar" :active="activeTab === 2" @click="setActiveTab(2)" />
+            <VTabButton route="" label="Actualizar" :active="activeTab === 3" @click="setActiveTab(3)" />
         </div>
-        <hr class="border-1 w-full border-emerald-700 hover:border-emerald-900" />
-
         <div class="">
-            <VRegisterAnimal v-if="openRegister" />
-            <VListAnimal v-if="openList" />
+            <router-view />
         </div>
     </div>
 </template>

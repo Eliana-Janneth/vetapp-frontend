@@ -136,7 +136,7 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
             <span class="block text-lg font-medium text-emerald-800">Género</span>
             <VInput
                 v-bind="gender"
-                custom-class="form-farmer w-min"
+                custom-class="w-min"
                 variant="farmer"
                 label="Macho"
                 type="radio"
@@ -146,7 +146,7 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
             />
             <VInput
                 v-bind="gender"
-                custom-class="form-farmer w-min"
+                custom-class="w-min"
                 variant="farmer"
                 label="Hembra"
                 type="radio"
@@ -156,7 +156,6 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
             />
             <VInput
                 v-bind="birthdate"
-                custom-class="form-farmer"
                 variant="farmer"
                 label="Fecha de Nacimiento"
                 placeholder="Escribe su nombre"
@@ -166,7 +165,6 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
             />
             <VInput
                 v-bind="weight"
-                custom-class="form-farmer"
                 variant="farmer"
                 label="Peso"
                 placeholder="Ingresa su peso actual"
@@ -176,7 +174,6 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
             />
             <VInput
                 v-bind="height"
-                custom-class="form-farmer"
                 variant="farmer"
                 label="Altura"
                 placeholder="Ingresa su altura"
@@ -188,7 +185,6 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
         <div class="flex flex-col gap-2 lg:flex-row">
             <VTextArea
                 v-bind="color"
-                custom-class="form-farmer"
                 variant="farmer"
                 label="Color"
                 placeholder="Describe su aspecto fisico"
@@ -197,7 +193,6 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
             />
             <VTextArea
                 v-bind="description"
-                custom-class="form-farmer"
                 variant="farmer"
                 label="Descripción"
                 placeholder="Describe alguna caracteristica importante"

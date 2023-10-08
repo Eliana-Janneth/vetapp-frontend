@@ -35,7 +35,7 @@ onMounted(async () => {
         <div class="max-h-96 overflow-y-scroll">
             <table class="min-w-full table-auto">
                 <thead
-                    class="leading-4tracking-wider sticky top-0 bg-emerald-400 text-xs font-medium uppercase tracking-wider text-black"
+                    class="leading-4tracking-wider font-norma sticky top-0 bg-emerald-600 text-xs uppercase tracking-wider text-white"
                 >
                     <tr>
                         <th class="px-6 py-3">Detalle</th>
@@ -51,7 +51,11 @@ onMounted(async () => {
                         v-for="animal in animals"
                         :key="animal.id"
                     >
-                        <td class="table-item"><router-link :to="{ name: 'animals.show', params: {id: animal.id }}"><LinkIcon class="w-5 h-5 text-black"/></router-link></td>
+                        <td class="table-item">
+                            <router-link :to="{ name: 'animals.show', params: { id: animal.id } }"
+                                ><LinkIcon class="h-5 w-5 text-black"
+                            /></router-link>
+                        </td>
                         <td class="table-item">{{ animal.name }}</td>
                         <td class="table-item">{{ animal.specie_name }}</td>
                         <td class="table-item">{{ animal.race_name }}</td>
