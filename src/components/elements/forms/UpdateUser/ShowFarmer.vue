@@ -44,7 +44,7 @@ const address = defineComponentBinds('address');
 const email = defineComponentBinds('email');
 </script>
 <template>
-    <form class="flex w-full flex-col items-center gap-2 rounded-lg bg-white p-2">
+    <form class="mx-auto flex w-full flex-col items-center gap-2 rounded-lg bg-emerald-100/70 p-2">
         <div class="flex flex-col gap-2 lg:flex-row">
             <VSpan
                 v-bind="firstName"

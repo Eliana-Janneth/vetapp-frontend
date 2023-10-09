@@ -2,7 +2,7 @@
 import { ref, reactive } from 'vue';
 import type { TFarmerInformation } from './types';
 import FormFarmer from './FormFarmer.vue';
-import ViewFarmer from './ViewFarmer.vue';
+import ViewFarmer from './ShowFarmer.vue';
 import { TFarmerInformationPayload, vetappApi } from '@/services';
 
 const values: TFarmerInformationPayload = reactive({

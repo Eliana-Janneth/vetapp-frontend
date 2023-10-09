@@ -25,7 +25,7 @@ const farmerSidebarItems = ref([
     { route: 'animals', label: 'Mis animales', icon: StarIcon },
 ]);
 const vetSidebarItems = ref([
-    { route: 'animals', label: 'Home', icon: HomeIcon },
+    { route: '', label: 'Home', icon: HomeIcon },
     { route: '', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
     { route: '', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
 ]);

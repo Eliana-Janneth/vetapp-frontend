@@ -8,7 +8,7 @@ defineEmits(['update:modelValue', 'focus', 'blur']);
 defineOptions({
     inheritAttrs: false,
 });
-const userStore = useStyleStore();
+const styleStore = useStyleStore();
 
 withDefaults(
     defineProps<{
@@ -32,7 +32,7 @@ withDefaults(
 
 <template>
     <div class="relative w-full">
-        <span v-if="label" :class="['block text-lg font-medium', userStore.getLabelClassForProfile(variant)]">{{
+        <span v-if="label" :class="['block text-lg font-medium', styleStore.getLabelStyle]">{{
             label
         }}</span>
 
@@ -45,7 +45,7 @@ withDefaults(
                     'form-input block w-full rounded-lg border py-2 pr-3 shadow-sm focus:outline-none focus:ring-1 sm:text-sm',
                     icon ? 'pl-10' : 'pl-3',
                     customClass,
-                    userStore.getInputClassForProfile(variant),
+                    styleStore.getInputStyle,
                 ]"
                 v-bind="$attrs"
                 :id="id"

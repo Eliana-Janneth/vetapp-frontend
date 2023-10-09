@@ -7,7 +7,7 @@ import { useRouter } from 'vue-router';
 
 const userStore = useUserStore();
 const router = useRouter();
-const route = ref(userStore.isFarmer ? 'profileFarmer' : 'profileFarmer');
+const route = ref(userStore.isFarmer ? 'profileFarmer' : 'profileVet');
 const variant = userStore.role;
 
 const variantClass = {

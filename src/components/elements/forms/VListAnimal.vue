@@ -51,10 +51,12 @@ onMounted(async () => {
                         v-for="animal in animals"
                         :key="animal.id"
                     >
-                        <td class="table-item">
-                            <router-link :to="{ name: 'animals.show', params: { id: animal.id } }"
-                                ><LinkIcon class="h-5 w-5 text-black"
-                            /></router-link>
+                        <td class="table-item ">
+                            <router-link :to="{ name: 'animals.show', params: { id: animal.id } }" class=" text-emerald-600 hover:text-emerald-500 flex items-center"
+                                ><LinkIcon class="h-5 w-5"
+                            /> <span class="ml-2 font-medium ">
+                                Ver Detalle
+                            </span></router-link>
                         </td>
                         <td class="table-item">{{ animal.name }}</td>
                         <td class="table-item">{{ animal.specie_name }}</td>

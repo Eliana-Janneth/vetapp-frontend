@@ -4,15 +4,6 @@ import { ref } from 'vue';
 
 const leftContentModal = ref();
 
-// const onLogout = () => {
-//     try {
-//         vetappApi.logout().then(() => {
-//             router.push({ name: 'welcome' });
-//         });
-//     } catch (error) {
-//         console.error('Error al cargar los datos:', error);
-//     }
-// };
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 import { notify } from '@kyvg/vue3-notification';
-import { TRegisterPayload, TLoginPayload, TUserInformationPayload } from './types';
+import { TRegisterPayload, TLoginPayload, TAcademicExperiencePayload, TWorkExperiencePayload } from './types';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -115,4 +115,61 @@ export const getUser = async () => {
     }
 };
 
-export const updateUser = async (data: TUserInformationPayload) => {};
+export const createAcademicInformation = async (data: TAcademicExperiencePayload) => {
+    const apiUrl = `${API_URL}/vet-academic-information/`;
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                alert(`Error del servidor: ${errorData.response}`);
+            } else {
+                alert('Error en la solicitud al servidor.');
+            }
+            return;
+        }
+        // Si la respuesta es exitosa
+        const responseData = await response.json();
+        console.log(JSON.stringify(responseData, null, 2));
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
+};
+export const createWorkExperiencie = async (data: TWorkExperiencePayload) => {
+    const apiUrl = `${API_URL}/vet-work-experience/`;
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                alert(`Error del servidor: ${errorData.response}`);
+            } else {
+                alert('Error en la solicitud al servidor.');
+            }
+            return;
+        }
+        // Si la respuesta es exitosa
+        const responseData = await response.json();
+        console.log(JSON.stringify(responseData, null, 2));
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
+};
+
+

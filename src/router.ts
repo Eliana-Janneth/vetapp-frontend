@@ -8,9 +8,11 @@ import {
     AnimalsPage,
     FarmerPage,
     TestPage,
+    VetPage,
 } from '@pages';
 import { MainTemplate } from '@/components/template';
-import { VListAnimal, VRegisterAnimal } from './components/elements/forms';
+import { VListAnimal, VRegisterAnimal, ShowVet } from '@elements/forms';
+import { InformationAcademic, WorkExperience, InformationVet } from '@elements/forms/InformationVet';
 
 // TODO: Nombrar rutas
 const routes = [
@@ -45,6 +47,26 @@ const routes = [
     },
 
     { name: 'profileFarmer', path: '/perfil-granjero', component: FarmerPage, meta: { layout: MainTemplate } },
+    {
+        name: 'profileVet',
+        path: '/perfil-veterinario',
+        component: InformationVet,
+        meta: { layout: MainTemplate },
+        children: [
+            {
+                name: 'profileVet.workExperience',
+                path: 'experiencia-laboral',
+                component: WorkExperience,
+            },
+            {
+                name: 'profileVet.informationAcademic',
+                path: 'informacion-academica',
+                component: InformationAcademic,
+            },
+            { name: 'profileVet.showVet', path: 'mostrar-veterinario', component: ShowVet },
+        ],
+    },
+
     { name: 'test', path: '/test', component: TestPage, meta: { layout: MainTemplate } },
 ];
 

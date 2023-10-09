@@ -11,9 +11,9 @@ const setActiveTab = (tab: number) => {
 <template>
     <div class="flex flex-col gap-4 rounded-lg bg-white p-2">
         <div class="flex justify-center gap-4 p-2 lg:gap-6">
-            <VTabButton route="animals.register" label="Registrar" :active="activeTab === 1" @click="setActiveTab(1)" />
-            <VTabButton route="animals.list" label="Listar" :active="activeTab === 2" @click="setActiveTab(2)" />
-            <VTabButton route="" label="Actualizar" :active="activeTab === 3" @click="setActiveTab(3)" />
+            <VTabButton route="profileVet.showVet" label="Información Personal" :active="activeTab === 1" @click="setActiveTab(1)" />
+            <VTabButton route="profileVet.informationAcademic" label="Información Académica" :active="activeTab === 2" @click="setActiveTab(2)" />
+            <VTabButton route="profileVet.workExperience" label="Experiencia Laboral" :active="activeTab === 3" @click="setActiveTab(3)" />
         </div>
         <div class="">
             <router-view />
