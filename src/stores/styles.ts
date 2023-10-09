@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 type InputClass = Record<string, string>;
 type LabelClass = Record<string, string>;
 type ButtonStyle = Record<string, string>;
+type TabButtonStyle = Record<string, string>;
 
 type StyleState = {
     role: string;
@@ -10,6 +11,7 @@ type StyleState = {
     InputClass: InputClass;
     LabelClass: LabelClass;
     ButtonStyle: ButtonStyle;
+    TabButtonStyle: TabButtonStyle;
 };
 
 export const useStyleStore = defineStore({
@@ -33,6 +35,10 @@ export const useStyleStore = defineStore({
                 'flex  w-40 justify-center rounded-md py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:text-white focus:outline-none bg-sky-600 hover:from-sky-800 hover:via-sky-600 hover:to-sky-800 focus:ring-sky-500 active:from-sky-600 active:via-sky-800 active:to-sky-600 active:text-sky-200',
             base: 'flex  w-40 justify-center rounded-md py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:text-white focus:outline-none bg-indigo-600  hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 focus:ring-indigo-500 active:from-indigo-600 active:via-indigo-800 active:to-indigo-600 active:text-indigo-200',
         },
+        TabButtonStyle: {
+            farmer: 'text-emerald-800 hover:bg-emerald-100/70 border-emerald-600',
+            veterinarian: 'text-sky-800 hover:bg-sky-100/70 border-sky-600',
+        }
     }),
     getters: {
         getLabelStyle: (state) => {
@@ -47,5 +53,9 @@ export const useStyleStore = defineStore({
             const role = state.role;
             return state.ButtonStyle[role] || '';
         },
+        getTabButtonStyle: (state) => {
+            const role = state.role;
+            return state.TabButtonStyle[role] || '';
+        }
     },
 });

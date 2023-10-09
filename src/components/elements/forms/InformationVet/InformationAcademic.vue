@@ -3,10 +3,11 @@ import VButton from '../../VButton.vue';
 import VInput from '../../VInput.vue';
 import { reactive } from 'vue';
 import * as yup from 'yup';
-import { TAcademicInformation } from './types';
+import type { TAcademicInformation } from './types';
 import { useForm } from 'vee-validate';
 import { vetappApi, TAcademicInformationPayload } from '@/services';
 import ShowInformationAcademic from './ShowInformationAcademic.vue';
+
 const values: TAcademicInformationPayload = reactive({
     title: '',
     university: '',

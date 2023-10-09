@@ -1,20 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import {
-    WelcomePage,
-    RegisterPage,
-    LoginPage,
-    HomePage,
-    ShowAnimalsPage,
-    AnimalsPage,
-    FarmerPage,
-    TestPage,
-    VetPage,
-} from '@pages';
+import { WelcomePage, RegisterPage, LoginPage, HomePage, ShowAnimalsPage, AnimalsPage, FarmerPage } from '@pages';
 import { MainTemplate } from '@/components/template';
 import { VListAnimal, VRegisterAnimal, ShowVet } from '@elements/forms';
 import { InformationAcademic, WorkExperience, InformationVet } from '@elements/forms/InformationVet';
+import { ConsultsTemplate, DiagnosisPage, AnimalsAuthorizedPage } from '@/components/pages/consultsPages';
 
-// TODO: Nombrar rutas
 const routes = [
     { name: 'welcome', path: '/', component: WelcomePage },
     { name: 'login', path: '/iniciar-sesion', component: LoginPage },
@@ -52,6 +42,7 @@ const routes = [
         path: '/perfil-veterinario',
         component: InformationVet,
         meta: { layout: MainTemplate },
+        redirect: { name: 'profileVet.showVet' },
         children: [
             {
                 name: 'profileVet.workExperience',
@@ -67,7 +58,26 @@ const routes = [
         ],
     },
 
-    { name: 'test', path: '/test', component: TestPage, meta: { layout: MainTemplate } },
+    {
+        name: 'consults',
+        path: '/consultas',
+        component: ConsultsTemplate,
+        meta: { layout: MainTemplate },
+        children: [
+            {
+                name: 'consults.animalsAuthorized',
+                path: 'animales-autorizados',
+                component: AnimalsAuthorizedPage,
+                children: [
+                    {
+                        name: 'consults.diagnosis',
+                        path: 'diagnostico',
+                        component: DiagnosisPage,
+                    },
+                ],
+            },
+        ],
+    },
 ];
 
 export const router = createRouter({

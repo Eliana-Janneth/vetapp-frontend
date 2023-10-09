@@ -47,7 +47,6 @@ onMounted(async () => {
 const { defineComponentBinds } = useForm<TVetInformation>({});
 
 const firstName = defineComponentBinds('firstName');
-const lastName = defineComponentBinds('lastName');
 const document = defineComponentBinds('document');
 const phone = defineComponentBinds('phone');
 const city = defineComponentBinds('city');
@@ -63,15 +62,8 @@ const licenseExpiration = defineComponentBinds('licenseExpiration');
                 v-bind="firstName"
                 custom-class="uppercase font-semibold text-lg"
                 variant="vet"
-                :label="values.first_name"
+                :label="`${values.first_name} ${values.last_name}`"
                 name="first_name"
-            />
-            <VSpan
-                v-bind="lastName"
-                custom-class="uppercase font-semibold text-lg"
-                variant="vet"
-                :label="values.last_name"
-                name="last_name"
             />
         </div>
         <div class="flex flex-col gap-2">

@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { VTabButton } from '@elements';
 
-const activeTab = ref(2);
+const activeTab = ref(1);
 const setActiveTab = (tab: number) => {
     activeTab.value = tab;
 };

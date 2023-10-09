@@ -4,10 +4,11 @@ import VTextArea from '../../VTextArea.vue';
 import VButton from '../../VButton.vue';
 import { reactive } from 'vue';
 import * as yup from 'yup';
-import { TWorkExperience } from './types';
+import type { TWorkExperience } from './types';
 import { useForm } from 'vee-validate';
 import { vetappApi, TWorkExperiencePayload } from '@/services';
 import ShowWorkExperience from './ShowWorkExperience.vue';
+
 const values: TWorkExperiencePayload = reactive({
     title: '',
     company: '',

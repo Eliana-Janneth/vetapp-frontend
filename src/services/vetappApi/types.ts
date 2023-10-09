@@ -74,4 +74,23 @@ export type TAcademicInformationPayload = {
     country: string;
     academic_degree: string;
     currently_studying: boolean;
+    currently:string;
+};
+export type TAnimalPayload = {
+    birth_date: string;
+    color: string;
+    description: string;
+    gender: string;
+    height: string;
+    id: string;
+    name: string;
+    race_name: string;
+    specie_name: string;
+    weight: string;
+};
+
+export type TDiagnosisPayload = {
+    animal: string;
+    diagnosis: string;
+    treatment: string;
 };
