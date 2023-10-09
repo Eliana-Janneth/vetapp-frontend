@@ -5,7 +5,7 @@ export type TWorkExperience = {
     startDate: string;
     endDate: string;
     country: string;
-    currentlyWorking: string;
+    currentlyWorking: boolean;
 };
 
 export type TAcademicInformation= {
@@ -14,5 +14,5 @@ export type TAcademicInformation= {
     year: string;
     country: string;
     academicDegree: string;
-    currentlystudying: string;
+    currentlystudying: boolean;
 };

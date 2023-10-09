@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import { TWorkExperience } from './types';
 import { useForm } from 'vee-validate';
 import { vetappApi, TWorkExperiencePayload } from '@/services';
-
+import ShowWorkExperience from './ShowWorkExperience.vue';
 const values: TWorkExperiencePayload = reactive({
     title: '',
     company: '',
@@ -25,7 +25,6 @@ const validationSchema = yup.object({
     startDate: yup.string().required('Por favor ingrese una fecha de inicio'),
     endDate: yup.string().required('Por favor ingrese una fecha de finalización'),
     country: yup.string().required('Por favor ingrese un país'),
-    currentlyWorking: yup.boolean().required('Por favor ingrese si está trabajando actualmente'),
 });
 
 const { defineComponentBinds, errors, handleSubmit } = useForm<TWorkExperience>({
@@ -41,7 +40,10 @@ const country = defineComponentBinds('country');
 const currentlyWorking = defineComponentBinds('currentlyWorking');
 
 const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
+    console.log('hola')
     console.log(JSON.stringify(workExperienceValues));
+    
+
     try {
         values.title = workExperienceValues.position;
         values.company = workExperienceValues.company;
@@ -49,21 +51,22 @@ const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
         values.start_date = workExperienceValues.startDate;
         values.end_date = workExperienceValues.endDate;
         values.country = workExperienceValues.country;
-        values.currently_working = false;
+        values.currently_working = workExperienceValues.currentlyWorking;
 
         await vetappApi.createWorkExperiencie(values);
     } catch (error) {}
+    console.log(currentlyWorking.value);
 });
 </script>
 <template>
-    <form class="mx-auto flex w-full flex-col items-center gap-4 rounded-lg bg-sky-100/70 p-10" @click="onSubmit">
+    <ShowWorkExperience />
+    <form class="mx-auto flex w-full flex-col items-center gap-4 rounded-lg bg-sky-100/70 p-10" @submit="onSubmit">
         <div class="flex w-full flex-col justify-between gap-4 lg:flex-row lg:gap-10">
             <VInput
                 v-bind="position"
                 label="Cargo"
                 placeholder="Cargo que desempeñaste"
                 name="position"
-                custom-class="veterinarian"
                 :maxlength="60"
                 :error="errors.position"
             />
@@ -72,7 +75,6 @@ const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
                 label="Empresa"
                 placeholder="Lugar donde trabajaste"
                 name="company"
-                custom-class="veterinarian"
                 :maxlength="60"
                 :error="errors.company"
             />
@@ -83,7 +85,6 @@ const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
                 label="Funciones Desempeñadas"
                 placeholder="Ingresa las funciones que realizaste en el cargo"
                 name="functions"
-                custom-class="veterinarian"
                 :maxlength="500"
                 :error="errors.functions"
             />
@@ -94,8 +95,6 @@ const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
                 label="Fecha de Inicio"
                 name="startDate"
                 type="date"
-                custom-class="veterinarian"
-                :maxlength="60"
                 :error="errors.startDate"
             />
             <VInput
@@ -103,8 +102,6 @@ const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
                 label="Fecha de Finalización"
                 name="endDate"
                 type="date"
-                custom-class="veterinarian"
-                :maxlength="60"
                 :error="errors.endDate"
             />
             <VInput
@@ -112,7 +109,6 @@ const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
                 label="País"
                 placeholder="País en el que trabajaste"
                 name="country"
-                custom-class="veterinarian"
                 :maxlength="60"
                 :error="errors.country"
             />
@@ -123,7 +119,9 @@ const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
                 label="¿Estás trabajando actualmente?"
                 name="currentlyWorking"
                 type="checkbox"
-                custom-class="veterinarian w-min"
+                custom-class="w-min"
+                model-value="true"
+
             />
         </div>
         <VButton label="Guardar" type="submit" class="mx-auto w-1/2" />

@@ -158,7 +158,6 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
                 v-bind="birthdate"
                 variant="farmer"
                 label="Fecha de Nacimiento"
-                placeholder="Escribe su nombre"
                 type="date"
                 name="birthdate"
                 :error="errors.birthdate"

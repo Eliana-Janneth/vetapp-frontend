@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import { TAcademicInformation } from './types';
 import { useForm } from 'vee-validate';
 import { vetappApi, TAcademicInformationPayload } from '@/services';
-
+import ShowInformationAcademic from './ShowInformationAcademic.vue';
 const values: TAcademicInformationPayload = reactive({
     title: '',
     university: '',
@@ -43,7 +43,7 @@ const onSubmit = handleSubmit(async (academicValues: TAcademicInformation) => {
         values.year= academicValues.year;
         values.country= academicValues.country;
         values.academic_degree= academicValues.academicDegree;
-        values.currently_studying= false;
+        values.currently_studying= academicValues.currentlystudying;
 
         await vetappApi.createAcademicInformation(values);
     }catch(error){
@@ -52,6 +52,7 @@ const onSubmit = handleSubmit(async (academicValues: TAcademicInformation) => {
 
 </script>
 <template>
+    <ShowInformationAcademic/>
     <form class="mx-auto flex w-full flex-col items-center gap-4 rounded-lg bg-sky-100/70 p-10" @submit="onSubmit">
         <div class="flex w-full flex-col justify-between gap-4 lg:flex-row lg:gap-10">
             <VInput
@@ -104,6 +105,7 @@ const onSubmit = handleSubmit(async (academicValues: TAcademicInformation) => {
                 name="currently_studying"
                 type="checkbox"
                 custom-class=" w-min"
+                model-value="true"
             />
         </div>
         <VButton label="Guardar" type="submit" variant="vet" class="mx-auto w-1/2" />

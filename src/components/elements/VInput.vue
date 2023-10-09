@@ -17,7 +17,7 @@ withDefaults(
         icon?: FunctionalComponent;
         id?: string;
         label?: string;
-        modelValue?: string;
+        modelValue?: string | boolean;
         name?: string;
         placeholder?: string;
         type?: string;
@@ -32,9 +32,7 @@ withDefaults(
 
 <template>
     <div class="relative w-full">
-        <span v-if="label" :class="['block text-lg font-medium', styleStore.getLabelStyle]">{{
-            label
-        }}</span>
+        <span v-if="label" :class="['block text-lg font-medium', styleStore.getLabelStyle]">{{ label }}</span>
 
         <div class="relative">
             <span class="absolute inset-y-0 left-0 flex items-center pl-2">

@@ -11,8 +11,8 @@ withDefaults(
         customClass?: string;
         icon?: FunctionalComponent;
         id?: string;
-        label?: string;
-        modelValue?: string;
+        label?: string | boolean;
+        modelValue?: string | boolean;
         name?: string;
         variant?: 'farmer' | 'vet' | 'base';
     }>(),

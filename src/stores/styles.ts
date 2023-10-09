@@ -28,10 +28,10 @@ export const useStyleStore = defineStore({
             base: 'text-indigo-700',
         },
         ButtonStyle: {
-            farmer: 'bg-emerald-600 hover:from-emerald-800 hover:via-emerald-600 hover:to-emerald-800 focus:ring-emerald-500 active:from-emerald-600 active:via-emerald-800 active:to-emerald-600 active:text-emerald-200',
+            farmer: 'flex  w-40 justify-center rounded-md py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:text-white focus:outline-none bg-emerald-600 hover:from-emerald-800 hover:via-emerald-600 hover:to-emerald-800 focus:ring-emerald-500 active:from-emerald-600 active:via-emerald-800 active:to-emerald-600 active:text-emerald-200',
             veterinarian:
-                'flex w-1/4 justify-center rounded-md py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:text-white focus:outline-none bg-sky-600 hover:from-sky-800 hover:via-sky-600 hover:to-sky-800 focus:ring-sky-500 active:from-sky-600 active:via-sky-800 active:to-sky-600 active:text-sky-200',
-            base: 'bg-indigo-600  hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 focus:ring-indigo-500 active:from-indigo-600 active:via-indigo-800 active:to-indigo-600 active:text-indigo-200',
+                'flex  w-40 justify-center rounded-md py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:text-white focus:outline-none bg-sky-600 hover:from-sky-800 hover:via-sky-600 hover:to-sky-800 focus:ring-sky-500 active:from-sky-600 active:via-sky-800 active:to-sky-600 active:text-sky-200',
+            base: 'flex  w-40 justify-center rounded-md py-2 text-lg text-white/70 hover:bg-gradient-to-r hover:text-white focus:outline-none bg-indigo-600  hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 focus:ring-indigo-500 active:from-indigo-600 active:via-indigo-800 active:to-indigo-600 active:text-indigo-200',
         },
     }),
     getters: {
