@@ -1,2 +1,2 @@
 export * as vetappApi from './vetappApi';
-export * from './types';
+export * from './vetappApi/types';

@@ -25,7 +25,7 @@
             "@/*": ["src/*"],
             "@elements": ["src/components/elements"],
             "@elements/*": ["src/components/elements/*"],
-            "@pages": ["src/components/pages"],
+            "@pages": ["src/components/pages"]
         }
     },
     "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],

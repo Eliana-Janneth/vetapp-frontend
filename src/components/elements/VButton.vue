@@ -1,15 +1,19 @@
 <script setup lang="ts">
+import { useStyleStore } from '@/stores';
 
 defineProps<{
     label: string;
-    customClass: string;
+    customClass?: string;
+    type?: string;
 }>();
 
+const styleStore = useStyleStore();
+
+defineEmits(['open']);
 </script>
 
 <template>
-    <button
-        :class="['flex w-1/4 text-white/70 hover:bg-gradient-to-r hover:text-white focus:outline-none', customClass]">
+    <button :class="[customClass, type, styleStore.getButtonStyle]" @click="$emit('open')">
         {{ label }}
     </button>
 </template>

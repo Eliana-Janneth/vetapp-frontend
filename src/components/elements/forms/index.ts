@@ -1,4 +1,4 @@
-export { default as VFormFarmer } from './VFormFarmer.vue';
-export { default as VFormAnimal } from './VFormAnimal.vue';
+export { default as VRegisterAnimal } from './VRegisterAnimal.vue';
 export { default as VListAnimal } from './VListAnimal.vue';
+export { default as ShowVet } from './ShowVet.vue';
 export * from './RegisterForm';

@@ -1,5 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { initialize } from '@/helpers';
+
+initialize();
+</script>
 
 <template>
-    <router-view></router-view>
+    <component :is="$route.meta.layout ?? 'div'">
+        <router-view />
+    </component>
+    <notifications />
 </template>
