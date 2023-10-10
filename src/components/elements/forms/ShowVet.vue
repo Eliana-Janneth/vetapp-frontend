@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VSpan, VButton, VRouter } from '@elements';
+import { VSpan} from '@elements';
 import { useForm } from 'vee-validate';
 import { reactive, onMounted } from 'vue';
 import type { TVetInformation } from './types';
@@ -13,7 +13,7 @@ import {
     CalendarDaysIcon,
 } from '@heroicons/vue/24/outline';
 
-let values: TVetInformationPayload = reactive({
+const values: TVetInformationPayload = reactive({
     email: '',
     first_name: '',
     last_name: '',
@@ -56,7 +56,7 @@ const license = defineComponentBinds('license');
 const licenseExpiration = defineComponentBinds('licenseExpiration');
 </script>
 <template>
-    <form class="mx-auto flex w-1/2 flex-col items-center gap-2 rounded-lg bg-sky-100/70 p-2">
+    <form class="mx-auto flex w-80 flex-col items-center gap-2 rounded-lg bg-sky-100/70 p-2">
         <div class="flex flex-col gap-2 lg:flex-row">
             <VSpan
                 v-bind="firstName"
@@ -93,7 +93,6 @@ const licenseExpiration = defineComponentBinds('licenseExpiration');
                 :icon="CalendarDaysIcon"
             />
         </div>
-        <VButton label="Actualizar Datos" variant="vet" type="button" custom-class="mt-4" />
-        <VRouter label="Completar Perfil" route="" custom-class="mt-4" />
+       
     </form>
 </template>

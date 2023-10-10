@@ -20,6 +20,7 @@ const TWorkExperiencePayload = reactive({
     end_date: '',
     country: '',
     currently_working: false,
+    currently: '',
 });
 const workExperience = ref<TWorkExperiencePayload[]>([]);
 
@@ -65,12 +66,19 @@ const currentlyWorking = defineComponentBinds('currentlyWorking');
                 <VSpan
                     v-bind="startDate"
                     variant="vet"
-                    :label="`${work.start_date} / ${work.end_date}`"
+                    :label="`${work.start_date}`"
+                    name="email"
+                    :icon="CalendarDaysIcon"
+                />
+                <VSpan
+                    v-bind="startDate"
+                    variant="vet"
+                    :label="`${work.end_date}`"
                     name="email"
                     :icon="CalendarDaysIcon"
                 />
                 <VSpan v-bind="country" variant="vet" :label="work.country" :icon="GlobeAmericasIcon" />
-                <VSpan v-bind="currentlyWorking" variant="vet" :label="work.currently_working" :icon="BriefcaseIcon" />
+                <VSpan v-bind="currentlyWorking" variant="vet" :label="work.currently" :icon="BriefcaseIcon" />
             </div>
         </form>
     </div>

@@ -3,7 +3,7 @@ import { WelcomePage, RegisterPage, LoginPage, HomePage, ShowAnimalsPage, Animal
 import { MainTemplate } from '@/components/template';
 import { VListAnimal, VRegisterAnimal, ShowVet } from '@elements/forms';
 import { InformationAcademic, WorkExperience, InformationVet } from '@elements/forms/InformationVet';
-import { ConsultsTemplate, DiagnosisPage, AnimalsAuthorizedPage } from '@/components/pages/consultsPages';
+import { ConsultsTemplate, DiagnosisPage, AnimalsAuthorizedPage, MedicalHistoryPage } from '@/components/pages/consultsPages';
 
 const routes = [
     { name: 'welcome', path: '/', component: WelcomePage },
@@ -15,6 +15,7 @@ const routes = [
         path: '/animales',
         component: AnimalsPage,
         meta: { layout: MainTemplate },
+        redirect: { name: 'animals.list' },
         children: [
             {
                 name: 'animals.register',
@@ -78,6 +79,13 @@ const routes = [
             },
         ],
     },
+    {
+        name: 'medicalHistory',
+        path: '/historial-medico/:id',
+        component: MedicalHistoryPage,
+        meta: { layout: MainTemplate },
+    },
+
 ];
 
 export const router = createRouter({

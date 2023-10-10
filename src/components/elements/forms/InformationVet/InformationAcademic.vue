@@ -15,6 +15,7 @@ const values: TAcademicInformationPayload = reactive({
     country: '',
     academic_degree: '',
     currently_studying: false,
+    currently: '',
 });
 
 const validationSchema = yup.object({
@@ -76,9 +77,8 @@ const onSubmit = handleSubmit(async (academicValues: TAcademicInformation) => {
         <div class="flex w-full flex-col justify-between gap-4 lg:flex-row lg:gap-10">
             <VInput
                 v-bind="year"
-                label="Año de graduación"
-                placeholder="Año en el que te graduaste"
-                name="year"
+                label="Fecha de inicio"
+                type="date"
                 :maxlength="4"
                 :error="errors.year"
             />

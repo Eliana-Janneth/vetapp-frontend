@@ -4,8 +4,8 @@ import { vetappApi, TAnimalPayload } from '@/services';
 import { PencilIcon } from '@heroicons/vue/24/outline';
 
 //TODO: animal = models.ForeignKey(Animals, on_delete=models.CASCADE)
-  //  diagnosis = models.CharField(max_length=2048)
-   //    treatment = models.CharField(max_length=2048)
+//  diagnosis = models.CharField(max_length=2048)
+//    treatment = models.CharField(max_length=2048)
 const TAnimalPayload = reactive({
     id: '',
     name: '',
@@ -23,7 +23,7 @@ const animals = ref<TAnimalPayload[]>([]);
 
 onMounted(async () => {
     try {
-        const response = await vetappApi.getAnimalAuthorized();
+        const response = await vetappApi.getAnimalsAuthorized();
         animals.value = response;
     } catch (error) {
         console.error('Error al cargar los datos:');
@@ -38,7 +38,7 @@ onMounted(async () => {
                     class="leading-4tracking-wider font-norma sticky top-0 bg-sky-600 text-xs uppercase tracking-wider text-white"
                 >
                     <tr>
-                        <th class="px-6 py-3">Diagnóstico</th>
+                        <th class="px-6 py-3">Historia Clínica</th>
                         <th class="px-6 py-3">Granjero</th>
                         <th class="px-6 py-3">Nombre</th>
                         <th class="px-6 py-3">Especie</th>
@@ -52,12 +52,13 @@ onMounted(async () => {
                         v-for="animal in animals"
                         :key="animal.id"
                     >
-                        <td class="table-item ">
-                            <router-link :to="{ name: 'animals.show', params: { id: animal.id } }" class=" text-sky-600 hover:text-sky-500 flex items-center"
-                                ><PencilIcon class="h-5 w-5"
-                            /> <span class="ml-2 font-medium ">
-                                Crear Diagnóstico
-                            </span></router-link>
+                        <td class="table-item">
+                            <router-link
+                                :to="{ name: 'medicalHistory', params: { id: animal.id } }"
+                                class="flex items-center text-sky-600 hover:text-sky-500"
+                                ><PencilIcon class="h-5 w-5" />
+                                <span class="ml-2 font-medium"> Ver Historia </span></router-link
+                            >
                         </td>
                         <td class="table-item">{{ animal.name }}</td>
                         <td class="table-item">{{ animal.name }}</td>
