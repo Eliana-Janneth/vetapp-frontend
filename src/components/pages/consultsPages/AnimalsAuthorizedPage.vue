@@ -70,5 +70,4 @@ onMounted(async () => {
             </table>
         </div>
     </div>
-    <router-view />
 </template>

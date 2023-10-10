@@ -5,6 +5,7 @@ import DiagnosisPage from './DiagnosisPage.vue';
 
 <template>
     <DiagnosisPage />
-    <ShowMedicalHistory />
     <ShowAnimal/>
+    <ShowMedicalHistory />
+    
 </template>

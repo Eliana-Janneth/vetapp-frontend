@@ -19,16 +19,17 @@ vetappApi
 </script>
 
 <template>
+    <div v-if="animal">
+        <VDetailsEdit label="Nombre" :description="animal.name" />
+        <VDetailsEdit label="Especie" :description="animal.specie_name" />
+        <VDetailsEdit label="Raza" :description="animal.race_name" />
+        <VDetailsEdit label="Color" :description="animal.color" />
+        <VDetailsEdit label="Género" :description="animal.gender" />
+        <VDetailsEdit label="Fecha de Nacimiento" :description="animal.birth_date" />
+        <VDetailsEdit label="Peso" :description="animal.weight" />
+        <VDetailsEdit label="Altura" :description="animal.height" />
+        <VDetailsEdit label="Descripción" :description="animal.description" />
+    </div>
     <p v-if="animal === undefined">Cargando animal...</p>
     <p v-else-if="animal === null">El animal no existe</p>
-
-    <VDetailsEdit label="Nombre" :description="animal.name" />
-    <VDetailsEdit label="Especie" :description="animal.specie_name" />
-    <VDetailsEdit label="Raza" :description="animal.race_name" />
-    <VDetailsEdit label="Color" :description="animal.color" />
-    <VDetailsEdit label="Género" :description="animal.gender" />
-    <VDetailsEdit label="Fecha de Nacimiento" :description="animal.birth_date" />
-    <VDetailsEdit label="Peso" :description="animal.weight" />
-    <VDetailsEdit label="Altura" :description="animal.height" />
-    <VDetailsEdit label="Descripción" :description="animal.description" />
 </template>
