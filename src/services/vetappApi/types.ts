@@ -65,7 +65,7 @@ export type TWorkExperiencePayload = {
     end_date: string;
     country: string;
     currently_working: boolean;
-    currently:string;
+    currently: string;
 };
 
 export type TAcademicInformationPayload = {
@@ -75,7 +75,7 @@ export type TAcademicInformationPayload = {
     country: string;
     academic_degree: string;
     currently_studying: boolean;
-    currently:string;
+    currently: string;
 };
 export type TAnimalPayload = {
     birth_date: string;

@@ -41,9 +41,8 @@ const country = defineComponentBinds('country');
 const currentlyWorking = defineComponentBinds('currentlyWorking');
 
 const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
-    console.log('hola')
+    console.log('hola');
     console.log(JSON.stringify(workExperienceValues));
-    
 
     try {
         values.title = workExperienceValues.position;
@@ -91,20 +90,8 @@ const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
             />
         </div>
         <div class="flex w-full flex-col justify-between gap-4 lg:flex-row lg:gap-10">
-            <VInput
-                v-bind="startDate"
-                label="Fecha de Inicio"
-                name="startDate"
-                type="date"
-                :error="errors.startDate"
-            />
-            <VInput
-                v-bind="endDate"
-                label="Fecha de Finalización"
-                name="endDate"
-                type="date"
-                :error="errors.endDate"
-            />
+            <VInput v-bind="startDate" label="Fecha de Inicio" name="startDate" type="date" :error="errors.startDate" />
+            <VInput v-bind="endDate" label="Fecha de Finalización" name="endDate" type="date" :error="errors.endDate" />
             <VInput
                 v-bind="country"
                 label="País"
@@ -122,7 +109,6 @@ const onSubmit = handleSubmit(async (workExperienceValues: TWorkExperience) => {
                 type="checkbox"
                 custom-class="w-min"
                 model-value="true"
-
             />
         </div>
         <VButton label="Guardar" type="submit" class="mx-auto w-1/2" />

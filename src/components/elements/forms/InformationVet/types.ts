@@ -8,7 +8,7 @@ export type TWorkExperience = {
     currentlyWorking: boolean;
 };
 
-export type TAcademicInformation= {
+export type TAcademicInformation = {
     university: string;
     title: string;
     year: string;

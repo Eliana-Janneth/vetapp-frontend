@@ -28,7 +28,7 @@ vetappApi
         <VDetailsEdit label="Fecha de Nacimiento" :description="animal.birth_date" />
         <VDetailsEdit label="Peso" :description="animal.weight" />
         <VDetailsEdit label="Altura" :description="animal.height" />
-        <VDetailsEdit class="border-b-0"  label="Descripción" :description="animal.description" />
+        <VDetailsEdit class="border-b-0" label="Descripción" :description="animal.description" />
     </div>
     <p v-if="animal === undefined">Cargando animal...</p>
     <p v-else-if="animal === null">El animal no existe</p>

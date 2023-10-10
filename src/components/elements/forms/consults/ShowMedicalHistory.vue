@@ -25,14 +25,13 @@ vetappApi
 </script>
 
 <template>
-    
-    <div v-if="diagnosisAnimal" class="flex  flex-col m-2">
-    <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
-        <div class="mx-auto  mb-2 ml-2 mr-2 flex  flex-col items-center rounded-lg bg-sky-100/70 p-2">
-            <VDetails custom-class="font-semibold" label="Fecha" :description="diagnosisA.create_date" />
-            <VDetails label="Diagnostico" :description="diagnosisA.diagnosis" />
-            <VDetails label="Tratamiento" :description="diagnosisA.treatment" />
+    <div v-if="diagnosisAnimal" class="m-2 flex flex-col">
+        <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
+            <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
+                <VDetails custom-class="font-semibold" label="Fecha" :description="diagnosisA.create_date" />
+                <VDetails label="Diagnostico" :description="diagnosisA.diagnosis" />
+                <VDetails label="Tratamiento" :description="diagnosisA.treatment" />
+            </div>
         </div>
     </div>
-</div>
 </template>

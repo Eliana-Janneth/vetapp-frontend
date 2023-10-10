@@ -6,4 +6,4 @@ export { default as ShowAnimalsPage } from './ShowAnimalsPage.vue';
 export { default as AnimalsPage } from './AnimalsPage.vue';
 export { default as FarmerPage } from './FarmerPage.vue';
 export { default as TestPage } from './TestPage.vue';
-export {default as VetPage} from './VetPage.vue';
+export { default as VetPage } from './VetPage.vue';

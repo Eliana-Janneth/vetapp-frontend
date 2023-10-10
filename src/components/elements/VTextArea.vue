@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import  AlertInput from './AlertInput.vue';
-import {useStyleStore} from '@/stores';
+import AlertInput from './AlertInput.vue';
+import { useStyleStore } from '@/stores';
 
 defineEmits(['update:modelValue', 'focus', 'blur']);
 const styleStore = useStyleStore();
@@ -19,8 +19,6 @@ withDefaults(
         variant: 'base',
     },
 );
-
-
 </script>
 
 <template>

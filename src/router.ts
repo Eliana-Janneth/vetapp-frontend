@@ -3,7 +3,12 @@ import { WelcomePage, RegisterPage, LoginPage, HomePage, ShowAnimalsPage, Animal
 import { MainTemplate } from '@/components/template';
 import { VListAnimal, VRegisterAnimal, ShowVet } from '@elements/forms';
 import { InformationAcademic, WorkExperience, InformationVet } from '@elements/forms/InformationVet';
-import { ConsultsTemplate, DiagnosisPage, AnimalsAuthorizedPage, MedicalHistoryPage } from '@/components/pages/consultsPages';
+import {
+    ConsultsTemplate,
+    DiagnosisPage,
+    AnimalsAuthorizedPage,
+    MedicalHistoryPage,
+} from '@/components/pages/consultsPages';
 
 const routes = [
     { name: 'welcome', path: '/', component: WelcomePage },
@@ -86,7 +91,6 @@ const routes = [
         component: MedicalHistoryPage,
         meta: { layout: MainTemplate },
     },
-
 ];
 
 export const router = createRouter({

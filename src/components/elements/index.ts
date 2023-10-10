@@ -13,5 +13,5 @@ export { default as VTopbar } from './VTopbar.vue';
 export { default as LeftContentModal } from './LeftContentModal.vue';
 export { default as VTabButton } from './VTabButton.vue';
 export { default as VDetailsEdit } from './VDetailsEdit.vue';
-export {default as VRouter} from './VRouter.vue';
-export {default as VDetails} from './VDetails.vue';
+export { default as VRouter } from './VRouter.vue';
+export { default as VDetails } from './VDetails.vue';

@@ -98,7 +98,7 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
 </script>
 
 <template>
-    <form class="flex flex-col gap-2 p-4 bg-emerald-100/70 rounded-lg" @submit="onSubmit">
+    <form class="flex flex-col gap-2 rounded-lg bg-emerald-100/70 p-4" @submit="onSubmit">
         <div class="flex flex-col gap-2 lg:flex-row">
             <VInput
                 v-bind="name"

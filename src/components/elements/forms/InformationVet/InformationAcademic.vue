@@ -39,22 +39,20 @@ const currentlystudying = defineComponentBinds('currentlystudying');
 
 const onSubmit = handleSubmit(async (academicValues: TAcademicInformation) => {
     console.log(JSON.stringify(academicValues));
-    try{
-        values.title= academicValues.title;
-        values.university= academicValues.university;
-        values.year= academicValues.year;
-        values.country= academicValues.country;
-        values.academic_degree= academicValues.academicDegree;
-        values.currently_studying= academicValues.currentlystudying;
+    try {
+        values.title = academicValues.title;
+        values.university = academicValues.university;
+        values.year = academicValues.year;
+        values.country = academicValues.country;
+        values.academic_degree = academicValues.academicDegree;
+        values.currently_studying = academicValues.currentlystudying;
 
         await vetappApi.createAcademicInformation(values);
-    }catch(error){
-    }
+    } catch (error) {}
 });
-
 </script>
 <template>
-    <ShowInformationAcademic/>
+    <ShowInformationAcademic />
     <form class="mx-auto flex w-full flex-col items-center gap-4 rounded-lg bg-sky-100/70 p-10" @submit="onSubmit">
         <div class="flex w-full flex-col justify-between gap-4 lg:flex-row lg:gap-10">
             <VInput
@@ -75,13 +73,7 @@ const onSubmit = handleSubmit(async (academicValues: TAcademicInformation) => {
             />
         </div>
         <div class="flex w-full flex-col justify-between gap-4 lg:flex-row lg:gap-10">
-            <VInput
-                v-bind="year"
-                label="Fecha de inicio"
-                type="date"
-                :maxlength="4"
-                :error="errors.year"
-            />
+            <VInput v-bind="year" label="Fecha de inicio" type="date" :maxlength="4" :error="errors.year" />
             <VInput
                 v-bind="country"
                 label="País"

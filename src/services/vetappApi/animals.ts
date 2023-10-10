@@ -119,5 +119,3 @@ export const getRaces = async (specieId: string): Promise<TOption[]> => {
         return [];
     }
 };
-
-

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VSpan} from '@elements';
+import { VSpan } from '@elements';
 import { useForm } from 'vee-validate';
 import { reactive, onMounted } from 'vue';
 import type { TVetInformation } from './types';
@@ -93,6 +93,5 @@ const licenseExpiration = defineComponentBinds('licenseExpiration');
                 :icon="CalendarDaysIcon"
             />
         </div>
-       
     </form>
 </template>

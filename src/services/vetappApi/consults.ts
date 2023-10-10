@@ -1,6 +1,5 @@
 import type { TDiagnosisPayload } from './types';
 
-
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const getAnimalsAuthorized = async () => {
@@ -24,7 +23,6 @@ export const getAnimalsAuthorized = async () => {
 export const createDiagnosis = async (data: TDiagnosisPayload, id: string) => {
     const apiUrl = `${API_URL}/vet-medical-historys/${id}/`;
     try {
-        
         const response = await fetch(apiUrl, {
             method: 'POST',
             body: JSON.stringify(data),
@@ -70,7 +68,7 @@ export const getAnimalAuthorized = async (id: string) => {
 
 export const getDiagnosis = async (id: string) => {
     try {
-        console.log("Prueba")
+        console.log('Prueba');
         const response = await fetch(`${API_URL}/vet-medical-historys/${id}/`, {
             headers: {
                 Authorization: `Token ${localStorage.getItem('accessToken')}`,

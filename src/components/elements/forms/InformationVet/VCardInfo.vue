@@ -1,9 +1,9 @@
 <script setup lang="ts">
 defineProps<{
-    tittle : string;
-    lastName : string;
+    tittle: string;
+    lastName: string;
 
-    label : string;
+    label: string;
 }>();
 </script>
 

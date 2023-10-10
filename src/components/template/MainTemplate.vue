@@ -3,7 +3,6 @@ import { VSidebar, VTopbar, LeftContentModal } from '@elements';
 import { ref } from 'vue';
 
 const leftContentModal = ref();
-
 </script>
 
 <template>

@@ -28,10 +28,7 @@ const diagnosis = defineComponentBinds('diagnosis');
 const treatment = defineComponentBinds('treatment');
 
 const onSubmit = handleSubmit(async (diagnosisValues: TDiagnosis) => {
-    console.log("hola");
 
-    console.log(JSON.stringify(diagnosisValues));
-    console.log(route.params.id.toString());
     try {
         values.diagnosis = diagnosisValues.diagnosis;
         values.treatment = diagnosisValues.treatment;

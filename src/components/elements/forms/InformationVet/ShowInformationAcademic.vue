@@ -18,7 +18,7 @@ const TAcademicInformationPayload = reactive({
     year: '',
     country: '',
     academic_degree: '',
-    currently:''
+    currently: '',
 });
 const academicInformation = ref<TAcademicInformationPayload[]>([]);
 onMounted(async () => {
@@ -72,12 +72,7 @@ const currentlystudying = defineComponentBinds('currentlystudying');
                     :label="information.academic_degree"
                     :icon="AcademicCapIcon"
                 />
-                <VSpan
-                    v-bind="currentlystudying"
-                    variant="vet"
-                    :label="information.currently"
-                    :icon="BookOpenIcon"
-                />
+                <VSpan v-bind="currentlystudying" variant="vet" :label="information.currently" :icon="BookOpenIcon" />
             </div>
         </form>
     </div>
