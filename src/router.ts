@@ -64,6 +64,7 @@ const routes = [
         path: '/consultas',
         component: ConsultsTemplate,
         meta: { layout: MainTemplate },
+        redirect: { name: 'consults.animalsAuthorized' },
         children: [
             {
                 name: 'consults.animalsAuthorized',

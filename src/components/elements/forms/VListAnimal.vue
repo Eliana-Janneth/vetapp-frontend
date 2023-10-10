@@ -2,7 +2,9 @@
 import { ref, onMounted } from 'vue';
 import { vetappApi } from '@/services';
 import { LinkIcon } from '@heroicons/vue/24/outline';
-
+import VInput from '../VInput.vue';
+import VButton from '../VButton.vue';
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 // Declara una propiedad ref para almacenar los datos
 
 const animals = ref<UserData[]>([]);
@@ -19,6 +21,8 @@ interface UserData {
     weight: string;
     heigth: string;
 }
+const searchQuery = ref<string>('');
+;
 
 // Hacer una solicitud GET y cargar los datos cuando el componente se monta
 onMounted(async () => {
@@ -29,9 +33,25 @@ onMounted(async () => {
         console.error('Error al cargar los datos:');
     }
 });
+
+//funcion de buscar animal
+const searchAnimal = async () => {
+    try {
+        console.log(searchQuery.value);
+        const response = await vetappApi.getAnimalName(searchQuery.value); // Use the search query
+        animals.value = response;
+    } catch (error) {
+        console.error('Error al cargar los datos:');
+    }
+}
 </script>
 <template>
     <div class="bg-white">
+        <div class=" m-4 ml-0 w-96 flex gap-2" >
+            <VInput v-model="searchQuery" placeholder="Escribe el nombre del animal " :icon="MagnifyingGlassIcon" />
+            <VButton  custom-class="py-0 items-center" label="Buscar" type="submit" @click="searchAnimal()"/>
+        </div>
+
         <div class="max-h-96 overflow-y-scroll">
             <table class="min-w-full table-auto">
                 <thead
@@ -51,12 +71,13 @@ onMounted(async () => {
                         v-for="animal in animals"
                         :key="animal.id"
                     >
-                        <td class="table-item ">
-                            <router-link :to="{ name: 'animals.show', params: { id: animal.id } }" class=" text-emerald-600 hover:text-emerald-500 flex items-center"
-                                ><LinkIcon class="h-5 w-5"
-                            /> <span class="ml-2 font-medium ">
-                                Ver Detalle
-                            </span></router-link>
+                        <td class="table-item">
+                            <router-link
+                                :to="{ name: 'animals.show', params: { id: animal.id } }"
+                                class="flex items-center text-emerald-600 hover:text-emerald-500"
+                                ><LinkIcon class="h-5 w-5" />
+                                <span class="ml-2 font-medium"> Ver Detalle </span></router-link
+                            >
                         </td>
                         <td class="table-item">{{ animal.name }}</td>
                         <td class="table-item">{{ animal.specie_name }}</td>

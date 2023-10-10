@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch, reactive } from 'vue';
-import { VInput, VSelect, VTextArea } from '@elements';
+import { VButton, VInput, VSelect, VTextArea } from '@elements';
 import { useForm } from 'vee-validate';
 import { TRegisterAnimalPayload, vetappApi } from '@/services';
 import type { TRegisterAnimal } from './types';
@@ -98,7 +98,7 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
 </script>
 
 <template>
-    <form class="flex flex-col gap-2 p-2" @submit="onSubmit">
+    <form class="flex flex-col gap-2 p-4 bg-emerald-100/70 rounded-lg" @submit="onSubmit">
         <div class="flex flex-col gap-2 lg:flex-row">
             <VInput
                 v-bind="name"
@@ -201,14 +201,13 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
         </div>
 
         <div class="flex w-full justify-center gap-4">
-            <button
-                :disabled="!meta.valid"
+            <VButton
+                label="Guardar"
                 type="submit"
-                :class="['btn form-button-farmer ', !meta.valid && 'pointer-events-none opacity-50']"
-            >
-                Guardar
-            </button>
-            <router-link :to="{ name: '' }" class="btn form-button-farmer">Cancelar</router-link>
+                :disabled="!meta.valid"
+                :class="['form-button-farmer ', !meta.valid && 'pointer-events-none opacity-50']"
+            />
+            <VButton label="Cancelar" type="reset" />
         </div>
     </form>
 </template>

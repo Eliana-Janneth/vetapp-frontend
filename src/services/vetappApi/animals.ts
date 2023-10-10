@@ -26,6 +26,7 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
         }
         // Si la respuesta es exitosa
         const responseData = await response.json();
+        alert('Animal registrado correctamente');
         console.log(JSON.stringify(responseData, null, 2));
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
@@ -51,6 +52,22 @@ export const getAnimals = async () => {
 export const getAnimal = async (id: string) => {
     try {
         const response = await fetch(`${API_URL}/animals/${id}/`, {
+            headers: {
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+        if (!response.ok) {
+            throw new Error('No se pudo cargar los datos');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
+    }
+};
+export const getAnimalName = async (name: string) => {
+    try {
+        const response = await fetch(`${API_URL}/animals/search/?name=${name}`, {
             headers: {
                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
             },

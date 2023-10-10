@@ -36,7 +36,7 @@ withDefaults(
 
         <div class="relative">
             <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                <component :is="icon" class="h-6 w-6 text-indigo-600" />
+                <component :is="icon" :class="['h-6 w-6 ', styleStore.getLabelStyle]" />
             </span>
             <input
                 :class="[
