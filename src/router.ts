@@ -31,13 +31,7 @@ const routes = [
                 name: 'animals.list',
                 path: 'listar-animales',
                 component: VListAnimal,
-                children: [
-                    {
-                        name: 'animals.show',
-                        path: 'animales/:id',
-                        component: ShowAnimalsPage,
-                    },
-                ],
+                
             },
         ],
     },
@@ -89,6 +83,12 @@ const routes = [
         name: 'medicalHistory',
         path: '/historial-medico/:id',
         component: MedicalHistoryPage,
+        meta: { layout: MainTemplate },
+    },
+    {
+        name: 'animals.show',
+        path: '/animales/:id',
+        component: ShowAnimalsPage,
         meta: { layout: MainTemplate },
     },
 ];

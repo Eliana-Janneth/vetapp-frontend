@@ -15,7 +15,7 @@ const TDiagnosisPayload = reactive({
 const diagnosisAnimal = ref<TDiagnosisPayload[]>([]);
 
 vetappApi
-    .getDiagnosis(route.params.id.toString())
+    .getDiagnosisVet(route.params.id.toString())
     .then((res) => {
         diagnosisAnimal.value = res;
     })
