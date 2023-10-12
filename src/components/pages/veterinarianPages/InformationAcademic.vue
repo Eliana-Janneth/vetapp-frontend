@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import VButton from '../../VButton.vue';
-import VInput from '../../VInput.vue';
+import {VButton, VInput} from '@elements';
 import { reactive } from 'vue';
 import * as yup from 'yup';
 import type { TAcademicInformation } from './types';

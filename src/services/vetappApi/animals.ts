@@ -1,3 +1,4 @@
+import { notify } from '@kyvg/vue3-notification';
 import type { TOption as TAOption, TRegisterAnimalPayload } from './types';
 import type { TOption } from '@/types';
 
@@ -24,10 +25,14 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
             }
             return;
         }
-        // Si la respuesta es exitosa
+      
         const responseData = await response.json();
         alert('Animal registrado correctamente');
         console.log(JSON.stringify(responseData, null, 2));
+        notify({
+            title: "Animal creado exitosamente🎉",
+            type: 'success'
+        });
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }

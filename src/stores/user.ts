@@ -29,4 +29,18 @@ export const useUserStore = defineStore('user', {
             return this.role === 'veterinarian';
         },
     },
+<<<<<<< Updated upstream
+=======
+    actions: {
+        create(data: { token: string; user: { name: string; role: 'farmer' | 'veterinarian' } }) {
+            this.name = data.user.name;
+            this.role = data.user.role;
+            this.token = data.token;
+
+            localStorage.setItem('accessToken', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+        
+        },
+    },
+>>>>>>> Stashed changes
 });

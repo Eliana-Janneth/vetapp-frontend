@@ -1,5 +1,9 @@
 import { notify } from '@kyvg/vue3-notification';
 import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload } from './types';
+<<<<<<< Updated upstream
+=======
+import { useUserStore, useStyleStore } from '@/stores';
+>>>>>>> Stashed changes
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -57,12 +61,23 @@ export const login = async (data: TLoginPayload) => {
             }
             return;
         }
-        // Si la respuesta es exitosa
+       
         const responseData = await response.json();
+<<<<<<< Updated upstream
 
         // Guardar el token en localStorage
         localStorage.setItem('accessToken', responseData.token);
         localStorage.setItem('user', JSON.stringify(responseData.user));
+=======
+        const userStore = useUserStore();
+        const styleStore = useStyleStore();
+        userStore.create(responseData);
+        styleStore.create(responseData);
+        notify({
+            title: "Usuario Logueado exitosamente🎉",
+            type: 'success'
+        });
+>>>>>>> Stashed changes
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
@@ -136,9 +151,12 @@ export const createAcademicInformation = async (data: TAcademicInformationPayloa
             }
             return;
         }
-        // Si la respuesta es exitosa
         const responseData = await response.json();
         console.log(JSON.stringify(responseData, null, 2));
+        notify({
+            title: "Información agregada exitosamente!!🎉",
+            type: 'success'
+        });
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }

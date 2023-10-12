@@ -43,19 +43,23 @@ export const useStyleStore = defineStore({
     getters: {
         getLabelStyle: (state) => {
             const role = state.role;
-            return state.LabelClass[role] || '';
+            return state.LabelClass[role] || state.LabelClass['base'];
         },
         getInputStyle: (state) => {
             const role = state.role;
-            return state.InputClass[role] || '';
+            return state.InputClass[role] || state.LabelClass['base'];
         },
         getButtonStyle: (state) => {
             const role = state.role;
-            return state.ButtonStyle[role] || '';
+            return state.ButtonStyle[role] || state.LabelClass['base'];
         },
         getTabButtonStyle: (state) => {
             const role = state.role;
-            return state.TabButtonStyle[role] || '';
+            return state.TabButtonStyle[role] || state.LabelClass['base'];
+        },
+    },   actions: {
+        create(data: { token: string; user: { name: string; role: 'farmer' | 'veterinarian' } }) {
+            this.role = data.user.role;
         },
     },
 });

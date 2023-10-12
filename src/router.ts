@@ -1,14 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { WelcomePage, RegisterPage, LoginPage, HomePage, ShowAnimalsPage, AnimalsPage, FarmerPage } from '@pages';
+import { WelcomePage, RegisterPage, LoginPage, HomePage, FarmerPage } from '@pages';
 import { MainTemplate } from '@/components/template';
-import { VListAnimal, VRegisterAnimal, ShowVet } from '@elements/forms';
-import { InformationAcademic, WorkExperience, InformationVet } from '@elements/forms/InformationVet';
+import { InformationAcademic,ShowVet, WorkExperience, InformationVet } from '@/components/pages/veterinarianPages';
 import {
     ConsultsTemplate,
     DiagnosisPage,
     AnimalsAuthorizedPage,
     MedicalHistoryPage,
 } from '@/components/pages/consultsPages';
+import { ShowAnimalsPage, AnimalsTemplate, ListAnimalPage, RegisterAnimalPage } from '@/components/pages/animalPages';
+
+import chat from '@/components/elements/forms/chat.vue';
 
 const routes = [
     { name: 'welcome', path: '/', component: WelcomePage },
@@ -18,19 +20,19 @@ const routes = [
     {
         name: 'animals',
         path: '/animales',
-        component: AnimalsPage,
+        component: AnimalsTemplate,
         meta: { layout: MainTemplate },
         redirect: { name: 'animals.list' },
         children: [
             {
                 name: 'animals.register',
                 path: 'registrar-animal',
-                component: VRegisterAnimal,
+                component: RegisterAnimalPage,
             },
             {
                 name: 'animals.list',
                 path: 'listar-animales',
-                component: VListAnimal,
+                component: ListAnimalPage,
                 children: [
                     {
                         name: 'animals.show',
@@ -91,6 +93,7 @@ const routes = [
         component: MedicalHistoryPage,
         meta: { layout: MainTemplate },
     },
+    { name: 'chat', path: '/chat', component: chat, meta: { layout: MainTemplate } },
 ];
 
 export const router = createRouter({

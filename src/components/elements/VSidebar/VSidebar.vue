@@ -21,7 +21,7 @@ const variant = ref(userStore.isFarmer ? 'farmer' : 'vet');
 
 const farmerSidebarItems = ref([
     { route: '', label: 'Home', icon: HomeIcon },
-    { route: '', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
+    { route: 'chat', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
     { route: 'animals', label: 'Mis animales', icon: StarIcon },
 ]);
 const vetSidebarItems = ref([
@@ -73,9 +73,17 @@ const vetSidebarItems = ref([
                                 : 'text-sky-200 hover:bg-sky-700',
                         ]"
                     >
+<<<<<<< Updated upstream
                         <img class="h-8 w-8 rounded-full" :src="userStore.getAvatar" />
                         <span class="font-semibold">{{ userStore.name }}</span>
                         <ChevronUpIcon class="ml-16 h-6 w-6 justify-end" />
+=======
+                        <div class="flex items-center gap-4">
+                            <img class="h-8 w-8 rounded-full" alt="name user" :src="userStore.getAvatar" />
+                            <span class="flex font-semibold">{{ userStore.name }}</span>
+                        </div>
+                        <ChevronUpIcon class="h-6 w-6 justify-end" />
+>>>>>>> Stashed changes
                     </button>
                 </template>
 

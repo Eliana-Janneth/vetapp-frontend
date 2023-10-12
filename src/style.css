@@ -46,10 +46,6 @@
 .form-farmer {
     @apply border-emerald-400 bg-emerald-100  placeholder:text-emerald-600 focus:border-emerald-500  focus:ring-emerald-500;
 }
-
-.form-vet {
-}
-
 .form-index {
     @apply border-indigo-300 bg-indigo-100  placeholder:text-indigo-400 focus:border-indigo-500  focus:ring-indigo-500;
 }
