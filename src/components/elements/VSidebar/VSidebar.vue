@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { notify } from '@kyvg/vue3-notification';
 import { useUserStore } from '@/stores';
 import VPopover from '../VPopover.vue';
 import VItem from './VItem.vue';
@@ -29,6 +30,13 @@ const vetSidebarItems = ref([
     { route: 'consults', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
     { route: '', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
 ]);
+
+const push = (type: 'success' | 'error' | 'info' | 'warn') => {
+    notify({
+        title: 'Vue 3 notification 🎉',
+        type
+    });
+};
 </script>
 
 <template>
@@ -61,21 +69,61 @@ const vetSidebarItems = ref([
                 </li>
             </ul>
         </div>
+
+        <button
+            @click="push('success')"
+            :class="[
+                'flex w-full items-center justify-between gap-4 p-4',
+                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
+            ]"
+        >
+            <span class="flex font-semibold">success</span>
+        </button>
+        <button
+            @click="push('error')"
+            :class="[
+                'flex w-full items-center justify-between gap-4 p-4',
+                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
+            ]"
+        >
+            <span class="flex font-semibold">error</span>
+        </button>
+        <button
+            @click="push('info')"
+            :class="[
+                'flex w-full items-center justify-between gap-4 p-4',
+                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
+            ]"
+        >
+            <span class="flex font-semibold">info</span>
+        </button>
+        <button
+            @click="push('warn')"
+            :class="[
+                'flex w-full items-center justify-between gap-4 p-4',
+                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
+            ]"
+        >
+            <span class="flex font-semibold">warn</span>
+        </button>
+
         <div>
             <VPopover placement="top-end">
                 <template #reference="{ toggle }">
                     <button
                         @click="toggle"
                         :class="[
-                            'flex w-full items-center gap-4 p-4',
+                            'flex w-full items-center justify-between gap-4 p-4',
                             userStore.isFarmer
                                 ? 'text-emerald-200 hover:bg-emerald-700'
                                 : 'text-sky-200 hover:bg-sky-700',
                         ]"
                     >
-                        <img class="h-8 w-8 rounded-full" :src="userStore.getAvatar" />
-                        <span class="font-semibold">{{ userStore.name }}</span>
-                        <ChevronUpIcon class="ml-16 h-6 w-6 justify-end" />
+                        <div class="flex items-center gap-4">
+                            <img class="h-8 w-8 rounded-full" :src="userStore.getAvatar" />
+                            <span class="flex font-semibold">{{ userStore.name }}</span>
+                        </div>
+                        <ChevronUpIcon class="h-6 w-6 justify-end" />
                     </button>
                 </template>
 

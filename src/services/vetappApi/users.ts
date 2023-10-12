@@ -1,5 +1,6 @@
 import { notify } from '@kyvg/vue3-notification';
 import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload } from './types';
+import { useUserStore } from '@/stores';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -59,12 +60,19 @@ export const login = async (data: TLoginPayload) => {
         }
         // Si la respuesta es exitosa
         const responseData = await response.json();
+        const userStore = useUserStore();
+        userStore.create(responseData);
 
-        // Guardar el token en localStorage
-        localStorage.setItem('accessToken', responseData.token);
-        localStorage.setItem('user', JSON.stringify(responseData.user));
+        notify({
+            title: "Vue 3 notification 🎉",
+            type: 'success'
+        });
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
+        notify({
+            title: "Error al realizar la solicitud",
+            type: 'error'
+        });
     }
 };
 
