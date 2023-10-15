@@ -37,6 +37,7 @@ export const useUserStore = defineStore('user', {
 
             localStorage.setItem('accessToken', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
+        
         },
     },
 });

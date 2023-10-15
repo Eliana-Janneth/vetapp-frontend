@@ -8,15 +8,17 @@ initialize();
     <component :is="$route.meta.layout ?? 'div'">
         <router-view />
     </component>
-    <notifications :duration="1000" classes="my-notification" />
+
+    <notifications :duration="3000" classes="my-notification" />
 </template>
 
 <style>
 .my-notification {
-    border-radius: 18px;    
+    border-radius: 10px;
+    padding: 10px 20px;
 
   .notification-title {
-        font-size: larger;
+        font-size: medium;
     }
 
   .notification-content {
@@ -24,13 +26,16 @@ initialize();
     }
 
   &.success {
-        background: green;
+        background: #4ade80;
     }
     &.info {
-        background: blue;
+        background: #2dd4bf;
     }
     &.error {
-        background: red;
+        background: #f87171;
+    }
+    &.warn {
+        background: #fde047;
     }
 }
 </style>

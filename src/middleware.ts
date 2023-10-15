@@ -1,7 +1,14 @@
-import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
-import { isAuthenticated } from '@elements/LoginForm.vue';
+import { useRouter } from 'vue-router';
 
-export function requireAuth(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
-    if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' });
-    else next();
+// middleware.ts;
+const router = useRouter();
+
+export function isAuthenticated(to: any, from: any, next: Function) {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+       router.push({ name: 'home' });
+    } else {
+        router.push({ name: 'login' });
+    }
 }

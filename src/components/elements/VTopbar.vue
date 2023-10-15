@@ -14,7 +14,7 @@ const userStore = useUserStore();
             <h1 class="font-semibold text-white">Vetapp</h1>
         </div>
         <div>
-            <img class="h-8 w-8 rounded-full" :src="userStore.getAvatar" />
+            <img class="h-8 w-8 rounded-full" alt="name user" :src="userStore.getAvatar" />
         </div>
     </div>
 </template>

@@ -4,6 +4,7 @@ type InputClass = Record<string, string>;
 type LabelClass = Record<string, string>;
 type ButtonStyle = Record<string, string>;
 type TabButtonStyle = Record<string, string>;
+type SelectStyle = Record<string, string>;
 
 type StyleState = {
     role: string;
@@ -12,6 +13,7 @@ type StyleState = {
     LabelClass: LabelClass;
     ButtonStyle: ButtonStyle;
     TabButtonStyle: TabButtonStyle;
+    SelectStyle: SelectStyle;
 };
 
 export const useStyleStore = defineStore({
@@ -39,23 +41,36 @@ export const useStyleStore = defineStore({
             farmer: 'text-emerald-800 hover:bg-emerald-100/70 border-emerald-600',
             veterinarian: 'text-sky-800 hover:bg-sky-100/70 border-sky-600',
         },
+        SelectStyle:{
+            farmer: 'border-emerald-400/50 bg-emerald-50/80 placeholder:text-emerald-600/40 focus:border-emerald-500 focus:ring-emerald-500',
+            veterinarian: 'border-sky-400/50 bg-sky-50/80 placeholder:text-sky-600/40 focus:border-sky-500 focus:ring-sky-500',
+            base: 'border-indigo-400 bg-indigo-100 placeholder:text-indigo-600 focus:border-indigo-500 focus:ring-indigo-500',
+        }
     }),
     getters: {
         getLabelStyle: (state) => {
             const role = state.role;
-            return state.LabelClass[role] || '';
+            return state.LabelClass[role] || state.LabelClass['base'];
         },
         getInputStyle: (state) => {
             const role = state.role;
-            return state.InputClass[role] || '';
+            return state.InputClass[role] || state.LabelClass['base'];
+        },
+        getSelectStyle: (state) => {
+            const role = state.role;
+            return state.InputClass[role] || state.LabelClass['base'];
         },
         getButtonStyle: (state) => {
             const role = state.role;
-            return state.ButtonStyle[role] || '';
+            return state.ButtonStyle[role] || state.LabelClass['base'];
         },
         getTabButtonStyle: (state) => {
             const role = state.role;
-            return state.TabButtonStyle[role] || '';
+            return state.TabButtonStyle[role] || state.LabelClass['base'];
+        },
+    },   actions: {
+        create(data: { token: string; user: { name: string; role: 'farmer' | 'veterinarian' } }) {
+            this.role = data.user.role;
         },
     },
 });

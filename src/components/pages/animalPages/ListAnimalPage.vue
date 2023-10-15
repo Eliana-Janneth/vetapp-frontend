@@ -2,8 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { vetappApi } from '@/services';
 import { LinkIcon } from '@heroicons/vue/24/outline';
-import VInput from '../VInput.vue';
-import VButton from '../VButton.vue';
+import {VInput, VButton} from '@elements';
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 // Declara una propiedad ref para almacenar los datos
 

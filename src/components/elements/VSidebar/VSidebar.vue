@@ -11,6 +11,7 @@ import {
     ArrowPathRoundedSquareIcon,
     StarIcon,
     ChevronUpIcon,
+    UserGroupIcon
 } from '@heroicons/vue/24/solid';
 
 const userStore = useUserStore();
@@ -22,7 +23,8 @@ const variant = ref(userStore.isFarmer ? 'farmer' : 'vet');
 
 const farmerSidebarItems = ref([
     { route: '', label: 'Home', icon: HomeIcon },
-    { route: '', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
+    { route: 'chat', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
+    { route: 'requests', label: 'Veterinarios', icon: UserGroupIcon },
     { route: 'animals', label: 'Mis animales', icon: StarIcon },
 ]);
 const vetSidebarItems = ref([
@@ -113,17 +115,17 @@ const push = (type: 'success' | 'error' | 'info' | 'warn') => {
                     <button
                         @click="toggle"
                         :class="[
-                            'flex w-full items-center justify-between gap-4 p-4',
+                            'flex w-full items-center gap-4 p-4 justify-between',
                             userStore.isFarmer
                                 ? 'text-emerald-200 hover:bg-emerald-700'
                                 : 'text-sky-200 hover:bg-sky-700',
                         ]"
                     >
                         <div class="flex items-center gap-4">
-                            <img class="h-8 w-8 rounded-full" :src="userStore.getAvatar" />
+                            <img class="h-8 w-8 rounded-full" alt="name user" :src="userStore.getAvatar" />
                             <span class="flex font-semibold">{{ userStore.name }}</span>
                         </div>
-                        <ChevronUpIcon class="h-6 w-6 justify-end" />
+                        <ChevronUpIcon class="h-6 w-6" />
                     </button>
                 </template>
 

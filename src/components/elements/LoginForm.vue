@@ -79,11 +79,6 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
             Iniciar Sesión
         </button>
     </form>
-    <!--<form @submit.prevent="onLogout">
-    <button :class="['btn btn-primary']" type="submit" value="logout">
-            Salir Sesión
-        </button>
-    </form>-->
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
 </template>
 <style>
