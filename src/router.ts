@@ -9,14 +9,14 @@ import {
     MedicalHistoryPage,
 } from '@/components/pages/consultsPages';
 import { ShowAnimalsPage, AnimalsTemplate, ListAnimalPage, RegisterAnimalPage } from '@/components/pages/animalPages';
-
+import { RequestsTemplate } from './components/pages/veterinaryRequestsPages';
 import chat from '@/components/elements/forms/chat.vue';
 
 const routes = [
     { name: 'welcome', path: '/', component: WelcomePage },
     { name: 'login', path: '/iniciar-sesion', component: LoginPage },
     { name: 'register', path: '/registrarse', component: RegisterPage },
-    { name: 'home', path: '/inicio', component: HomePage, meta: { layout: MainTemplate } },
+    { name: 'home', path: '/inicio', component: HomePage, meta: { layout: MainTemplate }},
     {
         name: 'animals',
         path: '/animales',
@@ -92,6 +92,27 @@ const routes = [
         path: '/historial-medico/:id',
         component: MedicalHistoryPage,
         meta: { layout: MainTemplate },
+    },
+    {
+        name: 'requests',
+        path: '/veterinarios',
+        component: RequestsTemplate,
+        meta: { layout: MainTemplate },
+        routeredirect: { name: 'requests.veterinariansAvailables' },
+        children: [
+            {
+                name: 'requests.veterinariansAvailables',
+                path: 'veterinarios-disponibles',
+                component: () => import('@/components/pages/veterinaryRequestsPages/VeterinariansAvailablesPage.vue'),
+                children: [
+                    {
+                        name: 'requests.request',
+                        path: 'solicitud',
+                        component: () => import('@/components/pages/veterinaryRequestsPages/RequestForm.vue'),
+                    },
+                ],
+            },
+        ],
     },
     { name: 'chat', path: '/chat', component: chat, meta: { layout: MainTemplate } },
 ];

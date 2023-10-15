@@ -29,8 +29,6 @@ export const useUserStore = defineStore('user', {
             return this.role === 'veterinarian';
         },
     },
-<<<<<<< Updated upstream
-=======
     actions: {
         create(data: { token: string; user: { name: string; role: 'farmer' | 'veterinarian' } }) {
             this.name = data.user.name;
@@ -42,5 +40,4 @@ export const useUserStore = defineStore('user', {
         
         },
     },
->>>>>>> Stashed changes
 });

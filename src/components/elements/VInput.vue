@@ -8,6 +8,7 @@ defineEmits(['update:modelValue', 'focus', 'blur']);
 defineOptions({
     inheritAttrs: false,
 });
+
 const styleStore = useStyleStore();
 
 withDefaults(

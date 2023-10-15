@@ -8,10 +8,7 @@ initialize();
     <component :is="$route.meta.layout ?? 'div'">
         <router-view />
     </component>
-<<<<<<< Updated upstream
-    <notifications />
-</template>
-=======
+
     <notifications :duration="3000" classes="my-notification" />
 </template>
 
@@ -42,4 +39,3 @@ initialize();
     }
 }
 </style>
->>>>>>> Stashed changes

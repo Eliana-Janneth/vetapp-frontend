@@ -1,9 +1,6 @@
 import { notify } from '@kyvg/vue3-notification';
 import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload } from './types';
-<<<<<<< Updated upstream
-=======
 import { useUserStore, useStyleStore } from '@/stores';
->>>>>>> Stashed changes
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -63,12 +60,6 @@ export const login = async (data: TLoginPayload) => {
         }
        
         const responseData = await response.json();
-<<<<<<< Updated upstream
-
-        // Guardar el token en localStorage
-        localStorage.setItem('accessToken', responseData.token);
-        localStorage.setItem('user', JSON.stringify(responseData.user));
-=======
         const userStore = useUserStore();
         const styleStore = useStyleStore();
         userStore.create(responseData);
@@ -77,7 +68,6 @@ export const login = async (data: TLoginPayload) => {
             title: "Usuario Logueado exitosamente🎉",
             type: 'success'
         });
->>>>>>> Stashed changes
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
