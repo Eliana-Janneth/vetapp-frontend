@@ -1,7 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import { WelcomePage, RegisterPage, LoginPage, HomePage, FarmerPage } from '@pages';
+import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router';
+import { guestGuard, authGuard } from './middlewares';
+import { WelcomePage, RegisterPage, LoginPage, HomePage, FarmerPage, NotFoundPage } from '@pages';
 import { MainTemplate } from '@/components/template';
-import { InformationAcademic,ShowVet, WorkExperience, InformationVet } from '@/components/pages/veterinarianPages';
+import { InformationAcademic, ShowVet, WorkExperience, InformationVet } from '@/components/pages/veterinarianPages';
 import {
     ConsultsTemplate,
     DiagnosisPage,
@@ -9,14 +10,16 @@ import {
     MedicalHistoryPage,
 } from '@/components/pages/consultsPages';
 import { ShowAnimalsPage, AnimalsTemplate, ListAnimalPage, RegisterAnimalPage } from '@/components/pages/animalPages';
-import { RequestsTemplate } from './components/pages/veterinaryRequestsPages';
+import { RequestsTemplate } from '@/components/pages/veterinaryRequestsPages';
 import chat from '@/components/elements/forms/chat.vue';
 
 const routes = [
     { name: 'welcome', path: '/', component: WelcomePage },
     { name: 'login', path: '/iniciar-sesion', component: LoginPage },
     { name: 'register', path: '/registrarse', component: RegisterPage },
-    { name: 'home', path: '/inicio', component: HomePage, meta: { layout: MainTemplate }},
+    { name: 'home', path: '/inicio', component: HomePage, meta: { layout: MainTemplate } },
+    { name: 'profileFarmer', path: '/perfil-granjero', component: FarmerPage, meta: { layout: MainTemplate } },
+    { name: 'chat', path: '/chat', component: chat, meta: { layout: MainTemplate } },
     {
         name: 'animals',
         path: '/animales',
@@ -43,8 +46,6 @@ const routes = [
             },
         ],
     },
-
-    { name: 'profileFarmer', path: '/perfil-granjero', component: FarmerPage, meta: { layout: MainTemplate } },
     {
         name: 'profileVet',
         path: '/perfil-veterinario',
@@ -65,7 +66,6 @@ const routes = [
             { name: 'profileVet.showVet', path: 'mostrar-veterinario', component: ShowVet },
         ],
     },
-
     {
         name: 'consults',
         path: '/consultas',
@@ -114,10 +114,15 @@ const routes = [
             },
         ],
     },
-    { name: 'chat', path: '/chat', component: chat, meta: { layout: MainTemplate } },
+    { path: '/:pathMatch(.*)*', name: 'notFound', component: NotFoundPage },
 ];
 
 export const router = createRouter({
     history: createWebHistory(),
     routes,
+});
+
+router.beforeEach((to: RouteLocationNormalized) => {
+    if (to.name === 'login' || to.name === 'register' || to.name === 'welcome') return guestGuard();
+    else return authGuard();
 });

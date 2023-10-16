@@ -70,6 +70,10 @@ export const login = async (data: TLoginPayload) => {
         });
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
+        notify({
+            title: "Error al realizar la solicitud",
+            type: 'error'
+        });
     }
 };
 

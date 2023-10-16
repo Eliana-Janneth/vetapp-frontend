@@ -28,6 +28,10 @@ export const useUserStore = defineStore('user', {
         isVet(): boolean {
             return this.role === 'veterinarian';
         },
+        getProfile(): any {
+            if (this.role) return this.role;
+            else return 'base';
+        }
     },
     actions: {
         create(data: { token: string; user: { name: string; role: 'farmer' | 'veterinarian' } }) {

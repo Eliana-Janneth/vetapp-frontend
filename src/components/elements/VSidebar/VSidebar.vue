@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { notify } from '@kyvg/vue3-notification';
 import { useUserStore } from '@/stores';
 import VPopover from '../VPopover.vue';
 import VItem from './VItem.vue';
@@ -31,6 +32,13 @@ const vetSidebarItems = ref([
     { route: 'consults', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
     { route: '', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
 ]);
+
+const push = (type: 'success' | 'error' | 'info' | 'warn') => {
+    notify({
+        title: 'Vue 3 notification 🎉',
+        type
+    });
+};
 </script>
 
 <template>
@@ -63,6 +71,44 @@ const vetSidebarItems = ref([
                 </li>
             </ul>
         </div>
+
+        <button
+            @click="push('success')"
+            :class="[
+                'flex w-full items-center justify-between gap-4 p-4',
+                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
+            ]"
+        >
+            <span class="flex font-semibold">success</span>
+        </button>
+        <button
+            @click="push('error')"
+            :class="[
+                'flex w-full items-center justify-between gap-4 p-4',
+                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
+            ]"
+        >
+            <span class="flex font-semibold">error</span>
+        </button>
+        <button
+            @click="push('info')"
+            :class="[
+                'flex w-full items-center justify-between gap-4 p-4',
+                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
+            ]"
+        >
+            <span class="flex font-semibold">info</span>
+        </button>
+        <button
+            @click="push('warn')"
+            :class="[
+                'flex w-full items-center justify-between gap-4 p-4',
+                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
+            ]"
+        >
+            <span class="flex font-semibold">warn</span>
+        </button>
+
         <div>
             <VPopover placement="top-end">
                 <template #reference="{ toggle }">
