@@ -31,7 +31,6 @@ const routes = [
                 name: 'animals.list',
                 path: 'listar-animales',
                 component: VListAnimal,
-                
             },
         ],
     },

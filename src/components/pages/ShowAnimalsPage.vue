@@ -15,7 +15,6 @@ const TDiagnosisPayload = reactive({
     create_date: '',
 });
 
-
 vetappApi
     .getDiagnosisFarmer(route.params.id.toString())
     .then((res) => {

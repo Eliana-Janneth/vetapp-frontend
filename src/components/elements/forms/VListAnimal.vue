@@ -45,7 +45,7 @@ const searchAnimal = async () => {
 </script>
 <template>
     <div class="bg-white">
-        <div class="m-4 ml-0 flex w-96 gap-2 items-center">
+        <div class="m-4 ml-0 flex w-96 items-center gap-2">
             <VInput v-model="searchQuery" placeholder="Escribe el nombre del animal " :icon="MagnifyingGlassIcon" />
             <VButton custom-class="py-0 items-center" label="Buscar" type="submit" @click="searchAnimal()" />
         </div>
