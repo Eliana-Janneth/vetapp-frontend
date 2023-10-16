@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import VInput from '../../VInput.vue';
-import VTextArea from '../../VTextArea.vue';
-import VButton from '../../VButton.vue';
+import { VInput, VTextArea, VButton } from '@elements';
 import { reactive } from 'vue';
 import * as yup from 'yup';
 import type { TWorkExperience } from './types';
@@ -17,6 +15,7 @@ const values: TWorkExperiencePayload = reactive({
     end_date: '',
     country: '',
     currently_working: false,
+    currently: '',
 });
 
 const validationSchema = yup.object({

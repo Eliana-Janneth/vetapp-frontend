@@ -2,12 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { vetappApi } from '@/services';
 import { LinkIcon } from '@heroicons/vue/24/outline';
-<<<<<<< Updated upstream:src/components/elements/forms/VListAnimal.vue
-import VInput from '../VInput.vue';
-import VButton from '../VButton.vue';
-=======
-import { VInput, VButton } from '@elements';
->>>>>>> Stashed changes:src/components/pages/animalPages/ListAnimalPage.vue
+import {VInput, VButton} from '@elements';
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 // Declara una propiedad ref para almacenar los datos
 
@@ -49,7 +44,7 @@ const searchAnimal = async () => {
 </script>
 <template>
     <div class="bg-white">
-        <div class="m-4 ml-0 flex w-96 items-center gap-2">
+        <div class="m-4 ml-0 flex w-96 gap-2">
             <VInput v-model="searchQuery" placeholder="Escribe el nombre del animal " :icon="MagnifyingGlassIcon" />
             <VButton custom-class="py-0 items-center" label="Buscar" type="submit" @click="searchAnimal()" />
         </div>
@@ -98,3 +93,4 @@ const searchAnimal = async () => {
     @apply border-b border-gray-200 px-6 py-2;
 }
 </style>
+

@@ -25,7 +25,7 @@ export const buttonTab = cva(['w-1/3 px-4 py-2 text-center text-lg font-medium  
         intent: {
             farmer: ['text-emerald-800 hover:bg-emerald-100/70 border-emerald-600'],
             veterinarian: ['text-sky-800 hover:bg-sky-100/70 border-sky-600'],
-            base: [''],
+            base:[''],
         },
     },
 });

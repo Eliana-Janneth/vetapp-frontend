@@ -15,7 +15,7 @@ withDefaults(
         name?: string;
         options?: TOption[];
         placeholder?: string;
-        value?: [String, Number];
+        value?: [string, number];
         variant?: 'farmer' | 'vet' | 'base';
     }>(),
     {

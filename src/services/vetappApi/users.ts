@@ -1,5 +1,6 @@
 import { notify } from '@kyvg/vue3-notification';
 import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload } from './types';
+import { useUserStore, useStyleStore } from '@/stores';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -57,33 +58,18 @@ export const login = async (data: TLoginPayload) => {
             }
             return;
         }
-<<<<<<< Updated upstream
         // Si la respuesta es exitosa
-        const responseData = await response.json();
-
-        // Guardar el token en localStorage
-        localStorage.setItem('accessToken', responseData.token);
-        localStorage.setItem('user', JSON.stringify(responseData.user));
-    } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-=======
-
         const responseData = await response.json();
         const userStore = useUserStore();
         const styleStore = useStyleStore();
         userStore.create(responseData);
         styleStore.create(responseData);
         notify({
-            title: 'Usuario Logueado exitosamente🎉',
-            type: 'success',
+            title: "Usuario Logueado exitosamente🎉",
+            type: 'success'
         });
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
-        notify({
-            title: 'Error al realizar la solicitud',
-            type: 'error',
-        });
->>>>>>> Stashed changes
     }
 };
 
@@ -155,16 +141,8 @@ export const createAcademicInformation = async (data: TAcademicInformationPayloa
             }
             return;
         }
-        // Si la respuesta es exitosa
         const responseData = await response.json();
         console.log(JSON.stringify(responseData, null, 2));
-<<<<<<< Updated upstream
-=======
-        notify({
-            title: 'Información agregada exitosamente!!🎉',
-            type: 'success',
-        });
->>>>>>> Stashed changes
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }

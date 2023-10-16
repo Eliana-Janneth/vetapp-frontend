@@ -1,10 +1,5 @@
 <script setup lang="ts">
-<<<<<<< Updated upstream:src/components/elements/forms/InformationVet/InformationAcademic.vue
-import VButton from '../../VButton.vue';
-import VInput from '../../VInput.vue';
-=======
-import { VButton, VInput } from '@elements';
->>>>>>> Stashed changes:src/components/pages/veterinarianPages/InformationAcademic.vue
+import {VButton, VInput} from '@elements';
 import { reactive } from 'vue';
 import * as yup from 'yup';
 import type { TAcademicInformation } from './types';

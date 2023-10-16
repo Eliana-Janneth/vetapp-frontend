@@ -3,9 +3,6 @@ import { ref, onMounted, reactive } from 'vue';
 import { vetappApi, TAnimalPayload } from '@/services';
 import { PencilIcon } from '@heroicons/vue/24/outline';
 
-//TODO: animal = models.ForeignKey(Animals, on_delete=models.CASCADE)
-//  diagnosis = models.CharField(max_length=2048)
-//    treatment = models.CharField(max_length=2048)
 const TAnimalPayload = reactive({
     id: '',
     name: '',

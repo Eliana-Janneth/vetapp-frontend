@@ -8,5 +8,6 @@ initialize();
     <component :is="$route.meta.layout ?? 'div'">
         <router-view />
     </component>
-    <notifications />
+
+    <notifications :duration="3000" classes="my-notification" />
 </template>

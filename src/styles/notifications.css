@@ -2,15 +2,15 @@
     border-radius: 10px;
     padding: 10px 20px;
 
-    .notification-title {
+  .notification-title {
         font-size: medium;
     }
 
-    .notification-content {
+  .notification-content {
         font-size: medium;
     }
 
-    &.success {
+  &.success {
         background: #4ade80;
     }
     &.info {

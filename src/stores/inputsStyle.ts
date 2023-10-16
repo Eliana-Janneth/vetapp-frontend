@@ -29,7 +29,7 @@ export const alert = cva(['rounded-md px-2 text-sm'], {
     },
 });
 
-export const label = cva([], {
+export const label = cva([],{
     variants: {
         intent: {
             farmer: ['text-emerald-700'],
@@ -39,7 +39,7 @@ export const label = cva([], {
     },
 });
 
-export const icon = cva([], {
+export const icon = cva([],{
     variants: {
         intent: {
             farmer: ['text-emerald-500'],
@@ -48,3 +48,5 @@ export const icon = cva([], {
         },
     },
 });
+
+

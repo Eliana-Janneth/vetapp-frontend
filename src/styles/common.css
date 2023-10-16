@@ -1,8 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .welcome-button {
     @apply rounded-md bg-indigo-500/80 px-2 py-1 text-base text-white/70 hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 hover:text-white lg:text-lg;
 }
@@ -46,10 +41,6 @@
 .form-farmer {
     @apply border-emerald-400 bg-emerald-100  placeholder:text-emerald-600 focus:border-emerald-500  focus:ring-emerald-500;
 }
-
-.form-vet {
-}
-
 .form-index {
     @apply border-indigo-300 bg-indigo-100  placeholder:text-indigo-400 focus:border-indigo-500  focus:ring-indigo-500;
 }
