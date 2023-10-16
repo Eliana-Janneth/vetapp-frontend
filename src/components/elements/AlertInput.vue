@@ -1,21 +1,13 @@
 <script setup lang="ts">
-withDefaults(
-    defineProps<{
-        error?: string;
-        variant?: 'farmer' | 'vet' | 'base';
-    }>(),
-    {
-        variant: 'base',
-    },
-);
+import { useStyleStore } from '@/stores';
 
-const varianteAlertClass = {
-    farmer: 'bg-emerald-200 text-emerald-900',
-    vet: 'bg-sky-200 text-sky-900',
-    base: 'bg-indigo-200 text-indigo-900',
-};
+defineProps<{
+    error?: string;
+}>();
+
+const styleStore = useStyleStore();
 </script>
 
 <template>
-    <span v-if="error" :class="['rounded-md px-2 text-sm', varianteAlertClass[variant]]">{{ error }}</span>
+    <span v-if="error" :class="[styleStore.getAlertStyle]">{{ error }}</span>
 </template>

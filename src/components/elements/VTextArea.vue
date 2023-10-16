@@ -26,7 +26,7 @@ withDefaults(
         <span v-if="label" :class="['block text-lg font-medium', styleStore.getLabelStyle]">{{ label }}</span>
         <textarea
             :class="[
-                'form-textarea block w-full rounded-lg border py-2 pr-3 shadow-sm focus:outline-none focus:ring-1 sm:text-sm',
+                'form-textarea',
                 styleStore.getInputStyle,
             ]"
             :placeholder="placeholder"
