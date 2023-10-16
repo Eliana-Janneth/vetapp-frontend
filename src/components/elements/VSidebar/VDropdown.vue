@@ -15,15 +15,16 @@ const variantClass = {
     veterinarian: 'text-md flex w-full justify-center hover:bg-sky-600 hover:text-sky-200',
 };
 
-const onLogout = () => {
+const onLogout = async () => {
     try {
-        vetappApi.logout().then(() => {
+        await vetappApi.logout().then(() => {
             router.push({ name: 'welcome' });
         });
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
 };
+
 </script>
 <template>
     <div
