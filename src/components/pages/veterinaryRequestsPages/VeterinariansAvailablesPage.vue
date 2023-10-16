@@ -29,7 +29,7 @@ onMounted(async () => {
 <template>
     <div class="flex justify-center bg-white">
         <div class="h-96 w-max overflow-y-scroll">
-            <table class="min-w-full table-auto">
+            <table class="min-w-full table-auto" summary="Availables Veterinarians">
                 <thead
                     class="leading-4tracking-wider font-norma sticky top-0 bg-emerald-600 text-xs uppercase tracking-wider text-white"
                 >

@@ -50,7 +50,7 @@ const searchAnimal = async () => {
         </div>
 
         <div class="max-h-96 overflow-y-scroll">
-            <table class="min-w-full table-auto">
+            <table class="min-w-full table-auto" summary="List of Animals">
                 <thead
                     class="leading-4tracking-wider font-norma sticky top-0 bg-emerald-600 text-xs uppercase tracking-wider text-white"
                 >

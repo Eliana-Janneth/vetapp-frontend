@@ -30,7 +30,7 @@ onMounted(async () => {
 <template>
     <div class="bg-white">
         <div class="max-h-96 overflow-y-scroll">
-            <table class="min-w-full table-auto">
+            <table class="min-w-full table-auto" summary="Animals Authorized">
                 <thead
                     class="leading-4tracking-wider font-norma sticky top-0 bg-sky-600 text-xs uppercase tracking-wider text-white"
                 >
