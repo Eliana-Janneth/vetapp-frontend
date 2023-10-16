@@ -58,7 +58,8 @@ export const login = async (data: TLoginPayload) => {
             }
             return;
         }
-       
+<<<<<<< Updated upstream
+        // Si la respuesta es exitosa
         const responseData = await response.json();
         const userStore = useUserStore();
         const styleStore = useStyleStore();
@@ -70,10 +71,24 @@ export const login = async (data: TLoginPayload) => {
         });
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
+=======
+
+        const responseData = await response.json();
+        const userStore = useUserStore();
+        const styleStore = useStyleStore();
+        userStore.create(responseData);
+        styleStore.create(responseData);
         notify({
-            title: "Error al realizar la solicitud",
-            type: 'error'
+            title: 'Usuario Logueado exitosamente🎉',
+            type: 'success',
         });
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+        notify({
+            title: 'Error al realizar la solicitud',
+            type: 'error',
+        });
+>>>>>>> Stashed changes
     }
 };
 
@@ -147,10 +162,13 @@ export const createAcademicInformation = async (data: TAcademicInformationPayloa
         }
         const responseData = await response.json();
         console.log(JSON.stringify(responseData, null, 2));
+<<<<<<< Updated upstream
+=======
         notify({
-            title: "Información agregada exitosamente!!🎉",
-            type: 'success'
+            title: 'Información agregada exitosamente!!🎉',
+            type: 'success',
         });
+>>>>>>> Stashed changes
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }

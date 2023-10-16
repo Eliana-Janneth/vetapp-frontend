@@ -66,10 +66,25 @@ export const getAnimalAuthorized = async (id: string) => {
     }
 };
 
-export const getDiagnosis = async (id: string) => {
+export const getDiagnosisVet = async (id: string) => {
     try {
-        console.log('Prueba');
         const response = await fetch(`${API_URL}/vet-medical-historys/${id}/`, {
+            headers: {
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+        if (!response.ok) {
+            throw new Error('No se pudo cargar los datos');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
+    }
+};
+export const getDiagnosisFarmer = async (id: string) => {
+    try {
+        const response = await fetch(`${API_URL}/farmer-medical-historys/${id}/`, {
             headers: {
                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
             },

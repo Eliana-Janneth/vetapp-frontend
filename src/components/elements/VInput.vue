@@ -40,11 +40,7 @@ withDefaults(
                 <component :is="icon" :class="['h-6 w-6 ', styleStore.getLabelStyle]" />
             </span>
             <input
-                :class="['form-input',
-                    icon ? 'pl-10' : 'pl-3',
-                    customClass,
-                    styleStore.getInputStyle,
-                ]"
+                :class="['form-input', icon ? 'pl-10' : 'pl-3', customClass, styleStore.getInputStyle]"
                 v-bind="$attrs"
                 :id="id"
                 :placeholder="placeholder"

@@ -9,4 +9,3 @@ export type TRegisterAnimal = {
     race: string;
     specie: string;
 };
-

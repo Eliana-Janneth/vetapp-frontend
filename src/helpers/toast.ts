@@ -1,4 +1,4 @@
-import { notify } from "@kyvg/vue3-notification"
+import { notify } from '@kyvg/vue3-notification';
 
 export const pushErrorToast = (title, text) => {
     notify({
@@ -6,4 +6,4 @@ export const pushErrorToast = (title, text) => {
         text: 'Something went wrong',
         type: 'error',
     });
-}
+};

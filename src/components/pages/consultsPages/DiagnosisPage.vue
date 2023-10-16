@@ -28,7 +28,6 @@ const diagnosis = defineComponentBinds('diagnosis');
 const treatment = defineComponentBinds('treatment');
 
 const onSubmit = handleSubmit(async (diagnosisValues: TDiagnosis) => {
-
     try {
         values.diagnosis = diagnosisValues.diagnosis;
         values.treatment = diagnosisValues.treatment;

@@ -25,7 +25,7 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
             }
             return;
         }
-      
+        // Si la respuesta es exitosa
         const responseData = await response.json();
         alert('Animal registrado correctamente');
         console.log(JSON.stringify(responseData, null, 2));
