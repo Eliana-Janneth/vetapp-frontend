@@ -28,5 +28,22 @@ export const useUserStore = defineStore('user', {
         isVet(): boolean {
             return this.role === 'veterinarian';
         },
+<<<<<<< Updated upstream
+=======
+        getProfile(): any {
+            if (this.role) return this.role;
+            else return 'base';
+        },
+    },
+    actions: {
+        create(data: { token: string; user: { name: string; role: 'farmer' | 'veterinarian' } }) {
+            this.name = data.user.name;
+            this.role = data.user.role;
+            this.token = data.token;
+
+            localStorage.setItem('accessToken', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+        },
+>>>>>>> Stashed changes
     },
 });

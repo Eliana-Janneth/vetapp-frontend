@@ -10,6 +10,10 @@ import {
     ArrowPathRoundedSquareIcon,
     StarIcon,
     ChevronUpIcon,
+<<<<<<< Updated upstream
+=======
+    UserGroupIcon,
+>>>>>>> Stashed changes
 } from '@heroicons/vue/24/solid';
 
 const userStore = useUserStore();
@@ -29,6 +33,16 @@ const vetSidebarItems = ref([
     { route: 'consults', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
     { route: '', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
 ]);
+<<<<<<< Updated upstream
+=======
+
+const push = (type: 'success' | 'error' | 'info' | 'warn') => {
+    notify({
+        title: 'Vue 3 notification 🎉',
+        type,
+    });
+};
+>>>>>>> Stashed changes
 </script>
 
 <template>
@@ -67,7 +81,11 @@ const vetSidebarItems = ref([
                     <button
                         @click="toggle"
                         :class="[
+<<<<<<< Updated upstream
                             'flex w-full items-center gap-4 p-4',
+=======
+                            'flex w-full items-center justify-between gap-4 p-4',
+>>>>>>> Stashed changes
                             userStore.isFarmer
                                 ? 'text-emerald-200 hover:bg-emerald-700'
                                 : 'text-sky-200 hover:bg-sky-700',

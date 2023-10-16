@@ -24,10 +24,21 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
             }
             return;
         }
+<<<<<<< Updated upstream
         // Si la respuesta es exitosa
         const responseData = await response.json();
         alert('Animal registrado correctamente');
         console.log(JSON.stringify(responseData, null, 2));
+=======
+
+        const responseData = await response.json();
+        alert('Animal registrado correctamente');
+        console.log(JSON.stringify(responseData, null, 2));
+        notify({
+            title: 'Animal creado exitosamente🎉',
+            type: 'success',
+        });
+>>>>>>> Stashed changes
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }

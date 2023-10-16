@@ -91,9 +91,13 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
 
         await vetappApi.createAnimal(values);
         console.log(JSON.stringify(values, null, 2));
+<<<<<<< Updated upstream:src/components/elements/forms/VRegisterAnimal.vue
     } catch (error) {
         //  errorMessage.value = error.message;
     }
+=======
+    } catch (error) {}
+>>>>>>> Stashed changes:src/components/pages/animalPages/RegisterAnimalPage.vue
 });
 </script>
 

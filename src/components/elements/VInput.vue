@@ -39,12 +39,16 @@ withDefaults(
                 <component :is="icon" :class="['h-6 w-6 ', styleStore.getLabelStyle]" />
             </span>
             <input
+<<<<<<< Updated upstream
                 :class="[
                     'form-input block w-full rounded-lg border py-2 pr-3 shadow-sm focus:outline-none focus:ring-1 sm:text-sm',
                     icon ? 'pl-10' : 'pl-3',
                     customClass,
                     styleStore.getInputStyle,
                 ]"
+=======
+                :class="['form-input', icon ? 'pl-10' : 'pl-3', customClass, styleStore.getInputStyle]"
+>>>>>>> Stashed changes
                 v-bind="$attrs"
                 :id="id"
                 :placeholder="placeholder"
