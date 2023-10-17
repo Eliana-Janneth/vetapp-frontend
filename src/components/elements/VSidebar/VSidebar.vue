@@ -71,44 +71,7 @@ const push = (type: 'success' | 'error' | 'info' | 'warn') => {
                 </li>
             </ul>
         </div>
-
-        <button
-            @click="push('success')"
-            :class="[
-                'flex w-full items-center justify-between gap-4 p-4',
-                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
-            ]"
-        >
-            <span class="flex font-semibold">success</span>
-        </button>
-        <button
-            @click="push('error')"
-            :class="[
-                'flex w-full items-center justify-between gap-4 p-4',
-                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
-            ]"
-        >
-            <span class="flex font-semibold">error</span>
-        </button>
-        <button
-            @click="push('info')"
-            :class="[
-                'flex w-full items-center justify-between gap-4 p-4',
-                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
-            ]"
-        >
-            <span class="flex font-semibold">info</span>
-        </button>
-        <button
-            @click="push('warn')"
-            :class="[
-                'flex w-full items-center justify-between gap-4 p-4',
-                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
-            ]"
-        >
-            <span class="flex font-semibold">warn</span>
-        </button>
-
+        
         <div>
             <VPopover placement="top-end">
                 <template #reference="{ toggle }">

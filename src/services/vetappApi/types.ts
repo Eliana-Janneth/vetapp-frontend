@@ -45,6 +45,7 @@ export type TFarmerInformationPayload = {
     repeat_password: string;
 };
 export type TVetInformationPayload = {
+    id: string;
     first_name: string;
     last_name: string;
     email: string;
@@ -96,3 +97,9 @@ export type TDiagnosisPayload = {
     treatment: string;
     create_date: string;
 };
+
+export type TRegisterFarmerRequestPayload = {
+    message: string;
+    animal: string;
+    veterinarian: string;
+}

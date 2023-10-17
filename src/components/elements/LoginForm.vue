@@ -18,7 +18,7 @@ const schema = yup.object({
     username: yup
         .string()
         .required('Por favor ingrese un correo')
-        .email('Debes ingresar un correo valido "alguien@example.com"'),
+        .email('Debes ingresar un correo valido'),
     password: yup.string().required('Por favor ingrese una contraseña'),
 });
 

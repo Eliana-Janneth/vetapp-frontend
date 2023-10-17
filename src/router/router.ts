@@ -107,9 +107,15 @@ const routes = [
                 children: [
                     {
                         name: 'requests.request',
-                        path: 'solicitud',
+                        path: 'solicitud/:id',
                         component: () => import('@/components/pages/veterinaryRequestsPages/RequestForm.vue'),
                     },
+                    {
+                        name: 'requests.showVetInformation',
+                        path: 'mostrar-veterinario/:id',
+                        component: () => import('@/components/pages/veterinaryRequestsPages/ShowVet.vue'),
+                    }
+                
                 ],
             },
         ],

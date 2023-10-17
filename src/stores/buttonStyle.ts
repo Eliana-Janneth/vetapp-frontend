@@ -11,7 +11,7 @@ export const button = cva(
                     'bg-emerald-600 hover:bg-gradient-to-r hover:from-emerald-800 hover:via-emerald-600 hover:to-emerald-800 focus:ring-emerald-500 active:from-emerald-600 active:via-emerald-800 active:to-emerald-600 active:text-emerald-200',
                 ],
                 veterinarian: [
-                    'border-sky-400/50 bg-sky-50/80 placeholder:text-sky-600 focus:border-sky-500 focus:ring-sky-500',
+                    'bg-sky-600 hover:bg-gradient-to-r hover:from-sky-800 hover:via-sky-600 hover:to-sky-800 focus:ring-sky-500 active:from-sky-600 active:via-sky-800 active:to-sky-600 active:text-sky-200',
                 ],
                 base: [
                     'bg-indigo-600  hover:bg-gradient-to-r hover:from-indigo-800 hover:via-indigo-600 hover:to-indigo-800 focus:ring-indigo-500 active:from-indigo-600 active:via-indigo-800 active:to-indigo-600 active:text-indigo-200',

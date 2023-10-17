@@ -1,34 +1,33 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { vetappApi } from '@/services';
+import { ref, reactive } from 'vue';
+import { vetappApi, TVetInformationPayload } from '@/services';
 import { UserCircleIcon, UserPlusIcon, UserMinusIcon } from '@heroicons/vue/24/outline';
 
-const animals = ref<UserData[]>([]);
+const TVetInformationPayload = reactive({
+    id: '',
+    first_name: '',
+    last_name: '',
+    city: '',
+    license_number:'',
+    license_expiry_date: ''
 
-interface UserData {
-    id: string;
-    name: string;
-    specie_name: string;
-    race_name: string;
-    color: string;
-    gender: string;
-    birth_date: string;
-    description: string;
-    weight: string;
-    heigth: string;
-}
-onMounted(async () => {
-    try {
-        const response = await vetappApi.getAnimals();
-        animals.value = response;
-    } catch (error) {
-        console.error('Error al cargar los datos:');
-    }
 });
+const personalInformation = ref<TVetInformationPayload[]>([]);
+
+vetappApi
+    .getVetAvailables()
+    .then((response) => {
+        personalInformation.value = response;
+        console.log(response);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
 </script>
 <template>
     <div class="flex justify-center bg-white">
-        <div class="h-96 w-max overflow-y-scroll">
+        <div v-if="personalInformation" class="h-96 w-max overflow-y-scroll">
             <table class="min-w-full table-auto" summary="Availables Veterinarians">
                 <thead
                     class="leading-4tracking-wider font-norma sticky top-0 bg-emerald-600 text-xs uppercase tracking-wider text-white"
@@ -43,13 +42,13 @@ onMounted(async () => {
                 <tbody>
                     <tr
                         class="divide-x-2 divide-emerald-400 outline outline-2 -outline-offset-2 outline-emerald-400"
-                        v-for="animal in animals"
-                        :key="animal.id"
+                        v-for="information in personalInformation"
+                        :key="information.id"
                     >
-                        <td class="table-item">{{ animal.name }}</td>
+                        <td class="table-item">{{ information.first_name + ' ' + information.last_name }}</td>
                         <td class="table-item">
                             <router-link
-                                :to="{ name: 'animals.show', params: { id: animal.id } }"
+                                :to="{ name: 'requests.showVetInformation', params: { id: information.id } }"
                                 class="flex items-center text-emerald-600 hover:text-emerald-500"
                                 ><UserCircleIcon class="h-5 w-5" />
                                 <span class="ml-2 font-medium"> Ver Perfil </span></router-link
@@ -57,7 +56,7 @@ onMounted(async () => {
                         </td>
                         <td class="table-item">
                             <router-link
-                                :to="{ name: 'requests.request', params: { id: animal.id } }"
+                                :to="{ name: 'requests.request', params: { id: information.id } }"
                                 class="flex items-center text-emerald-600 hover:text-emerald-500"
                                 ><UserPlusIcon class="h-5 w-5" />
                                 <span class="ml-2 font-medium"> Consultar </span></router-link
@@ -65,7 +64,7 @@ onMounted(async () => {
                         </td>
                         <td class="table-item">
                             <router-link
-                                :to="{ name: 'animals.show', params: { id: animal.id } }"
+                                :to="{ name: 'animals.show', params: { id: information.id } }"
                                 class="flex items-center text-emerald-600 hover:text-emerald-500"
                                 ><UserMinusIcon class="h-5 w-5" />
                                 <span class="ml-2 font-medium"> Descartar </span></router-link

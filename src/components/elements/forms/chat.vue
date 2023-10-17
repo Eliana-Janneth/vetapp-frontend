@@ -5,18 +5,23 @@
                 <div v-for="message in messages" :key="message.id" class="mb-2">
                     <div v-if="message.isSent" class="text-right">
                         <div class="inline-block rounded bg-blue-500 p-2 text-white">
-                            <template v-if="message.type === 'text'">{{ message.text }}</template>
-                            <template v-else>
+                            <div v-if="message.type === 'text'">{{ message.text }}</div>
+                            <div v-else-if="message.document" class="rounded-lg border border-gray-300 bg-white p-2">
+                                <a :href="message.document" target="_blank" class="text-blue-500 hover:underline"
+                                    >Ver documento adjunto</a
+                                >
+                            </div>
+                            <div v-else>
                                 <img :src="message.image" alt="Imagen" class="max-w-48" />
-                            </template>
+                            </div>
                         </div>
                     </div>
                     <div v-else>
                         <div class="inline-block rounded bg-gray-200 p-2">
-                            <template v-if="message.type === 'text'">{{ message.text }}</template>
-                            <template v-else>
+                            <div v-if="message.type === 'text'">{{ message.text }}</div>
+                            <div v-else>
                                 <img :src="message.image" alt="Imagen" class="max-w-48" />
-                            </template>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -53,6 +58,7 @@ interface Message {
     id: number;
     text?: string;
     image?: string;
+    document?: string;
     type: 'text' | 'image';
     isSent: boolean;
 }

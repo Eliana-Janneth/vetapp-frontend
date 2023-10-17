@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VSpan, VButton } from '@elements';
+import { VSpan } from '@elements';
 import { useForm } from 'vee-validate';
 import { reactive, onMounted } from 'vue';
 import type { TFarmerInformation } from './types';
@@ -36,7 +36,6 @@ onMounted(async () => {
 const { defineComponentBinds } = useForm<TFarmerInformation>({});
 
 const firstName = defineComponentBinds('firstName');
-const lastName = defineComponentBinds('lastName');
 const document = defineComponentBinds('document');
 const phone = defineComponentBinds('phone');
 const city = defineComponentBinds('city');
@@ -50,15 +49,8 @@ const email = defineComponentBinds('email');
                 v-bind="firstName"
                 custom-class="uppercase font-semibold text-xl"
                 variant="farmer"
-                :label="values.first_name"
+                :label="`${values.first_name} ${values.last_name}`"
                 name="first_name"
-            />
-            <VSpan
-                v-bind="lastName"
-                custom-class="uppercase font-semibold text-xl"
-                variant="farmer"
-                :label="values.last_name"
-                name="last_name"
             />
         </div>
         <div class="flex flex-col gap-2">
@@ -74,6 +66,5 @@ const email = defineComponentBinds('email');
             <VSpan v-bind="address" variant="farmer" :label="values.address" name="address" :icon="MapPinIcon" />
             <VSpan v-bind="city" variant="farmer" :label="values.city" name="city" :icon="MapIcon" />
         </div>
-        <VButton label="Actualizar Datos" variant="farmer" type="button" custom-class="mt-4" />
     </form>
 </template>

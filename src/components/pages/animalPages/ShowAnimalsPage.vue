@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { ref, reactive } from 'vue';
-import { TDiagnosisPayload, vetappApi } from '@/services';
+import { ref, reactive,computed } from 'vue';
+import { TDiagnosisPayload, vetappApi,  } from '@/services';
 import { VDetailsEdit, VDetails } from '@elements';
 
 const route = useRoute();
 const animal = ref();
+const animalId = computed(() => route.params.id.toString());
+
 const diagnosisAnimal = ref<TDiagnosisPayload[]>([]);
 
 const TDiagnosisPayload = reactive({
@@ -16,7 +18,7 @@ const TDiagnosisPayload = reactive({
 });
 
 vetappApi
-    .getDiagnosisFarmer(route.params.id.toString())
+    .getDiagnosisFarmer(animalId.value)
     .then((res) => {
         diagnosisAnimal.value = res;
     })
@@ -25,7 +27,7 @@ vetappApi
     });
 
 vetappApi
-    .getAnimal(route.params.id.toString())
+    .getAnimal(animalId.value)
     .then((res) => {
         animal.value = res;
     })
@@ -33,9 +35,11 @@ vetappApi
         console.log(err);
         animal.value = null;
     });
+
 </script>
 
 <template>
+    <pre>{{ animalId }}</pre>
     <div v-if="animal" class="m-4 border border-x-2 border-emerald-200/50 p-2">
         <VDetailsEdit class="border-t-0" label="Nombre" :description="animal.name" />
         <VDetailsEdit label="Especie" :description="animal.specie_name" />

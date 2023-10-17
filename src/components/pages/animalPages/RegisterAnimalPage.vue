@@ -26,16 +26,15 @@ const validationSchema = yup.object({
     weight: yup.number().required('Por favor ingrese un peso'),
     height: yup.number().required('Por favor ingrese una altura'),
     color: yup.string().required('Por favor ingrese un color'),
-    description: yup.string().required('Por favor ingrese una descripción'),
     gender: yup.string().required('Por favor seleccione un género'),
 });
 
 const { defineComponentBinds, errors, meta, handleSubmit } = useForm<TRegisterAnimal>({
     validationSchema,
 });
-let species = ref<{ text: string; value: string }[]>([]);
-let races = ref<{ text: string; value: string }[]>([]);
-let selectedSpeciesId = ref('');
+const species = ref<{ text: string; value: string }[]>([]);
+const races = ref<{ text: string; value: string }[]>([]);
+const selectedSpeciesId = ref('');
 
 const name = defineComponentBinds('name');
 const specie = defineComponentBinds('specie');
@@ -57,11 +56,7 @@ onMounted(async () => {
 });
 const loadRaces = async (specieId: string) => {
     try {
-        // Utiliza speciesId para obtener las razas de esa especie
-        console.log('entre a raza');
         races.value = await vetappApi.getRaces(specieId);
-        console.log('id', specieId);
-        console.log(races.value);
     } catch (error) {
         console.error('Error al cargar las razas:', error);
     }
@@ -69,10 +64,8 @@ const loadRaces = async (specieId: string) => {
 
 watch(selectedSpeciesId, (newSpeciesId: string) => {
     if (newSpeciesId !== null) {
-        console.log('estoy cargando id');
         loadRaces(newSpeciesId);
     } else {
-        // Limpia la lista de razas si no hay una especie seleccionada
         races.value = [];
     }
 });
