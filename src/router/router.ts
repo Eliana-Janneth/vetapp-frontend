@@ -10,7 +10,8 @@ import {
     MedicalHistoryPage,
 } from '@/components/pages/consultsPages';
 import { ShowAnimalsPage, AnimalsTemplate, ListAnimalPage, RegisterAnimalPage } from '@/components/pages/animalPages';
-import { RequestsTemplate } from '@/components/pages/veterinaryRequestsPages';
+import { RequestsTemplateFarmer } from '@/components/pages/farmerRequestsPages';
+import { RequestsTemplateVet } from '@/components/pages/veterinaryRequestPages';
 import chat from '@/components/elements/forms/chat.vue';
 
 const routes = [
@@ -20,6 +21,8 @@ const routes = [
     { name: 'home', path: '/inicio', component: HomePage, meta: { layout: MainTemplate } },
     { name: 'profileFarmer', path: '/perfil-granjero', component: FarmerPage, meta: { layout: MainTemplate } },
     { name: 'chat', path: '/chat', component: chat, meta: { layout: MainTemplate } },
+    { path: '/:pathMatch(.*)*', name: 'notFound', component: NotFoundPage },
+
     {
         name: 'animals',
         path: '/animales',
@@ -94,33 +97,44 @@ const routes = [
         meta: { layout: MainTemplate },
     },
     {
-        name: 'requests',
+        name: 'requestsFarmer',
         path: '/veterinarios',
-        component: RequestsTemplate,
+        component: RequestsTemplateFarmer,
         meta: { layout: MainTemplate },
         routeredirect: { name: 'requests.veterinariansAvailables' },
         children: [
             {
                 name: 'requests.veterinariansAvailables',
                 path: 'veterinarios-disponibles',
-                component: () => import('@/components/pages/veterinaryRequestsPages/VeterinariansAvailablesPage.vue'),
+                component: () => import('@/components/pages/farmerRequestsPages/VeterinariansAvailablesPage.vue'),
                 children: [
                     {
                         name: 'requests.request',
                         path: 'solicitud/:id',
-                        component: () => import('@/components/pages/veterinaryRequestsPages/RequestForm.vue'),
+                        component: () => import('@/components/pages/farmerRequestsPages/RequestForm.vue'),
                     },
                     {
                         name: 'requests.showVetInformation',
                         path: 'mostrar-veterinario/:id',
-                        component: () => import('@/components/pages/veterinaryRequestsPages/ShowVet.vue'),
-                    }
-                
+                        component: () => import('@/components/pages/farmerRequestsPages/ShowVet.vue'),
+                    },
                 ],
             },
         ],
     },
-    { path: '/:pathMatch(.*)*', name: 'notFound', component: NotFoundPage },
+    {
+        name: 'requestsVet',
+        path: '/solicitudes-granjeros',
+        component: RequestsTemplateVet,
+        meta: { layout: MainTemplate },
+        children: [
+            {
+                name: 'requestsVet.requests',
+                path: 'lista',
+                component: () => import('@/components/pages/veterinaryRequestPages/RequestFarmerPage.vue'),
+            },
+        ],
+    },
 ];
 
 export const router = createRouter({

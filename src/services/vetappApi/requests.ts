@@ -142,3 +142,20 @@ export const getAnimalsRequest = async (): Promise<TOption[]> => {
         return [];
     }
 };
+
+export const getFarmerRequestS = async () => {
+    try {
+        const response = await fetch(`${API_URL}/vet-requests/`, {
+            headers: {
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+        if (!response.ok) {
+            throw new Error('No se pudo cargar los datos');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
+    }
+};

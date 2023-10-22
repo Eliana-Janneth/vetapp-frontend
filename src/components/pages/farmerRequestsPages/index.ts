@@ -1,4 +1,4 @@
-export { default as RequestsTemplate } from './RequestsTemplate.vue';
+export { default as RequestsTemplateFarmer } from './RequestsTemplate.vue';
 export { default as VeterinariansAvailablesPage } from './VeterinariansAvailablesPage.vue';
 export { default as RequestPage } from './RequestForm.vue';
 export { default as ShowVetInformation} from './ShowVet.vue';

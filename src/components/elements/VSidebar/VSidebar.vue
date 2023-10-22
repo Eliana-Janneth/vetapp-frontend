@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { notify } from '@kyvg/vue3-notification';
 import { useUserStore } from '@/stores';
 import VPopover from '../VPopover.vue';
 import VItem from './VItem.vue';
@@ -24,21 +23,16 @@ const variant = ref(userStore.isFarmer ? 'farmer' : 'vet');
 const farmerSidebarItems = ref([
     { route: '', label: 'Home', icon: HomeIcon },
     { route: 'chat', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
-    { route: 'requests', label: 'Veterinarios', icon: UserGroupIcon },
+    { route: 'requestsFarmer', label: 'Veterinarios', icon: UserGroupIcon },
     { route: 'animals', label: 'Mis animales', icon: StarIcon },
 ]);
 const vetSidebarItems = ref([
     { route: '', label: 'Home', icon: HomeIcon },
     { route: 'consults', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
-    { route: '', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
+    { route: 'requestsVet', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
 ]);
 
-const push = (type: 'success' | 'error' | 'info' | 'warn') => {
-    notify({
-        title: 'Vue 3 notification 🎉',
-        type
-    });
-};
+
 </script>
 
 <template>

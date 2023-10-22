@@ -108,3 +108,13 @@ export type TRegisterFarmerRequestPayload = {
 export type TCreateAvailabilityPayload={
     available: boolean;
 }
+
+export type TRequestFarmerPayload = {
+    id: string;
+    message: string;
+    animal_name: string;
+    specie_name: string;
+    race_name: string;
+    farmer_name: string;
+    status: string;
+}
