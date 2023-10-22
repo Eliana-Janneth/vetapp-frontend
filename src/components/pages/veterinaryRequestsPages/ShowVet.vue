@@ -48,6 +48,7 @@ const licenseExpiration = defineComponentBinds('licenseExpiration');
 
 </script>
 <template>
+    <div class="flex flex-col">
     <form class="mx-auto flex w-80 flex-col items-center gap-2 rounded-lg bg-sky-100/70 p-2">
         <div class="flex flex-col gap-2 lg:flex-row">
             <VSpan
@@ -78,4 +79,5 @@ const licenseExpiration = defineComponentBinds('licenseExpiration');
     </form>
     <ShowInformationAcademic />
     <ShowWorkExperience />
+</div>
 </template>

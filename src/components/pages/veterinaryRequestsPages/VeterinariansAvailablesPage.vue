@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { vetappApi, TVetInformationPayload } from '@/services';
-import { UserCircleIcon, UserPlusIcon, UserMinusIcon } from '@heroicons/vue/24/outline';
+import { UserCircleIcon, UserPlusIcon } from '@heroicons/vue/24/outline';
 
 const TVetInformationPayload = reactive({
     id: '',
@@ -36,7 +36,6 @@ vetappApi
                         <th class="px-6 py-3">Nombre</th>
                         <th class="px-6 py-3">Perfil</th>
                         <th class="px-6 py-3">Solicitar Consulta</th>
-                        <th class="px-6 py-3">Descartar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,14 +61,7 @@ vetappApi
                                 <span class="ml-2 font-medium"> Consultar </span></router-link
                             >
                         </td>
-                        <td class="table-item">
-                            <router-link
-                                :to="{ name: 'animals.show', params: { id: information.id } }"
-                                class="flex items-center text-emerald-600 hover:text-emerald-500"
-                                ><UserMinusIcon class="h-5 w-5" />
-                                <span class="ml-2 font-medium"> Descartar </span></router-link
-                            >
-                        </td>
+                     
                     </tr>
                 </tbody>
             </table>

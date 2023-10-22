@@ -57,6 +57,7 @@ export type TVetInformationPayload = {
     repeat_password: string;
     license_number: string;
     license_expiry_date: string;
+    available: boolean;
 };
 export type TWorkExperiencePayload = {
     title: string;
@@ -102,4 +103,8 @@ export type TRegisterFarmerRequestPayload = {
     message: string;
     animal: string;
     veterinarian: string;
+}
+
+export type TCreateAvailabilityPayload={
+    available: boolean;
 }

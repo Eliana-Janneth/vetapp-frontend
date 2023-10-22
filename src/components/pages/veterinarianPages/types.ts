@@ -30,3 +30,7 @@ export type TVetInformation = {
     license: string;
     licenseExpiration: string;
 };
+
+export type TVetAvailability = {
+    available: boolean;
+};

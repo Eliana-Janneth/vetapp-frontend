@@ -1,21 +1,13 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { ref, reactive,computed } from 'vue';
-import { TDiagnosisPayload, vetappApi,  } from '@/services';
-import { VDetailsEdit, VDetails } from '@elements';
+import { ref, computed } from 'vue';
+import { vetappApi } from '@/services';
+import { VDetails } from '@elements';
 
 const route = useRoute();
 const animal = ref();
 const animalId = computed(() => route.params.id.toString());
-
-const diagnosisAnimal = ref<TDiagnosisPayload[]>([]);
-
-const TDiagnosisPayload = reactive({
-    id: '',
-    diagnosis: '',
-    treatment: '',
-    create_date: '',
-});
+const diagnosisAnimal = ref();
 
 vetappApi
     .getDiagnosisFarmer(animalId.value)
@@ -35,21 +27,20 @@ vetappApi
         console.log(err);
         animal.value = null;
     });
-
 </script>
 
 <template>
     <pre>{{ animalId }}</pre>
     <div v-if="animal" class="m-4 border border-x-2 border-emerald-200/50 p-2">
-        <VDetailsEdit class="border-t-0" label="Nombre" :description="animal.name" />
-        <VDetailsEdit label="Especie" :description="animal.specie_name" />
-        <VDetailsEdit label="Raza" :description="animal.race_name" />
-        <VDetailsEdit label="Color" :description="animal.color" />
-        <VDetailsEdit label="Género" :description="animal.gender" />
-        <VDetailsEdit label="Fecha de Nacimiento" :description="animal.birth_date" />
-        <VDetailsEdit label="Peso" :description="animal.weight" />
-        <VDetailsEdit label="Altura" :description="animal.height" />
-        <VDetailsEdit class="border-b-0" label="Descripción" :description="animal.description" />
+        <VDetails class="border-t-0" label="Nombre" :description="animal.name" :update="true" />
+        <VDetails label="Especie" :description="animal.specie_name" />
+        <VDetails label="Raza" :description="animal.race_name" />
+        <VDetails label="Color" :description="animal.color" :update="true" />
+        <VDetails label="Género" :description="animal.gender" />
+        <VDetails label="Fecha de Nacimiento" :description="animal.birth_date" :update="true" />
+        <VDetails label="Peso" :description="animal.weight" :update="true" />
+        <VDetails label="Altura" :description="animal.height" :update="true" />
+        <VDetails class="border-b-0" label="Descripción" :description="animal.description" :update="true" />
     </div>
     <p v-if="animal === undefined">Cargando animal...</p>
     <p v-else-if="animal === null">El animal no existe</p>

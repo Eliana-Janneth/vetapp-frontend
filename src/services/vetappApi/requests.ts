@@ -69,7 +69,7 @@ export const getVetInformation = async (id: string) => {
 };
 
 export const getAcademicInformationVet = async (id: string) => {
-    const apiUrl = `${API_URL}/vets/${id}/academicinfo/`;
+    const apiUrl = `${API_URL}/vet-academic-information/${id}/`;
     try {
         const response = await fetch(apiUrl, {
             method: 'GET',
@@ -98,7 +98,7 @@ export const getAcademicInformationVet = async (id: string) => {
 };
 
 export const getWorkExperienceVet = async (id: string) => {
-    const apiUrl = `${API_URL}/vets/${id}/workexperience/`;
+    const apiUrl = `${API_URL}/vet-work_experience/${id}/`;
     try {
         const response = await fetch(apiUrl, {
             method: 'GET',
