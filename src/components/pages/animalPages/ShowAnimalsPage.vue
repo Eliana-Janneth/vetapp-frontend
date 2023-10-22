@@ -3,6 +3,7 @@ import { useRoute } from 'vue-router';
 import { ref, computed } from 'vue';
 import { vetappApi } from '@/services';
 import { VDetails } from '@elements';
+import { formatDate } from '@/helpers';
 
 const route = useRoute();
 const animal = ref();
@@ -48,9 +49,19 @@ vetappApi
     <div v-if="diagnosisAnimal" class="m-2 flex flex-col">
         <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
             <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
-                <VDetails custom-class="font-semibold" label="Fecha" :description="diagnosisA.create_date" />
+                <VDetails
+                    custom-class="font-semibold"
+                    label="Fecha"
+                    :description="formatDate(diagnosisA.create_date)"
+                />
+                <VDetails
+                    v-if="diagnosisA.update_date != diagnosisA.create_date"
+                    label="Fecha Modificación"
+                    :description="formatDate(diagnosisA.update_date)"
+                />
                 <VDetails label="Diagnostico" :description="diagnosisA.diagnosis" />
                 <VDetails label="Tratamiento" :description="diagnosisA.treatment" />
+                <VDetails label="Veterinario" :description="diagnosisA.vet_name" />
             </div>
         </div>
     </div>
