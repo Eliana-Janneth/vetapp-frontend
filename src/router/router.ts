@@ -127,6 +127,7 @@ const routes = [
         path: '/solicitudes-granjeros',
         component: RequestsTemplateVet,
         meta: { layout: MainTemplate },
+        redirect: { name: 'requestsVet.requests' },
         children: [
             {
                 name: 'requestsVet.requests',

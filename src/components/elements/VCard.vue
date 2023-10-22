@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { FunctionalComponent } from 'vue';
 import VSpan from './VSpan.vue';
-defineEmits(['update:modelValue', 'focus', 'blur']);
+defineEmits(['update:modelValue', 'focus', 'blur','accept','reject']);
 
 defineOptions({
     inheritAttrs: false,
@@ -16,6 +16,7 @@ defineProps<{
     specie?: string;
     nameAnimal?: string;
 }>();
+
 
 </script>
 
@@ -32,8 +33,8 @@ defineProps<{
                 <VSpan name="Raza" :label="race" />
             </div>
             <div class="flex justify-between px-6 py-4">
-                <button class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700">Aceptar</button>
-                <button class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700">Rechazar</button>
+                <button class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700" @click="$emit('accept')">Aceptar</button>
+                <button class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700" @click="$emit('reject')">Rechazar</button>
             </div>
         </div>
     </div>

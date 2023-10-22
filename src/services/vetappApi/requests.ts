@@ -159,3 +159,22 @@ export const getFarmerRequestS = async () => {
         console.error('Error al cargar los datos:', error);
     }
 };
+
+export const responseToFarmerRequest = async (id: string, vetResponse: boolean) => {
+    try{
+        const response = await fetch(`${API_URL}/vet-requests/${id}/`, {
+            method: 'POST',
+            body: JSON.stringify({"vet_response":vetResponse}),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+            
+        });
+        if (!response.ok) {
+            throw new Error('No se enviar la respuesta');
+        }
+    } catch (error){
+        console.error('Error', error);
+    }
+}
