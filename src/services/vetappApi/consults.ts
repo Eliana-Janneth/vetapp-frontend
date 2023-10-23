@@ -19,7 +19,6 @@ export const getAnimalsAuthorized = async () => {
     }
 };
 
-//TODO: Copiar url
 export const createDiagnosis = async (data: TDiagnosisPayload, id: string) => {
     const apiUrl = `${API_URL}/vet-medical-historys/${id}/`;
     try {
@@ -98,3 +97,32 @@ export const getDiagnosisFarmer = async (id: string) => {
         console.error('Error al cargar los datos:', error);
     }
 };
+
+export const updateDiagnosis = async (data: string, idAnimal: string, idMedicalHistory:string) => {
+    const apiUrl = `${API_URL}/vet-medical-historys/${idAnimal}/${idMedicalHistory}/`;
+    try {
+        console.log("datos",data);
+        const response = await fetch(apiUrl, {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                alert(`Error del servidor: ${errorData.response}`);
+            } else {
+                alert('Error en la solicitud al servidor.');
+            }
+            return;
+        }
+        const responseData = await response.json();
+        console.log(JSON.stringify(responseData, null, 2));
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
+}

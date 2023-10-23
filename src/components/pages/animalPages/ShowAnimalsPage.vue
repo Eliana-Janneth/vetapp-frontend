@@ -28,6 +28,15 @@ vetappApi
         console.log(err);
         animal.value = null;
     });
+    // const onUpdate = handleSubmit(async () => {
+//     try {
+//         await vetappApi.updateAnimal( editedDescription.value, animalId.value);
+//         console.log(editedDescription.value)
+//         console.log('Animal actualizado');
+//     } catch (error) {
+//         console.error('Error al actualizar el animal:', error);
+//     }
+// });
 </script>
 
 <template>

@@ -13,6 +13,7 @@ withDefaults(
         label?: string;
         name?: string;
         placeholder?: string;
+        modelValue?: string;
         variant?: 'farmer' | 'vet' | 'base';
     }>(),
     {
@@ -31,6 +32,7 @@ withDefaults(
             ]"
             :placeholder="placeholder"
             :name="name"
+            :value="modelValue"
             @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
             @focus="$emit('focus')"
             @blur="$emit('blur')"

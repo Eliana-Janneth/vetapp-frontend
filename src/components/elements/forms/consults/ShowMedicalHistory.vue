@@ -1,19 +1,14 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { ref, reactive } from 'vue';
-import { TDiagnosisPayload, vetappApi } from '@/services';
-import { VDetails } from '@elements';
+import { ref } from 'vue';
+import { vetappApi } from '@/services';
+import { VButton, VDetails, VTextArea } from '@elements';
+import { formatDate } from '@/helpers';
 
 const route = useRoute();
-const TDiagnosisPayload = reactive({
-    id: '',
-    diagnosis: '',
-    treatment: '',
-    create_date: '',
-});
 
-const diagnosisAnimal = ref<TDiagnosisPayload[]>([]);
-
+const diagnosisAnimal = ref();
+const idDiagnosis = ref();
 vetappApi
     .getDiagnosisVet(route.params.id.toString())
     .then((res) => {
@@ -22,15 +17,45 @@ vetappApi
     .catch((err) => {
         console.log(err);
     });
+
+const onUpdateDiagnosis = (newData: string, idDiagnosis: string) => {
+    console.log('newData', newData);
+    console.log('id', diagnosisAnimal.value);
+
+    vetappApi
+        .updateDiagnosis(newData, route.params.id.toString(), idDiagnosis)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
 </script>
 
 <template>
     <div v-if="diagnosisAnimal" class="m-2 flex flex-col">
         <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
             <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
-                <VDetails custom-class="font-semibold" label="Fecha" :description="diagnosisA.create_date" />
+                <VDetails
+                    custom-class="font-semibold"
+                    label="Fecha"
+                    :description="formatDate(diagnosisA.create_date)"
+                />
+                <VDetails
+                    v-if="diagnosisA.update_date != diagnosisA.create_date"
+                    label="Fecha Modificación"
+                    :description="formatDate(diagnosisA.update_date)"
+                />
+
                 <VDetails label="Diagnostico" :description="diagnosisA.diagnosis" />
-                <VDetails label="Tratamiento" :description="diagnosisA.treatment" />
+                <VDetails
+                    label="Tratamiento"
+                    :description="diagnosisA.treatment"
+                    type="textArea"
+                    :update="true"
+                    :function-update="onUpdateDiagnosis"
+                />
             </div>
         </div>
     </div>

@@ -1,25 +1,21 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores';
 import Vinput from './VInput.vue';
-import { useForm } from 'vee-validate';
-import { vetappApi } from '@/services';
-import { useRoute } from 'vue-router';
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
+import VTextArea from './VTextArea.vue';
+import VButton from './VButton.vue';
 
 defineProps<{
     customClass?: string;
     label: string;
     description: string;
     update?: boolean;
-    saveChanges?: Function;
+    type?: 'input' | 'textArea';
+    functionUpdate?: Function | any;
 }>();
 
-const route = useRoute();
 const userStore = useUserStore();
-const { handleSubmit } = useForm();
 const isEditing = ref(false);
-const editedDescription = ref('');
-const animalId = computed(() => route.params.id.toString());
 
 const startEditing = () => {
     isEditing.value = true;
@@ -27,28 +23,18 @@ const startEditing = () => {
 
 const cancelEditing = () => {
     isEditing.value = false;
-    editedDescription.value = description;
 };
 
-// const saveChanges = () => {
-//     saveChanges(editedDescription.value);
-//     isEditing.value = false;
-// };
-const onUpdate = handleSubmit(async () => {
-    try {
-        await vetappApi.updateAnimal( editedDescription.value, animalId.value);
-        console.log(editedDescription.value)
-        console.log('Animal actualizado');
-    } catch (error) {
-        console.error('Error al actualizar el animal:', error);
-    }
-});
+const saveChanges = (newDescription: string) => {
+    isEditing.value = false;
+    functionUpdate(newDescription);
+};
 </script>
 
 <template>
     <div
         :class="[
-            'mx-auto w-full lg:max-w-3xl border border-x-0 border-t-0',
+            'mx-auto w-full border border-x-0 border-t-0 lg:max-w-3xl',
             userStore.isVet ? 'border-sky-200/50' : 'border-emerald-200/50',
         ]"
     >
@@ -59,6 +45,7 @@ const onUpdate = handleSubmit(async () => {
                 </dt>
                 <dd class="ml-2 flex flex-col justify-between text-justify lg:flex-row">
                     <span
+                        v-if="!isEditing"
                         :class="[
                             'text-base font-normal',
                             userStore.isFarmer ? 'text-emerald-800' : 'text-sky-800',
@@ -66,29 +53,29 @@ const onUpdate = handleSubmit(async () => {
                         ]"
                         >{{ description }}</span
                     >
-                    <Vinput v-if="isEditing" v-model="editedDescription" label="Nuevo" width="w-56"/>
+                    <Vinput v-if="isEditing && type == 'input'" width="w-56" />
+                    <VTextArea v-if="isEditing && type == 'textArea'" :model-value="description" width="w-56" />
 
-                    <button
-                        v-if="update && !isEditing"
-                        class="font-medium text-emerald-500 hover:underline"
-                        @click="startEditing"
-                    >
-                        Actualizar
-                    </button>
-                    <button
-                        v-if="update && isEditing"
-                        class="font-medium text-emerald-500 hover:underline"
-                        @click="onUpdate"
-                    >
-                        Guardar
-                    </button>
-                    <button
-                        v-if="isEditing"
-                        class="font-medium text-emerald-500 hover:underline"
-                        @click="cancelEditing"
-                    >
-                        Cancelar
-                    </button>
+                    <div class="flex lg:flex-col gap-1 p-2">
+                        <VButton
+                            v-if="update && !isEditing"
+                            label="Actualizar"
+                            customClass=" w-28 py-1 hover:underline"
+                            @click="startEditing"
+                        />
+                        <VButton
+                            v-if="update && isEditing"
+                            label="Guardar"
+                            custom-class="w-28 py-1 hover:underline"
+                            @click="functionUpdate(description)"
+                        />
+                        <VButton
+                            v-if="isEditing"
+                            label="Cancelar"
+                            class="w-28 py-1 hover:underline"
+                            @click="cancelEditing"
+                        />
+                    </div>
                 </dd>
             </div>
         </dl>
