@@ -1,6 +1,11 @@
 export function guestGuard() {
     const token = localStorage.getItem('accessToken');
-    if (token) return { name: 'home' };
+    if (token) {
+        const user = localStorage.getItem('user');
+        const role = JSON.parse(user!).role;
+        if (role === 'farmer') return { name: 'animals.index' };
+        return { name: 'consults' }
+    };
 }
 
 export function authGuard() {

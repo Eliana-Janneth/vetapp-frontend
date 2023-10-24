@@ -5,12 +5,12 @@ import VItem from './VItem.vue';
 import VDropdown from './VDropdown.vue';
 import { ref } from 'vue';
 import {
-    HomeIcon,
+    
     ChatBubbleLeftEllipsisIcon,
     ArrowPathRoundedSquareIcon,
     StarIcon,
     ChevronUpIcon,
-    UserGroupIcon
+    UserGroupIcon,
 } from '@heroicons/vue/24/solid';
 
 const userStore = useUserStore();
@@ -21,18 +21,14 @@ const variantProfile = {
 const variant = ref(userStore.isFarmer ? 'farmer' : 'vet');
 
 const farmerSidebarItems = ref([
-    { route: '', label: 'Home', icon: HomeIcon },
+    { route: 'animals.index', label: 'Mis animales', icon: StarIcon },
     { route: 'chat', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
     { route: 'requestsFarmer', label: 'Veterinarios', icon: UserGroupIcon },
-    { route: 'animals', label: 'Mis animales', icon: StarIcon },
 ]);
 const vetSidebarItems = ref([
-    { route: '', label: 'Home', icon: HomeIcon },
     { route: 'consults', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
     { route: 'requestsVet', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
 ]);
-
-
 </script>
 
 <template>
@@ -65,14 +61,14 @@ const vetSidebarItems = ref([
                 </li>
             </ul>
         </div>
-        
+
         <div>
             <VPopover placement="top-end">
                 <template #reference="{ toggle }">
                     <button
                         @click="toggle"
                         :class="[
-                            'flex w-full items-center gap-4 p-4 justify-between',
+                            'flex w-full items-center justify-between gap-4 p-4',
                             userStore.isFarmer
                                 ? 'text-emerald-200 hover:bg-emerald-700'
                                 : 'text-sky-200 hover:bg-sky-700',

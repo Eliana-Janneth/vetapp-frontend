@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 
 export const button = cva(
     [
-        'rounded-xl px-2 py-2 flex w-48 justify-center rounded-md text-lg text-white/70 hover:text-white focus:outline-none',
+        'px-2 py-2 flex w-48 justify-center rounded-md text-lg text-white/70 hover:text-white focus:outline-none',
     ],
     {
         variants: {

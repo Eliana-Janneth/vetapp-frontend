@@ -128,7 +128,7 @@ export const getRaces = async (specieId: string): Promise<TOption[]> => {
     }
 };
 
-export const updateAnimal = async (data: TRegisterAnimalPayload, id: string) => {
+export const updateAnimal = async (id: string, data: Record<string, string>) => {
     const apiUrl = `${API_URL}/animals/${id}/`;
     try {
         const response = await fetch(apiUrl, {
@@ -151,11 +151,11 @@ export const updateAnimal = async (data: TRegisterAnimalPayload, id: string) => 
         }
         // Si la respuesta es exitosa
         const responseData = await response.json();
-        console.log(JSON.stringify(responseData, null, 2));
         notify({
             title: "Animal actualizado exitosamente🎉",
             type: 'success'
         });
+        return responseData;
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
