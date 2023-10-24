@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { VSpan } from '@elements';
-import { useForm } from 'vee-validate';
-import { reactive, onMounted, ref } from 'vue';
-import type { TWorkExperience } from './types';
-import { TWorkExperiencePayload, vetappApi } from '@/services';
-import {useRoute} from 'vue-router';
+import { ref } from 'vue';
+import { vetappApi } from '@/services';
+import { useRoute } from 'vue-router';
+import loader from '@/assets/loader.svg';
+
 import {
     BriefcaseIcon,
     ListBulletIcon,
@@ -13,73 +13,38 @@ import {
     GlobeAmericasIcon,
 } from '@heroicons/vue/24/outline';
 
-const TWorkExperiencePayload = reactive({
-    title: '',
-    company: '',
-    functions: '',
-    start_date: '',
-    end_date: '',
-    country: '',
-    currently_working: false,
-    currently: '',
-});
-const workExperience = ref<TWorkExperiencePayload[]>([]);
-const route = useRoute();   
-onMounted(async () => {
-    try {
-        const response = await vetappApi.getWorkExperienceVet(route.params.id.toString());
+const workExperience = ref();
+const route = useRoute();
+vetappApi
+    .getWorkExperienceVet(route.params.id.toString())
+    .then((response) => {
         workExperience.value = response;
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
-});
-
-const { defineComponentBinds } = useForm<TWorkExperience>({});
-
-const position = defineComponentBinds('position');
-const company = defineComponentBinds('company');
-const functions = defineComponentBinds('functions');
-const startDate = defineComponentBinds('startDate');
-const country = defineComponentBinds('country');
-const currentlyWorking = defineComponentBinds('currentlyWorking');
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 </script>
 
 <template>
-    <div class="inline-block" v-for="work in workExperience" :key="work.title">
-        <form class="mx-auto mb-2 ml-2 mr-2 flex w-60 flex-col items-center gap-4 rounded-lg bg-sky-100/70 p-2">
+    <img class="h-20" :src="loader" v-if="workExperience === undefined" />
+    <p v-else-if="workExperience === null">El Veterinario no tiene experiencia laboral</p>
+    <div v-else class="inline-block" v-for="work in workExperience" :key="work.title">
+        <form class="mx-auto mb-2 ml-2 mr-2 flex w-60 flex-col items-center gap-4 rounded-lg bg-emerald-100/70 p-2">
             <div class="flex flex-col gap-2">
-                <VSpan
-                    v-bind="position"
-                    variant="vet"
-                    custom-class="uppercase font-semibold text-lg"
-                    :label="work.title"
-                />
+                <VSpan variant="vet" custom-class="uppercase font-semibold text-lg" :label="work.title" />
             </div>
             <div class="flex flex-col gap-2">
                 <VSpan
-                    v-bind="company"
                     custom-class="font-semibold text-lg"
                     variant="vet"
                     :label="work.company"
                     :icon="BuildingOfficeIcon"
                 />
-                <VSpan v-bind="functions" variant="vet" :label="work.functions" :icon="ListBulletIcon" />
-                <VSpan
-                    v-bind="startDate"
-                    variant="vet"
-                    :label="`${work.start_date}`"
-                    name="email"
-                    :icon="CalendarDaysIcon"
-                />
-                <VSpan
-                    v-bind="startDate"
-                    variant="vet"
-                    :label="`${work.end_date}`"
-                    name="email"
-                    :icon="CalendarDaysIcon"
-                />
-                <VSpan v-bind="country" variant="vet" :label="work.country" :icon="GlobeAmericasIcon" />
-                <VSpan v-bind="currentlyWorking" variant="vet" :label="work.currently" :icon="BriefcaseIcon" />
+                <VSpan variant="vet" :label="work.functions" :icon="ListBulletIcon" />
+                <VSpan variant="vet" :label="`${work.start_date}`" :icon="CalendarDaysIcon" />
+                <VSpan variant="vet" :label="`${work.end_date}`" :icon="CalendarDaysIcon" />
+                <VSpan variant="vet" :label="work.country" :icon="GlobeAmericasIcon" />
+                <VSpan variant="vet" :label="work.currently" :icon="BriefcaseIcon" />
             </div>
         </form>
     </div>

@@ -24,9 +24,9 @@ const styleStore = useStyleStore();
     <div class="relative w-full">
         <div class="flex items-center">
             <span class="mr-2 flex items-center">
-                <v-if name :class="['block text-lg font-bold', customClass, styleStore.getLabelStyle]">
-                    {{ `${name} :` }}</v-if
-                >
+                <label v-if="name" :class="['block text-lg font-bold', customClass, styleStore.getLabelStyle]">
+                    {{ `${name} :` }}</label>
+                
                 <component :is="icon" :class="['h-6 w-6', styleStore.getIconStyle]" />
             </span>
             <span v-if="label" :class="['block text-lg font-medium', customClass, styleStore.getLabelStyle]">{{

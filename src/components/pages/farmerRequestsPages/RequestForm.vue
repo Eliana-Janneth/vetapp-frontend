@@ -47,6 +47,9 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterFarmerRequest) => 
         values.veterinarian = route.params.id.toString();
         await vetappApi.createFarmerRequest(values);
         console.log('Solicitud enviada');
+
+
+
     } catch (error) {
         console.error('Error al enviar la solicitud:', error);
     }
