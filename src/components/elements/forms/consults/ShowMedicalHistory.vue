@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { vetappApi } from '@/services';
-import { VButton, VDetails, VTextArea } from '@elements';
+import { VDetails, VUpgradeableTextarea } from '@elements';
 import { formatDate } from '@/helpers';
 
 const route = useRoute();
-
 const diagnosisAnimal = ref();
-const idDiagnosis = ref();
+const animalId = computed(() => String(route.params.id));
+
 vetappApi
-    .getDiagnosisVet(route.params.id.toString())
+    .getDiagnosisVet(animalId.value)
     .then((res) => {
         diagnosisAnimal.value = res;
     })
@@ -18,12 +18,9 @@ vetappApi
         console.log(err);
     });
 
-const onUpdateDiagnosis = (newData: string, idDiagnosis: string) => {
-    console.log('newData', newData);
-    console.log('id', diagnosisAnimal.value);
-
+const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) => {
     vetappApi
-        .updateDiagnosis(newData, route.params.id.toString(), idDiagnosis)
+        .updateDiagnosis(animalId.value, diagnosisId, { [name]: newValue })
         .then((res) => {
             console.log(res);
         })
@@ -36,7 +33,7 @@ const onUpdateDiagnosis = (newData: string, idDiagnosis: string) => {
 <template>
     <div v-if="diagnosisAnimal" class="m-2 flex flex-col">
         <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
-            <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
+            <div class=" mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
                 <VDetails
                     custom-class="font-semibold"
                     label="Fecha"
@@ -47,14 +44,17 @@ const onUpdateDiagnosis = (newData: string, idDiagnosis: string) => {
                     label="Fecha Modificación"
                     :description="formatDate(diagnosisA.update_date)"
                 />
-
-                <VDetails label="Diagnostico" :description="diagnosisA.diagnosis" />
-                <VDetails
+                <VUpgradeableTextarea
+                    label="Diagnostico"
+                    :edit="true"
+                    :value="diagnosisA.diagnosis"
+                    @update="(newValue) => onUpdateDiagnosis('diagnosis', newValue, diagnosisA.id)"
+                />
+                <VUpgradeableTextarea
                     label="Tratamiento"
-                    :description="diagnosisA.treatment"
-                    type="textArea"
-                    :update="true"
-                    :function-update="onUpdateDiagnosis"
+                    :edit="true"
+                    :value="diagnosisA.treatment"
+                    @update="(newValue) => onUpdateDiagnosis('treatment', newValue, diagnosisA.id)"
                 />
             </div>
         </div>

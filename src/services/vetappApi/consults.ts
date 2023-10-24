@@ -1,4 +1,5 @@
 import type { TDiagnosisPayload } from './types';
+import { notify } from '@kyvg/vue3-notification';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -98,7 +99,7 @@ export const getDiagnosisFarmer = async (id: string) => {
     }
 };
 
-export const updateDiagnosis = async (data: string, idAnimal: string, idMedicalHistory:string) => {
+export const updateDiagnosis = async (idAnimal: string, idMedicalHistory:string, data: Record<string, string>) => {
     const apiUrl = `${API_URL}/vet-medical-historys/${idAnimal}/${idMedicalHistory}/`;
     try {
         console.log("datos",data);
@@ -121,7 +122,10 @@ export const updateDiagnosis = async (data: string, idAnimal: string, idMedicalH
             return;
         }
         const responseData = await response.json();
-        console.log(JSON.stringify(responseData, null, 2));
+        notify({
+            title: "Historial Médico actualizado exitosamente🎉",
+            type: 'success'
+        });        return responseData;
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }

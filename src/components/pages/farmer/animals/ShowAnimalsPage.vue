@@ -63,32 +63,32 @@ const updateValue = (name: string, newValue: string) => {
                     label="Color"
                     :value="animal.color"
                     :edit="true"
-                    @update="(newValue) => updateValue('name', newValue)"
+                    @update="(newValue) => updateValue('color', newValue)"
                 />
                 <VUpgradeableInput label="Genero" :edit="false" :value="animal.gender" />
                 <VUpgradeableInput
                     label="Fecha de Nacimiento"
                     :value="animal.birth_date"
                     :edit="true"
-                    @update="(newValue) => updateValue('name', newValue)"
+                    @update="(newValue) => updateValue('gender', newValue)"
                 />
                 <VUpgradeableInput
                     label="Peso"
                     :value="animal.weight"
                     :edit="true"
-                    @update="(newValue) => updateValue('name', newValue)"
+                    @update="(newValue) => updateValue('weight', newValue)"
                 />
                 <VUpgradeableInput
                     label="Altura"
                     :value="animal.height"
                     :edit="true"
-                    @update="(newValue) => updateValue('name', newValue)"
+                    @update="(newValue) => updateValue('height', newValue)"
                 />
                 <VUpgradeableInput
-                    label="Descipción"
+                    label="Descripción"
                     :value="animal.description"
                     :edit="true"
-                    @update="(newValue) => updateValue('name', newValue)"
+                    @update="(newValue) => updateValue('description', newValue)"
                 />
             </div>
 

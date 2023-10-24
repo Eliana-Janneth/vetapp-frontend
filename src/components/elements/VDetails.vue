@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores';
-import Vinput from './VInput.vue';
-import { ref } from 'vue';
-import VTextArea from './VTextArea.vue';
-import VButton from './VButton.vue';
 
 defineProps<{
     customClass?: string;
@@ -15,20 +11,6 @@ defineProps<{
 }>();
 
 const userStore = useUserStore();
-const isEditing = ref(false);
-
-const startEditing = () => {
-    isEditing.value = true;
-};
-
-const cancelEditing = () => {
-    isEditing.value = false;
-};
-
-const saveChanges = (newDescription: string) => {
-    isEditing.value = false;
-    functionUpdate(newDescription);
-};
 </script>
 
 <template>
@@ -45,7 +27,6 @@ const saveChanges = (newDescription: string) => {
                 </dt>
                 <dd class="ml-2 flex flex-col justify-between text-justify lg:flex-row">
                     <span
-                        v-if="!isEditing"
                         :class="[
                             'text-base font-normal',
                             userStore.isFarmer ? 'text-emerald-800' : 'text-sky-800',
@@ -53,29 +34,6 @@ const saveChanges = (newDescription: string) => {
                         ]"
                         >{{ description }}</span
                     >
-                    <Vinput v-if="isEditing && type == 'input'" width="w-56" />
-                    <VTextArea v-if="isEditing && type == 'textArea'" :model-value="description" width="w-56" />
-
-                    <div class="flex lg:flex-col gap-1 p-2">
-                        <VButton
-                            v-if="update && !isEditing"
-                            label="Actualizar"
-                            customClass=" w-28 py-1 hover:underline"
-                            @click="startEditing"
-                        />
-                        <VButton
-                            v-if="update && isEditing"
-                            label="Guardar"
-                            custom-class="w-28 py-1 hover:underline"
-                            @click="functionUpdate(description)"
-                        />
-                        <VButton
-                            v-if="isEditing"
-                            label="Cancelar"
-                            class="w-28 py-1 hover:underline"
-                            @click="cancelEditing"
-                        />
-                    </div>
                 </dd>
             </div>
         </dl>
