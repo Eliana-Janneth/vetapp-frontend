@@ -38,8 +38,8 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
             if (token) {
                 const user = localStorage.getItem('user');
                 const role = JSON.parse(user!).role;
-                if (role === 'farmer') return { name: 'animals.index' };
-                return { name: 'consults' };
+                if (role === 'farmer') router.push({ name: 'animals.index' });
+                else router.push({ name: 'consults' });
             }
         })
         .catch((error) => {

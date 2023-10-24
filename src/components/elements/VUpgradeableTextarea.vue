@@ -44,7 +44,7 @@ const cancel = () => {
             <button v-if="edit" @click="editMode = true">
                 <PencilSquareIcon :class="['h-6 w-6 font-bold text-orange-600']" />
             </button>
-        </div>
+        </div>  
         <div v-else>
             <textarea class="h-auto w-full resize-y rounded-md border p-2" type="text" v-model="text" />
 
