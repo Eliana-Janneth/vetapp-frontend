@@ -37,7 +37,7 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
     vetappApi
         .login(values)
         .then(() => {
-            router.push({ name: 'home' });
+            router.push({ name: 'animals.index' });
         })
         .catch((error) => {
             console.error('Error de inicio de sesión:', error);

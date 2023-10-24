@@ -32,34 +32,70 @@ vetappApi
         console.log(err);
     });
 
-
 const updateValue = (name: string, newValue: string) => {
     vetappApi.updateAnimal(animalId.value, { [name]: newValue }).then((res) => {
         animal.value = res;
     });
-}
+};
 </script>
 
 <template>
     <div>
-        <VButton custom-class="py-0 items-center" label="Regresar" type="submit" @click="$router.push({ name: 'animals.index' })" />
+        <VButton
+            custom-class="py-0 items-center"
+            label="Regresar"
+            type="submit"
+            @click="$router.push({ name: 'animals.index' })"
+        />
         <img class="h-20" :src="loader" v-if="animal === undefined" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else>
-            <div class="m-4 border border-x-2 border-emerald-200/50 p-2">
-
-                <!-- Input actualizable -->
-                <VUpgradeableInput :value="animal.name" @update="(newValue) => updateValue('name', newValue)" />
-
-                <VDetails class="border-t-0" label="Nombre" :description="animal.name" :update="true" />
-                <VDetails label="Especie" :description="animal.specie_name" />
-                <VDetails label="Raza" :description="animal.race_name" />
-                <VDetails label="Color" :description="animal.color" :update="true" />
-                <VDetails label="Género" :description="animal.gender" />
-                <VDetails label="Fecha de Nacimiento" :description="animal.birth_date" :update="true" />
-                <VDetails label="Peso" :description="animal.weight" :update="true" />
-                <VDetails label="Altura" :description="animal.height" :update="true" />
-                <VDetails class="border-b-0" label="Descripción" :description="animal.description" :update="true" />
+            <div class="m-4 gap-2 border border-x-2 border-emerald-200/50 p-2">
+                <VUpgradeableInput
+                    label="Nombre"
+                    :value="animal.name"
+                    @update="(newValue) => updateValue('name', newValue)"
+                />
+                <VUpgradeableInput
+                    label="Especie"
+                    :edit="false"
+                    :value="animal.specie_name"
+                />
+                <VUpgradeableInput
+                    label="Raza"
+                    :edit="false"
+                    :value="animal.race_name"
+                />
+                <VUpgradeableInput
+                    label="Color"
+                    :value="animal.color"
+                    @update="(newValue) => updateValue('name', newValue)"
+                />
+                <VUpgradeableInput
+                    label="Genero"
+                    :edit="false"
+                    :value="animal.gender"
+                />
+                <VUpgradeableInput
+                    label="Fecha de Nacimiento"
+                    :value="animal.birth_date"
+                    @update="(newValue) => updateValue('name', newValue)"
+                />
+                <VUpgradeableInput
+                    label="Peso"
+                    :value="animal.weight"
+                    @update="(newValue) => updateValue('name', newValue)"
+                />
+                <VUpgradeableInput
+                    label="Altura"
+                    :value="animal.height"
+                    @update="(newValue) => updateValue('name', newValue)"
+                />
+                <VUpgradeableInput
+                    label="Descipción"
+                    :value="animal.description"
+                    @update="(newValue) => updateValue('name', newValue)"
+                />
             </div>
 
             <div v-if="diagnosisAnimal" class="m-2 flex flex-col">
