@@ -84,9 +84,7 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
 
         await vetappApi.createAnimal(values);
         console.log(JSON.stringify(values, null, 2));
-    } catch (error) {
-     
-    }
+    } catch (error) {}
 });
 </script>
 
@@ -200,7 +198,11 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
                 :disabled="!meta.valid"
                 :class="['form-button-farmer ', !meta.valid && 'pointer-events-none opacity-50']"
             />
-            <VButton label="Cancelar" type="reset" />
+            <VButton
+                custom-class="py-0 items-center"
+                label="Cancelar"
+                @click="$router.push({ name: 'animals.index' })"
+            />
         </div>
     </form>
 </template>

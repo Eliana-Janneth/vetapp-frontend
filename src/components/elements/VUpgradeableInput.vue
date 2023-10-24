@@ -5,11 +5,13 @@ import { useStyleStore } from '@/stores';
 
 const emit = defineEmits(['update']);
 
+
 const props = defineProps<{
     value: string;
     label?: string;
     edit?: boolean;
-}>();
+}>
+();
 
 const text = ref(props.value);
 const styleStore = useStyleStore();

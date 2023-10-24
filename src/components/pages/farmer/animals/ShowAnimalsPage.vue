@@ -54,46 +54,40 @@ const updateValue = (name: string, newValue: string) => {
                 <VUpgradeableInput
                     label="Nombre"
                     :value="animal.name"
+                    :edit="true"
                     @update="(newValue) => updateValue('name', newValue)"
                 />
-                <VUpgradeableInput
-                    label="Especie"
-                    :edit="false"
-                    :value="animal.specie_name"
-                />
-                <VUpgradeableInput
-                    label="Raza"
-                    :edit="false"
-                    :value="animal.race_name"
-                />
+                <VUpgradeableInput label="Especie" :edit="false" :value="animal.specie_name" />
+                <VUpgradeableInput label="Raza" :edit="false" :value="animal.race_name" />
                 <VUpgradeableInput
                     label="Color"
                     :value="animal.color"
+                    :edit="true"
                     @update="(newValue) => updateValue('name', newValue)"
                 />
-                <VUpgradeableInput
-                    label="Genero"
-                    :edit="false"
-                    :value="animal.gender"
-                />
+                <VUpgradeableInput label="Genero" :edit="false" :value="animal.gender" />
                 <VUpgradeableInput
                     label="Fecha de Nacimiento"
                     :value="animal.birth_date"
+                    :edit="true"
                     @update="(newValue) => updateValue('name', newValue)"
                 />
                 <VUpgradeableInput
                     label="Peso"
                     :value="animal.weight"
+                    :edit="true"
                     @update="(newValue) => updateValue('name', newValue)"
                 />
                 <VUpgradeableInput
                     label="Altura"
                     :value="animal.height"
+                    :edit="true"
                     @update="(newValue) => updateValue('name', newValue)"
                 />
                 <VUpgradeableInput
                     label="Descipción"
                     :value="animal.description"
+                    :edit="true"
                     @update="(newValue) => updateValue('name', newValue)"
                 />
             </div>
