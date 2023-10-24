@@ -2,7 +2,7 @@
 import { useRoute } from 'vue-router';
 import { ref, computed } from 'vue';
 import { vetappApi } from '@/services';
-import { VDetails, VUpgradeableTextarea } from '@elements';
+import { VUpgradeableTextarea } from '@elements';
 import { formatDate } from '@/helpers';
 
 const route = useRoute();
@@ -33,17 +33,20 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
 <template>
     <div v-if="diagnosisAnimal" class="m-2 flex flex-col">
         <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
-            <div class=" mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
-                <VDetails
+            <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
+                <VUpgradeableTextarea
                     custom-class="font-semibold"
                     label="Fecha"
-                    :description="formatDate(diagnosisA.create_date)"
+                    :value="formatDate(diagnosisA.create_date)"
+                    :edit="false"
                 />
-                <VDetails
+                <VUpgradeableTextarea
                     v-if="diagnosisA.update_date != diagnosisA.create_date"
                     label="Fecha Modificación"
-                    :description="formatDate(diagnosisA.update_date)"
+                    :value="formatDate(diagnosisA.update_date)"
+                    :edit="false"
                 />
+
                 <VUpgradeableTextarea
                     label="Diagnostico"
                     :edit="true"
