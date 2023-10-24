@@ -1,5 +1,5 @@
 import { notify } from '@kyvg/vue3-notification';
-import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload, TCreateAvailabilityPayload } from './types';
+import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload } from './types';
 import { useUserStore, useStyleStore } from '@/stores';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -233,7 +233,7 @@ export const getWorkExperience = async () => {
         console.error('Error al realizar la solicitud:', error);
     }
 };
-export const updateAvailability = async (data: TCreateAvailabilityPayload) => {
+export const updateAvailability = async (data: Record<string, boolean>) => {
     const apiUrl = `${API_URL}/vet-availability/`;
     try {
         const response = await fetch(apiUrl, {

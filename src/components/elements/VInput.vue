@@ -24,6 +24,7 @@ withDefaults(
         type?: string;
         variant?: 'farmer' | 'vet' | 'base';
         width?: string;
+        checked?: boolean;
     }>(),
     {
         type: 'text',
@@ -49,6 +50,7 @@ withDefaults(
                 :type="type"
                 :name="name"
                 :value="modelValue"
+                :checked="checked"
                 @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
                 @focus="$emit('focus')"
                 @blur="$emit('blur')"

@@ -1,7 +1,7 @@
 import { notify } from '@kyvg/vue3-notification';
 import type { TOption as TAOption, TRegisterAnimalPayload } from './types';
 import type { TOption } from '@/types';
-import {useRouter} from 'vue-router';
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
@@ -32,8 +32,8 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
         const responseData = await response.json();
         console.log(JSON.stringify(responseData, null, 2));
         notify({
-            title: "Animal creado exitosamente🎉",
-            type: 'success'
+            title: 'Animal creado exitosamente🎉',
+            type: 'success',
         });
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
@@ -56,6 +56,7 @@ export const getAnimals = async () => {
         console.error('Error al cargar los datos:', error);
     }
 };
+
 export const getAnimal = async (id: string) => {
     try {
         const response = await fetch(`${API_URL}/animals/${id}/`, {
@@ -63,7 +64,8 @@ export const getAnimal = async (id: string) => {
                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
             },
         });
-        
+        if (response.status === 404) router.push({ name: 'notFound' });
+
         if (!response.ok) {
             router.push({ name: 'notFound' });
         }
@@ -73,6 +75,7 @@ export const getAnimal = async (id: string) => {
         console.error('Error al cargar los datos:', error);
     }
 };
+
 export const getAnimalName = async (name: string) => {
     try {
         const response = await fetch(`${API_URL}/animals/search/?name=${name}`, {
@@ -152,12 +155,11 @@ export const updateAnimal = async (id: string, data: Record<string, string>) => 
         // Si la respuesta es exitosa
         const responseData = await response.json();
         notify({
-            title: "Animal actualizado exitosamente🎉",
-            type: 'success'
+            title: 'Animal actualizado exitosamente🎉',
+            type: 'success',
         });
         return responseData;
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
-    
-}
+};
