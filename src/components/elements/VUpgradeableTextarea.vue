@@ -36,25 +36,25 @@ const cancel = () => {
             userStore.isVet ? 'border-sky-200/50' : 'border-emerald-200/50',
         ]"
     >
-        <span :class="['text-lg font-medium', userStore.isFarmer ? 'text-emerald-600' : 'text-sky-600']">
+        <span :class="['text-lg font-bold', userStore.isFarmer ? 'text-emerald-600' : 'text-sky-600']">
             {{ label }}</span
         >
         <div v-if="!editMode" class="flex items-center gap-2">
-            <span :class="['block font-medium', styleStore.getLabelStyle, customClass]">{{ value }}</span>
+            <span :class="['block font-medium text-justify', styleStore.getLabelStyle, customClass]">{{ value }}</span>
             <button v-if="edit" @click="editMode = true">
-                <PencilSquareIcon :class="['h-6 w-6 font-bold text-orange-600']" />
+                <PencilSquareIcon :class="['h-8 w-8 font-bold text-orange-600']" />
             </button>
         </div>  
         <div v-else>
-            <textarea class="h-auto w-full resize-y rounded-md border p-2" type="text" v-model="text" />
+            <textarea class="form-textarea h-auto w-full resize-y rounded-md border p-2" type="text" v-model="text" />
 
             <div>
                 <button @click="cancel">
-                    <XCircleIcon class="h-8 w-8 text-red-700 hover:text-red-500" />
+                    <XCircleIcon class="h-10 w-10 text-red-700 hover:text-red-500" />
                 </button>
 
                 <button @click="updateValue">
-                    <CheckCircleIcon class="h-8 w-8 text-green-700 hover:text-green-500" />
+                    <CheckCircleIcon class="h-10 w-10 text-green-700 hover:text-green-500" />
                 </button>
             </div>
         </div>
