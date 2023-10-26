@@ -1,6 +1,5 @@
 import { MainTemplate } from '@/components/template';
-import { FarmerPage, IndexAnimalsPage, ShowAnimalsPage,CreateAnimalsPage } from '@pages';
-// import { ShowAnimalsPage, AnimalsTemplate, ListAnimalPage, RegisterAnimalPage } from '@/components/pages/animalPages';
+import { FarmerPage, IndexAnimalsPage, ShowAnimalsPage,CreateAnimalsPage,ConsultsPage } from '@pages';
 import { RequestsTemplateFarmer } from '@/components/pages/farmerRequestsPages';
 
 export const farmerRoutes = [
@@ -8,32 +7,7 @@ export const farmerRoutes = [
     { name: 'animals.index', path: '/animales', component: IndexAnimalsPage, meta: { layout: MainTemplate } },
     { name: 'animals.show', path: '/animal/:id', component: ShowAnimalsPage, meta: { layout: MainTemplate } },
     { name: 'animals.create', path: '/registrar-animal', component: CreateAnimalsPage, meta: { layout: MainTemplate } },
-    // {
-    //     name: 'animals',
-    //     path: '/animales',
-    //     component: AnimalsTemplate,
-    //     meta: { layout: MainTemplate },
-    //     redirect: { name: 'animals.list' },
-    //     children: [
-    //         {
-    //             name: 'animals.register',
-    //             path: 'registrar-animal',
-    //             component: RegisterAnimalPage,
-    //         },
-    //         {
-    //             name: 'animals.list',
-    //             path: 'listar-animales',
-    //             component: ListAnimalPage,
-    //             children: [
-    //                 {
-    //                     name: 'animals.show',
-    //                     path: 'animales/:id',
-    //                     component: ShowAnimalsPage,
-    //                 },
-    //             ],
-    //         },
-    //     ],
-    // },
+    {name: 'consults.index', path: '/consultas', component: ConsultsPage, meta: { layout: MainTemplate } },
     {
         name: 'requestsFarmer',
         path: '/veterinarios',
