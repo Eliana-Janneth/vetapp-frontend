@@ -32,14 +32,14 @@ vetappApi
                             <tr>
                                 <th
                                     scope="col"
-                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-emerald-900 sm:pl-3"
+                                    class="py-3.5 pl-4 pr-3 text-left text-md font-semibold text-emerald-900 sm:pl-3"
                                 >
                                     Nombre
                                 </th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-emerald-900">
+                                <th scope="col" class="px-3 py-3.5 text-left text-md font-semibold text-emerald-900">
                                     Perfil
                                 </th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-emerald-900">
+                                <th scope="col" class="px-3 py-3.5 text-left text-md font-semibold text-emerald-900">
                                     Consultar
                                 </th>
                             </tr>
@@ -47,7 +47,7 @@ vetappApi
                         <tbody class="bg-white">
                             <tr v-for="vet in vetAvailables" :key="vet.id" class="even:bg-emerald-50">
                                 <td
-                                    class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-emerald-900 sm:pl-3"
+                                    class="whitespace-nowrap py-4 pl-4 pr-3 text-md font-medium text-emerald-900 sm:pl-3"
                                 >
                                     {{ vet.first_name + ' ' + vet.last_name }}
                                 </td>

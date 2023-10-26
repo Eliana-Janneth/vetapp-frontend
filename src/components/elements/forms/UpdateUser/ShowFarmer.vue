@@ -50,7 +50,6 @@ const email = defineComponentBinds('email');
                 custom-class="uppercase font-semibold text-xl"
                 variant="farmer"
                 :label="`${values.first_name} ${values.last_name}`"
-                name="first_name"
             />
         </div>
         <div class="flex flex-col gap-2">
@@ -58,13 +57,12 @@ const email = defineComponentBinds('email');
                 v-bind="document"
                 variant="farmer"
                 :label="values.document_number"
-                name="document_number"
                 :icon="IdentificationIcon"
             />
-            <VSpan v-bind="email" variant="farmer" :label="values.email" name="email" :icon="EnvelopeIcon" />
-            <VSpan v-bind="phone" variant="farmer" :label="values.phone_number" name="phone_number" :icon="PhoneIcon" />
-            <VSpan v-bind="address" variant="farmer" :label="values.address" name="address" :icon="MapPinIcon" />
-            <VSpan v-bind="city" variant="farmer" :label="values.city" name="city" :icon="MapIcon" />
+            <VSpan v-bind="email" variant="farmer" :label="values.email"  :icon="EnvelopeIcon" />
+            <VSpan v-bind="phone" variant="farmer" :label="values.phone_number" :icon="PhoneIcon" />
+            <VSpan v-bind="address" variant="farmer" :label="values.address"  :icon="MapPinIcon" />
+            <VSpan v-bind="city" variant="farmer" :label="values.city" :icon="MapIcon" />
         </div>
     </form>
 </template>
