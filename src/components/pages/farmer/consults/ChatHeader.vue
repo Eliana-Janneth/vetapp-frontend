@@ -20,7 +20,7 @@ defineProps <{
             </div>
         </div>
 
-        <MagnifyingGlassIcon class="mr-4 w-6 text-gray-500" />
+        <MagnifyingGlassIcon class="lg:mr-2 w-6 text-gray-500" />
         <EllipsisVerticalIcon class="w-6 text-gray-500" />
     </div>
 </template>
