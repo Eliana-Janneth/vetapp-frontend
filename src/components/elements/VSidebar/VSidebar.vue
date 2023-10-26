@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { notify } from '@kyvg/vue3-notification';
 import { useUserStore } from '@/stores';
 import VPopover from '../VPopover.vue';
 import VItem from './VItem.vue';
 import VDropdown from './VDropdown.vue';
 import { ref } from 'vue';
 import {
-    HomeIcon,
+    
     ChatBubbleLeftEllipsisIcon,
     ArrowPathRoundedSquareIcon,
     StarIcon,
     ChevronUpIcon,
-    UserGroupIcon
+    UserGroupIcon,
 } from '@heroicons/vue/24/solid';
 
 const userStore = useUserStore();
@@ -22,23 +21,14 @@ const variantProfile = {
 const variant = ref(userStore.isFarmer ? 'farmer' : 'vet');
 
 const farmerSidebarItems = ref([
-    { route: '', label: 'Home', icon: HomeIcon },
-    { route: 'chat', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
-    { route: 'requests', label: 'Veterinarios', icon: UserGroupIcon },
-    { route: 'animals', label: 'Mis animales', icon: StarIcon },
+    { route: 'animals.index', label: 'Mis animales', icon: StarIcon },
+    { route: 'consults.index', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
+    { route: 'requestsFarmer', label: 'Veterinarios', icon: UserGroupIcon },
 ]);
 const vetSidebarItems = ref([
-    { route: '', label: 'Home', icon: HomeIcon },
     { route: 'consults', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
-    { route: '', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
+    { route: 'requestsVet', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
 ]);
-
-const push = (type: 'success' | 'error' | 'info' | 'warn') => {
-    notify({
-        title: 'Vue 3 notification 🎉',
-        type
-    });
-};
 </script>
 
 <template>
@@ -72,50 +62,13 @@ const push = (type: 'success' | 'error' | 'info' | 'warn') => {
             </ul>
         </div>
 
-        <button
-            @click="push('success')"
-            :class="[
-                'flex w-full items-center justify-between gap-4 p-4',
-                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
-            ]"
-        >
-            <span class="flex font-semibold">success</span>
-        </button>
-        <button
-            @click="push('error')"
-            :class="[
-                'flex w-full items-center justify-between gap-4 p-4',
-                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
-            ]"
-        >
-            <span class="flex font-semibold">error</span>
-        </button>
-        <button
-            @click="push('info')"
-            :class="[
-                'flex w-full items-center justify-between gap-4 p-4',
-                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
-            ]"
-        >
-            <span class="flex font-semibold">info</span>
-        </button>
-        <button
-            @click="push('warn')"
-            :class="[
-                'flex w-full items-center justify-between gap-4 p-4',
-                userStore.isFarmer ? 'text-emerald-200 hover:bg-emerald-700' : 'text-sky-200 hover:bg-sky-700',
-            ]"
-        >
-            <span class="flex font-semibold">warn</span>
-        </button>
-
         <div>
             <VPopover placement="top-end">
                 <template #reference="{ toggle }">
                     <button
                         @click="toggle"
                         :class="[
-                            'flex w-full items-center gap-4 p-4 justify-between',
+                            'flex w-full items-center justify-between gap-4 p-4',
                             userStore.isFarmer
                                 ? 'text-emerald-200 hover:bg-emerald-700'
                                 : 'text-sky-200 hover:bg-sky-700',

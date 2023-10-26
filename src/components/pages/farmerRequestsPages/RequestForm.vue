@@ -1,0 +1,78 @@
+<script setup lang="ts">
+import { VTextArea, VButton, VSelect } from '@elements';
+import {ref, onMounted, reactive} from 'vue';
+import { TRegisterFarmerRequestPayload, vetappApi } from '@/services';
+import type { TRegisterFarmerRequest } from './types';
+import * as yup from 'yup';
+import { useRoute } from 'vue-router';
+import { useForm } from 'vee-validate';
+
+const route = useRoute();
+
+const values: TRegisterFarmerRequestPayload = reactive({
+    animal: '',
+    message: '',
+    veterinarian: '',
+});
+
+const validationSchema = yup.object({
+    animal: yup.string().required('Por favor seleccione un animal'),
+    message: yup.string().required('Por favor ingrese un mensaje'),
+});
+
+const { defineComponentBinds, errors,  handleSubmit } = useForm<TRegisterFarmerRequest>({
+    validationSchema,
+});
+
+const animals = ref<{ text: string; value: string }[]>([]);
+
+const animal = defineComponentBinds('animal');
+const message = defineComponentBinds('message');
+
+
+onMounted(async () => {
+    try {
+        const response = await vetappApi.getAnimalsRequest();
+        animals.value = response;
+        console.log(animals.value);
+    } catch (error) {
+        console.error('Error al cargar los datos:');
+    }
+});
+
+const onSubmit = handleSubmit(async (registerValues: TRegisterFarmerRequest) => {
+    try {
+        values.animal = registerValues.animal;
+        values.message = registerValues.message;
+        values.veterinarian = route.params.id.toString();
+        await vetappApi.createFarmerRequest(values);
+        console.log('Solicitud enviada');
+
+
+
+    } catch (error) {
+        console.error('Error al enviar la solicitud:', error);
+    }
+});
+</script>
+
+<template>
+    <div class="flex justify-center p-6">
+        <form class="flex w-96 flex-col items-center gap-4" @submit="onSubmit">
+            <VTextArea
+            v-bind="message"
+                label="Escribir mensaje"
+                placeholder="Escribe el motivo por el cual quieres realizar una consulta con el veterinario"
+            />
+            <VSelect
+                v-bind="animal"
+                placeholder="Seleccione el animal"
+                label="Animal a consultar"
+                :options="animals"
+                :error="errors.animal"
+            />
+
+            <VButton label="Enviar Solicitud" type="submit" />
+        </form>
+    </div>
+</template>

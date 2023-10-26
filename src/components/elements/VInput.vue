@@ -23,16 +23,19 @@ withDefaults(
         placeholder?: string;
         type?: string;
         variant?: 'farmer' | 'vet' | 'base';
+        width?: string;
+        checked?: boolean;
     }>(),
     {
         type: 'text',
         variant: 'base',
+        width: 'w-full',
     },
 );
 </script>
 
 <template>
-    <div class="relative w-full">
+    <div :class="['relative', width ]">
         <span v-if="label" :class="['block text-lg font-medium', styleStore.getLabelStyle]">{{ label }}</span>
 
         <div class="relative">
@@ -47,6 +50,7 @@ withDefaults(
                 :type="type"
                 :name="name"
                 :value="modelValue"
+                :checked="checked"
                 @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
                 @focus="$emit('focus')"
                 @blur="$emit('blur')"

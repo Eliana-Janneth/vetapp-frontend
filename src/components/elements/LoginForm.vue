@@ -15,10 +15,7 @@ const values: TLoginPayload = reactive({
 });
 
 const schema = yup.object({
-    username: yup
-        .string()
-        .required('Por favor ingrese un correo')
-        .email('Debes ingresar un correo valido "alguien@example.com"'),
+    username: yup.string().required('Por favor ingrese un correo').email('Debes ingresar un correo valido'),
     password: yup.string().required('Por favor ingrese una contraseña'),
 });
 
@@ -37,7 +34,13 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
     vetappApi
         .login(values)
         .then(() => {
-            router.push({ name: 'home' });
+            const token = localStorage.getItem('accessToken');
+            if (token) {
+                const user = localStorage.getItem('user');
+                const role = JSON.parse(user!).role;
+                if (role === 'farmer') router.push({ name: 'animals.index' });
+                else router.push({ name: 'consults' });
+            }
         })
         .catch((error) => {
             console.error('Error de inicio de sesión:', error);

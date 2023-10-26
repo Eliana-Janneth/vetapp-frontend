@@ -13,3 +13,6 @@ export { default as VTabButton } from './VTabButton.vue';
 export { default as VDetailsEdit } from './VDetailsEdit.vue';
 export { default as VRouter } from './VRouter.vue';
 export { default as VDetails } from './VDetails.vue';
+export { default as VCard } from './VCard.vue';
+export { default as VUpgradeableInput } from './VUpgradeableInput.vue';
+export { default as VUpgradeableTextarea } from './VUpgradeableTextarea.vue';

@@ -45,6 +45,7 @@ export type TFarmerInformationPayload = {
     repeat_password: string;
 };
 export type TVetInformationPayload = {
+    id: string;
     first_name: string;
     last_name: string;
     email: string;
@@ -56,6 +57,7 @@ export type TVetInformationPayload = {
     repeat_password: string;
     license_number: string;
     license_expiry_date: string;
+    available: boolean;
 };
 export type TWorkExperiencePayload = {
     title: string;
@@ -96,3 +98,23 @@ export type TDiagnosisPayload = {
     treatment: string;
     create_date: string;
 };
+
+export type TRegisterFarmerRequestPayload = {
+    message: string;
+    animal: string;
+    veterinarian: string;
+}
+
+export type TCreateAvailabilityPayload={
+    available: boolean;
+}
+
+export type TRequestFarmerPayload = {
+    id: string;
+    message: string;
+    animal_name: string;
+    specie_name: string;
+    race_name: string;
+    farmer_name: string;
+    status: string;
+}

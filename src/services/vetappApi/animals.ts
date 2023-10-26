@@ -1,6 +1,9 @@
 import { notify } from '@kyvg/vue3-notification';
 import type { TOption as TAOption, TRegisterAnimalPayload } from './types';
 import type { TOption } from '@/types';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -27,11 +30,10 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
         }
         // Si la respuesta es exitosa
         const responseData = await response.json();
-        alert('Animal registrado correctamente');
         console.log(JSON.stringify(responseData, null, 2));
         notify({
-            title: "Animal creado exitosamente🎉",
-            type: 'success'
+            title: 'Animal creado exitosamente🎉',
+            type: 'success',
         });
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
@@ -54,6 +56,7 @@ export const getAnimals = async () => {
         console.error('Error al cargar los datos:', error);
     }
 };
+
 export const getAnimal = async (id: string) => {
     try {
         const response = await fetch(`${API_URL}/animals/${id}/`, {
@@ -61,8 +64,10 @@ export const getAnimal = async (id: string) => {
                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
             },
         });
+        if (response.status === 404) router.push({ name: 'notFound' });
+
         if (!response.ok) {
-            throw new Error('No se pudo cargar los datos');
+            router.push({ name: 'notFound' });
         }
         const data = await response.json();
         return data;
@@ -70,6 +75,7 @@ export const getAnimal = async (id: string) => {
         console.error('Error al cargar los datos:', error);
     }
 };
+
 export const getAnimalName = async (name: string) => {
     try {
         const response = await fetch(`${API_URL}/animals/search/?name=${name}`, {
@@ -122,5 +128,38 @@ export const getRaces = async (specieId: string): Promise<TOption[]> => {
         console.error('Error al cargar los datos:', error);
 
         return [];
+    }
+};
+
+export const updateAnimal = async (id: string, data: Record<string, string>) => {
+    const apiUrl = `${API_URL}/animals/${id}/`;
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                alert(`Error del servidor: ${errorData.response}`);
+            } else {
+                alert('Error en la solicitud al servidor.');
+            }
+            return;
+        }
+        // Si la respuesta es exitosa
+        const responseData = await response.json();
+        notify({
+            title: 'Animal actualizado exitosamente🎉',
+            type: 'success',
+        });
+        return responseData;
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
     }
 };

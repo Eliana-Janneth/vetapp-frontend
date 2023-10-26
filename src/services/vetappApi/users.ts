@@ -233,3 +233,31 @@ export const getWorkExperience = async () => {
         console.error('Error al realizar la solicitud:', error);
     }
 };
+export const updateAvailability = async (data: Record<string, boolean>) => {
+    const apiUrl = `${API_URL}/vet-availability/`;
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                alert(`Error del servidor: ${errorData.response}`);
+            } else {
+                alert('Error en la solicitud al servidor.');
+            }
+            return;
+        }
+        // Si la respuesta es exitosa
+        const responseData = await response.json();
+        console.log(JSON.stringify(responseData, null, 2));
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
+};

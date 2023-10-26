@@ -5,6 +5,9 @@ defineProps<{
     customClass?: string;
     label: string;
     description: string;
+    update?: boolean;
+    type?: 'input' | 'textArea';
+    functionUpdate?: Function | any;
 }>();
 
 const userStore = useUserStore();
@@ -13,7 +16,7 @@ const userStore = useUserStore();
 <template>
     <div
         :class="[
-            'w-full border border-x-0 border-t-0',
+            'mx-auto w-full border border-x-0 border-t-0 lg:max-w-3xl',
             userStore.isVet ? 'border-sky-200/50' : 'border-emerald-200/50',
         ]"
     >
@@ -22,7 +25,7 @@ const userStore = useUserStore();
                 <dt :class="['text-lg font-medium', userStore.isFarmer ? 'text-emerald-600' : 'text-sky-600']">
                     {{ label }}
                 </dt>
-                <dd class="ml-2 text-justify">
+                <dd class="ml-2 flex flex-col justify-between text-justify lg:flex-row">
                     <span
                         :class="[
                             'text-base font-normal',
