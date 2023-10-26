@@ -28,7 +28,6 @@ export const register = async (data: TRegisterPayload) => {
     } else if (response.status === 201) {
         alert(response.message);
     } else {
-        // alert(response.message);
         notify({
             title: 'Authorization',
             text: 'You have been logged in!',
@@ -58,7 +57,6 @@ export const login = async (data: TLoginPayload) => {
             }
             return;
         }
-        // Si la respuesta es exitosa
         const responseData = await response.json();
         const userStore = useUserStore();
         const styleStore = useStyleStore();
@@ -168,7 +166,6 @@ export const createWorkExperiencie = async (data: TWorkExperiencePayload) => {
             }
             return;
         }
-        // Si la respuesta es exitosa
         const responseData = await response.json();
         console.log(JSON.stringify(responseData, null, 2));
     } catch (error) {
@@ -254,8 +251,7 @@ export const updateAvailability = async (data: Record<string, boolean>) => {
             }
             return;
         }
-        // Si la respuesta es exitosa
-        const responseData = await response.json();
+            const responseData = await response.json();
         console.log(JSON.stringify(responseData, null, 2));
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);

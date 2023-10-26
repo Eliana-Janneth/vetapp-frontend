@@ -47,7 +47,7 @@ const updateValue = (name: string, newValue: string) => {
             type="submit"
             @click="$router.push({ name: 'animals.index' })"
         />
-        <img class="h-20" :src="loader" v-if="animal === undefined" />
+        <img class="h-20" :src="loader" v-if="animal === undefined" alt="Cargando información"/>
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else>
             <div class="m-4 gap-2 border border-x-2 border-emerald-200/50 p-2">

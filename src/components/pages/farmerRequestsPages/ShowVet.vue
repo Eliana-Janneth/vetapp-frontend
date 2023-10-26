@@ -21,7 +21,7 @@ vetappApi
     });
 </script>
 <template>
-    <img class="h-20" :src="loader" v-if="informationVet === undefined" />
+    <img class="h-20" :src="loader" v-if="informationVet === undefined" alt="Cargando información"/>
     <p v-else-if="informationVet === null">El Veterinario no existe</p>
     <div v-else class="m-4">
         <form class="mx-auto flex w-80 flex-col items-center gap-2 rounded-lg bg-emerald-100/70 p-2">

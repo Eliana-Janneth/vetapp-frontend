@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { MagnifyingGlassIcon, EllipsisVerticalIcon } from '@heroicons/vue/24/outline';
 import PersonOnline from './PersonOnline.vue';
 import ChatList from './ChatList.vue';
 import LeftMessage from './LeftMessage.vue';

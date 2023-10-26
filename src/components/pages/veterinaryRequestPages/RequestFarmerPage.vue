@@ -25,7 +25,7 @@ const onSubmit = async (id: string, value: boolean) => {
 };
 </script>
 <template>
-    <img class="h-20" :src="loader" v-if="farmerRequests === undefined" />
+    <img class="h-20" :src="loader" v-if="farmerRequests === undefined" alt="Cargando información"/>
     <p v-else-if="farmerRequests === null">No hay solicitudes nuevas</p>
     <div v-else class="inline-block" v-for="request in farmerRequests" :key="request.id">
         <div class="mx-auto mb-2 flex w-72 flex-col items-center gap-2">

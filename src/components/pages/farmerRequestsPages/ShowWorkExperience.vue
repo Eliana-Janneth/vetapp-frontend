@@ -26,7 +26,7 @@ vetappApi
 </script>
 
 <template>
-    <img class="h-20" :src="loader" v-if="workExperience === undefined" />
+    <img class="h-20" :src="loader" v-if="workExperience === undefined" alt="Cargando información"/>
     <p v-else-if="workExperience === null">El Veterinario no tiene experiencia laboral</p>
     <div v-else class="inline-block" v-for="work in workExperience" :key="work.title">
         <form class="mx-auto mb-2 ml-2 mr-2 flex w-60 flex-col items-center gap-4 rounded-lg bg-emerald-100/70 p-2">
