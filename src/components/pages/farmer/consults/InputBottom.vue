@@ -3,7 +3,7 @@ import { CameraIcon, ClipboardIcon } from '@heroicons/vue/24/outline';
 </script>
 
 <template>
-    <div class="flex border-t px-10 py-6">
+    <div class="flex h-auto border-t px-10 py-6">
         <div class="relative mr-2 w-full">
             <div class="border-1 flex items-center rounded border">
                 <input
