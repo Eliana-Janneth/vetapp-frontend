@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ShowFarmer, FormFarmer } from '../elements/forms/UpdateUser';
+import { ShowFarmer, FormFarmer } from '@elements/forms/UpdateUser';
 </script>
 
 <template>

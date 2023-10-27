@@ -22,10 +22,4 @@ export const useStyleStore = defineStore({
         getTabButtonStyle: (state) => buttonTab({ intent: state.role }), 
         getIconStyle: (state) => icon({ intent: state.role }),
       },
-    actions: {
-        create(data: { token: string; user: { name: string; role: 'farmer' | 'veterinarian' } }) {
-            this.role = data.user.role;
-            if (data.user.role === null) this.role = 'base';
-        },
-    },
 });

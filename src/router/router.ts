@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router';
 import { guestGuard, authGuard } from './middlewares';
-import { WelcomePage, RegisterPage, LoginPage, NotFoundPage } from '@pages';
+import { WelcomePage, RegisterPage, LoginPage, NotFoundPage, ProfilePage } from '@pages';
+import { MainTemplate } from '@/components/template';
 import { farmerRoutes, vetRoutes } from './routes';
 
 const routes = [
     { name: 'welcome', path: '/', component: WelcomePage },
     { name: 'login', path: '/iniciar-sesion', component: LoginPage },
     { name: 'register', path: '/registrarse', component: RegisterPage },
+    { name: 'profile' , path: '/perfil', component: ProfilePage, meta: { layout: MainTemplate } },
     ...farmerRoutes,
     ...vetRoutes,
     { path: '/:pathMatch(.*)*', name: 'notFound', component: NotFoundPage },

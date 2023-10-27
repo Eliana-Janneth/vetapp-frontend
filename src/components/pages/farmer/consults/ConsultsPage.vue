@@ -30,7 +30,7 @@ import ChatHeader from './ChatHeader.vue';
             </div>
             <InputBottom />
         </div>
-        <div class="w-96 bg-white p-4">
+        <div class="w-full lg:w-96 bg-white p-4">
             <h3 class="mb-8 text-2xl">Chat en línea</h3>
             <div class="mb-4 flex w-full overflow-auto">
                 <PersonOnline name="Eliana" image="https://i.pravatar.cc/300" />

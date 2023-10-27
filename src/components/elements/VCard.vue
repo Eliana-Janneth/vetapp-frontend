@@ -1,41 +1,50 @@
 <script setup lang="ts">
-import { FunctionalComponent } from 'vue';
-import VSpan from './VSpan.vue';
-defineEmits(['update:modelValue', 'focus', 'blur','accept','reject']);
-
-defineOptions({
-    inheritAttrs: false,
-});
+import { useUserStore } from '@/stores';
+import { twMerge } from 'tailwind-merge';
+import { hasSlotContent } from '@/helpers';
+import VSkeleton from './VSkeleton.vue';
 
 defineProps<{
-    customClass?: string;
-    icon?: FunctionalComponent;
-    farmer?: string;
-    message?: string;
-    race?: string;
-    specie?: string;
-    nameAnimal?: string;
+    loading?: boolean;
+    class?: string;
 }>();
 
+const user = useUserStore();
 
+const styles = {
+    farmer: {
+        container: 'bg-emerald-100/70',
+        header: 'text-emerald-100 bg-emerald-500 px-[18px] flex items-center gap-1 py-1',
+        body: 'border-emerald-200',
+        loader: 'bg-emerald-300',
+    },
+    vet: {
+        container: 'bg-sky-100/70',
+        header: 'text-sky-100 bg-sky-500 px-[18px] flex items-center gap-1 py-1',
+        body: 'border-sky-200',
+        loader: 'bg-sky-300',
+    },
+};
+
+const style = styles[user.role];
 </script>
 
 <template>
-    <div class="flex  justify-center bg-white ">
-        <div class="w-64 overflow-hidden rounded shadow-lg bg-sky-100/70">
-            <div class="px-6 py-4 items-center flex flex-col">
-                <div class="mb-2 text-xl font-bold text-sky-700">{{ farmer }}</div>
-                <p class="text-base text-sky-900">{{ message }}</p>
-            </div>
-            <div class="px-6 py-4">
-                <VSpan name="Animal" :label="nameAnimal" />
-                <VSpan name="Especie" :label="specie" />
-                <VSpan name="Raza" :label="race" />
-            </div>
-            <div class="flex justify-between px-6 py-4">
-                <button class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700" @click="$emit('accept')">Aceptar</button>
-                <button class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700" @click="$emit('reject')">Rechazar</button>
-            </div>
-        </div>
+    <div :class="twMerge(style.container, 'w-fit overflow-hidden rounded-md shadow flex flex-col', $props.class, $props.loading && 'lg:w-[200px] w-[200px]')">
+        <header v-if="hasSlotContent($slots.header)" :class="twMerge(style.header, 'font-semibold')">
+            <VSkeleton v-if="loading" :class="[style.loader, 'h-6']" />
+            <slot v-else name="header" />
+        </header>
+
+        <main :class="['flex flex-col gap-1 border-2 px-4 py-2 h-full rounded-b-md', style.body]">
+            <template v-if="loading">
+                <VSkeleton :class="[style.loader, 'h-5']" />
+                <VSkeleton :class="[style.loader, 'h-5 w-[80%]']" />
+                <VSkeleton :class="[style.loader, 'h-5 w-[60%]']" />
+                <VSkeleton :class="[style.loader, 'h-5 w-[70%]']" />
+                <VSkeleton :class="[style.loader, 'h-5 w-[90%]']" />
+            </template>
+            <slot v-else />
+        </main>
     </div>
 </template>

@@ -12,7 +12,7 @@ const variant = userStore.role;
 
 const variantClass = {
     farmer: 'text-md flex w-full justify-center hover:bg-emerald-600 hover:text-emerald-200',
-    veterinarian: 'text-md flex w-full justify-center hover:bg-sky-600 hover:text-sky-200',
+    vet: 'text-md flex w-full justify-center hover:bg-sky-600 hover:text-sky-200',
 };
 
 const onLogout = async () => {

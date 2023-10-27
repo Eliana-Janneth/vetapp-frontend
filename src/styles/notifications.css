@@ -1,25 +1,22 @@
 .my-notification {
     border-radius: 10px;
     padding: 10px 20px;
-
-  .notification-title {
-        font-size: medium;
-    }
-
-  .notification-content {
-        font-size: medium;
-    }
-
-  &.success {
-        background: #4ade80;
-    }
-    &.info {
-        background: #2dd4bf;
-    }
-    &.error {
-        background: #f87171;
-    }
-    &.warn {
-        background: #fde047;
-    }
+}
+.my-notification .notification-title {
+    font-size: medium;
+}
+.my-notification .notification-content {
+    font-size: medium;
+}
+.my-notification.success {
+    background: #4ade80;
+}
+.my-notification.info {
+    background: #2dd4bf;
+}
+.my-notification.error {
+    background: #f87171;
+}
+.my-notification.warn {
+    background: #fde047;
 }

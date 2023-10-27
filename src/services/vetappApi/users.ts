@@ -63,7 +63,7 @@ export const login = async (data: TLoginPayload) => {
         const userStore = useUserStore();
         const styleStore = useStyleStore();
         userStore.create(responseData);
-        styleStore.create(responseData);
+        styleStore.role = responseData.user.role;
         notify({
             title: "Usuario Logueado exitosamente🎉",
             type: 'success'

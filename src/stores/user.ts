@@ -2,14 +2,14 @@ import { defineStore } from 'pinia';
 
 type UserState = {
     name: string;
-    role: string;
+    role: 'farmer' | 'vet';
     token: string | null;
 };
 
 export const useUserStore = defineStore('user', {
     state: (): UserState => ({
         name: '',
-        role: '',
+        role: 'farmer',
         token: '',
     }),
     getters: {
@@ -26,22 +26,17 @@ export const useUserStore = defineStore('user', {
             return this.role === 'farmer';
         },
         isVet(): boolean {
-            return this.role === 'veterinarian';
+            return this.role === 'vet';
         },
-        getProfile(): any {
-            if (this.role) return this.role;
-            else return 'base';
-        }
     },
     actions: {
-        create(data: { token: string; user: { name: string; role: 'farmer' | 'veterinarian' } }) {
+        create(data: { token: string; user: { name: string; role: string } }) {
             this.name = data.user.name;
-            this.role = data.user.role;
+            this.role = data.user.role === 'farmer' ? 'farmer' : 'vet';
             this.token = data.token;
 
             localStorage.setItem('accessToken', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
-        
         },
     },
 });
