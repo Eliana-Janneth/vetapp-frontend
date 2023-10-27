@@ -5,3 +5,4 @@ export { default as WelcomePage } from './WelcomePage.vue';
 export { default as FarmerPage } from './FarmerPage.vue';
 export {default as ProfilePage} from './ProfilePage.vue';
 export * from './farmer';
+export * from './vet';

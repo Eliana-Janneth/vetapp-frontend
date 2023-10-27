@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import loader from '@/assets/loader.svg';
 import { vetappApi } from '@/services';
 import { EyeIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
-import { VInput, VButton } from '@elements';
+import { VInput, VButton, VTitle} from '@elements';
 
 const searchQuery = ref<string>('');
 const animals = ref();
@@ -28,8 +28,8 @@ getAnimals();
 </script>
 
 <template>
-    <h1 class="mb-4 text-2xl font-bold text-emerald-600">Mis animales</h1>
-
+    <VTitle >Mis animales</VTitle>
+    
     <div class="m-4 ml-0 flex w-full items-center justify-between gap-2">
         <div class="flex items-center gap-4">
             <VInput

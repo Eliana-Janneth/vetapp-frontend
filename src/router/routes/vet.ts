@@ -5,10 +5,12 @@ import {
     MedicalHistoryPage,
 } from '@/components/pages/consultsPages';
 import { InformationAcademic, InformationVet, ShowVet, WorkExperience } from '@/components/pages/veterinarianPages';
-import { RequestsTemplateVet } from '@/components/pages/veterinaryRequestPages';
 import { MainTemplate } from '@/components/template';
+import { PatientsPage, RequestsFarmerPage } from '@pages';
 
 export const vetRoutes = [
+    { name: 'patients.index', path: '/pacientes', component: PatientsPage, meta: { layout: MainTemplate } },
+
     {
         name: 'profileVet',
         path: '/perfil-veterinario',
@@ -57,17 +59,9 @@ export const vetRoutes = [
         meta: { layout: MainTemplate },
     },
     {
-        name: 'requestsVet',
+        name: 'requests.show',
         path: '/solicitudes-granjeros',
-        component: RequestsTemplateVet,
+        component: RequestsFarmerPage,
         meta: { layout: MainTemplate },
-        redirect: { name: 'requestsVet.requests' },
-        children: [
-            {
-                name: 'requestsVet.requests',
-                path: 'lista',
-                component: () => import('@/components/pages/veterinaryRequestPages/RequestFarmerPage.vue'),
-            },
-        ],
     },
 ];

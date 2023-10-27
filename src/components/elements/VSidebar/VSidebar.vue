@@ -5,7 +5,6 @@ import VItem from './VItem.vue';
 import VDropdown from './VDropdown.vue';
 import { ref } from 'vue';
 import {
-    
     ChatBubbleLeftEllipsisIcon,
     ArrowPathRoundedSquareIcon,
     StarIcon,
@@ -27,7 +26,7 @@ const farmerSidebarItems = ref([
 ]);
 const vetSidebarItems = ref([
     { route: 'consults', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
-    { route: 'requestsVet', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
+    { route: 'requests.show', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
 ]);
 </script>
 
