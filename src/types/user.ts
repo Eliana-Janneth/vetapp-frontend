@@ -37,3 +37,9 @@ export type TAcademicInformationPayload = {
     currently_studying: boolean;
     currently: string;
 };
+
+export type TRegisterFarmerRequest={
+    message : string;
+    animal : string;
+    vet:    string; 
+}

@@ -118,3 +118,9 @@ export type TRequestFarmerPayload = {
     farmer_name: string;
     status: string;
 }
+
+export type TRegisterFarmerRequest={
+    message : string;
+    animal : string;
+    vet:    string; 
+}
