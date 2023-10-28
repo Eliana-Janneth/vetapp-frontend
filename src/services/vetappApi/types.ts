@@ -77,7 +77,6 @@ export type TAcademicInformationPayload = {
     country: string;
     academic_degree: string;
     currently_studying: boolean;
-    currently: string;
 };
 export type TAnimalPayload = {
     birth_date: string;

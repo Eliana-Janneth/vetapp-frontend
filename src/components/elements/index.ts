@@ -19,5 +19,9 @@ export { default as VCard } from './VCard.vue';
 export { default as VTitle } from './VTitle.vue';
 export { default as VUpgradeableInput } from './VUpgradeableInput.vue';
 export { default as VUpgradeableTextarea } from './VUpgradeableTextarea.vue';
-export { default as VSkeleton} from './VSkeleton.vue';
-export { default as VLoader} from './VLoader.vue';
+export { default as VSkeleton } from './VSkeleton.vue';
+export { default as VLoader } from './VLoader.vue';
+export { default as VCheckbox } from './VCheckbox.vue';
+export { default as VTextField } from './VTextField.vue';
+
+export * from './forms';

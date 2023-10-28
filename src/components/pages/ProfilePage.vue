@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { VText, VCard, VTitle, VLoader, VButton } from '@elements';
+import { VText, VCard, VTitle, VLoader, VButton, VetAcademicForm } from '@elements';
 import { vetappApi } from '@/services';
-import { SModalCard } from '@placetopay/spartan-vue';
+import { SModal } from '@placetopay/spartan-vue';
 import { ref } from 'vue';
 import type { TAcademicInformationPayload, TWorkExperiencePayload } from '@/types';
 import { UserCircleIcon, BuildingOfficeIcon, BuildingLibraryIcon } from '@heroicons/vue/24/solid';
@@ -28,6 +28,7 @@ const academicInfo = ref<TAcademicInformationPayload[]>([]);
 const workExperience = ref<TWorkExperiencePayload[]>([]);
 
 const openAcademicForm = ref(false);
+const openWorkForm = ref(false);
 
 vetappApi.getUser().then((data) => {
     userData.value = data;
@@ -45,7 +46,18 @@ if (user.isVet) {
 </script>
 
 <template>
-    <SModalCard class="z-50" :open="openAcademicForm" @close="openAcademicForm = false"> hola </SModalCard>
+    <SModal class="z-50" :open="openAcademicForm" @close="openAcademicForm = false">
+        <VCard class="w-full sm:w-fit lg:ml-[224px]" bodyClass="p-8">
+            <VetAcademicForm @end="openAcademicForm = false" />
+        </VCard>
+    </SModal>
+
+    <SModal class="z-50" :open="openWorkForm" @close="openWorkForm = false">
+        <VCard class="w-full sm:w-fit lg:ml-[224px]" bodyClass="p-8">
+            <VetAcademicForm @end="openWorkForm = false" />
+        </VCard>
+    </SModal>
+    
     <div class="container mx-auto flex flex-col items-center">
         <VTitle class="mb-2">Perfil</VTitle>
 
@@ -130,7 +142,7 @@ if (user.isVet) {
 
             <div class="mb-2 flex items-center gap-2">
                 <VTitle>Experiencia Laboral</VTitle>
-                <VButton class="flex w-fit items-center rounded-full p-1" @click=""
+                <VButton class="flex w-fit items-center rounded-full p-1"  @click="openWorkForm = true"
                     ><PlusCircleIcon class="h-7 w-7"
                 /></VButton>
             </div>
