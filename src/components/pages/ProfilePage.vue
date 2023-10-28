@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { VText, VCard, VTitle, VLoader, VButton } from '@elements';
 import { vetappApi } from '@/services';
-import { SModal } from '@placetopay/spartan-vue';
+import { SModalCard } from '@placetopay/spartan-vue';
 import { ref } from 'vue';
 import type { TAcademicInformationPayload, TWorkExperiencePayload } from '@/types';
-import { UserCircleIcon,BuildingOfficeIcon, BuildingLibraryIcon} from '@heroicons/vue/24/solid';
+import { UserCircleIcon, BuildingOfficeIcon, BuildingLibraryIcon } from '@heroicons/vue/24/solid';
 import {
     PlusCircleIcon,
     EnvelopeIcon,
@@ -18,7 +18,6 @@ import {
     GlobeAmericasIcon,
     BriefcaseIcon,
     ListBulletIcon,
-    
 } from '@heroicons/vue/24/outline';
 import { useUserStore } from '@/stores';
 
@@ -46,20 +45,11 @@ if (user.isVet) {
 </script>
 
 <template>
-    <SModal class="z-50" :open="openAcademicForm" @close="openAcademicForm = false">
-        <div class="flex items-center h-full">
-            <div class="p-8 bg-white shadow rounded-lg">
-                hola
-            </div>
-        </div>
-    </SModal>
+    <SModalCard class="z-50" :open="openAcademicForm" @close="openAcademicForm = false"> hola </SModalCard>
     <div class="container mx-auto flex flex-col items-center">
-
-
-
         <VTitle class="mb-2">Perfil</VTitle>
 
-        <VCard class="w-full lg:w-fit mb-8" :loading="!userData">
+        <VCard class="mb-8 w-full lg:w-fit" :loading="!userData">
             <template #header>
                 <UserCircleIcon class="h-5 w-5" />
                 <span>{{ userData?.first_name }}&nbsp;</span>
@@ -105,13 +95,15 @@ if (user.isVet) {
         </VCard>
 
         <template v-if="user.isVet">
-            <div class="flex items-center mb-2 gap-2">
+            <div class="mb-2 flex items-center gap-2">
                 <VTitle>Información Académica</VTitle>
-                <VButton class="w-fit p-1 flex items-center rounded-full" @click="openAcademicForm = true"><PlusCircleIcon class="w-7 h-7" /></VButton>
+                <VButton class="flex w-fit items-center rounded-full p-1" @click="openAcademicForm = true"
+                    ><PlusCircleIcon class="h-7 w-7"
+                /></VButton>
             </div>
 
-            <VLoader v-if="!academicInfo.length"/>
-            <div v-else class="flex flex-wrap gap-4 justify-center mb-8">
+            <VLoader v-if="!academicInfo.length" />
+            <div v-else class="mb-8 flex flex-wrap justify-center gap-4">
                 <VCard class="w-full lg:w-fit" v-for="info in academicInfo">
                     <template #header>
                         <BuildingLibraryIcon class="h-5 w-5" />
@@ -136,13 +128,15 @@ if (user.isVet) {
                 </VCard>
             </div>
 
-            <div class="flex items-center mb-2 gap-2">
+            <div class="mb-2 flex items-center gap-2">
                 <VTitle>Experiencia Laboral</VTitle>
-                <VButton class="w-fit p-1 flex items-center rounded-full" @click=""><PlusCircleIcon class="w-7 h-7" /></VButton>
+                <VButton class="flex w-fit items-center rounded-full p-1" @click=""
+                    ><PlusCircleIcon class="h-7 w-7"
+                /></VButton>
             </div>
 
-            <VLoader v-if="!workExperience.length"/>
-            <div v-else class="flex flex-wrap gap-4 justify-center">
+            <VLoader v-if="!workExperience.length" />
+            <div v-else class="flex flex-wrap justify-center gap-4">
                 <VCard class="w-full lg:w-fit" v-for="work in workExperience">
                     <template #header>
                         <BuildingOfficeIcon class="h-5 w-5" />
