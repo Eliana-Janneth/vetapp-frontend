@@ -21,7 +21,7 @@ console.log('computedId', computedId);
 
 <template>
     <div class="flex items-center gap-2">
-        <input :id="computedId" :class="['w-4', styleStore.getInputStyle]" v-model="value" type="checkbox" />
+        <input :id="computedId" :class="['w-2', styleStore.getInputStyle]" v-model="value" type="checkbox" />
         <label :for="computedId" :class="['block text-lg font-medium select-none cursor-pointer',styleStore.getLabelStyle]">{{ label }}</label>
     </div>
 </template>

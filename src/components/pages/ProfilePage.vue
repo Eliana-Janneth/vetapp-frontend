@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VText, VCard, VTitle, VLoader, VButton, VetAcademicForm } from '@elements';
+import { VText, VCard, VTitle, VLoader, VButton, VetAcademicForm, VetWorkForm } from '@elements';
 import { vetappApi } from '@/services';
 import { SModal } from '@placetopay/spartan-vue';
 import { ref } from 'vue';
@@ -18,6 +18,7 @@ import {
     GlobeAmericasIcon,
     BriefcaseIcon,
     ListBulletIcon,
+    DocumentCheckIcon
 } from '@heroicons/vue/24/outline';
 import { useUserStore } from '@/stores';
 
@@ -54,7 +55,7 @@ if (user.isVet) {
 
     <SModal class="z-50" :open="openWorkForm" @close="openWorkForm = false">
         <VCard class="w-full sm:w-fit lg:ml-[224px]" bodyClass="p-8">
-            <VetAcademicForm @end="openWorkForm = false" />
+            <VetWorkForm @end="openWorkForm = false" />
         </VCard>
     </SModal>
     
@@ -118,9 +119,13 @@ if (user.isVet) {
             <div v-else class="mb-8 flex flex-wrap justify-center gap-4">
                 <VCard class="w-full lg:w-fit" v-for="info in academicInfo">
                     <template #header>
-                        <BuildingLibraryIcon class="h-5 w-5" />
-                        <span>{{ info?.university }}&nbsp;</span>
+                        <DocumentCheckIcon class="h-5 w-5" />
+                        <span>{{ info?.title }}&nbsp;</span>
                     </template>
+                    <VText :icon="BuildingLibraryIcon">
+                        <span class="font-bold">Universidad:&nbsp;</span>
+                        <span>{{ info?.university }}&nbsp;</span>
+                    </VText>
                     <VText :icon="CalendarDaysIcon">
                         <span class="font-bold">Año:&nbsp;</span>
                         <span>{{ info?.year }}&nbsp;</span>
@@ -151,9 +156,13 @@ if (user.isVet) {
             <div v-else class="flex flex-wrap justify-center gap-4">
                 <VCard class="w-full lg:w-fit" v-for="work in workExperience">
                     <template #header>
-                        <BuildingOfficeIcon class="h-5 w-5" />
-                        <span>{{ work?.company }}&nbsp;</span>
+                        <BriefcaseIcon class="h-5 w-5" />
+                        <span>{{ work?.title }}&nbsp;</span>
                     </template>
+                    <VText :icon="BuildingOfficeIcon">
+                        <span class="font-bold">Empresa:&nbsp;</span>
+                        <span>{{ work?.company }}&nbsp;</span>
+                    </VText>
                     <VText :icon="ListBulletIcon">
                         <span class="font-bold">Funciones:&nbsp;</span>
                         <span>{{ work?.functions }}&nbsp;</span>

@@ -28,7 +28,9 @@ const onSubmit = handleSubmit(async (values: TAcademicInformation) => {
             country: values.country,
             academic_degree: values.academicDegree,
             currently_studying: values.currentlystudying,
+
         };
+        console.log('cur', values.currentlystudying)
 
         await vetappApi.createAcademicInformation(payload);
 
