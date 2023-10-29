@@ -35,7 +35,12 @@ vetappApi
 const updateValue = (name: string, newValue: string) => {
     vetappApi.updateAnimal(animalId.value, { [name]: newValue }).then((res) => {
         animal.value = res;
+        
     });
+};
+
+const downloadFile = () => {
+    vetappApi.downloadMedicalHistoryFarmer(animalId.value);
 };
 </script>
 
@@ -91,7 +96,11 @@ const updateValue = (name: string, newValue: string) => {
                     @update="(newValue) => updateValue('description', newValue)"
                 />
             </div>
-
+            <VButton
+                custom-class="py-0 items-center"
+                label="Descargar historial médico"
+                @click="downloadFile()"
+            />
             <div v-if="diagnosisAnimal" class="m-2 flex flex-col">
                 <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
                     <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">

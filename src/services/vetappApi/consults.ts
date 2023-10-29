@@ -130,3 +130,23 @@ export const updateDiagnosis = async (idAnimal: string, idMedicalHistory:string,
         console.error('Error al realizar la solicitud:', error);
     }
 }
+export const downloadMedicalHistoryFarmer = async (id: string) => {
+    try {
+        const response = await fetch(`${API_URL}/animal-medical-historys/${id}/`, {
+            headers: {
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+        if (!response.ok) {
+            throw new Error('No se pudo cargar los datos');
+        }
+        const blob = await response.blob(); 
+        const downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(blob);
+        downloadLink.setAttribute('download', 'historial_medico.pdf');
+        downloadLink.click();
+
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
+    }
+};
