@@ -55,7 +55,7 @@ const downloadFile = () => {
         <img class="h-20" :src="loader" v-if="animal === undefined" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else>
-            <div class="m-4 gap-2 border border-x-2 border-emerald-200/50 p-2">
+            <div class="    m-4 gap-2 border border-x-2 border-emerald-200/50 p-2">
                 <VUpgradeableInput
                     label="Nombre"
                     :value="animal.name"
@@ -95,12 +95,13 @@ const downloadFile = () => {
                     :edit="true"
                     @update="(newValue) => updateValue('description', newValue)"
                 />
-            </div>
-            <VButton
-                custom-class="py-0 items-center"
-                label="Descargar historial médico"
+                <VButton
+                class="items-center w-fit px-6 justify-end"
+                label="Descargar Historial Médico"
                 @click="downloadFile()"
             />
+            </div>
+       
             <div v-if="diagnosisAnimal" class="m-2 flex flex-col">
                 <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
                     <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">

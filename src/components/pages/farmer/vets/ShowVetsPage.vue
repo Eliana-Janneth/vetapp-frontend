@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { VText, VCard, VTitle, VLoader, VButton } from '@elements';
 import { vetappApi } from '@/services';
-import { SModal } from '@placetopay/spartan-vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import type { TAcademicInformationPayload, TWorkExperiencePayload } from '@/types';
@@ -25,7 +24,6 @@ const workExperience = ref<TWorkExperiencePayload[]>([]);
 const route = useRoute();
 const idVet = route.params.id.toString();
 
-const openAcademicForm = ref(false);
 
 vetappApi.getVetInformation(idVet).then((data) => {
     userData.value = data;
@@ -41,12 +39,7 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
 </script>
 
 <template>
-    <SModal class="z-50" :open="openAcademicForm" @close="openAcademicForm = false">
-        <div class="flex h-full items-center">
-            <div class="rounded-lg bg-white p-8 shadow">hola</div>
-        </div>
-    </SModal>
-
+  
     <VButton class="flex w-fit items-center rounded-full p-1" @click="$router.push({ name: 'vetsAvailables.index' })"
         ><ArrowLeftCircleIcon class="h-7 w-7"
     /></VButton>

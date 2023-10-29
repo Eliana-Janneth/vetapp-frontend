@@ -2,11 +2,12 @@
 import { ref } from 'vue';
 import { vetappApi } from '@/services';
 import { UserCircleIcon, ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/vue/24/solid';
-import { VTitle, VButton } from '@elements';
-import { useRoute } from 'vue-router';
+import { VTitle, VButton, FarmerRequestForm, VCard } from '@elements';
+import { SModal } from '@placetopay/spartan-vue';
 
 const vetAvailables = ref();
-const route = useRoute();
+const openRequestForm = ref(false);
+const openRequestSend= ref(false);
 
 vetappApi.getVetAvailables().then((response) => {
     vetAvailables.value = response;
@@ -14,20 +15,22 @@ vetappApi.getVetAvailables().then((response) => {
 </script>
 
 <template>
+    <SModal class="z-50" :open="openRequestForm" @close="openRequestForm = false">
+        <VCard class="w-full sm:w-fit lg:ml-[224px]" bodyClass="p-8">
+            <FarmerRequestForm @end="openRequestForm = false" />
+        </VCard>
+    </SModal>
+    <SModal class="z-50" :open="openRequestSend" @close="openRequestSend = false">
+        <VCard class="w-full sm:w-fit lg:ml-[224px]" bodyClass="p-8">
+            <FarmerRequestForm @end="openRequestSend = false" />
+        </VCard>
+    </SModal>
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="text-center sm:flex sm:justify-between">
             <VTitle class="mb-2">Veterinarios Disponibles</VTitle>
-            <div class="flex justify-end">
-                <VButton
-                    label="Solicitudes Enviadas"
-                    type="submit"
-                    @click="
-                        $router.push({
-                            name: 'vets.show',
-                            params: { id: route.params.id.toString() },
-                        })
-                    "
-                />
+            <div class="flex justify-end gap-2">
+                <VButton label="Solicitudes En Espera" />
+                <VButton label="Solicitudes Rechazadas" />
             </div>
         </div>
         <div class="mt-8 flow-root">
@@ -67,11 +70,11 @@ vetappApi.getVetAvailables().then((response) => {
                                 </td>
 
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500">
-                                    <router-link
-                                        :to="{ name: '', params: { id: vet.id } }"
-                                        class="flex items-center text-emerald-600 hover:text-emerald-500"
+                                    <VButton
+                                        @click="openRequestForm = true"
+                                        class="flex items-center bg-transparent text-emerald-600 hover:text-emerald-500"
                                         ><ChatBubbleOvalLeftEllipsisIcon class="h-6 w-6" />
-                                        <span class="ml-2 font-medium"> Consultar </span></router-link
+                                        <span class="ml-2 font-medium"> Consultar </span></VButton
                                     >
                                 </td>
                             </tr>

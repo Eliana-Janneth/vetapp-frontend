@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { VTextArea, VButton, VSelect } from '@elements';
 import { ref, onMounted, reactive } from 'vue';
-import { TRegisterFarmerRequestPayload, vetappApi, TRegisterFarmerRequest } from '@/services';
+import { TRegisterFarmerRequestPayload, vetappApi } from '@/services';
+import type { TRegisterFarmerRequest } from '@/types';
 import * as yup from 'yup';
 import { useRoute } from 'vue-router';
 import { useForm } from 'vee-validate';
@@ -19,7 +20,7 @@ const validationSchema = yup.object({
     message: yup.string().required('Por favor ingrese un mensaje'),
 });
 
-const { defineComponentBinds, errors, handleSubmit } = useForm<TRegisterFarmerRequest>({
+const { defineComponentBinds, errors, handleSubmit, isSubmitting } = useForm<TRegisterFarmerRequest>({
     validationSchema,
 });
 
@@ -66,8 +67,16 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterFarmerRequest) => 
                 :options="animals"
                 :error="errors.animal"
             />
-
-            <VButton label="Enviar Solicitud" type="submit" />
+            <div class="flex justify-between gap-4">
+                <VButton class="" @click="$emit('end')" label="Cancelar" variant="danger" />
+                <VButton class="" type="submit" variant="success">
+                    <div v-if="isSubmitting" class="flex items-center gap-2">
+                        <VLoader class="h-6" />
+                        <span>Enviando</span>
+                    </div>
+                    <template v-else> Enviar Solicitud </template>
+                </VButton>
+            </div>
         </form>
     </div>
 </template>
