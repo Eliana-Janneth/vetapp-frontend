@@ -3,7 +3,7 @@ import { reactive } from 'vue';
 import { vetappApi, TDiagnosisPayload } from '@/services';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
-import type { TDiagnosis } from './types';
+import type { TDiagnosis } from '@/types';
 import { VTextArea, VButton } from '@elements';
 import { useRoute } from 'vue-router';
 

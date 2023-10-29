@@ -1,6 +1,5 @@
 import { MainTemplate } from '@/components/template';
 import {
-    FarmerPage,
     IndexAnimalsPage,
     ShowAnimalsPage,
     CreateAnimalsPage,
@@ -10,7 +9,6 @@ import {
 } from '@pages';
 
 export const farmerRoutes = [
-    { name: 'profileFarmer', path: '/perfil-granjero', component: FarmerPage, meta: { layout: MainTemplate } },
     { name: 'animals.index', path: '/animales', component: IndexAnimalsPage, meta: { layout: MainTemplate } },
     { name: 'animals.show', path: '/animal/:id', component: ShowAnimalsPage, meta: { layout: MainTemplate } },
     { name: 'animals.create', path: '/registrar-animal', component: CreateAnimalsPage, meta: { layout: MainTemplate } },

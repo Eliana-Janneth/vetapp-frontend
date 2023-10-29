@@ -7,7 +7,6 @@ export { default as AlertInput } from './AlertInput.vue';
 export { default as VButton } from './VButton.vue';
 export { default as VSpan } from './VSpan.vue';
 export { default as VPopover } from './VPopover.vue';
-export * from './VSidebar';
 export { default as VTopbar } from './VTopbar.vue';
 export { default as LeftContentModal } from './LeftContentModal.vue';
 export { default as VTabButton } from './VTabButton.vue';
@@ -25,3 +24,4 @@ export { default as VCheckbox } from './VCheckbox.vue';
 export { default as VTextField } from './VTextField.vue';
 
 export * from './forms';
+export * from './VSidebar';

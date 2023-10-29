@@ -25,8 +25,10 @@ const farmerSidebarItems = ref([
     { route: 'vetsAvailables.index', label: 'Veterinarios', icon: UserGroupIcon },
 ]);
 const vetSidebarItems = ref([
-    { route: 'consults', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
+    { route: 'patients.index', label: 'Pacientes', icon: ChatBubbleLeftEllipsisIcon },
     { route: 'requests.show', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
+    { route: '', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
+
 ]);
 </script>
 
