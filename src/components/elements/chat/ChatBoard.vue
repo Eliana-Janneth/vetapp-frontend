@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { TFarmerChat, TVetChat } from '@/types';
+import ChatHeader from './ChatHeader.vue';
 
 defineProps<{
     role: 'farmer' | 'vet';
@@ -11,6 +12,7 @@ defineProps<{
 
 <template>
 <section class="bg-red-500 h-full w-full overflow-y-auto scroll-style">
+    <ChatHeader :role="role" :chat="chat" />
     <p>CHAT: {{ chat }}</p>
     
 </section>

@@ -23,7 +23,7 @@ if (user.isFarmer) {
 </script>
 
 <template>
-    <div class="bg-gray-100 p-4 flex gap-4 overflow-x-auto scroll-style">
+    <div class="bg-gray-100 p-4 flex sm:flex-col gap-4 overflow-x-auto scroll-style">
         <ChatListItem v-for="chat in chats" @click="() => $emit('activeChat', chat)" :key="chat.id" :chat="chat" :role="user.role" />
     </div>
 </template>
