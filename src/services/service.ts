@@ -1,32 +1,3 @@
-// export const getFarmerChats = async () => {
-//
-//     try {
-//         const response = await fetch(apiUrl, {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
-//             },
-//         });
-
-//         if (!response.ok) {
-//             const errorData = await response.json();
-//             if (errorData && errorData.response) {
-//                 alert(`Error del servidor: ${errorData.response}`);
-//             } else {
-//                 alert('Error en la solicitud al servidor.');
-//             }
-//             return;
-//         }
-
-//         const responseData = await response.json();
-//         console.log(responseData);
-//         return responseData;
-//     } catch (error) {
-//         console.error('Error al realizar la solicitud:', error);
-//     }
-// };
-
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const service = {

@@ -4,19 +4,21 @@ import loader from '@/assets/loader.svg';
 import { vetappApi } from '@/services';
 import { EyeIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 import { VInput, VButton, VTitle} from '@elements';
+import { TAnimals } from '@/types';
 
 const searchQuery = ref<string>('');
-const animals = ref();
+//const animals = ref();
+const animals = ref<TAnimals>([]);
 
 const searchAnimal = () => {
-    animals.value = null;
+    //animals.value = null;
     vetappApi.getAnimalName(searchQuery.value).then((response) => {
         animals.value = response;
     });
 };
 
 const getAnimals = () => {
-    animals.value = null;
+    //animals.value = null;
     vetappApi.getAnimals().then((response) => {
         animals.value = response;
     });
@@ -50,8 +52,8 @@ getAnimals();
     </div>
 
     
-    <img class="h-20" :src="loader" v-if="!animals" />
-    <p v-else-if="!animals.length">no hay animales</p>
+    <img class="h-20" :src="loader" v-if="!animals.length" />
+    <p v-else-if="!animals">No hay animales</p>
     <table v-else class="w-full" summary="List of Animals">
         <thead class="bg-emerald-600 font-bold text-white">
             <tr class="[&>th]:px-6 [&>th]:py-3">
@@ -69,8 +71,8 @@ getAnimals();
                 :key="animal.id"
             >
                 <td class="border-b border-gray-200 px-6 py-2">{{ animal.name }}</td>
-                <td class="border-b border-gray-200 px-6 py-2">{{ animal.specie_name }}</td>
-                <td class="border-b border-gray-200 px-6 py-2">{{ animal.race_name }}</td>
+                <td class="border-b border-gray-200 px-6 py-2">{{ animal.specie }}</td>
+                <td class="border-b border-gray-200 px-6 py-2">{{ animal.race }}</td>
                 <td class="border-b border-gray-200 px-6 py-2">{{ animal.gender }}</td>
                 <td class="border-b border-gray-200 py-2">
                     <div class="flex justify-center">

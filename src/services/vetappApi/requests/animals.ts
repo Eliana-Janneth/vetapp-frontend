@@ -2,6 +2,9 @@ import { notify } from '@kyvg/vue3-notification';
 import type { TOption as TAOption, TRegisterAnimalPayload } from '../types';
 import type { TOption } from '@/types';
 import { useRouter } from 'vue-router';
+import { TAnimalsPayload } from '../types';
+import { service } from '../../service';
+import { adaptAnimal } from '../adapters/animals';
 
 const router = useRouter();
 
@@ -40,22 +43,27 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
     }
 };
 
+// export const getAnimals = async () => {
+//     try {
+//         const response = await fetch(`${API_URL}/animals/`, {
+//             headers: {
+//                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
+//             },
+//         });
+//         if (!response.ok) {
+//             throw new Error('No se pudo cargar los datos');
+//         }
+//         const data = await response.json();
+//         return data;
+//     } catch (error) {
+//         console.error('Error al cargar los datos:', error);
+//     }
+// };
+
 export const getAnimals = async () => {
-    try {
-        const response = await fetch(`${API_URL}/animals/`, {
-            headers: {
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-        if (!response.ok) {
-            throw new Error('No se pudo cargar los datos');
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
-};
+    const response = await service.get('animals') as TAnimalsPayload;
+    return adaptAnimal(response);
+}
 
 export const getAnimal = async (id: string) => {
     try {
