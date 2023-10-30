@@ -6,16 +6,13 @@ defineProps<{
     role: 'farmer' | 'vet';
     chat: TFarmerChat | TVetChat | null;
 }>();
-
-
 </script>
 
 <template>
-<section class="bg-red-500 h-full w-full overflow-y-auto scroll-style">
-    <ChatHeader :role="role" :chat="chat" />
-    <p>CHAT: {{ chat }}</p>
-    
-</section>
+    <section class="scroll-style h-full w-full overflow-y-auto bg-red-500">
+        <ChatHeader :role="role" :name="chat?.userName" />
+        <p>CHAT: {{ chat }}</p>
+    </section>
 </template>
 
 <style scoped>

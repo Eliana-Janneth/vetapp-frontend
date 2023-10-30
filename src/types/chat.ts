@@ -1,12 +1,12 @@
 export type TFarmerChat = {
     id: number;
-    vet: string;
+    userName: string;
     animal: string;
     specie: string;
 };
 export type TVetChat = {
     id: number;
-    farmer: string;
+    userName: string;
     animal: string;
     specie: string;
 };

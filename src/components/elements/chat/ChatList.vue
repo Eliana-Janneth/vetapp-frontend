@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { ChatListItem } from '@elements';
+import { ChatListItem, chat } from '@elements';
 import { vetappApi } from '@/services';
 import { TFarmerChats, TVetChats } from '@/types/chat';
 import { ref } from 'vue';
-import { useUserStore } from '@/stores';
+import { useUserStore, useChatUserStore  } from '@/stores';
 
 defineEmits(['activeChat']);
 
 const chats = ref<TFarmerChats | TVetChats>([]);
 
 const user = useUserStore();
+const userChat = useChatUserStore();
 
 if (user.isFarmer) {
     vetappApi.getFarmerChats().then((response) => {
@@ -20,6 +21,7 @@ if (user.isFarmer) {
         chats.value = response;
     });
 }
+
 </script>
 
 <template>
