@@ -41,14 +41,14 @@ const onSubmit = handleSubmit(async (values: TAcademicInformation) => {
 <template>
     <form @submit="onSubmit" class="grid grid-cols-1 sm:grid-cols-6 gap-4">
         <VTextField containerClass="sm:col-span-3" name="title" label="Titúlo Universitario" placeholder="Escribe tu titúlo universitario" />
-        <VTextField containerClass="sm:col-span-3" name="university" label="Titúlo Universitario" placeholder="Universidad en la que estudiaste" />
+        <VTextField containerClass="sm:col-span-3" name="university" label="Universidad" placeholder="Universidad en la que estudiaste" />
 
             <VTextField containerClass="sm:col-span-2" name="year" label="Fecha de inicio" type="date" :maxlength="4" />
             <VTextField containerClass="sm:col-span-2" name="country" label="País" placeholder="País en el que estudiaste" :maxlength="60" />
             <VTextField containerClass="sm:col-span-2" name="academicDegree" label="Grado académico" placeholder="Grado académico" :maxlength="60" />
    
 
-            <VCheckbox class="sm:col-span-6" name="currentlystudying" label="¿Estudiando actualmente?" />
+            <VCheckbox class="sm:col-span-6 w-2" name="currentlystudying" label="¿Estudiando actualmente?" />
     
 
             <VButton class="sm:col-span-3 w-full" @click="$emit('end')" label="Cancelar" variant="danger" />

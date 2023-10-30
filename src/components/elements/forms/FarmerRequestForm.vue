@@ -46,9 +46,12 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterFarmerRequest) => 
         values.message = registerValues.message;
         values.veterinarian = props.idVet;
         await vetappApi.createFarmerRequest(values);
+        
     } catch (error) {
         console.error('Error al enviar la solicitud:', error);
     }
+    //TODO:colocar aqui
+    //emit('end');
 });
 </script>
 
