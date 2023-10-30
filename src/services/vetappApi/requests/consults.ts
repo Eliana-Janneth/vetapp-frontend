@@ -1,4 +1,4 @@
-import type { TDiagnosisPayload } from './types';
+import type { TDiagnosisPayload } from '../types';
 import { notify } from '@kyvg/vue3-notification';
 
 const API_URL = import.meta.env.VITE_API_URL;

@@ -21,13 +21,13 @@ const variant = ref(userStore.isFarmer ? 'farmer' : 'vet');
 
 const farmerSidebarItems = ref([
     { route: 'animals.index', label: 'Mis animales', icon: StarIcon },
-    { route: 'consults.index', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
     { route: 'vetsAvailables.index', label: 'Veterinarios', icon: UserGroupIcon },
+    { route: 'chat', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
 ]);
 const vetSidebarItems = ref([
-    { route: 'patients.index', label: 'Pacientes', icon: ChatBubbleLeftEllipsisIcon },
+    { route: 'patients.index', label: 'Mis Pacientes', icon: ChatBubbleLeftEllipsisIcon },
     { route: 'requests.show', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
-    { route: '', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
+    { route: 'chat', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
 
 ]);
 </script>

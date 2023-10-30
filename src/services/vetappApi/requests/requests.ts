@@ -1,4 +1,4 @@
-import type { TOption as TAOption, TRegisterFarmerRequestPayload } from "./types";
+import type { TOption as TAOption, TRegisterFarmerRequestPayload } from "../types";
 import {useRouter} from 'vue-router';
 import { notify } from '@kyvg/vue3-notification';
 import type { TOption } from '@/types';

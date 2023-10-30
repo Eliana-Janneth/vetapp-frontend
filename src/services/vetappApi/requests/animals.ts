@@ -1,5 +1,5 @@
 import { notify } from '@kyvg/vue3-notification';
-import type { TOption as TAOption, TRegisterAnimalPayload } from './types';
+import type { TOption as TAOption, TRegisterAnimalPayload } from '../types';
 import type { TOption } from '@/types';
 import { useRouter } from 'vue-router';
 

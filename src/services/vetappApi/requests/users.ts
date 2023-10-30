@@ -1,5 +1,5 @@
 import { notify } from '@kyvg/vue3-notification';
-import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload } from './types';
+import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload } from '../types';
 import { useUserStore, useStyleStore } from '@/stores';
 
 const API_URL = import.meta.env.VITE_API_URL;

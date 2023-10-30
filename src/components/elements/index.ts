@@ -25,3 +25,4 @@ export { default as VTextField } from './VTextField.vue';
 
 export * from './forms';
 export * from './VSidebar';
+export * from './chat';
