@@ -4,10 +4,11 @@ import { ref, onMounted, reactive } from 'vue';
 import { TRegisterFarmerRequestPayload, vetappApi } from '@/services';
 import type { TRegisterFarmerRequest } from '@/types';
 import * as yup from 'yup';
-import { useRoute } from 'vue-router';
 import { useForm } from 'vee-validate';
 
-const route = useRoute();
+const props = defineProps<{
+    idVet: string;
+}>();
 
 const values: TRegisterFarmerRequestPayload = reactive({
     animal: '',
@@ -43,9 +44,8 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterFarmerRequest) => 
     try {
         values.animal = registerValues.animal;
         values.message = registerValues.message;
-        values.veterinarian = route.params.id.toString();
+        values.veterinarian = props.idVet;
         await vetappApi.createFarmerRequest(values);
-        console.log('Solicitud enviada');
     } catch (error) {
         console.error('Error al enviar la solicitud:', error);
     }

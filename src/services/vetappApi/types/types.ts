@@ -56,7 +56,3 @@ export type TRegisterFarmerRequest={
     animal : string;
     vet:    string; 
 }
-
-export type TSendRequestPayload = {
-    
-};
