@@ -3,14 +3,13 @@ import { ChatListItem, chat } from '@elements';
 import { vetappApi } from '@/services';
 import { TFarmerChats, TVetChats } from '@/types/chat';
 import { ref } from 'vue';
-import { useUserStore, useChatUserStore  } from '@/stores';
+import { useUserStore  } from '@/stores';
 
 defineEmits(['activeChat']);
 
 const chats = ref<TFarmerChats | TVetChats>([]);
 
 const user = useUserStore();
-const userChat = useChatUserStore();
 
 if (user.isFarmer) {
     vetappApi.getFarmerChats().then((response) => {

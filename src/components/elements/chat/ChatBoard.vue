@@ -1,17 +1,26 @@
 <script setup lang="ts">
 import { TFarmerChat, TVetChat } from '@/types';
 import ChatHeader from './ChatHeader.vue';
+import InputBottom from './InputBottom.vue';
+import { useStyleStore } from '@/stores';
+
 
 defineProps<{
     role: 'farmer' | 'vet';
     chat: TFarmerChat | TVetChat | null;
 }>();
+
+
+const style = useStyleStore();
 </script>
 
 <template>
-    <section class="scroll-style h-full w-full overflow-y-auto bg-red-500">
+    <section :class="[style.getBackgroundChat]">
         <ChatHeader :role="role" :name="chat?.userName" />
         <p>CHAT: {{ chat }}</p>
+        <div class="mt-auto">
+        <InputBottom />
+    </div>
     </section>
 </template>
 

@@ -7,7 +7,7 @@ const avatar = useAvatarStore();
 const props = defineProps<{
     role: 'farmer' | 'vet';
     // chat: TFarmerChat | TVetChat;
-    name: string;
+    name: string | undefined;
 }>();
 </script>
 <template>
