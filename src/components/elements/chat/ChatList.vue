@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ChatListItem } from '@elements';
 import { vetappApi } from '@/services';
-import { TChats } from '@/types/chat';
+import { TChat } from '@/types/chat';
 import { ref } from 'vue';
 import { useUserStore } from '@/stores';
 
 defineEmits(['activeChat']);
 
-const chats = ref<TChats>([]);
+const chats = ref<TChat[]>([]);
 
 const user = useUserStore();
 

@@ -12,9 +12,12 @@ import { VButton, VTextField } from '..';
                 class="w-full px-4  py-3 text-base pr-20 font-base rounded-lg  bg-gray-100 focus:outline-none"
             />
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 text-gray-500 lg:pr-4">
-                
-                <CameraIcon class="h-6 w-6" />
-                <ClipboardIcon class="h-6 w-6" />
+                <button>
+                    <CameraIcon class="h-6 w-6" />
+                </button>
+                <button>
+                    <ClipboardIcon class="h-6 w-6" />
+                </button>
             </div>
         </div>
 

@@ -59,6 +59,7 @@ if (props.name) {
                 :placeholder="placeholder"
                 :type="type"
                 v-model="value"
+                @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
             />
         </div>
         <AlertInput :error="error" :variant="variant" />

@@ -5,4 +5,11 @@ export type TChat = {
     specie: string;
 };
 
-export type TChats = TChat[];
+ export type TMessage = {
+    id: number,
+    sender: string,
+    role: string,
+    message: string,
+    date: string,
+    file: null,
+};

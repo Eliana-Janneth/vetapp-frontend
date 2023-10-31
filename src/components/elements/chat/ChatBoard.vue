@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { TChat } from '@/types';
-import InputBottom from './InputBottom.vue';
+import { TChat, TMessage } from '@/types';
+import { CameraIcon, ClipboardIcon } from '@heroicons/vue/24/outline';
+import VButton from '../VButton.vue';
+import { ref } from 'vue';
+import VTextField from '../VTextField.vue';
+import ChatMessage from './ChatMessage.vue';
 import { useStyleStore } from '@/stores';
 import { createAvatar } from '@/helpers';
 import noChatsIllustration from '@/assets/illustrations/no_chats.svg';
+import pet from '@/assets/icons/pet.svg';
 
 defineProps<{
     role: 'farmer' | 'vet';
@@ -11,6 +16,69 @@ defineProps<{
 }>();
 
 const style = useStyleStore();
+
+const message = ref('');
+
+const messages: TMessage[] = [
+    {
+        id: 1,
+        sender: 'juan',
+        role: 'farmer',
+        message:
+            'hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted?',
+        date: '2023-10-29T12:47:41.325269-05:00',
+        file: null,
+    },
+    {
+        id: 2,
+        sender: 'eliana',
+        role: 'vet',
+        message: 'como estas?',
+        date: '2023-10-29T12:47:41.325269-05:00',
+        file: null,
+    },
+    {
+        id: 3,
+        sender: 'juan',
+        role: 'farmer',
+        message: 'bien y tu?',
+        date: '2023-10-29T12:47:41.325269-05:00',
+        file: null,
+    },
+    {
+        id: 4,
+        sender: 'eliana',
+        role: 'vet',
+        message:
+            'hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted?',
+        date: '2023-10-29T12:47:41.325269-05:00',
+        file: null,
+    },
+    {
+        id: 5,
+        sender: 'juan',
+        role: 'farmer',
+        message: 'que haces?',
+        date: '2023-10-29T12:47:41.325269-05:00',
+        file: null,
+    },
+    {
+        id: 6,
+        sender: 'eliana',
+        role: 'vet',
+        message: 'nada',
+        date: '2023-10-29T12:47:41.325269-05:00',
+        file: null,
+    },
+    {
+        id: 7,
+        sender: 'juan',
+        role: 'farmer',
+        message: 'ok',
+        date: '2023-10-29T12:47:41.325269-05:00',
+        file: null,
+    },
+];
 </script>
 
 <template>
@@ -25,21 +93,63 @@ const style = useStyleStore();
                     />
                 </div>
                 <div class="flex flex-col justify-center">
-                    <p class="font-bold text-white">{{ chat.userName }}</p>
+                    <span class="font-bold text-white">{{ chat.userName }}</span>
+                    <div class="flex gap-x-1">
+                        <img class="h-5 w-5" :src="pet" alt="pet" />
+                        <span class="font-thin text-white">{{ chat.animal }}</span>
+                        <span
+                            :class="[
+                                style.getAlertStyle,
+                                'my-px ml-2 flex items-center font-thin leading-none text-gray-900',
+                            ]"
+                            >{{ chat.specie }}</span
+                        >
+                    </div>
                 </div>
             </div>
         </div>
 
-        <p>CHAT: {{ chat }}</p>
-        <InputBottom class="mt-auto" />
+        <div class="p-4">
+            <ChatMessage v-for="message in messages" :message="message" :role="role" />
+            <pre>{{ message }}</pre>
+        </div>
+
+        <div class="mt-auto flex border-t px-2 py-4 lg:px-10">
+            <div class="relative mr-2 flex w-full items-center rounded-md">
+                <VTextField
+                    v-model="message"
+                    type="text"
+                    placeholder="Escribe tu mensaje ..."
+                    class="font-base w-full rounded-lg bg-gray-100 px-4 py-3 pr-20 text-base focus:outline-none"
+                />
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 text-gray-500 lg:pr-4">
+                    <button>
+                        <CameraIcon class="h-6 w-6" />
+                    </button>
+                    <button>
+                        <ClipboardIcon class="h-6 w-6" />
+                    </button>
+                </div>
+            </div>
+
+            <VButton class="w-fit">Enviar</VButton>
+        </div>
     </section>
-    <div v-else :class="[style.getBackgroundChat, 'text-white text-2xl flex items-center justify-center']">
-        <img class="p-20" :src="noChatsIllustration" alt="No chats">
+    <div v-else :class="[style.getBackgroundChat, 'flex items-center justify-center text-2xl text-white']">
+        <img class="p-20" :src="noChatsIllustration" alt="No chats" />
         <span>No hay chats seleccionados</span>
     </div>
 </template>
 
 <style scoped>
+/* .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' '#FFF',
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+} */
+
 /* width */
 .scroll-style::-webkit-scrollbar {
     width: 7px;

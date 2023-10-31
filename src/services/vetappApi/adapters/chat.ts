@@ -1,7 +1,7 @@
-import { TChats } from '@/types/chat';
-import { TChatsPayload } from '../types';
+import { TChat } from '@/types/chat';
+import { TChatPayload } from '../types';
 
-export const adaptChats = (response: TChatsPayload): TChats => {
+export const adaptChats = (response: TChatPayload[]): TChat[] => {
     return response.map((chat) => ({
         id: chat.id,
         userName: chat.name,
