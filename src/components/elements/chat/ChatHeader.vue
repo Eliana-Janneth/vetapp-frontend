@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { MagnifyingGlassIcon, EllipsisVerticalIcon } from '@heroicons/vue/24/outline';
 import { useAvatarStore } from '@/stores';
-import { TFarmerChat, TVetChat } from '@/types';
 
 const avatar = useAvatarStore();
-const props = defineProps<{
+
+defineProps<{
     role: 'farmer' | 'vet';
-    // chat: TFarmerChat | TVetChat;
     name: string | undefined;
 }>();
 </script>
@@ -14,7 +12,7 @@ const props = defineProps<{
     <div class="flex bg-white">
         <div class="flex flex-grow">
             <div class="relative m-2 mr-4 w-12">
-                <img class="mr-4 h-10 w-10 rounded-full shadow" :src="avatar.getAvatar(name)" alt="Avatar" />
+                <img class="mr-4 h-10 w-10 rounded-full shadow" :src="avatar.getAvatar(name ?? '?', role)" alt="Avatar" />
             </div>
             <div class="flex flex-col justify-center">
                 <p class="font-bold">{{ name }}</p>

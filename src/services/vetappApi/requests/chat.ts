@@ -1,13 +1,13 @@
-import { TFarmerChatsPayload, TVetChatsPayload } from "../types";
+import { TChatsPayload } from "../types";
 import { service } from "../../service";
-import { adaptFarmerChats, adaptVetChats } from "../adapters";
+import { adaptChats } from "../adapters";
 
 export const getFarmerChats = async () => {
-    const response = await service.get('farmer-chats') as TFarmerChatsPayload;
-    return adaptFarmerChats(response);
+    const response = await service.get('farmer-chats') as TChatsPayload;
+    return adaptChats(response);
 };
 
 export const getVetChats = async () => {
-    const response = await service.get('vet-chats') as TVetChatsPayload;
-    return adaptVetChats(response);
+    const response = await service.get('vet-chats') as TChatsPayload;
+    return adaptChats(response);
 }

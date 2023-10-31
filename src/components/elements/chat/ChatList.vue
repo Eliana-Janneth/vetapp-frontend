@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ChatListItem, chat } from '@elements';
+import { ChatListItem } from '@elements';
 import { vetappApi } from '@/services';
-import { TFarmerChats, TVetChats } from '@/types/chat';
+import { TChats } from '@/types/chat';
 import { ref } from 'vue';
-import { useUserStore  } from '@/stores';
+import { useUserStore } from '@/stores';
 
 defineEmits(['activeChat']);
 
-const chats = ref<TFarmerChats | TVetChats>([]);
+const chats = ref<TChats>([]);
 
 const user = useUserStore();
 
@@ -20,11 +20,10 @@ if (user.isFarmer) {
         chats.value = response;
     });
 }
-
 </script>
 
 <template>
-    <div class="bg-gray-100 p-4 flex sm:flex-col gap-4 overflow-x-auto scroll-style">
+    <div class="bg-gray-100 p-4 flex lg:flex-col gap-4 overflow-x-auto scroll-style">
         <ChatListItem v-for="chat in chats" @click="() => $emit('activeChat', chat)" :key="chat.id" :chat="chat" :role="user.role" />
     </div>
 </template>

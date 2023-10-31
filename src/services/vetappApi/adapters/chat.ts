@@ -1,7 +1,7 @@
-import { TFarmerChats, TVetChats } from '@/types/chat';
-import { TFarmerChatsPayload, TVetChatsPayload } from '../types';
+import { TChats } from '@/types/chat';
+import { TChatsPayload } from '../types';
 
-export const adaptFarmerChats = (response: TFarmerChatsPayload): TFarmerChats => {
+export const adaptChats = (response: TChatsPayload): TChats => {
     return response.map((chat) => ({
         id: chat.id,
         userName: chat.name,
@@ -10,11 +10,4 @@ export const adaptFarmerChats = (response: TFarmerChatsPayload): TFarmerChats =>
     }));
 };
 
-export const adaptVetChats = (response: TVetChatsPayload): TVetChats => {
-    return response.map((chat) => ({
-        id: chat.id,
-        userName: chat.name,
-        animal: chat.animal_name,
-        specie: chat.animal_specie,
-    }));
-}
+

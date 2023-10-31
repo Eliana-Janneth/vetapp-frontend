@@ -13,6 +13,5 @@ const user = useUserStore();
     <section class="-m-4 flex h-screen flex-col overflow-auto lg:flex-row-reverse">
         <ChatList @active-chat="chat => currentChat = chat" />
         <ChatBoard  :role="user.role" :chat="currentChat" />
-        
     </section>
 </template>

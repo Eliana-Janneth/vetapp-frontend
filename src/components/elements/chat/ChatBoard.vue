@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TFarmerChat, TVetChat } from '@/types';
+import { TChat } from '@/types';
 import ChatHeader from './ChatHeader.vue';
 import InputBottom from './InputBottom.vue';
 import { useStyleStore } from '@/stores';
@@ -7,7 +7,7 @@ import { useStyleStore } from '@/stores';
 
 defineProps<{
     role: 'farmer' | 'vet';
-    chat: TFarmerChat | TVetChat | null;
+    chat: TChat | null;
 }>();
 
 
