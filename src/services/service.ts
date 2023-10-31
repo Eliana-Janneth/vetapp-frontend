@@ -3,7 +3,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const service = {
     get: async (url: string): Promise<unknown> => {
         try {
-            const response = await fetch(`${API_URL}/${url}/`, {
+            const response = await fetch(`${API_URL}/${url}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Token ${localStorage.getItem('accessToken')}`,

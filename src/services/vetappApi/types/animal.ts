@@ -24,4 +24,3 @@ export type TAnimalPayload = {
     weight: string;
 };
 
-export type TAnimalsPayload = TAnimalPayload[];

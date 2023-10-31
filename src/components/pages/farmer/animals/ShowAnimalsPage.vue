@@ -5,9 +5,11 @@ import { useRoute } from 'vue-router';
 import { vetappApi } from '@/services';
 import { formatDate } from '@/helpers';
 import loader from '@/assets/loader.svg';
+import { TAnimal } from '@/types/animal';
+import { TDiagnosis } from '@/types';
 
 const route = useRoute();
-const animal = ref();
+const animal = ref<TAnimal>();
 
 const animalId = computed(() => String(route.params.id));
 
@@ -16,12 +18,9 @@ vetappApi
     .then((res) => {
         animal.value = res;
     })
-    .catch((err) => {
-        console.log(err);
-        animal.value = null;
-    });
 
-const diagnosisAnimal = ref();
+
+const diagnosisAnimal = ref<TDiagnosis[]>();
 
 vetappApi
     .getDiagnosisFarmer(animalId.value)
@@ -62,8 +61,8 @@ const downloadFile = () => {
                     :edit="true"
                     @update="(newValue) => updateValue('name', newValue)"
                 />
-                <VUpgradeableInput label="Especie" :edit="false" :value="animal.specie_name" />
-                <VUpgradeableInput label="Raza" :edit="false" :value="animal.race_name" />
+                <VUpgradeableInput label="Especie" :edit="false" :value="animal.specie" />
+                <VUpgradeableInput label="Raza" :edit="false" :value="animal.race" />
                 <VUpgradeableInput
                     label="Color"
                     :value="animal.color"
@@ -73,7 +72,7 @@ const downloadFile = () => {
                 <VUpgradeableInput label="Genero" :edit="false" :value="animal.gender" />
                 <VUpgradeableInput
                     label="Fecha de Nacimiento"
-                    :value="animal.birth_date"
+                    :value="animal.birthdate"
                     :edit="true"
                     @update="(newValue) => updateValue('gender', newValue)"
                 />
@@ -108,16 +107,16 @@ const downloadFile = () => {
                         <VDetails
                             custom-class="font-semibold"
                             label="Fecha"
-                            :description="formatDate(diagnosisA.create_date)"
+                            :description="formatDate(diagnosisA.createDate)"
                         />
                         <VDetails
-                            v-if="diagnosisA.update_date != diagnosisA.create_date"
+                            v-if="diagnosisA.updateDate != diagnosisA.createDate"
                             label="Fecha Modificación"
-                            :description="formatDate(diagnosisA.update_date)"
+                            :description="formatDate(diagnosisA.updateDate)"
                         />
                         <VDetails label="Diagnostico" :description="diagnosisA.diagnosis" />
                         <VDetails label="Tratamiento" :description="diagnosisA.treatment" />
-                        <VDetails label="Veterinario" :description="diagnosisA.vet_name" />
+                        <VDetails label="Veterinario" :description="diagnosisA.vet" />
                     </div>
                 </div>
             </div>

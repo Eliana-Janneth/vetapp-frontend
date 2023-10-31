@@ -4,11 +4,11 @@ import loader from '@/assets/loader.svg';
 import { vetappApi } from '@/services';
 import { EyeIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 import { VInput, VButton, VTitle} from '@elements';
-import { TAnimals } from '@/types';
+import { TAnimal } from '@/types';
 
 const searchQuery = ref<string>('');
 //const animals = ref();
-const animals = ref<TAnimals>([]);
+const animals = ref<TAnimal[]>([]);
 
 const searchAnimal = () => {
     //animals.value = null;

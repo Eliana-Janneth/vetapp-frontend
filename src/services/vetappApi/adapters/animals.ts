@@ -1,17 +1,23 @@
-import { TAnimals } from '@/types/animal';
-import { TAnimalsPayload } from '../types';
+import { TAnimal } from '@/types/animal';
+import { TAnimalPayload } from '../types';
 
-export const adaptAnimal = (response: TAnimalsPayload): TAnimals => {
-    return response.map((animal) => ({
-        birthdate: animal.birth_date,
-        color: animal.color,
-        description: animal.description,
-        gender: animal.gender,
-        height: animal.height,
-        id: animal.id,
-        name: animal.name,
-        race: animal.race_name,
-        specie: animal.specie_name,
-        weight: animal.weight,
-    }));
-};
+function mapAnimal(animal: TAnimalPayload): TAnimal {
+    return {
+      birthdate: animal.birth_date,
+      color: animal.color,
+      description: animal.description,
+      gender: animal.gender,
+      height: animal.height,
+      id: animal.id,
+      name: animal.name,
+      race: animal.race_name,
+      specie: animal.specie_name,
+      weight: animal.weight,
+    };
+  }
+  
+  export const adaptAnimals = (response: TAnimalPayload[]): TAnimal[] => {
+    return response.map(mapAnimal);
+  };
+  
+  export const adaptAnimal = (animal: TAnimalPayload): TAnimal => mapAnimal(animal);

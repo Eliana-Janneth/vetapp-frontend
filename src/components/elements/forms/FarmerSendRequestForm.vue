@@ -2,13 +2,13 @@
 import { ref } from 'vue';
 import { vetappApi } from '@/services';
 import { VTitle } from '@elements';
-import { TRejectRequests, TSendRequests } from '@/types/farmerRequest';
+import { TRejectRequest, TSendRequest } from '@/types/request';
 
 const props = defineProps<{
     request: string;
 }>();
 
-const requests = ref<TSendRequests | TRejectRequests>([]);
+const requests = ref<TSendRequest[] | TRejectRequest[]>([]);
 
 if (props.request === 'send') {
     vetappApi.getSendRequest().then((response) => {
@@ -79,3 +79,4 @@ if (props.request === 'send') {
         </div>
     </div>
 </template>
+@/types/request

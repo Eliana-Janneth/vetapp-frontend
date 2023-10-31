@@ -1,7 +1,7 @@
-import { TRejectRequestsPayload, TSendRequestsPayload } from '../types';
-import { TRejectRequests, TSendRequests } from '@/types/farmerRequest';
+import { TRejectRequestPayload, TSendRequestPayload } from '../types';
+import { TRejectRequest, TSendRequest } from '@/types/request';
 
-export const adaptSendRequest = (response: TSendRequestsPayload): TSendRequests => {
+export const adaptSendRequest = (response: TSendRequestPayload[]): TSendRequest[] => {
     return response.map((request) => ({
         id: request.id,
         animal: request.animal_name,
@@ -12,7 +12,7 @@ export const adaptSendRequest = (response: TSendRequestsPayload): TSendRequests 
     }));
 };
 
-export const adaptRejectedRequest = (response: TRejectRequestsPayload): TRejectRequests => {
+export const adaptRejectedRequest = (response: TRejectRequestPayload[]): TRejectRequest[] => {
     return response.map((request) => ({
         id: request.id,
         animal: request.animal_name,

@@ -11,4 +11,3 @@ export type TAnimal = {
     weight: string;
 };
 
-export type TAnimals = TAnimal[];

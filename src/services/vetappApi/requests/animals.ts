@@ -1,12 +1,10 @@
 import { notify } from '@kyvg/vue3-notification';
 import type { TOption as TAOption, TRegisterAnimalPayload } from '../types';
 import type { TOption } from '@/types';
-import { useRouter } from 'vue-router';
-import { TAnimalsPayload } from '../types';
+import { TAnimalPayload } from '../types';
 import { service } from '../../service';
-import { adaptAnimal } from '../adapters/animals';
+import { adaptAnimal , adaptAnimals} from '../adapters/animals';
 
-const router = useRouter();
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -43,9 +41,26 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
     }
 };
 
-// export const getAnimals = async () => {
+
+export const getAnimals = async () => {
+    const response = await service.get('animals/') as TAnimalPayload[];
+    return adaptAnimals(response);
+}
+
+
+export const getAnimal = async (id:string) => {
+    const response = await service.get('animals/'+ id+'/') as TAnimalPayload;
+    return adaptAnimal(response);
+}
+
+export const getAnimalName = async (name:string) => {
+    const response = await service.get('animals/search/?name='+ name) as TAnimalPayload[];
+    return adaptAnimals(response);
+}
+
+// export const getAnimalName = async (name: string) => {
 //     try {
-//         const response = await fetch(`${API_URL}/animals/`, {
+//         const response = await fetch(`${API_URL}/animals/search/?name=${name}`, {
 //             headers: {
 //                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
 //             },
@@ -59,47 +74,6 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
 //         console.error('Error al cargar los datos:', error);
 //     }
 // };
-
-export const getAnimals = async () => {
-    const response = await service.get('animals') as TAnimalsPayload;
-    return adaptAnimal(response);
-}
-
-export const getAnimal = async (id: string) => {
-    try {
-        const response = await fetch(`${API_URL}/animals/${id}/`, {
-            headers: {
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-        if (response.status === 404) router.push({ name: 'notFound' });
-
-        if (!response.ok) {
-            router.push({ name: 'notFound' });
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
-};
-
-export const getAnimalName = async (name: string) => {
-    try {
-        const response = await fetch(`${API_URL}/animals/search/?name=${name}`, {
-            headers: {
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-        if (!response.ok) {
-            throw new Error('No se pudo cargar los datos');
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
-};
 
 export const getSpecies = async (): Promise<TOption[]> => {
     try {

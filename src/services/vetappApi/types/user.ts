@@ -44,3 +44,33 @@ export type TVetInformationPayload = {
     license_expiry_date: string;
     available: boolean;
 };
+
+export type TWorkExperiencePayload = {
+    title: string;
+    company: string;
+    functions: string;
+    start_date: string;
+    end_date: string;
+    country: string;
+    currently_working: boolean;
+};
+
+export type TAcademicInformationPayload = {
+    title: string;
+    university: string;
+    year: string;
+    country: string;
+    academic_degree: string;
+    currently_studying: boolean;
+};
+
+
+export type TCreateAvailabilityPayload={
+    available: boolean;
+}
+
+export type TOption = {
+    name: string;
+    id: string;
+};
+

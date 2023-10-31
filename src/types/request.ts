@@ -1,4 +1,4 @@
-type TSendRequest = {
+export type TSendRequest = {
     id: number;
     specie: string;
     animal: string;
@@ -6,7 +6,7 @@ type TSendRequest = {
     message: string;
     vet: string;
 };
-type TRejectRequest = {
+export type TRejectRequest = {
     id: number;
     specie: string;
     animal: string;
@@ -15,5 +15,8 @@ type TRejectRequest = {
     vet: string;
 };
 
-export type TSendRequests = TSendRequest[];
-export type TRejectRequests = TRejectRequest[];
+export type TRegisterFarmerRequest={
+    message : string;
+    animal : string;
+    vet:    string; 
+}
