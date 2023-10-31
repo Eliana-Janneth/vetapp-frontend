@@ -8,13 +8,13 @@ export const backgroundChat = cva(
         variants: {
             intent: {
                 farmer: [
-                    'bg-emerald-700 ',
+                    'bg-emerald-800 ',
                 ],
                 veterinarian: [
-                    'bg-sky-700',
+                    'bg-sky-800',
                 ],
                 base: [
-                    'bg-indigo-700 ',
+                    'bg-indigo-800 ',
                 ],
             },
         },
