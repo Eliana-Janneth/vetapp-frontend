@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { TFarmerChat, TVetChat } from '@/types';
+import { TChat } from '@/types';
 
 const props = defineProps<{
     role: 'farmer' | 'vet';
-    chat: TFarmerChat | TVetChat;
+    chat: TChat;
 }>();
 
 const url = new URL('https://ui-avatars.com/api/');

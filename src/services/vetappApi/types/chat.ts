@@ -4,3 +4,4 @@ export type TChatPayload = {
     animal_name: string;
     animal_specie: string;
 };
+
