@@ -9,15 +9,33 @@ import { useStyleStore } from '@/stores';
 import { createAvatar } from '@/helpers';
 import noChatsIllustration from '@/assets/illustrations/no_chats.svg';
 import pet from '@/assets/icons/pet.svg';
+//import WebSocket from 'ws';
 
 defineProps<{
     role: 'farmer' | 'vet';
     chat: TChat | null;
 }>();
 
+// const ws = new WebSocket('ws://127.0.0.1:9999/ws/chat/1/');
+// function open () {
+//     // Abre conexión
+//     console.log("WebSocket abierto.");
+// }
+
+// ws.addEventListener("open", open);
+
 const style = useStyleStore();
 
 const message = ref('');
+
+function handleImageUpload(event: Event) {
+    const selectedImage = (event.target as HTMLInputElement).files?.[0];
+    console.log('Imagen seleccionada:', selectedImage);
+}
+function handleDocumentUpload(event: Event) {
+    const selectedDocument = (event.target as HTMLInputElement).files?.[0];
+    console.log('Documento seleccionado:', selectedDocument);
+}
 
 const messages: TMessage[] = [
     {
@@ -109,7 +127,7 @@ const messages: TMessage[] = [
             </div>
         </div>
 
-        <div class="p-4">
+        <div class="scroll-style flex-grow overflow-auto p-4">
             <ChatMessage v-for="message in messages" :message="message" :role="role" />
             <pre>{{ message }}</pre>
         </div>
@@ -122,13 +140,30 @@ const messages: TMessage[] = [
                     placeholder="Escribe tu mensaje ..."
                     class="font-base w-full rounded-lg bg-gray-100 px-4 py-3 pr-20 text-base focus:outline-none"
                 />
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 text-gray-500 lg:pr-4">
-                    <button>
-                        <CameraIcon class="h-6 w-6" />
-                    </button>
-                    <button>
-                        <ClipboardIcon class="h-6 w-6" />
-                    </button>
+                <div class="absolute inset-y-0 right-0 flex items-center gap-4 pr-2 lg:pr-4">
+                    <div class="relative">
+                        <VButton class="w-10 bg-transparent p-0 text-gray-500">
+                            <input
+                                type="file"
+                                class="absolute inset-0 cursor-pointer opacity-0"
+                                accept="image/*,  video/*"
+                                @change="handleImageUpload"
+                            />
+                            <CameraIcon class="h-6 w-6" />
+                        </VButton>
+                    </div>
+
+                    <div class="relative">
+                        <VButton class="w-10 bg-transparent p-0 text-gray-500">
+                            <input
+                                type="file"
+                                class="absolute inset-0 cursor-pointer opacity-0"
+                                accept=".pdf, .doc, .docx"
+                                @change="handleDocumentUpload"
+                            />
+                            <ClipboardIcon class="h-6 w-6" />
+                        </VButton>
+                    </div>
                 </div>
             </div>
 
