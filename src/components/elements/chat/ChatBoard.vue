@@ -9,20 +9,16 @@ import { useStyleStore } from '@/stores';
 import { createAvatar } from '@/helpers';
 import noChatsIllustration from '@/assets/illustrations/no_chats.svg';
 import pet from '@/assets/icons/pet.svg';
-//import WebSocket from 'ws';
+import { vetappApi } from '@/services';
+
+
+
+vetappApi.connectToChat(1);
 
 defineProps<{
     role: 'farmer' | 'vet';
     chat: TChat | null;
 }>();
-
-// const ws = new WebSocket('ws://127.0.0.1:9999/ws/chat/1/');
-// function open () {
-//     // Abre conexión
-//     console.log("WebSocket abierto.");
-// }
-
-// ws.addEventListener("open", open);
 
 const style = useStyleStore();
 
@@ -43,7 +39,7 @@ const messages: TMessage[] = [
         sender: 'juan',
         role: 'farmer',
         message:
-            'hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut tempora molestiae, ea quos optio ipsum hic tempore deleniti! Reiciendis minima praesentium delectus quae minus porro autem iste? Libero, quis dolor!',
         date: '2023-10-29T12:47:41.325269-05:00',
         file: null,
     },
@@ -68,7 +64,7 @@ const messages: TMessage[] = [
         sender: 'eliana',
         role: 'vet',
         message:
-            'hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted?',
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut tempora molestiae, ea quos optio ipsum hic tempore deleniti! Reiciendis minima praesentium delectus quae minus porro autem iste? Libero, quis dolor!',
         date: '2023-10-29T12:47:41.325269-05:00',
         file: null,
     },
