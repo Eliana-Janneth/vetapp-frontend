@@ -14,13 +14,13 @@ export const getVetChats = async () => {
 
 export const searchFarmerChats = async (name: string) => {
     const response = (await service.get(
-        `farmer-chats/search/?animal_name=${name}&?vet_name=${name}`,
+        `farmer-chats/search/?name=${name}`,
     )) as TChatPayload[];
     return adaptChats(response);
 };
 export const searchVetChats = async (name: string) => {
     const response = (await service.get(
-        `vet-chats/search/?farmer_name=${name}&?animal_name=${name}`,
+        `vet-chats/search/?name=${name}`,
     )) as TChatPayload[];
     return adaptChats(response);
 };
