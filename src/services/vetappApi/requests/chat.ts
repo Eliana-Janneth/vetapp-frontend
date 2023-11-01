@@ -1,7 +1,6 @@
 import { TChatPayload } from '../types';
 import { service } from '../../service';
 import { adaptChats } from '../adapters';
-import { io, Manager, Socket } from 'socket.io-client';
 
 export const getFarmerChats = async () => {
     const response = (await service.get('farmer-chats/')) as TChatPayload[];
@@ -26,73 +25,39 @@ export const searchVetChats = async (name: string) => {
     return adaptChats(response);
 };
 
-// export const connectToChat = (chatId: number) => {
-//     return new Promise<WebSocket>((resolve, reject) => {
-//       const token = localStorage.getItem('accessToken');
-//       if (!token) {
-//         reject(new Error('No se encontró el token de acceso en el almacenamiento local'));
-//         return;
-//       }
-
-//       const headers = {
-//         Authorization: `Token ${token}`
-//       };
-
-//       const ws = new WebSocket(`ws://127.0.0.1:9999/ws/chat/${chatId}/`, [], { headers });
-
-//       ws.onopen = () => {
-//         console.log('Conexión WebSocket abierta');
-//         resolve(ws);
-//       };
-
-//       ws.onerror = (error) => {
-//         console.error('Error de WebSocket:', error);
-//         reject(error);
-//       };
-//     });
-//   };
-
-// Función para conectar al servidor Socket.io con encabezado de autorización
-export const connectToChatS = (chatId: number) => {
-    return new Promise<Socket>((resolve, reject) => {
+export const connectToChat = (chatId) => {
         // Construir la URL de conexión WebSocket con el token de autorización
         const token = localStorage.getItem('accessToken');
         console.log(token);
-        const socket: Socket = io(`ws://127.0.0.1:9999/ws/chat/${chatId}/`, {
-            transports: ['websocket'], // Usar solo WebSocket
-            auth: {
-                Authorization: `Token ${token}`,
-            },
-        });
-
-        // Manejar eventos de conexión y errores
-        socket.on('connect', () => {
+        const socket = new WebSocket(`ws://127.0.0.1:9999/ws/chat/${chatId}/?auth=${token}`);
+        socket.onopen = () => {
             console.log('Conexión WebSocket abierta');
-            resolve(socket);
-        });
-
-        socket.on('error', (error: any) => {
-            console.error('Error de WebSocket:', error);
-            reject(error);
-        });
-
-        // Escuchar otros eventos personalizados
-        socket.on('chatMessage', (message: string) => {
-            console.log('Mensaje recibido:', message);
-        });
-    });
-};
-
-
-export const connectToChat = (chatId: number) => {
-      const token = localStorage.getItem('accessToken');
-      console.log(token);
-      const webSocket: WebSocket = new WebSocket(`ws://127.0.0.1:9999/ws/chat/${chatId}/`)
-      
-      console.log(webSocket.readyState)
-      //const socket = manager.socket(`/ws/chat/${chatId}/`);
-
-      // Manejar eventos de conexión y errores
-     
-};
-
+        };
+    
+        socket.onmessage = (event) => {
+            console.log('Mensaje recibido:', event.data);
+        };
+    
+        socket.onclose = (event) => {
+            if (event.wasClean) {
+                console.log(`Conexión cerrada limpiamente, código=${event.code}, razón=${event.reason}`);
+            } else {
+                console.error('Conexión cerrada bruscamente'); 
+            }
+        };
+    
+        console.log("Conexión WebSocket establecida");
+    
+        // Función para enviar mensajes al servidor en formato JSON
+        const sendMessage = (message) => {
+            if (socket.readyState === WebSocket.OPEN) {
+                const jsonMessage = JSON.stringify({ message: message });
+                socket.send(jsonMessage);
+                console.log('Mensaje JSON enviado al servidor:', jsonMessage);
+            } else {
+                console.error('La conexión no está abierta.');
+            }
+        };
+    
+        
+    };
