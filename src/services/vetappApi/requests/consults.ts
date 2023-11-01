@@ -69,43 +69,16 @@ export const getAnimalAuthorized = async (id: string) => {
 };
 
 export const getDiagnosisVet = async (id: string) => {
-    try {
-        const response = await fetch(`${API_URL}/vet-medical-historys/${id}/`, {
-            headers: {
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-        if (!response.ok) {
-            throw new Error('No se pudo cargar los datos');
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
+    const response = (await service.get(`vet-medical-historys/${id}/`)) as TDiagnosisPayload[];
+    return adaptDiagnosis(response);
 };
+
 
 export const getDiagnosisFarmer = async (id: string) => {
     const response = (await service.get('farmer-medical-historys/' + id+'/')) as TDiagnosisPayload[];
     return adaptDiagnosis(response);
 };
 
-// export const getDiagnosisFarmer = async (id: string) => {
-//     try {
-//         const response = await fetch(`${API_URL}/farmer-medical-historys/${id}/`, {
-//             headers: {
-//                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
-//             },
-//         });
-//         if (!response.ok) {
-//             throw new Error('No se pudo cargar los datos');
-//         }
-//         const data = await response.json();
-//         return data;
-//     } catch (error) {
-//         console.error('Error al cargar los datos:', error);
-//     }
-// };
 
 export const updateDiagnosis = async (idAnimal: string, idMedicalHistory: string, data: Record<string, string>) => {
     const apiUrl = `${API_URL}/vet-medical-historys/${idAnimal}/${idMedicalHistory}/`;

@@ -3,7 +3,7 @@ import { VText, VCard, VTitle, VLoader, VButton } from '@elements';
 import { vetappApi } from '@/services';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-import type { TAcademicInformationPayload, TWorkExperiencePayload } from '@/types';
+import type { TAcademicInformation, TWorkExperience, TVetInformation } from '@/types';
 import { UserCircleIcon, BuildingOfficeIcon, BuildingLibraryIcon } from '@heroicons/vue/24/solid';
 import {
     IdentificationIcon,
@@ -17,13 +17,12 @@ import {
     ArrowLeftCircleIcon,
 } from '@heroicons/vue/24/outline';
 
-const userData = ref();
-const academicInfo = ref<TAcademicInformationPayload[]>([]);
-const workExperience = ref<TWorkExperiencePayload[]>([]);
+const userData = ref<TVetInformation>();
+const academicInfo = ref<TAcademicInformation[]>([]);
+const workExperience = ref<TWorkExperience[]>([]);
 
 const route = useRoute();
 const idVet = route.params.id.toString();
-
 
 vetappApi.getVetInformation(idVet).then((data) => {
     userData.value = data;
@@ -39,7 +38,6 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
 </script>
 
 <template>
-  
     <VButton class="flex w-fit items-center rounded-full p-1" @click="$router.push({ name: 'vetsAvailables.index' })"
         ><ArrowLeftCircleIcon class="h-7 w-7"
     /></VButton>
@@ -50,8 +48,8 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
         <VCard class="mb-8 w-full lg:w-fit" :loading="!userData">
             <template #header>
                 <UserCircleIcon class="h-5 w-5" />
-                <span>{{ userData?.first_name }}&nbsp;</span>
-                <span>{{ userData?.last_name }}</span>
+                <span>{{ userData?.name }}&nbsp;</span>
+                <span>{{ userData?.lastName }}</span>
             </template>
 
             <VText :icon="MapIcon">
@@ -61,12 +59,12 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
 
             <VText :icon="IdentificationIcon">
                 <span class="font-bold">Licencia:&nbsp;</span>
-                <span>{{ userData?.license_number }}&nbsp;</span>
+                <span>{{ userData?.license }}&nbsp;</span>
             </VText>
 
             <VText :icon="CalendarDaysIcon">
                 <span class="font-bold">Fecha de Expiración:&nbsp;</span>
-                <span>{{ userData?.license_expiry_date }}&nbsp;</span>
+                <span>{{ userData?.licenseExpiryDate }}&nbsp;</span>
             </VText>
         </VCard>
 
@@ -91,11 +89,11 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
                 </VText>
                 <VText :icon="AcademicCapIcon">
                     <span class="font-bold">Grado Académico:&nbsp;</span>
-                    <span>{{ info?.academic_degree }}&nbsp;</span>
+                    <span>{{ info?.academicDegree }}&nbsp;</span>
                 </VText>
                 <VText :icon="BookOpenIcon">
                     <span class="font-bold">Estudio:&nbsp;</span>
-                    <span>{{ info?.currently }}&nbsp;</span>
+                    <span>{{ info?.currentlystudying }}&nbsp;</span>
                 </VText>
             </VCard>
         </div>
@@ -117,11 +115,11 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
                 </VText>
                 <VText :icon="CalendarDaysIcon">
                     <span class="font-bold">Fecha Inicio:&nbsp;</span>
-                    <span>{{ work?.start_date }}&nbsp;</span>
+                    <span>{{ work?.startDate }}&nbsp;</span>
                 </VText>
                 <VText :icon="CalendarDaysIcon">
                     <span class="font-bold">Fecha Final:&nbsp;</span>
-                    <span>{{ work?.end_date }}&nbsp;</span>
+                    <span>{{ work?.endDate }}&nbsp;</span>
                 </VText>
                 <VText :icon="GlobeAmericasIcon">
                     <span class="font-bold">País:&nbsp;</span>
@@ -129,7 +127,7 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
                 </VText>
                 <VText :icon="BriefcaseIcon">
                     <span class="font-bold">Trabajo:&nbsp;</span>
-                    <span>{{ work?.currently }}&nbsp;</span>
+                    <span>{{ work?.currentlyWorking }}&nbsp;</span>
                 </VText>
             </VCard>
         </div>

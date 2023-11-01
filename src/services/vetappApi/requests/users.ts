@@ -1,6 +1,8 @@
 import { notify } from '@kyvg/vue3-notification';
-import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload } from '../types';
+import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload, TVetInformationPayload } from '../types';
 import { useUserStore, useStyleStore } from '@/stores';
+import { adaptAcademicInformation, adaptVetInformation, adaptWorkExperience } from '../adapters';
+import { service } from '@/services/service';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -176,63 +178,33 @@ export const createWorkExperiencie = async (data: TWorkExperiencePayload) => {
     }
 };
 
+
 export const getAcademicInformation = async () => {
-    const apiUrl = `${API_URL}/vet-academic-information/`;
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
-            }
-            return;
-        }
-
-        const responseData = await response.json();
-        console.log(responseData);
-        return responseData;
-    } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-    }
+    const response = (await service.get('vet-academic-information/')) as TAcademicInformationPayload[];
+    return adaptAcademicInformation(response);
 };
 
 export const getWorkExperience = async () => {
-    const apiUrl = `${API_URL}/vet-work-experience/`;
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
-            }
-            return;
-        }
-
-        const responseData = await response.json();
-        console.log(responseData);
-        return responseData;
-    } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-    }
+    const response = (await service.get('vet-work-experience/')) as TWorkExperiencePayload[];
+    return adaptWorkExperience(response);
 };
+
+export const getAcademicInformationVet = async (id: string) => {
+    const response = (await service.get(`vet-academic-information/${id}/`)) as TAcademicInformationPayload[];
+    return adaptAcademicInformation(response);
+};
+
+export const getWorkExperienceVet = async (id: string) => {
+    const response = (await service.get(`vet-work_experience/${id}/`)) as TWorkExperiencePayload[];
+    return adaptWorkExperience(response);
+};
+
+export const getVetInformation = async (id: string) => {
+    const response = (await service.get(`vets/${id}/`)) as TVetInformationPayload;
+    return adaptVetInformation(response);
+};
+
+
 export const updateAvailability = async (data: Record<string, boolean>) => {
     const apiUrl = `${API_URL}/vet-availability/`;
     try {

@@ -5,10 +5,11 @@ import { vetappApi } from '@/services';
 import loader from '@/assets/loader.svg';
 import { ref, computed } from 'vue';
 import { formatDate } from '@/helpers';
+import { TDiagnosis } from '@/types';
 
 const route = useRoute();
 const animal = ref();
-const diagnosisAnimal = ref();
+const diagnosisAnimal = ref<TDiagnosis[]>();
 const animalId = computed(() => String(route.params.id));
 
 vetappApi.getAnimalAuthorized(route.params.id.toString()).then((res) => {
@@ -33,6 +34,8 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
             console.log(err);
         });
 };
+
+//TODO: cargar el veterinario
 </script>
 
 <template>
@@ -73,13 +76,13 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
                     <VUpgradeableTextarea
                         custom-class="font-semibold"
                         label="Fecha"
-                        :value="formatDate(diagnosisA.create_date)"
+                        :value="formatDate(diagnosisA.createDate)"
                         :edit="false"
                     />
                     <VUpgradeableTextarea
-                        v-if="diagnosisA.update_date != diagnosisA.create_date"
+                        v-if="diagnosisA.updateDate != diagnosisA.createDate"
                         label="Fecha Modificación"
-                        :value="formatDate(diagnosisA.update_date)"
+                        :value="formatDate(diagnosisA.updateDate)"
                         :edit="false"
                     />
 
@@ -95,6 +98,7 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
                         :value="diagnosisA.treatment"
                         @update="(newValue) => onUpdateDiagnosis('treatment', newValue, diagnosisA.id)"
                     />
+                    
                 </div>
             </div>
         </div>

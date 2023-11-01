@@ -52,7 +52,7 @@ export type TWorkExperiencePayload = {
     start_date: string;
     end_date: string;
     country: string;
-    currently_working: boolean;
+    currently: boolean;
 };
 
 export type TAcademicInformationPayload = {
@@ -61,7 +61,7 @@ export type TAcademicInformationPayload = {
     year: string;
     country: string;
     academic_degree: string;
-    currently_studying: boolean;
+    currently: boolean;
 };
 
 

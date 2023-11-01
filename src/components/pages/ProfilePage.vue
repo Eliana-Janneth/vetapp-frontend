@@ -3,7 +3,7 @@ import { VText, VCard, VTitle, VLoader, VButton, VetAcademicForm, VetWorkForm } 
 import { vetappApi } from '@/services';
 import { SModal } from '@placetopay/spartan-vue';
 import { ref } from 'vue';
-import type { TAcademicInformationPayload, TWorkExperiencePayload } from '@/types';
+import { TAcademicInformation, TWorkExperience } from '@/types';
 import { UserCircleIcon, BuildingOfficeIcon, BuildingLibraryIcon } from '@heroicons/vue/24/solid';
 import {
     PlusCircleIcon,
@@ -25,8 +25,8 @@ import { useUserStore } from '@/stores';
 const user = useUserStore();
 
 const userData = ref();
-const academicInfo = ref<TAcademicInformationPayload[]>([]);
-const workExperience = ref<TWorkExperiencePayload[]>([]);
+const academicInfo = ref<TAcademicInformation[]>([]);
+const workExperience = ref<TWorkExperience[]>([]);
 
 const openAcademicForm = ref(false);
 const openWorkForm = ref(false);
@@ -136,11 +136,11 @@ if (user.isVet) {
                     </VText>
                     <VText :icon="AcademicCapIcon">
                         <span class="font-bold">Grado Académico:&nbsp;</span>
-                        <span>{{ info?.academic_degree }}&nbsp;</span>
+                        <span>{{ info?.academicDegree }}&nbsp;</span>
                     </VText>
                     <VText :icon="BookOpenIcon">
                         <span class="font-bold">Estudio:&nbsp;</span>
-                        <span>{{ info?.currently }}&nbsp;</span>
+                        <span>{{ info?.currentlystudying }}&nbsp;</span>
                     </VText>
                 </VCard>
             </div>
@@ -157,7 +157,7 @@ if (user.isVet) {
                 <VCard class="w-full lg:w-fit" v-for="work in workExperience">
                     <template #header>
                         <BriefcaseIcon class="h-5 w-5" />
-                        <span>{{ work?.title }}&nbsp;</span>
+                        <span>{{ work?.position }}&nbsp;</span>
                     </template>
                     <VText :icon="BuildingOfficeIcon">
                         <span class="font-bold">Empresa:&nbsp;</span>
@@ -169,11 +169,11 @@ if (user.isVet) {
                     </VText>
                     <VText :icon="CalendarDaysIcon">
                         <span class="font-bold">Fecha Inicio:&nbsp;</span>
-                        <span>{{ work?.start_date }}&nbsp;</span>
+                        <span>{{ work?.startDate }}&nbsp;</span>
                     </VText>
                     <VText :icon="CalendarDaysIcon">
                         <span class="font-bold">Fecha Final:&nbsp;</span>
-                        <span>{{ work?.end_date }}&nbsp;</span>
+                        <span>{{ work?.endDate }}&nbsp;</span>
                     </VText>
                     <VText :icon="GlobeAmericasIcon">
                         <span class="font-bold">País:&nbsp;</span>
@@ -181,7 +181,7 @@ if (user.isVet) {
                     </VText>
                     <VText :icon="BriefcaseIcon">
                         <span class="font-bold">Trabajo:&nbsp;</span>
-                        <span>{{ work?.currently }}&nbsp;</span>
+                        <span>{{ work?.currentlyWorking }}&nbsp;</span>
                     </VText>
                 </VCard>
             </div>

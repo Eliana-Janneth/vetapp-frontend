@@ -54,82 +54,9 @@ export const getVetAvailables = async () => {
     }
 };
 
-export const getVetInformation = async (id: string) => {
-    try {
-        const response = await fetch(`${API_URL}/vets/${id}/`, {
-            headers: {
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-        
-        if (!response.ok) {
-            router.push({ name: 'notFound' });
-        }
 
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
-};
 
-export const getAcademicInformationVet = async (id: string) => {
-    const apiUrl = `${API_URL}/vet-academic-information/${id}/`;
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
-            }
-            return;
-        }
-
-        const responseData = await response.json();
-        console.log(responseData);
-        return responseData;
-    } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-    }
-};
-
-export const getWorkExperienceVet = async (id: string) => {
-    const apiUrl = `${API_URL}/vet-work_experience/${id}/`;
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
-            }
-            return;
-        }
-
-        const responseData = await response.json();
-        console.log(responseData);
-        return responseData;
-    } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-    }
-};
 export const getAnimalsRequest = async (): Promise<TOption[]> => {
     try {
         const response = await fetch(`${API_URL}/animals-list/`, {

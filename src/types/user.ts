@@ -17,29 +17,25 @@ export type TAcademicInformation = {
     currentlystudying: boolean;
 };
 
-export type TWorkExperiencePayload = {
-    title: string;
-    company: string;
-    functions: string;
-    start_date: string;
-    end_date: string;
-    country: string;
-    currently_working: boolean;
-    currently: string;
-};
-
-export type TAcademicInformationPayload = {
-    title: string;
-    university: string;
-    year: string;
-    country: string;
-    academic_degree: string;
-    currently_studying: boolean;
-    currently: string;
-};
 
 export type TRegisterFarmerRequest={
     message : string;
     animal : string;
     vet:    string; 
+}
+
+export type TVetInformation={
+    id: string;
+    name: string;
+    lastName: string;
+    email: string;
+    document: string;
+    phone: string;
+    city: string;
+    address: string;
+    password: string;
+    repeatPassword: string;
+    license: string;
+    licenseExpiryDate: string;
+    available: boolean;
 }
