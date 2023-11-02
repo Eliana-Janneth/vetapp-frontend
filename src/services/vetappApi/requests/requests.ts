@@ -1,9 +1,7 @@
 import type { TOption as TAOption, TRegisterFarmerRequestPayload } from "../types";
-import {useRouter} from 'vue-router';
 import { notify } from '@kyvg/vue3-notification';
 import type { TOption } from '@/types';
 
-const router = useRouter();
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const createFarmerRequest = async (data: TRegisterFarmerRequestPayload) => {

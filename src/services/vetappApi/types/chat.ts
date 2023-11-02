@@ -5,3 +5,11 @@ export type TChatPayload = {
     animal_specie: string;
 };
 
+export type TMessagePayload = {
+    id: number,
+    sender_name: string,
+    sender_role: string,
+    message: string,
+    date_sent: string,
+    file: null,
+};

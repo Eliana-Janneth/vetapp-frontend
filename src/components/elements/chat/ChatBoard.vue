@@ -9,20 +9,12 @@ import { useStyleStore } from '@/stores';
 import { createAvatar } from '@/helpers';
 import noChatsIllustration from '@/assets/illustrations/no_chats.svg';
 import pet from '@/assets/icons/pet.svg';
-//import WebSocket from 'ws';
+import { vetappApi } from '@/services';
 
 defineProps<{
     role: 'farmer' | 'vet';
     chat: TChat | null;
 }>();
-
-// const ws = new WebSocket('ws://127.0.0.1:9999/ws/chat/1/');
-// function open () {
-//     // Abre conexión
-//     console.log("WebSocket abierto.");
-// }
-
-// ws.addEventListener("open", open);
 
 const style = useStyleStore();
 
@@ -37,66 +29,22 @@ function handleDocumentUpload(event: Event) {
     console.log('Documento seleccionado:', selectedDocument);
 }
 
-const messages: TMessage[] = [
-    {
-        id: 1,
-        sender: 'juan',
-        role: 'farmer',
-        message:
-            'hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted?',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 2,
-        sender: 'eliana',
-        role: 'vet',
-        message: 'como estas?',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 3,
-        sender: 'juan',
-        role: 'farmer',
-        message: 'bien y tu?',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 4,
-        sender: 'eliana',
-        role: 'vet',
-        message:
-            'hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted? hola buenos días como esta bien y usted?',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 5,
-        sender: 'juan',
-        role: 'farmer',
-        message: 'que haces?',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 6,
-        sender: 'eliana',
-        role: 'vet',
-        message: 'nada',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 7,
-        sender: 'juan',
-        role: 'farmer',
-        message: 'ok',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-];
+const messages = ref<TMessage[]>([]);
+
+const handleWebSocketMessage = (messageData: TMessage[]) => {
+
+    messages.value.push(...messageData);
+};
+vetappApi
+    .connectToChat(1)
+    .then((messageData: any) => {
+        handleWebSocketMessage(messageData);
+        console.log('Conexión WebSocket aaa');
+    })
+    .catch((error) => {
+        console.error('Error en la conexión WebSocket:', error);
+    });
+
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-import { TChat } from '@/types/chat';
-import { TChatPayload } from '../types';
+import { TChat, TMessage } from '@/types/chat';
+import { TChatPayload, TMessagePayload } from '../types';
 
 export const adaptChats = (response: TChatPayload[]): TChat[] => {
     return response.map((chat) => ({
@@ -10,4 +10,13 @@ export const adaptChats = (response: TChatPayload[]): TChat[] => {
     }));
 };
 
-
+export const adaptMessages = (response: TMessagePayload[]): TMessage[] => {
+    return response.map((message) => ({
+        id: message.id,
+        sender: message.sender_name,
+        role: message.sender_role,
+        message: message.message,
+        date: message.date_sent,
+        file: message.file,
+    }));
+};
