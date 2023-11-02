@@ -11,10 +11,6 @@ import noChatsIllustration from '@/assets/illustrations/no_chats.svg';
 import pet from '@/assets/icons/pet.svg';
 import { vetappApi } from '@/services';
 
-
-
-vetappApi.connectToChat(1);
-
 defineProps<{
     role: 'farmer' | 'vet';
     chat: TChat | null;
@@ -33,66 +29,22 @@ function handleDocumentUpload(event: Event) {
     console.log('Documento seleccionado:', selectedDocument);
 }
 
-const messages: TMessage[] = [
-    {
-        id: 1,
-        sender: 'juan',
-        role: 'farmer',
-        message:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut tempora molestiae, ea quos optio ipsum hic tempore deleniti! Reiciendis minima praesentium delectus quae minus porro autem iste? Libero, quis dolor!',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 2,
-        sender: 'eliana',
-        role: 'vet',
-        message: 'como estas?',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 3,
-        sender: 'juan',
-        role: 'farmer',
-        message: 'bien y tu?',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 4,
-        sender: 'eliana',
-        role: 'vet',
-        message:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut tempora molestiae, ea quos optio ipsum hic tempore deleniti! Reiciendis minima praesentium delectus quae minus porro autem iste? Libero, quis dolor!',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 5,
-        sender: 'juan',
-        role: 'farmer',
-        message: 'que haces?',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 6,
-        sender: 'eliana',
-        role: 'vet',
-        message: 'nada',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-    {
-        id: 7,
-        sender: 'juan',
-        role: 'farmer',
-        message: 'ok',
-        date: '2023-10-29T12:47:41.325269-05:00',
-        file: null,
-    },
-];
+const messages = ref<TMessage[]>([]);
+
+const handleWebSocketMessage = (messageData: TMessage[]) => {
+
+    messages.value.push(...messageData);
+};
+vetappApi
+    .connectToChat(1)
+    .then((messageData: any) => {
+        handleWebSocketMessage(messageData);
+        console.log('Conexión WebSocket aaa');
+    })
+    .catch((error) => {
+        console.error('Error en la conexión WebSocket:', error);
+    });
+
 </script>
 
 <template>

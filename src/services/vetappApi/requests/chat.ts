@@ -1,6 +1,6 @@
-import { TChatPayload } from '../types';
+import { TChatPayload, TMessagePayload } from '../types';
 import { service } from '../../service';
-import { adaptChats } from '../adapters';
+import { adaptChats, adaptMessages } from '../adapters';
 
 export const getFarmerChats = async () => {
     const response = (await service.get('farmer-chats/')) as TChatPayload[];
@@ -13,43 +13,42 @@ export const getVetChats = async () => {
 };
 
 export const searchFarmerChats = async (name: string) => {
-    const response = (await service.get(
-        `farmer-chats/search/?name=${name}`,
-    )) as TChatPayload[];
+    const response = (await service.get(`farmer-chats/search/?name=${name}`)) as TChatPayload[];
     return adaptChats(response);
 };
 export const searchVetChats = async (name: string) => {
-    const response = (await service.get(
-        `vet-chats/search/?name=${name}`,
-    )) as TChatPayload[];
+    const response = (await service.get(`vet-chats/search/?name=${name}`)) as TChatPayload[];
     return adaptChats(response);
 };
 
-export const connectToChat = (chatId) => {
-        // Construir la URL de conexión WebSocket con el token de autorización
+export const connectToChat = (chatId: number) => {
+    return new Promise((response, reject) => {
         const token = localStorage.getItem('accessToken');
-        console.log(token);
         const socket = new WebSocket(`ws://127.0.0.1:9999/ws/chat/${chatId}/?auth=${token}`);
+
         socket.onopen = () => {
             console.log('Conexión WebSocket abierta');
         };
-    
+
         socket.onmessage = (event) => {
-            console.log('Mensaje recibido:', event.data);
+            console.log('chat:', event.data);
+            const chat = JSON.parse(event.data);
+            const messages = chat.messages  as TMessagePayload[];
+            console.log('Mensaje recibido:', messages);
+            response(adaptMessages(messages)); 
         };
-    
+
         socket.onclose = (event) => {
             if (event.wasClean) {
                 console.log(`Conexión cerrada limpiamente, código=${event.code}, razón=${event.reason}`);
             } else {
-                console.error('Conexión cerrada bruscamente'); 
+                console.error('Conexión cerrada bruscamente');
+                reject(event.reason); // Rechaza la promesa si hay un error en la conexión
             }
         };
-    
-        console.log("Conexión WebSocket establecida");
-    
+
         // Función para enviar mensajes al servidor en formato JSON
-        const sendMessage = (message) => {
+        const sendMessage = (message:string) => {
             if (socket.readyState === WebSocket.OPEN) {
                 const jsonMessage = JSON.stringify({ message: message });
                 socket.send(jsonMessage);
@@ -58,6 +57,5 @@ export const connectToChat = (chatId) => {
                 console.error('La conexión no está abierta.');
             }
         };
-    
-        
-    };
+    });
+};
