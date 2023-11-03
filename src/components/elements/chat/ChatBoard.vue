@@ -2,7 +2,7 @@
 import { TChat, TMessage } from '@/types';
 import { CameraIcon, ClipboardIcon } from '@heroicons/vue/24/outline';
 import VButton from '../VButton.vue';
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import VTextField from '../VTextField.vue';
 import ChatMessage from './ChatMessage.vue';
 import { useStyleStore } from '@/stores';
@@ -48,19 +48,10 @@ const chat = () => {
 
 const sendMessage = () => {
     if (message.value && props.chat) {
-        vetappApi.sendMessage( message.value );
-        message.value = ''; 
+        vetappApi.sendMessage(message.value);
+        message.value = '';
     }
 };
-
-watch(
-    () => props.chat?.id,
-    (newChatId) => {
-        if (newChatId !== undefined) {
-            chat();
-        }
-    },
-);
 </script>
 
 <template>
