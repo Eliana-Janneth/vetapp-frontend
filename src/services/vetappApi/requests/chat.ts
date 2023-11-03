@@ -21,6 +21,7 @@ export const searchVetChats = async (name: string) => {
     return adaptChats(response);
 };
 
+let sendMessageFunction = null; 
 export const connectToChat = (chatId: number) => {
     return new Promise((response, reject) => {
         const token = localStorage.getItem('accessToken');
@@ -33,9 +34,13 @@ export const connectToChat = (chatId: number) => {
         socket.onmessage = (event) => {
             console.log('chat:', event.data);
             const chat = JSON.parse(event.data);
-            const messages = chat.messages  as TMessagePayload[];
-            console.log('Mensaje recibido:', messages);
-            response(adaptMessages(messages)); 
+            if (Array.isArray(chat.messages)) {
+                const messages = chat.messages as TMessagePayload[];
+                console.log('Mensaje recibido:', messages);
+                response(adaptMessages(messages));
+            } else {
+                console.error('El formato de mensajes no es válido.');
+            }
         };
 
         socket.onclose = (event) => {
@@ -57,5 +62,9 @@ export const connectToChat = (chatId: number) => {
                 console.error('La conexión no está abierta.');
             }
         };
+        sendMessageFunction = sendMessage;
+      
+
     });
 };
+export { sendMessageFunction as sendMessage };

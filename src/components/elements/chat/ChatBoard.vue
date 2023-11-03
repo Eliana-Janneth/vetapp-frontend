@@ -2,7 +2,7 @@
 import { TChat, TMessage } from '@/types';
 import { CameraIcon, ClipboardIcon } from '@heroicons/vue/24/outline';
 import VButton from '../VButton.vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import VTextField from '../VTextField.vue';
 import ChatMessage from './ChatMessage.vue';
 import { useStyleStore } from '@/stores';
@@ -11,7 +11,7 @@ import noChatsIllustration from '@/assets/illustrations/no_chats.svg';
 import pet from '@/assets/icons/pet.svg';
 import { vetappApi } from '@/services';
 
-defineProps<{
+const props = defineProps<{
     role: 'farmer' | 'vet';
     chat: TChat | null;
 }>();
@@ -32,19 +32,35 @@ function handleDocumentUpload(event: Event) {
 const messages = ref<TMessage[]>([]);
 
 const handleWebSocketMessage = (messageData: TMessage[]) => {
-
     messages.value.push(...messageData);
 };
-vetappApi
-    .connectToChat(1)
-    .then((messageData: any) => {
-        handleWebSocketMessage(messageData);
-        console.log('Conexión WebSocket aaa');
-    })
-    .catch((error) => {
-        console.error('Error en la conexión WebSocket:', error);
-    });
 
+const chat = () => {
+    vetappApi
+        .connectToChat(props.chat?.id as number)
+        .then((messageData: any) => {
+            handleWebSocketMessage(messageData);
+        })
+        .catch((error) => {
+            console.error('Error en la conexión WebSocket:', error);
+        });
+};
+
+const sendMessage = () => {
+    if (message.value && props.chat) {
+        vetappApi.sendMessage( message.value );
+        message.value = ''; 
+    }
+};
+
+watch(
+    () => props.chat?.id,
+    (newChatId) => {
+        if (newChatId !== undefined) {
+            chat();
+        }
+    },
+);
 </script>
 
 <template>
@@ -115,7 +131,7 @@ vetappApi
                 </div>
             </div>
 
-            <VButton class="w-fit">Enviar</VButton>
+            <VButton class="w-fit" @click="sendMessage">Enviar</VButton>
         </div>
     </section>
     <div v-else :class="[style.getBackgroundChat, 'flex items-center justify-center text-2xl text-white']">
