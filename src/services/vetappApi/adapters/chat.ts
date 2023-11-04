@@ -7,16 +7,21 @@ export const adaptChats = (response: TChatPayload[]): TChat[] => {
         userName: chat.name,
         animal: chat.animal_name,
         specie: chat.animal_specie,
+        messages: null,
     }));
 };
 
+export const adaptMessage = (response: TMessagePayload): TMessage => {
+    return {
+        id: response.id,
+        sender: response.sender_name,
+        role: response.sender_role,
+        message: response.message,
+        date: response.date_sent,
+        file: response.file,
+    };
+}
+
 export const adaptMessages = (response: TMessagePayload[]): TMessage[] => {
-    return response.map((message) => ({
-        id: message.id,
-        sender: message.sender_name,
-        role: message.sender_role,
-        message: message.message,
-        date: message.date_sent,
-        file: message.file,
-    }));
+    return response.map((message) => (adaptMessage(message)));
 };

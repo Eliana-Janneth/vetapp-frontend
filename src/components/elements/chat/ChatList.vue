@@ -1,24 +1,23 @@
 <script setup lang="ts">
 import { ChatListItem } from '@elements';
 import { vetappApi } from '@/services';
-import { TChat } from '@/types/chat';
 import { ref } from 'vue';
-import { useUserStore } from '@/stores';
+import { useUserStore, useChatStore } from '@/stores';
 import VTextField from '../VTextField.vue';
 
 defineEmits(['activeChat']);
 
-const chats = ref<TChat[]>([]);
 const search = ref('');
 const user = useUserStore();
+const chatStore = useChatStore();
 
 if (user.isFarmer) {
     vetappApi.getFarmerChats().then((response) => {
-        chats.value = response;
+        chatStore.updateChats(response);
     });
 } else {
     vetappApi.getVetChats().then((response) => {
-        chats.value = response;
+        chatStore.updateChats(response);
     });
 }
 
@@ -26,11 +25,11 @@ const searchData = () => {
     if (search.value) {
         if (user.isFarmer) {
             vetappApi.searchFarmerChats(search.value).then((response) => {
-                chats.value = response;
+                chatStore.updateChats(response);
             });
         } else {
             vetappApi.searchVetChats(search.value).then((response) => {
-                chats.value = response;
+                chatStore.updateChats(response);
             });
         }
     }
@@ -49,10 +48,9 @@ const searchData = () => {
             v-model="search"
             @input="searchData"
         />
-
         <ChatListItem
-            v-for="chat in chats"
-            @click="() => $emit('activeChat', chat)"
+            v-for="chat in chatStore.chats"
+            @click="() => chatStore.active = chat.id"
             :key="chat.id"
             :chat="chat"
             :role="user.role"

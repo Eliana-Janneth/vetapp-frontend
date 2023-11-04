@@ -23,7 +23,7 @@ url.searchParams.append('uppercase', 'true');
     >
         <img class="mr-4 h-10 w-10 rounded-full shadow" :src="url.href" alt="Avatar" />
         <div class="text-sm">
-            <p class="leading-none text-gray-900">{{ chat.userName}}</p>
+            <p class="leading-none text-gray-900">{{ chat.userName }}</p>
             <p class="text-gray-600">
                 <span class="font-semibold">Animal: </span>
                 <span>{{ chat.animal }}</span>

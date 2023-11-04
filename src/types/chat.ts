@@ -3,6 +3,7 @@ export type TChat = {
     userName: string;
     animal: string;
     specie: string;
+    messages: TMessage[] | null;
 };
 
  export type TMessage = {

@@ -1,22 +1,18 @@
 <script setup lang="ts">
-import { TChat, TMessage } from '@/types';
 import { CameraIcon, ClipboardIcon } from '@heroicons/vue/24/outline';
 import VButton from '../VButton.vue';
-import { ref, watch, onMounted } from 'vue';
+import { ref } from 'vue';
 import VTextField from '../VTextField.vue';
 import ChatMessage from './ChatMessage.vue';
-import { useStyleStore } from '@/stores';
+import { useStyleStore, useChatStore, useUserStore } from '@/stores';
 import { createAvatar } from '@/helpers';
 import noChatsIllustration from '@/assets/illustrations/no_chats.svg';
 import pet from '@/assets/icons/pet.svg';
-import { vetappApi } from '@/services';
-
-const props = defineProps<{
-    role: 'farmer' | 'vet';
-    chat: TChat | null;
-}>();
 
 const style = useStyleStore();
+
+const userStore = useUserStore();
+const chatStore = useChatStore();
 
 const message = ref('');
 
@@ -29,62 +25,34 @@ function handleDocumentUpload(event: Event) {
     console.log('Documento seleccionado:', selectedDocument);
 }
 
-const messages = ref<TMessage[]>([]);
-
-const handleWebSocketMessage = (messageData: TMessage[]) => {
-    messages.value.push(...messageData);
-};
-
-const chat = () => {
-    vetappApi
-        .connectToChat(props.chat?.id as number)
-        .then((messageData: any) => {
-            handleWebSocketMessage(messageData);
-        })
-        .catch((error) => {
-            console.error('Error en la conexión WebSocket:', error);
-        });
-};
-
-const sendMessage = () => {
-    if (message.value && props.chat) {
-        vetappApi.sendMessage(message.value);
-        message.value = '';
-    }
-};
-
-watch(
-    () => props.chat?.id,
-    (newChatId) => {
-        if (newChatId !== undefined) {
-            chat();
-        }
-    },
-);
+const send = () => {
+    chatStore.activeChat!.send!(message.value);
+    message.value = '';
+}
 </script>
 
 <template>
-    <section v-if="chat" :class="[style.getBackgroundChat]">
+    <section v-if="chatStore.activeChat" :class="[style.getBackgroundChat]">
         <div class="flex bg-black/20">
             <div class="flex flex-grow">
                 <div class="relative m-2 mr-4 w-12">
                     <img
                         class="mr-4 h-10 w-10 rounded-full shadow"
-                        :src="createAvatar(chat.userName ?? '?', role)"
+                        :src="createAvatar(chatStore.activeChat.userName ?? '?', userStore.role)"
                         alt="Avatar"
                     />
                 </div>
                 <div class="flex flex-col justify-center">
-                    <span class="font-bold text-white">{{ chat.userName }}</span>
+                    <span class="font-bold text-white">{{ chatStore.activeChat.userName }}</span>
                     <div class="flex gap-x-1">
                         <img class="h-5 w-5" :src="pet" alt="pet" />
-                        <span class="font-thin text-white">{{ chat.animal }}</span>
+                        <span class="font-thin text-white">{{ chatStore.activeChat.animal }}</span>
                         <span
                             :class="[
                                 style.getAlertStyle,
                                 'my-px ml-2 flex items-center font-thin leading-none text-gray-900',
                             ]"
-                            >{{ chat.specie }}</span
+                            >{{ chatStore.activeChat.specie }}</span
                         >
                     </div>
                 </div>
@@ -92,8 +60,7 @@ watch(
         </div>
 
         <div class="scroll-style flex-grow overflow-auto p-4">
-            <ChatMessage v-for="message in messages" :message="message" :role="role" />
-            <pre>{{ message }}</pre>
+            <ChatMessage v-for="message in chatStore.activeChat.messages" :message="message" :role="userStore.role" />
         </div>
 
         <div class="mt-auto flex border-t px-2 py-4 lg:px-10">
@@ -131,7 +98,7 @@ watch(
                 </div>
             </div>
 
-            <VButton class="w-fit" @click="sendMessage">Enviar</VButton>
+            <VButton class="w-fit" @click="send">Enviar</VButton>
         </div>
     </section>
     <div v-else :class="[style.getBackgroundChat, 'flex items-center justify-center text-2xl text-white']">
