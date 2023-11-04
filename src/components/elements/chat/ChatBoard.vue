@@ -52,6 +52,15 @@ const sendMessage = () => {
         message.value = '';
     }
 };
+
+watch(
+    () => props.chat?.id,
+    (newChatId) => {
+        if (newChatId !== undefined) {
+            chat();
+        }
+    },
+);
 </script>
 
 <template>

@@ -25,7 +25,7 @@ export const searchVetChats = async (name: string) => {
     export const connectToChat = (chatId: number) => {
         return new Promise((response, reject) => {
             const token = localStorage.getItem('accessToken');
-            const socket = new WebSocket(`ws://127.0.0.1:9999/ws/chat/${chatId}/?auth=${token}`);
+            const socket = new WebSocket(`${import.meta.env.VITE_WS_URL}/ws/chat/${chatId}/?auth=${token}`);
 
             socket.onopen = () => {
                 console.log('Conexión WebSocket abierta');
