@@ -7,7 +7,7 @@ import { adaptAnimal, adaptAnimals } from '../adapters/animals';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const createAnimalRequest = async (data: TRegisterAnimalPayload) => {
+export const createAnimal = async (data: TRegisterAnimalPayload) => {
     await service.post('animals', data);
 };
 

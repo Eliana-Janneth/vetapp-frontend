@@ -1,72 +1,25 @@
-import type { TDiagnosisPayload } from '../types';
+import type { TAnimalAuthorizedPayload, TDiagnosisPayload, TDiagnosisCreatePayload} from '../types';
 import { service } from '../../service';
-import { adaptDiagnosis } from '../adapters/consults';
+import { adaptAnimalAuthorized, adaptAnimalsAuthorized, adaptDiagnosis } from '../adapters/consults';
 import { notify } from '@kyvg/vue3-notification';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const getAnimalsAuthorized = async () => {
-    try {
-        const response = await fetch(`${API_URL}/authorized-animals/`, {
-            headers: {
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-        if (!response.ok) {
-            throw new Error('No se pudo cargar los datos');
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
-};
-
-export const createDiagnosis = async (data: TDiagnosisPayload, id: string) => {
-    const apiUrl = `${API_URL}/vet-medical-historys/${id}/`;
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
-            }
-            return;
-        }
-        // Si la respuesta es exitosa
-        const responseData = await response.json();
-        console.log(JSON.stringify(responseData, null, 2));
-    } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-    }
-};
+    const response = (await service.get('authorized-animals/')) as TAnimalAuthorizedPayload[];
+    return adaptAnimalsAuthorized(response);
+}
 
 export const getAnimalAuthorized = async (id: string) => {
-    try {
-        const response = await fetch(`${API_URL}/vet-animal-info/${id}/`, {
-            headers: {
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-        if (!response.ok) {
-            throw new Error('No se pudo cargar los datos');
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
-};
+    const response = (await service.get(`vet-animal-info/${id}/`)) as TAnimalAuthorizedPayload;
+    return adaptAnimalAuthorized(response);
+}
+
+
+export const createDiagnosis = async (data: TDiagnosisCreatePayload, id: string) => {
+    await service.post(`vet-medical-historys/${id}`, data);
+
+}
 
 export const getDiagnosisVet = async (id: string) => {
     const response = (await service.get(`vet-medical-historys/${id}/`)) as TDiagnosisPayload[];

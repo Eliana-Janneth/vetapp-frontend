@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { ref, onMounted, watch, reactive } from 'vue';
-import { VButton, VInput, VSelect, VTextArea } from '@elements';
+import { ref, onMounted, watch } from 'vue';
+import { VButton, VSelect, VTextArea, VTextField, VLoader } from '@elements';
 import { useForm } from 'vee-validate';
 import { TRegisterAnimalPayload, vetappApi } from '@/services';
 import type { TRegisterAnimal } from './types';
 import * as yup from 'yup';
 
-const values: TRegisterAnimalPayload = reactive({
-    name: '',
-    birth_date: '',
-    color: '',
-    description: '',
-    gender: '',
-    height: '',
-    weight: '',
-    race: '',
-    specie: '',
-});
+// const values: TRegisterAnimalPayload = reactive({
+//     name: '',
+//     birth_date: '',
+//     color: '',
+//     description: '',
+//     gender: '',
+//     height: '',
+//     weight: '',
+//     race: '',
+//     specie: '',
+// });
 
 const validationSchema = yup.object({
     name: yup.string().required('Por favor ingrese un nombre').min(3, 'El nombre debe tener al menos 3 caracteres'),
@@ -29,22 +29,22 @@ const validationSchema = yup.object({
     gender: yup.string().required('Por favor seleccione un género'),
 });
 
-const { defineComponentBinds, errors, meta, handleSubmit } = useForm<TRegisterAnimal>({
+const { handleSubmit, isSubmitting } = useForm<TRegisterAnimal>({
     validationSchema,
 });
 const species = ref<{ text: string; value: string }[]>([]);
 const races = ref<{ text: string; value: string }[]>([]);
 const selectedSpeciesId = ref('');
 
-const name = defineComponentBinds('name');
-const specie = defineComponentBinds('specie');
-const race = defineComponentBinds('race');
-const gender = defineComponentBinds('gender');
-const birthdate = defineComponentBinds('birthdate');
-const weight = defineComponentBinds('weight');
-const height = defineComponentBinds('height');
-const color = defineComponentBinds('color');
-const description = defineComponentBinds('description');
+// const name = defineComponentBinds('name');
+// const specie = defineComponentBinds('specie');
+// const race = defineComponentBinds('race');
+// const gender = defineComponentBinds('gender');
+// const birthdate = defineComponentBinds('birthdate');
+// const weight = defineComponentBinds('weight');
+// const height = defineComponentBinds('height');
+// const color = defineComponentBinds('color');
+// const description = defineComponentBinds('description');
 
 onMounted(async () => {
     try {
@@ -70,139 +70,133 @@ watch(selectedSpeciesId, (newSpeciesId: string) => {
     }
 });
 
-const onSubmit = handleSubmit(async (registerValues: TRegisterAnimal) => {
+const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
     try {
-        values.name = registerValues.name;
-        values.birth_date = registerValues.birthdate;
-        values.color = registerValues.color;
-        values.description = registerValues.description;
-        values.gender = registerValues.gender;
-        values.height = registerValues.height;
-        values.race = registerValues.race;
-        values.specie = registerValues.specie;
-        values.weight = registerValues.weight;
-
-        await vetappApi.createAnimal(values);
+        const payload: TRegisterAnimalPayload = {
+            name: values.name,
+            birth_date: values.birthdate,
+            color: values.color,
+            description: values.description,
+            gender: values.gender,
+            height: values.height,
+            race: values.race,
+            specie: values.specie,
+            weight: values.weight,
+        };
+        await vetappApi.createAnimal(payload);
         console.log(JSON.stringify(values, null, 2));
     } catch (error) {}
 });
 </script>
 
 <template>
-    <form class="flex flex-col gap-2 rounded-lg bg-emerald-100/70 p-4" @submit="onSubmit">
-        <div class="flex flex-col gap-2 lg:flex-row">
-            <VInput
-                v-bind="name"
-                variant="farmer"
-                label="Nombre"
-                placeholder="Escribe su nombre"
-                type="text"
-                name="name"
-                :error="errors.name"
-            />
-            <VSelect
-                v-bind="specie"
-                variant="farmer"
-                custom-class="form-farmer"
-                placeholder="Seleccione la especie"
-                label="Especie"
-                name="specie"
-                :options="species"
-                :error="errors.specie"
-                @update:modelValue="loadRaces"
-            />
+    <form class="grid grid-cols-1 gap-4 rounded-lg bg-emerald-100/70 p-4 sm:grid-cols-8" @submit="onSubmit">
+        <VTextField
+            container-class="sm:col-span-2"
+            label="Nombre"
+            placeholder="Escribe su nombre"
+            type="text"
+            name="name"
+        />
+        <VSelect
+            container-class="sm:col-span-2"
+            custom-class="form-farmer"
+            placeholder="Seleccione la especie"
+            label="Especie"
+            name="specie"
+            :options="species"
+            @update:modelValue="loadRaces"
+        />
 
-            <VSelect
-                v-bind="race"
-                custom-class="form-farmer"
-                variant="farmer"
-                label="Raza"
-                name="race"
-                placeholder="Seleccione la raza"
-                :options="races"
-                :error="errors.race"
-            />
-        </div>
-        <div class="flex flex-col gap-2 lg:flex-row">
-            <span class="block text-lg font-medium text-emerald-800">Género</span>
-            <VInput
-                v-bind="gender"
-                custom-class="w-min"
-                variant="farmer"
-                label="Macho"
-                type="radio"
-                name="gender"
-                model-value="Macho"
-                :error="errors.gender"
-            />
-            <VInput
-                v-bind="gender"
-                custom-class="w-min"
-                variant="farmer"
-                label="Hembra"
-                type="radio"
-                name="gender"
-                model-value="Hembra"
-                :error="errors.gender"
-            />
-            <VInput
-                v-bind="birthdate"
-                variant="farmer"
-                label="Fecha de Nacimiento"
-                type="date"
-                name="birthdate"
-                :error="errors.birthdate"
-            />
-            <VInput
-                v-bind="weight"
-                variant="farmer"
-                label="Peso"
-                placeholder="Ingresa su peso actual"
-                type="text"
-                name="weight"
-                :error="errors.weight"
-            />
-            <VInput
-                v-bind="height"
-                variant="farmer"
-                label="Altura"
-                placeholder="Ingresa su altura"
-                type="text"
-                name="height"
-                :error="errors.height"
-            />
-        </div>
-        <div class="flex flex-col gap-2 lg:flex-row">
-            <VTextArea
-                v-bind="color"
-                variant="farmer"
-                label="Color"
-                placeholder="Describe su aspecto fisico"
-                name="color"
-                :error="errors.color"
-            />
-            <VTextArea
-                v-bind="description"
-                variant="farmer"
-                label="Descripción"
-                placeholder="Describe alguna caracteristica importante"
-                name="description"
-                :error="errors.description"
-            />
-        </div>
+        <VSelect
+            container-class="sm:col-span-2"
+            custom-class="form-farmer"
+            label="Raza"
+            name="race"
+            placeholder="Seleccione la raza"
+            :options="races"
+        />
+        <VTextField container-class="sm:col-span-2" label="Fecha de Nacimiento" type="date" name="birthdate" />
 
-        <div class="flex w-full justify-center gap-4">
-            <VButton
-                label="Guardar"
-                type="submit"
-                :disabled="!meta.valid"
-                :class="['form-button-farmer ', !meta.valid && 'pointer-events-none opacity-50']"
-            />
-            <VButton
-                custom-class="py-0 items-center"
-                label="Cancelar"
-                @click="$router.push({ name: 'animals.index' })"
-            />
-        </div>
+        <div class="sm:col-span-2 flex justify-between">
+        <span class="block text-lg font-medium text-emerald-800 ">Género:</span>
+        <VTextField
+            container-class=""
+            class="w-min"
+            label="Macho"
+            type="radio"
+            name="gender"
+            model-value="Macho"
+        />
+        <VTextField
+            container-class=""
+            class="w-min"
+            label="Hembra"
+            type="radio"
+            name="gender"
+            model-value="Hembra"
+        />
+    </div>
+        <VTextField
+            container-class="sm:col-span-2"
+            class="w-min"
+            label="Peso"
+            placeholder="Ingresa su peso"
+            type="number"
+            name="weight"
+        />
+        <VTextField
+            container-class="sm:col-span-2"
+            class="w-min"
+            label="Altura"
+            placeholder="Ingresa su altura"
+            type="number"
+            name="height"
+        />
+        <VTextArea
+            container-class="sm:col-span-4"
+            label="Color"
+            placeholder="Describe su aspecto fisico"
+            name="color"
+        />
+        <VTextArea
+            container-class="sm:col-span-4"
+            label="Descripción"
+            placeholder="Describe alguna caracteristica importante"
+            name="description"
+        />
+
+        <VButton
+            custom-class="py-0 items-center"
+            class="w-full sm:col-span-2"
+            label="Cancelar"
+            variant="danger"
+            @click="$router.push({ name: 'animals.index' })"
+        />
+        <VButton
+            label="Guardar"
+            class="w-full sm:col-span-2"
+            type="submit"
+            variant="success"
+          
+        >
+            <div v-if="isSubmitting" class="flex items-center gap-2">
+                <VLoader class="h-6" />
+                <span>Enviando</span>
+            </div>
+        </VButton>
+        <!-- <VButton
+            label="Guardar"
+            class="w-full sm:col-span-2"
+            type="submit"
+            variant="success"
+            :disabled="!meta.valid"
+            :class="['form-button-farmer ', !meta.valid && 'pointer-events-none opacity-50']"
+        >
+            <div v-if="isSubmitting" class="flex items-center gap-2">
+                <VLoader class="h-6" />
+                <span>Enviando</span>
+            </div>
+        </VButton> -->
     </form>
 </template>

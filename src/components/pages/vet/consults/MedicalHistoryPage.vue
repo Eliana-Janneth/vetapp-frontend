@@ -1,47 +1,47 @@
 <script setup lang="ts">
-import { VTitle, VetDiagnosisForm, VDetails, VUpgradeableTextarea } from '@elements';
+import { VTitle, VetDiagnosisForm, VDetails, VUpgradeableTextarea, VButton } from '@elements';
 import { useRoute } from 'vue-router';
 import { vetappApi } from '@/services';
 import loader from '@/assets/loader.svg';
 import { ref, computed } from 'vue';
 import { formatDate } from '@/helpers';
-import { TDiagnosis } from '@/types';
+import { TAnimalAuthorized, TDiagnosis } from '@/types';
+import { ArrowLeftCircleIcon } from '@heroicons/vue/24/outline';
 
 const route = useRoute();
-const animal = ref();
+const animal = ref<TAnimalAuthorized>();
 const diagnosisAnimal = ref<TDiagnosis[]>();
 const animalId = computed(() => String(route.params.id));
 
 vetappApi.getAnimalAuthorized(route.params.id.toString()).then((res) => {
     animal.value = res;
 });
-vetappApi
-    .getDiagnosisVet(animalId.value)
-    .then((res) => {
-        diagnosisAnimal.value = res;
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+vetappApi.getDiagnosisVet(animalId.value).then((res) => {
+    diagnosisAnimal.value = res;
+});
 
 const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) => {
-    vetappApi
-        .updateDiagnosis(animalId.value, diagnosisId, { [name]: newValue })
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    vetappApi.updateDiagnosis(animalId.value, diagnosisId, { [name]: newValue }).then((res) => {
+        console.log(res);
+    });
 };
 
 //TODO: cargar el veterinario
+//TODO: Cuadrar el boton cancelae
 </script>
 
 <template>
     <div class="container w-full flex-col items-center">
-        <VTitle>Historial Médico</VTitle>
+        <div class="flex p-4">
+        <VButton class="flex w-fit items-center rounded-full p-1" @click="$router.push({ name: 'patients.index' })"
+            ><ArrowLeftCircleIcon class="h-7 w-7"
+        /></VButton>
+
+        <VTitle class="pl-4">Fórmula Médica</VTitle>
+    </div>
         <VetDiagnosisForm />
+        <VTitle class="pl-16 pt-6">Historial Médico</VTitle>
+
         <img class="h-20" :src="loader" v-if="animal === undefined" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else class="m-4 border border-x-2 border-sky-200/50 p-8">
@@ -51,11 +51,11 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
                 :description="animal.name"
             />
             <div class="flex flex-col lg:flex-row">
-                <VDetails label="Especie" :description="animal.specie_name" />
-                <VDetails label="Raza" :description="animal.race_name" />
+                <VDetails label="Especie" :description="animal.specie" />
+                <VDetails label="Raza" :description="animal.race" />
             </div>
             <div class="flex flex-col lg:flex-row">
-                <VDetails label="Fecha de Nacimiento" :description="animal.birth_date" />
+                <VDetails label="Fecha de Nacimiento" :description="animal.birthdate" />
                 <VDetails label="Género" :description="animal.gender" />
             </div>
             <div class="flex flex-col lg:flex-row">
@@ -98,7 +98,6 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
                         :value="diagnosisA.treatment"
                         @update="(newValue) => onUpdateDiagnosis('treatment', newValue, diagnosisA.id)"
                     />
-                    
                 </div>
             </div>
         </div>

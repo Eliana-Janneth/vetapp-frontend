@@ -4,52 +4,100 @@ import { vetappApi } from '@/services';
 import { EyeIcon } from '@heroicons/vue/24/solid';
 import loader from '@/assets/loader.svg';
 import { VTitle } from '@elements';
+import { TAnimalAuthorized } from '@/types';
 
-const animals = ref();
+const animals = ref<TAnimalAuthorized[]>([]);
 
 vetappApi.getAnimalsAuthorized().then((response) => {
     animals.value = response;
 });
 </script>
 <template>
-    <VTitle>Mis Pacientes</VTitle>
-
-    <img class="h-20" :src="loader" v-if="!animals" />
-
-    <div class="max-h-96 overflow-y-scroll">
-        <table class="min-w-full table-auto" summary="Animals Authorized">
-            <thead
-                class="leading-4tracking-wider sticky top-0 bg-sky-600 text-xs font-normal uppercase tracking-wider text-white"
-            >
-                <tr class="[&>th]:px-6 [&>th]:py-3">
-                    <th>Granjero</th>
-                    <th>Nombre</th>
-                    <th>Especie</th>
-                    <th>Raza</th>
-                    <th>Género</th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr
-                    class="divide-x-2 divide-sky-400 outline outline-2 -outline-offset-2 outline-sky-400"
-                    v-for="animal in animals"
-                    :key="animal.id"
-                >
-                    <td class="border-b border-gray-200 px-6 py-2">{{ animal.farmer_name }}</td>
-                    <td class="border-b border-gray-200 px-6 py-2">{{ animal.name }}</td>
-                    <td class="border-b border-gray-200 px-6 py-2">{{ animal.specie_name }}</td>
-                    <td class="border-b border-gray-200 px-6 py-2">{{ animal.race_name }}</td>
-                    <td class="border-b border-gray-200 px-6 py-2">{{ animal.gender }}</td>
-                    <td class="border-b border-gray-200 px-6 py-2">
-                        <router-link
-                            :to="{ name: 'medicalHistory', params: { id: animal.id } }"
-                            class="flex items-center text-sky-600 hover:text-sky-500"
-                            ><EyeIcon class="h-5 w-5" />
-                        </router-link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="rounded-lg bg-sky-100">
+        <div class="mx-auto max-w-7xl">
+            <div class="rounded-lg bg-sky-100 py-10">
+                <div class="px-4 sm:px-6 lg:px-8">
+                    <div class="sm:flex sm:items-center">
+                        <div class="sm:flex-auto">
+                            <VTitle>Mis Pacientes</VTitle>
+                            <img class="h-20" :src="loader" v-if="!animals" />
+                        </div>
+                    </div>
+                    <div class="mt-8 flow-root">
+                        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                <table class="min-w-full divide-y divide-sky-600" summary="Animals Authorized">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-sky-600 sm:pl-0"
+                                            >
+                                                Granjero
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
+                                            >
+                                                Nombre
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
+                                            >
+                                                Especie
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
+                                            >
+                                                Raza
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
+                                            >
+                                                Género
+                                            </th>
+                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-sky-600">
+                                        <tr v-for="animal in animals" :key="animal.id">
+                                            <td
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-base font-medium text-sky-700 sm:pl-0"
+                                            >
+                                                {{ animal.farmer }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-base text-sky-700">
+                                                {{ animal.name }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-base text-sky-700">
+                                                {{ animal.specie }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-base text-sky-700">
+                                                {{ animal.race }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-base text-sky-700">
+                                                {{ animal.gender }}
+                                            </td>
+                                            <td
+                                                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-base font-medium sm:pr-0"
+                                            >
+                                                <router-link
+                                                    :to="{ name: 'medicalHistory', params: { id: animal.id } }"
+                                                    class="flex items-center text-sky-600 hover:text-sky-500"
+                                                    ><EyeIcon class="h-5 w-5" />
+                                                </router-link>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
