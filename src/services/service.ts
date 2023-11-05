@@ -1,4 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL;
+import { notify } from '@kyvg/vue3-notification';
 
 export const service = {
     get: async (url: string): Promise<unknown> => {
@@ -26,9 +27,9 @@ export const service = {
             console.error('Error al cargar los datos:', error);
         }
     },
-    post: (url: string, data: unknown): unknown => {
+    post: async (url: string, data: unknown): Promise<unknown> => {
         try {
-            return fetch(`${API_URL}/${url}/`, {
+            const response = await fetch(`${API_URL}/${url}/`, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -36,8 +37,24 @@ export const service = {
                     Authorization: `Token ${localStorage.getItem('accessToken')}`,
                 },
             });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                if (errorData && errorData.response) {
+                    alert(`Error del servidor: ${errorData.response}`);
+                } else {
+                    alert('Error en la solicitud al servidor.');
+                }
+                return;
+            }
+            const responseData = await response.json();
+            console.log(JSON.stringify(responseData, null, 2));
+            notify({
+                title: 'Creado exitosamente 🎉',
+                type: 'success',
+            });
         } catch (error) {
-            console.error('Error al cargar los datos:', error);
+            console.error('Error al realizar la solicitud:', error);
         }
     },
 };

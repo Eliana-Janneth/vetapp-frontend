@@ -27,6 +27,7 @@ function handleDocumentUpload(event: Event) {
 
 const send = () => {
     chatStore.activeChat!.send!(message.value);
+
     message.value = '';
 }
 </script>

@@ -1,5 +1,4 @@
-import { TMessagePayload } from './vetappApi/types';
-import { adaptMessages, adaptMessage } from './vetappApi/adapters';
+import { adaptMessages } from './vetappApi/adapters';
 import { useChatStore } from '@/stores';
 
 export const connectToChat = (chatId: number): Promise<(msg: string) => void> => {
@@ -13,7 +12,6 @@ export const connectToChat = (chatId: number): Promise<(msg: string) => void> =>
         socket.onopen = () => {
             console.log('Conexión WebSocket abierta');
         };
-
 
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
@@ -30,7 +28,6 @@ export const connectToChat = (chatId: number): Promise<(msg: string) => void> =>
             
         };
         
-
         socket.onclose = (event) => {
             if (event.wasClean) {
                 console.log(`Conexión cerrada limpiamente, código=${event.code}, razón=${event.reason}`);

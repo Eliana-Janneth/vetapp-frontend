@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { VTextArea, VButton, VSelect } from '@elements';
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted } from 'vue';
 import { TRegisterFarmerRequestPayload, vetappApi } from '@/services';
 import type { TRegisterFarmerRequest } from '@/types';
 import * as yup from 'yup';
@@ -10,25 +10,16 @@ const props = defineProps<{
     idVet: string;
 }>();
 
-const values: TRegisterFarmerRequestPayload = reactive({
-    animal: '',
-    message: '',
-    veterinarian: '',
-});
-
 const validationSchema = yup.object({
     animal: yup.string().required('Por favor seleccione un animal'),
     message: yup.string().required('Por favor ingrese un mensaje'),
 });
 
-const { defineComponentBinds, errors, handleSubmit, isSubmitting } = useForm<TRegisterFarmerRequest>({
+const { handleSubmit, isSubmitting } = useForm<TRegisterFarmerRequest>({
     validationSchema,
 });
 
 const animals = ref<{ text: string; value: string }[]>([]);
-
-const animal = defineComponentBinds('animal');
-const message = defineComponentBinds('message');
 
 onMounted(async () => {
     try {
@@ -40,13 +31,15 @@ onMounted(async () => {
     }
 });
 
-const onSubmit = handleSubmit(async (registerValues: TRegisterFarmerRequest) => {
+const onSubmit = handleSubmit(async (values: TRegisterFarmerRequest) => {
     try {
-        values.animal = registerValues.animal;
-        values.message = registerValues.message;
-        values.veterinarian = props.idVet;
-        await vetappApi.createFarmerRequest(values);
-        
+        const payload: TRegisterFarmerRequestPayload = {
+            animal: values.animal,
+            message: values.message,
+            veterinarian: props.idVet,
+        };
+
+        await vetappApi.createFarmerRequest(payload);
     } catch (error) {
         console.error('Error al enviar la solicitud:', error);
     }
@@ -56,30 +49,27 @@ const onSubmit = handleSubmit(async (registerValues: TRegisterFarmerRequest) => 
 </script>
 
 <template>
-    <div class="flex justify-center p-6">
-        <form class="flex w-96 flex-col items-center gap-4" @submit="onSubmit">
+        <form class="grid grid-cols-1 sm:grid-cols-8 gap-4 " @submit="onSubmit">
             <VTextArea
-                v-bind="message"
+                containerClass="sm:col-span-8"
                 label="Escribir mensaje"
+                name="message"
                 placeholder="Escribe el motivo por el cual quieres realizar una consulta con el veterinario"
             />
             <VSelect
-                v-bind="animal"
+                containerClass="sm:col-span-8"
                 placeholder="Seleccione el animal"
+                name="animal"
                 label="Animal a consultar"
                 :options="animals"
-                :error="errors.animal"
             />
-            <div class="flex justify-between gap-4">
-                <VButton class="" @click="$emit('end')" label="Cancelar" variant="danger" />
-                <VButton class="" type="submit" variant="success">
+                <VButton class="w-full sm:col-span-3" @click="$emit('end')" label="Cancelar" variant="danger" />
+                <VButton class="w-full sm:col-span-3" type="submit" variant="success">
                     <div v-if="isSubmitting" class="flex items-center gap-2">
                         <VLoader class="h-6" />
                         <span>Enviando</span>
                     </div>
                     <template v-else> Enviar Solicitud </template>
                 </VButton>
-            </div>
         </form>
-    </div>
 </template>

@@ -27,7 +27,7 @@ const onSubmit = handleSubmit(async (values: TAcademicInformation) => {
             year: values.year,
             country: values.country,
             academic_degree: values.academicDegree,
-            currently_studying: values.currentlystudying,
+            currently: values.currentlystudying,
 
         };
         console.log('cur', values.currentlystudying)

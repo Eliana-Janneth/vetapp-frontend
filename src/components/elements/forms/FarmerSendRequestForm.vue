@@ -79,4 +79,3 @@ if (props.request === 'send') {
         </div>
     </div>
 </template>
-@/types/request

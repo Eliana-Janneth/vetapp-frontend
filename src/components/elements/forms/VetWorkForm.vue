@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {VButton, VTextField, VCheckbox } from '@elements';
+import {VButton, VTextField, VCheckbox,VLoader } from '@elements';
 import * as yup from 'yup';
 import type { TWorkExperience } from '@/types';
 import { useForm } from 'vee-validate';
@@ -29,7 +29,7 @@ const onSubmit = handleSubmit(async (values: TWorkExperience) => {
             start_date: values.startDate,
             end_date: values.endDate,
             country: values.country,
-            currently_working: values.currentlyWorking,
+            currently: values.currentlyWorking,
         };
         await vetappApi.createWorkExperiencie(payload);
         emit('end');
