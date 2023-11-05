@@ -7,13 +7,10 @@ import loader from '@/assets/loader.svg';
 const farmerRequests = ref<TRequestFarmerPayload[]>([]);
 
 vetappApi
-    .getFarmerRequestS()
+    .getFarmerRequests()
     .then((response) => {
         farmerRequests.value = response;
     })
-    .catch((err) => {
-        console.log(err);
-    });
 
 const onSubmit = async (id: string, value: boolean) => {
     try {

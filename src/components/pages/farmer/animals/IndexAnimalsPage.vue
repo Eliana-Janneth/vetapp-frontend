@@ -3,11 +3,10 @@ import { ref } from 'vue';
 import loader from '@/assets/loader.svg';
 import { vetappApi } from '@/services';
 import { EyeIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
-import { VInput, VButton, VTitle} from '@elements';
+import { VInput, VButton, VTitle } from '@elements';
 import { TAnimal } from '@/types';
 
 const searchQuery = ref<string>('');
-//const animals = ref();
 const animals = ref<TAnimal[]>([]);
 
 const searchAnimal = () => {
@@ -25,66 +24,120 @@ const getAnimals = () => {
 
     searchQuery.value = '';
 };
-
+//TODO: Cuadrar valores null
+//TODO: Cuando el animal no existe mostrar 404
 getAnimals();
 </script>
 
 <template>
-    <VTitle >Mis animales</VTitle>
-    
-    <div class="m-4 ml-0 flex w-full items-center justify-between gap-2">
-        <div class="flex items-center gap-4">
-            <VInput
-                class="max-w-md"
-                v-model="searchQuery"
-                placeholder="Escribe el nombre del animal "
-                :icon="MagnifyingGlassIcon"
-            />
-            <VButton custom-class="py-0 items-center" label="Buscar" type="submit" @click="searchAnimal()" />
-            <VButton custom-class="py-0 items-center" label="Limpiar" type="submit" @click="getAnimals()" />
-        </div>
-        <VButton
-            custom-class="py-0 items-center"
-            label="Crear"
-            type="submit"
-            @click="$router.push({ name: 'animals.create' })"
-        />
-    </div>
-
-    
-    <img class="h-20" :src="loader" v-if="!animals.length" />
-    <p v-else-if="!animals">No hay animales</p>
-    <table v-else class="w-full" summary="List of Animals">
-        <thead class="bg-emerald-600 font-bold text-white">
-            <tr class="[&>th]:px-6 [&>th]:py-3">
-                <th>Nombre</th>
-                <th>Especie</th>
-                <th>Raza</th>
-                <th>Género</th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr
-                class="divide-x-2 divide-emerald-400 outline outline-2 -outline-offset-2 outline-emerald-400"
-                v-for="animal in animals"
-                :key="animal.id"
-            >
-                <td class="border-b border-gray-200 px-6 py-2">{{ animal.name }}</td>
-                <td class="border-b border-gray-200 px-6 py-2">{{ animal.specie }}</td>
-                <td class="border-b border-gray-200 px-6 py-2">{{ animal.race }}</td>
-                <td class="border-b border-gray-200 px-6 py-2">{{ animal.gender }}</td>
-                <td class="border-b border-gray-200 py-2">
-                    <div class="flex justify-center">
-                        <router-link
-                            :to="{ name: 'animals.show', params: { id: animal.id } }"
-                            class="flex items-center text-emerald-600 hover:text-emerald-500"
-                        >
-                            <EyeIcon class="h-5 w-5" />
-                        </router-link>
+    <div class="rounded-lg bg-emerald-100/70">
+        <div class="mx-auto max-w-7xl">
+            <div class="rounded-lg bg-emerald-100/70 py-10">
+                <div class="px-4 sm:px-6 lg:px-8">
+                    <div class="sm:flex sm:items-center">
+                        <div class="sm:flex-auto">
+                            <VTitle>Mis animales</VTitle>
+                            <div class="m-4 ml-0 flex w-full items-center justify-between gap-2">
+                                <div class="flex items-center gap-4">
+                                    <VInput
+                                        class="max-w-md"
+                                        v-model="searchQuery"
+                                        placeholder="Escribe el nombre del animal "
+                                        :icon="MagnifyingGlassIcon"
+                                    />
+                                    <VButton
+                                        custom-class="py-0 items-center"
+                                        label="Buscar"
+                                        type="submit"
+                                        @click="searchAnimal()"
+                                    />
+                                    <VButton
+                                        custom-class="py-0 items-center"
+                                        label="Limpiar"
+                                        type="submit"
+                                        @click="getAnimals()"
+                                    />
+                                </div>
+                                <VButton
+                                    custom-class="py-0 items-center"
+                                    label="Crear"
+                                    type="submit"
+                                    @click="$router.push({ name: 'animals.create' })"
+                                />
+                            </div>
+                        </div>
                     </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    <div class="mt-8 flow-root">
+                        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                <img class="h-20" :src="loader" v-if="!animals.length" />
+                                <p v-else-if="!animals">No hay animales</p>
+                                <table v-else class="min-w-full divide-y divide-emerald-600" summary="List of Animals">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-emerald-600 sm:pl-0"
+                                            >
+                                                Nombre
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
+                                            >
+                                                Especie
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
+                                            >
+                                                Raza
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
+                                            >
+                                                Género
+                                            </th>
+                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-emerald-600">
+                                        <tr v-for="animal in animals" :key="animal.id">
+                                            <td
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-base font-medium text-emerald-700 sm:pl-0"
+                                            >
+                                                {{ animal.name }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-base text-emerald-700">
+                                                {{ animal.specie }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-base text-emerald-700">
+                                                {{ animal.race }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-base text-emerald-700">
+                                                {{ animal.gender }}
+                                            </td>
+                                            <td
+                                                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-base font-medium sm:pr-0"
+                                            >
+                                                <div class="flex justify-center">
+                                                    <router-link
+                                                        :to="{ name: 'animals.show', params: { id: animal.id } }"
+                                                        class="flex items-center text-emerald-600 hover:text-emerald-500"
+                                                    >
+                                                        <EyeIcon class="h-5 w-5" />
+                                                    </router-link>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

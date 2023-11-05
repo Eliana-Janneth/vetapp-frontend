@@ -15,12 +15,11 @@ export type TRejectRequestPayload = {
     vet_name: string;
 };
 
-
 export type TRegisterFarmerRequestPayload = {
     message: string;
     animal: string;
     veterinarian: string;
-}
+};
 
 export type TRequestFarmerPayload = {
     id: string;
@@ -30,4 +29,13 @@ export type TRequestFarmerPayload = {
     race_name: string;
     farmer_name: string;
     status: string;
-}
+};
+
+export type TVetAvailablePayload = {
+    id: string;
+    first_name: string;
+    last_name: string;
+    city: string;
+    license_number: string;
+    license_expiry_date: string;
+};

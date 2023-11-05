@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VText, VCard, VTitle, VLoader, VButton, VetAcademicForm, VetWorkForm } from '@elements';
+import { VText, VCard, VTitle, VLoader, VButton, VetAcademicForm, VetWorkForm, VCheckbox } from '@elements';
 import { vetappApi } from '@/services';
 import { SModal } from '@placetopay/spartan-vue';
 import { ref } from 'vue';
@@ -18,6 +18,7 @@ import {
     GlobeAmericasIcon,
     BriefcaseIcon,
     ListBulletIcon,
+    PowerIcon,
     DocumentCheckIcon
 } from '@heroicons/vue/24/outline';
 import { useUserStore } from '@/stores';
@@ -44,6 +45,12 @@ if (user.isVet) {
         academicInfo.value = response;
     });
 }
+
+const changeAvailability = (value: boolean) => {
+    vetappApi.updateAvailability({'available': value});
+};
+
+//TODO: Mostrar checked
 </script>
 
 <template>
@@ -103,6 +110,10 @@ if (user.isVet) {
                 <VText :icon="CalendarDaysIcon">
                     <span class="font-bold">Fecha de Expiración:&nbsp;</span>
                     <span>{{ userData?.license_expiry_date }}&nbsp;</span>
+                </VText>
+                <VText :icon="PowerIcon">
+                    <span class="font-bold">Disponibilidad:&nbsp;</span>
+                    <VCheckbox name="availabe" :checked="userData.available" :value="userData.available"  @click="changeAvailability" />
                 </VText>
             </template>
         </VCard>

@@ -1,5 +1,5 @@
-import { TRejectRequestPayload, TSendRequestPayload } from '../types';
-import { TRejectRequest, TSendRequest } from '@/types/request';
+import { TRejectRequestPayload, TSendRequestPayload, TVetAvailablePayload } from '../types';
+import { TRejectRequest, TSendRequest, TVetAvailable } from '@/types/request';
 
 export const adaptSendRequest = (response: TSendRequestPayload[]): TSendRequest[] => {
     return response.map((request) => ({
@@ -20,5 +20,16 @@ export const adaptRejectedRequest = (response: TRejectRequestPayload[]): TReject
         specie: request.specie_name,
         vet: request.vet_name,
         message: request.message,
+    }));
+};
+
+export const adaptVetAvailable = (response: TVetAvailablePayload[]): TVetAvailable[] => {
+    return response.map((vet) => ({
+        id: vet.id,
+        name: vet.first_name,
+        lastName: vet.last_name,
+        city: vet.city,
+        license: vet.license_number,
+        expiryDate: vet.license_expiry_date,
     }));
 };

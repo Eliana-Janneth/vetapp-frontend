@@ -20,3 +20,11 @@ export type TRegisterFarmerRequest={
     animal : string;
     vet:    string; 
 }
+export type TVetAvailable = {
+    id: string;
+    name: string;
+    lastName: string;
+    city: string;
+    license: string;
+    expiryDate: string;
+};

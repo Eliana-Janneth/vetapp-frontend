@@ -1,6 +1,6 @@
-import { TOption as TAOption, TSendRequestPayload, TRejectRequestPayload, TRegisterFarmerRequestPayload } from '../types';
+import { TOption as TAOption, TSendRequestPayload, TRejectRequestPayload, TRegisterFarmerRequestPayload, TVetAvailablePayload } from '../types';
 import { service } from '../../service';
-import { adaptRejectedRequest, adaptSendRequest } from '../adapters';
+import { adaptRejectedRequest, adaptSendRequest, adaptVetAvailable } from '../adapters';
 import type { TOption } from '@/types';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -19,23 +19,11 @@ export const createFarmerRequest = async (data: TRegisterFarmerRequestPayload) =
    await service.post('request', data);
 }
 
+export const getVetAvailables= async () => {
+    const response = (await service.get('vets/available/')) as TVetAvailablePayload[];
+    return adaptVetAvailable(response);
+}
 
-export const getVetAvailables = async () => {
-    try {
-        const response = await fetch(`${API_URL}/vets/available/`, {
-            headers: {
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-        if (!response.ok) {
-            throw new Error('No se pudo cargar los datos');
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al cargar los datos:', error);
-    }
-};
 
 export const getAnimalsRequest = async (): Promise<TOption[]> => {
     try {
@@ -55,7 +43,7 @@ export const getAnimalsRequest = async (): Promise<TOption[]> => {
     }
 };
 
-export const getFarmerRequestS = async () => {
+export const getFarmerRequests = async () => {
     try {
         const response = await fetch(`${API_URL}/vet-requests/`, {
             headers: {

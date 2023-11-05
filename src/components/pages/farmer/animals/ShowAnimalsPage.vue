@@ -7,18 +7,16 @@ import { formatDate } from '@/helpers';
 import loader from '@/assets/loader.svg';
 import { TAnimal } from '@/types/animal';
 import { TDiagnosis } from '@/types';
+import { ArrowLeftCircleIcon } from '@heroicons/vue/24/outline';
 
 const route = useRoute();
 const animal = ref<TAnimal>();
 
 const animalId = computed(() => String(route.params.id));
 
-vetappApi
-    .getAnimal(animalId.value)
-    .then((res) => {
-        animal.value = res;
-    })
-
+vetappApi.getAnimal(animalId.value).then((res) => {
+    animal.value = res;
+});
 
 const diagnosisAnimal = ref<TDiagnosis[]>();
 
@@ -34,7 +32,6 @@ vetappApi
 const updateValue = (name: string, newValue: string) => {
     vetappApi.updateAnimal(animalId.value, { [name]: newValue }).then((res) => {
         animal.value = res;
-        
     });
 };
 
@@ -45,16 +42,13 @@ const downloadFile = () => {
 
 <template>
     <div>
-        <VButton
-            custom-class="py-0 items-center"
-            label="Regresar"
-            type="submit"
-            @click="$router.push({ name: 'animals.index' })"
-        />
+        <VButton class="flex w-fit items-center rounded-full p-1" @click="$router.push({ name: 'animals.index' })"
+            ><ArrowLeftCircleIcon class="h-7 w-7"
+        /></VButton>
         <img class="h-20" :src="loader" v-if="animal === undefined" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else>
-            <div class="    m-4 gap-2 border border-x-2 border-emerald-200/50 p-2">
+            <div class="m-4 gap-2 border border-x-2 border-emerald-200/50 p-2">
                 <VUpgradeableInput
                     label="Nombre"
                     :value="animal.name"
@@ -95,12 +89,12 @@ const downloadFile = () => {
                     @update="(newValue) => updateValue('description', newValue)"
                 />
                 <VButton
-                class="items-center w-fit px-6 justify-end"
-                label="Descargar Historial Médico"
-                @click="downloadFile()"
-            />
+                    class="w-fit items-center justify-end px-6"
+                    label="Descargar Historial Médico"
+                    @click="downloadFile()"
+                />
             </div>
-       
+
             <div v-if="diagnosisAnimal" class="m-2 flex flex-col">
                 <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
                     <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
