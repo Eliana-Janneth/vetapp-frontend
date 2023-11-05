@@ -1,16 +1,29 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { vetappApi } from '@/services';
-import { EyeIcon } from '@heroicons/vue/24/solid';
+import { EyeIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 import loader from '@/assets/loader.svg';
-import { VTitle } from '@elements';
+import { VTitle,VInput,VButton } from '@elements';
 import { TAnimalAuthorized } from '@/types';
 
 const animals = ref<TAnimalAuthorized[]>([]);
+const searchAnimal = ref<string>('');
 
-vetappApi.getAnimalsAuthorized().then((response) => {
-    animals.value = response;
-});
+const getAnimalsAuthorized = () => {
+    //animals.value = null;
+    vetappApi.getAnimalsAuthorized().then((response) => {
+        animals.value = response;
+    });
+    searchAnimal.value = '';
+};
+
+const searchAnimals = () => {
+    //animals.value = null;
+    vetappApi.searchAnimalsAuthorized(searchAnimal.value).then((response) => {
+        animals.value = response;
+    });
+};
+getAnimalsAuthorized();
 </script>
 <template>
     <div class="rounded-lg bg-sky-100">
@@ -20,6 +33,28 @@ vetappApi.getAnimalsAuthorized().then((response) => {
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
                             <VTitle>Mis Pacientes</VTitle>
+                            <div class="m-4 ml-0 flex w-full items-center justify-between gap-2">
+                                <div class="flex items-center gap-4">
+                                    <VInput
+                                        class="max-w-md"
+                                        v-model="searchAnimal"
+                                        placeholder="Buscar por animal, granjero, especie o raza"
+                                        :icon="MagnifyingGlassIcon"
+                                    />
+                                    <VButton
+                                        custom-class="py-0 items-center"
+                                        label="Buscar"
+                                        type="submit"
+                                        @click="searchAnimals()"
+                                    />
+                                    <VButton
+                                        custom-class="py-0 items-center"
+                                        label="Limpiar"
+                                        type="submit"
+                                        @click="getAnimalsAuthorized()"
+                                    />
+                                </div>
+                            </div>
                             <img class="h-20" :src="loader" v-if="!animals" />
                         </div>
                     </div>

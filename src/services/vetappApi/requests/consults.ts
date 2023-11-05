@@ -15,6 +15,10 @@ export const getAnimalAuthorized = async (id: string) => {
     return adaptAnimalAuthorized(response);
 }
 
+export const searchAnimalsAuthorized = async (name: string) => {
+    const response = (await service.get(`authorized-animals/search/?by=${name}`)) as TAnimalAuthorizedPayload[];
+    return adaptAnimalsAuthorized(response);
+};
 
 export const createDiagnosis = async (data: TDiagnosisCreatePayload, id: string) => {
     await service.post(`vet-medical-historys/${id}`, data);
