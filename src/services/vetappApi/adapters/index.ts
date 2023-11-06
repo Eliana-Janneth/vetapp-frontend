@@ -1,4 +1,4 @@
 export * from './chat';
-export * from './farmerRequest';
+export * from './request';
 export * from './consults';
 export * from './users';

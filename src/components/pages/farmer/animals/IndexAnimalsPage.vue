@@ -11,7 +11,7 @@ const animals = ref<TAnimal[]>([]);
 
 const searchAnimal = () => {
     //animals.value = null;
-    vetappApi.getAnimalName(searchQuery.value).then((response) => {
+    vetappApi.searchAnimals(searchQuery.value).then((response) => {
         animals.value = response;
     });
 };
@@ -42,7 +42,7 @@ getAnimals();
                                     <VInput
                                         class="max-w-md"
                                         v-model="searchQuery"
-                                        placeholder="Escribe el nombre del animal "
+                                        placeholder="Buscar por nombre, raza o especie "
                                         :icon="MagnifyingGlassIcon"
                                     />
                                     <VButton

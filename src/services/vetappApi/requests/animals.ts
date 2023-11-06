@@ -50,12 +50,12 @@ export const getAnimals = async () => {
 };
 
 export const getAnimal = async (id: string) => {
-    const response = (await service.get('animals/' + id + '/')) as TAnimalPayload;
+    const response = (await service.get(`animals/${id}/`)) as TAnimalPayload;
     return adaptAnimal(response);
 };
 
-export const getAnimalName = async (name: string) => {
-    const response = (await service.get('animals/search/?name=' + name)) as TAnimalPayload[];
+export const searchAnimals = async (name: string) => {
+    const response = (await service.get(`animals/search/?by=${name}`)) as TAnimalPayload[];
     return adaptAnimals(response);
 };
 

@@ -94,90 +94,18 @@ export const logout = async () => {
 };
 
 export const getUser = async () => {
-    const apiUrl = `${API_URL}/userinfo/`;
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
-            }
-            return;
-        }
-
-        const responseData = await response.json();
-        console.log(responseData);
-        return responseData;
-    } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-    }
+    const response = (await service.get(`userinfo/`)) ;
+    return (response);
 };
 
 export const createAcademicInformation = async (data: TAcademicInformationPayload) => {
-    const apiUrl = `${API_URL}/vet-academic-information/`;
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
+    await service.post('vet-academic-information', data);
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
-            }
-            return;
-        }
-        const responseData = await response.json();
-        console.log(JSON.stringify(responseData, null, 2));
-    } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-    }
 };
+
 export const createWorkExperiencie = async (data: TWorkExperiencePayload) => {
-    const apiUrl = `${API_URL}/vet-work-experience/`;
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            },
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
-            }
-            return;
-        }
-        // Si la respuesta es exitosa
-        const responseData = await response.json();
-        console.log(JSON.stringify(responseData, null, 2));
-    } catch (error) {
-        console.error('Error al realizar la solicitud:', error);
-    }
+    await service.post('vet-work-experience', data);
 };
-
 
 export const getAcademicInformation = async () => {
     const response = (await service.get('vet-academic-information/')) as TAcademicInformationPayload[];

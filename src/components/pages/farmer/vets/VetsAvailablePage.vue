@@ -1,22 +1,37 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { vetappApi } from '@/services';
-import { UserCircleIcon, ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/vue/24/solid';
-import { VTitle, VButton, FarmerRequestForm, VCard, FarmerSendRequestForm } from '@elements';
+import { UserCircleIcon, ChatBubbleOvalLeftEllipsisIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
+import { VTitle, VButton, VInput, FarmerRequestForm, VCard, FarmerSendRequestForm } from '@elements';
 import { SModal } from '@placetopay/spartan-vue';
 import { TVetAvailable } from '@/types/request';
 
 const vetAvailables = ref<TVetAvailable[]>([]);
 const openRequestForm = ref(false);
-const openRequestSend= ref(false);
+const openRequestSend = ref(false);
 const request = ref('');
 const idVet = ref('');
 
-vetappApi.getVetAvailables().then((response) => {
-    vetAvailables.value = response;
-});
+const searchVet = ref<string>('');
 
-//Organizar boton de consultar
+const searchVets = () => {
+    // vetAvailables.value = null;
+    vetappApi.searchVetAvailables(searchVet.value).then((response) => {
+        vetAvailables.value = response;
+    });
+};
+
+const getVets = () => {
+    // vetAvailables.value = null;
+    vetappApi.getVetAvailables().then((response) => {
+        vetAvailables.value = response;
+    });
+    searchVet.value = '';
+};
+
+getVets();
+
+//TODO:Organizar boton de consultar
 </script>
 
 <template>
@@ -35,10 +50,23 @@ vetappApi.getVetAvailables().then((response) => {
         <div class="text-center sm:flex sm:justify-between">
             <VTitle class="mb-2">Veterinarios Disponibles</VTitle>
             <div class="flex justify-end gap-2">
-                <VButton label="Solicitudes En Espera"  @click="openRequestSend = true, request='send'" />
-                <VButton label="Solicitudes Rechazadas"  @click="openRequestSend = true, request='reject'"/>
+                <VButton label="Solicitudes En Espera" @click="(openRequestSend = true), (request = 'send')" />
+                <VButton label="Solicitudes Rechazadas" @click="(openRequestSend = true), (request = 'reject')" />
             </div>
-        </div>
+
+            </div>
+            <div class="m-4 ml-0 flex w-full items-center justify-between gap-2">
+                <div class="flex items-center gap-4">
+                    <VInput
+                        class="max-w-md"
+                        v-model="searchVet"
+                        placeholder="Buscar por nombre, raza o especie "
+                        :icon="MagnifyingGlassIcon"
+                    />
+                    <VButton custom-class="py-0 items-center" label="Buscar" type="submit" @click="searchVets()" />
+                    <VButton custom-class="py-0 items-center" label="Limpiar" type="submit" @click="getVets()" />
+                </div>
+            </div>
         <div class="mt-8 flow-root">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -47,14 +75,14 @@ vetappApi.getVetAvailables().then((response) => {
                             <tr>
                                 <th
                                     scope="col"
-                                    class="text-lg py-3.5 pl-4 pr-3 text-left font-semibold text-emerald-600 sm:pl-3"
+                                    class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-emerald-600 sm:pl-3"
                                 >
                                     Nombre
                                 </th>
-                                <th scope="col" class="text-lg px-3 py-3.5 text-left font-semibold text-emerald-600">
+                                <th scope="col" class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600">
                                     Perfil
                                 </th>
-                                <th scope="col" class="text-lg px-3 py-3.5 text-left font-semibold text-emerald-600">
+                                <th scope="col" class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600">
                                     Consultar
                                 </th>
                             </tr>
@@ -62,7 +90,7 @@ vetappApi.getVetAvailables().then((response) => {
                         <tbody class="bg-white">
                             <tr v-for="vet in vetAvailables" :key="vet.id" class="even:bg-emerald-50">
                                 <td
-                                    class="text-base whitespace-nowrap py-4 pl-4 pr-3 font-medium text-emerald-700 sm:pl-3"
+                                    class="whitespace-nowrap py-4 pl-4 pr-3 text-base font-medium text-emerald-700 sm:pl-3"
                                 >
                                     {{ vet.name + ' ' + vet.lastName }}
                                 </td>
@@ -77,8 +105,8 @@ vetappApi.getVetAvailables().then((response) => {
 
                                 <td class="whitespace-nowrap px-3 py-4 text-base text-emerald-500">
                                     <VButton
-                                        @click="openRequestForm = true, idVet = vet.id"
-                                        class="flex text-base items-center bg-transparent text-emerald-600 hover:text-emerald-500"
+                                        @click="(openRequestForm = true), (idVet = vet.id)"
+                                        class="flex items-center bg-transparent text-base text-emerald-600 hover:text-emerald-500"
                                         ><ChatBubbleOvalLeftEllipsisIcon class="h-6 w-6" />
                                         <span class="ml-2 font-medium"> Consultar </span></VButton
                                     >
