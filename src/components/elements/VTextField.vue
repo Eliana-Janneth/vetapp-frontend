@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FunctionalComponent, ref } from 'vue';
+import { FunctionalComponent, computed, ref, watch } from 'vue';
 import { AlertInput } from '@elements';
 import { useStyleStore } from '@/stores';
 import { useField } from 'vee-validate';
@@ -43,6 +43,13 @@ if (props.name) {
     value = valueField;
     error = errorMessage;
 }
+
+watch(
+    () => props.modelValue,
+    (newValue) => {
+        value.value = newValue;
+    },
+);
 </script>
 
 <template>

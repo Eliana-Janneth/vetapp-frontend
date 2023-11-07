@@ -9,9 +9,8 @@ const props = defineProps<{
 }>();
 
 const owner = computed(() => {
-    return props.role === props.message.role;
+    return props.message.role.includes(props.role);
 });
-
 </script>
 
 <template>
@@ -31,9 +30,9 @@ const owner = computed(() => {
                 <span class="font-medium text-gray-900">{{ message.sender }}</span>
                 <span class="pl-2 font-normal text-gray-900">{{ message.message }}</span>
             </div>
-            <small :class="['font-light text-white', owner ? 'self-end' : 'self-start']">{{
-                formatDate(message.date)
-            }}</small>
+            <small :class="['font-light text-white', owner ? 'self-end' : 'self-start']">
+                {{ formatDate(message.date) }}
+            </small>
         </div>
     </div>
 </template>
