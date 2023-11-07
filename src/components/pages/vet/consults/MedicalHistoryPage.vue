@@ -48,7 +48,7 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
             <VDetails
                 custom-class="font-semibold text-lg"
                 label="Información Detallada De:"
-                :description="animal.name"
+                :description="animal.name"  
             />
             <div class="flex flex-col lg:flex-row">
                 <VDetails label="Especie" :description="animal.specie" />
