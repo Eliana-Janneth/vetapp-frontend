@@ -10,7 +10,7 @@ import { ArrowLeftCircleIcon } from '@heroicons/vue/24/outline';
 
 const route = useRoute();
 const animal = ref<TAnimalAuthorized>();
-const diagnosisAnimal = ref<TDiagnosis[]>();
+const diagnosisAnimal = ref<TDiagnosis[] | undefined>();
 const animalId = computed(() => String(route.params.id));
 
 vetappApi.getAnimalAuthorized(route.params.id.toString()).then((res) => {
@@ -18,11 +18,16 @@ vetappApi.getAnimalAuthorized(route.params.id.toString()).then((res) => {
 });
 vetappApi.getDiagnosisVet(animalId.value).then((res) => {
     diagnosisAnimal.value = res;
+    console.log(diagnosisAnimal.value);
 });
 
 const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) => {
     vetappApi.updateDiagnosis(animalId.value, diagnosisId, { [name]: newValue }).then((res) => {
-        console.log(res);
+        window.location.reload();
+        // const update = diagnosisAnimal.value?.findIndex((diagnosis) => diagnosis.id === diagnosisId);
+        // console.log(update);
+        // diagnosisAnimal.value![update as any] = res[0]; 
+        // console.log(diagnosisAnimal.value![update as any])
     });
 };
 
@@ -33,12 +38,12 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
 <template>
     <div class="container w-full flex-col items-center">
         <div class="flex p-4">
-        <VButton class="flex w-fit items-center rounded-full p-1" @click="$router.push({ name: 'patients.index' })"
-            ><ArrowLeftCircleIcon class="h-7 w-7"
-        /></VButton>
+            <VButton class="flex w-fit items-center rounded-full p-1" @click="$router.push({ name: 'patients.index' })"
+                ><ArrowLeftCircleIcon class="h-7 w-7"
+            /></VButton>
 
-        <VTitle class="pl-4">Fórmula Médica</VTitle>
-    </div>
+            <VTitle class="pl-4">Fórmula Médica</VTitle>
+        </div>
         <VetDiagnosisForm />
         <VTitle class="pl-16 pt-6">Historial Médico</VTitle>
 
@@ -48,7 +53,7 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
             <VDetails
                 custom-class="font-semibold text-lg"
                 label="Información Detallada De:"
-                :description="animal.name"  
+                :description="animal.name"
             />
             <div class="flex flex-col lg:flex-row">
                 <VDetails label="Especie" :description="animal.specie" />

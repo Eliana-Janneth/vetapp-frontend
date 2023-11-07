@@ -22,7 +22,7 @@ export const searchAnimalsAuthorized = async (name: string) => {
 
 export const createDiagnosis = async (data: TDiagnosisCreatePayload, id: string) => {
     await service.post(`vet-medical-historys/${id}`, data);
-
+    window.location.reload();
 }
 
 export const getDiagnosisVet = async (id: string) => {
@@ -40,7 +40,6 @@ export const getDiagnosisFarmer = async (id: string) => {
 export const updateDiagnosis = async (idAnimal: string, idMedicalHistory: string, data: Record<string, string>) => {
     const apiUrl = `${API_URL}/vet-medical-historys/${idAnimal}/${idMedicalHistory}/`;
     try {
-        console.log('datos', data);
         const response = await fetch(apiUrl, {
             method: 'PATCH',
             body: JSON.stringify(data),
@@ -51,20 +50,29 @@ export const updateDiagnosis = async (idAnimal: string, idMedicalHistory: string
         });
 
         if (!response.ok) {
+            
             const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
+            if (errorData && typeof errorData === 'object') {
+                const firstKey = Object.keys(errorData)[0];
+                if (Array.isArray(errorData[firstKey]) && errorData[firstKey].length > 0) {
+                    notify({
+                        title: errorData[firstKey][0],
+                        type: 'error',
+                    });
+                }
             }
-            return;
+            window.location.reload();
+            return
         }
+
         const responseData = await response.json();
         notify({
             title: 'Historial Médico actualizado exitosamente🎉',
             type: 'success',
         });
+
         return responseData;
+
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
