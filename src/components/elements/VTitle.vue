@@ -17,8 +17,8 @@ const role = useUserStore().role;
 const styles = cva([], {
     variants: {
         role: {
-            farmer: 'text-emerald-500',
-            vet: 'text-sky-500',
+            farmer: 'text-emerald-500 hover:text-emerald-600',
+            vet: 'text-sky-500 hover:text-sky-600',
         },
         as: {
             h1: 'text-3xl font-bold',

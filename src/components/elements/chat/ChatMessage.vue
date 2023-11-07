@@ -11,6 +11,7 @@ const props = defineProps<{
 const owner = computed(() => {
     return props.role === props.message.role;
 });
+
 </script>
 
 <template>
@@ -23,8 +24,8 @@ const owner = computed(() => {
         <div class="flex flex-col">
             <div
                 :class="[
-                    'flex w-full flex-col rounded-2xl bg-emerald-200 p-2 shadow-sm',
-                    owner ? 'rounded-br-none' : 'rounded-bl-none',
+                    'flex w-full flex-col rounded-2xl p-2 shadow-sm',
+                    owner ? 'rounded-br-none  bg-emerald-200' : 'rounded-bl-none  bg-sky-200',
                 ]"
             >
                 <span class="font-medium text-gray-900">{{ message.sender }}</span>
