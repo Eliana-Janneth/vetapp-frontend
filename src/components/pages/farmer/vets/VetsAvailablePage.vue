@@ -53,24 +53,25 @@ getVets();
                 <VButton label="Solicitudes En Espera" @click="(openRequestSend = true), (request = 'send')" />
                 <VButton label="Solicitudes Rechazadas" @click="(openRequestSend = true), (request = 'reject')" />
             </div>
-
-            </div>
-            <div class="m-4 ml-0 flex w-full items-center justify-between gap-2">
-                <div class="flex items-center gap-4">
-                    <VInput
-                        class="max-w-md"
-                        v-model="searchVet"
-                        placeholder="Buscar por nombre, raza o especie "
-                        :icon="MagnifyingGlassIcon"
-                    />
-                    <VButton custom-class="py-0 items-center" label="Buscar" type="submit" @click="searchVets()" />
-                    <VButton custom-class="py-0 items-center" label="Limpiar" type="submit" @click="getVets()" />
+        </div>
+        <div class="m-4 ml-0 flex items-center justify-between gap-2">
+            <div class="flex flex-col items-center gap-4">
+                <VInput
+                    class="w-56 lg:max-w-md"
+                    v-model="searchVet"
+                    placeholder="Buscar por nombre, raza o especie "
+                    :icon="MagnifyingGlassIcon"
+                />
+                <div class="flex w-80 gap-2">
+                    <VButton label="Buscar" type="submit" @click="searchVets()" />
+                    <VButton label="Limpiar" type="submit" @click="getVets()" />
                 </div>
             </div>
+        </div>
         <div class="mt-8 flow-root">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                    <table class="min-w-full divide-y divide-emerald-300">
+                    <table class="min-w-min divide-y divide-emerald-300 ">
                         <thead>
                             <tr>
                                 <th
@@ -79,10 +80,10 @@ getVets();
                                 >
                                     Nombre
                                 </th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600">
+                                <th scope="col" class="py-3.5 text-left text-lg font-semibold text-emerald-600">
                                     Perfil
                                 </th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600">
+                                <th scope="col" class="py-3.5 text-left text-lg font-semibold text-emerald-600">
                                     Consultar
                                 </th>
                             </tr>
@@ -99,16 +100,18 @@ getVets();
                                         :to="{ name: 'vets.show', params: { id: vet.id } }"
                                         class="flex items-center text-emerald-600 hover:text-emerald-500"
                                         ><UserCircleIcon class="h-6 w-6" />
-                                        <span class="ml-2 font-medium"> Ver Perfil </span></router-link
+                                        <span class="invisible ml-2 font-medium md:visible">
+                                            Ver Perfil
+                                        </span></router-link
                                     >
                                 </td>
 
                                 <td class="whitespace-nowrap px-3 py-4 text-base text-emerald-500">
                                     <VButton
                                         @click="(openRequestForm = true), (idVet = vet.id)"
-                                        class="flex items-center bg-transparent text-base text-emerald-600 hover:text-emerald-500"
+                                        class="flex items-center bg-transparent text-base px-0 w-min text-emerald-600 hover:text-emerald-500"
                                         ><ChatBubbleOvalLeftEllipsisIcon class="h-6 w-6" />
-                                        <span class="ml-2 font-medium"> Consultar </span></VButton
+                                        <span class="invisible ml-2 font-medium md:visible "> Consultar </span></VButton
                                     >
                                 </td>
                             </tr>
