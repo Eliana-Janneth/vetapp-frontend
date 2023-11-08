@@ -37,33 +37,22 @@ getAnimals();
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
                             <VTitle>Mis animales</VTitle>
-                            <div class="m-4 ml-0 flex w-full items-center justify-between gap-2">
-                                <div class="flex items-center gap-4">
-                                    <VInput
-                                        class="max-w-md"
-                                        v-model="searchQuery"
-                                        placeholder="Buscar por nombre, raza o especie "
-                                        :icon="MagnifyingGlassIcon"
-                                    />
+                            <div class="m-4 ml-0 flex w-full flex-col items-center gap-4 lg:flex-row">
+                                <VInput
+                                    class="max-w-xs"
+                                    v-model="searchQuery"
+                                    placeholder="Buscar por nombre, raza o especie "
+                                    :icon="MagnifyingGlassIcon"
+                                />
+                                <div class="flex w-80 justify-between gap-2 md:w-full">
+                                    <VButton label="Buscar" type="submit" @click="searchAnimal()" />
+                                    <VButton label="Limpiar" type="submit" @click="getAnimals()" />
                                     <VButton
-                                        custom-class="py-0 items-center"
-                                        label="Buscar"
+                                        label="Crear"
                                         type="submit"
-                                        @click="searchAnimal()"
-                                    />
-                                    <VButton
-                                        custom-class="py-0 items-center"
-                                        label="Limpiar"
-                                        type="submit"
-                                        @click="getAnimals()"
+                                        @click="$router.push({ name: 'animals.create' })"
                                     />
                                 </div>
-                                <VButton
-                                    custom-class="py-0 items-center"
-                                    label="Crear"
-                                    type="submit"
-                                    @click="$router.push({ name: 'animals.create' })"
-                                />
                             </div>
                         </div>
                     </div>
@@ -72,7 +61,11 @@ getAnimals();
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <img class="h-20" :src="loader" v-if="!animals.length" />
                                 <p v-else-if="!animals">No hay animales</p>
-                                <table v-else class="min-w-full divide-y divide-emerald-600 hover:divide-emerald-400" summary="List of Animals">
+                                <table
+                                    v-else
+                                    class="min-w-full divide-y divide-emerald-600 hover:divide-emerald-400"
+                                    summary="List of Animals"
+                                >
                                     <thead>
                                         <tr>
                                             <th

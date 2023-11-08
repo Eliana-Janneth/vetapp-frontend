@@ -43,7 +43,7 @@ const downloadFile = () => {
         <img class="h-20" :src="loader" v-if="animal === undefined" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else>
-            <div class="m-4 grid grid-cols-1 gap-2 rounded-xl p-2 sm:grid-cols-8">
+            <div class="m-2 grid grid-cols-1 rounded-xl sm:grid-cols-8 lg:gap-2">
                 <VUpgradeableInput
                     class="sm:col-span-2"
                     label="Nombre"
@@ -56,7 +56,7 @@ const downloadFile = () => {
                 <VUpgradeableInput class="sm:col-span-2" label="Genero" :edit="false" :value="animal.gender" />
 
                 <VUpgradeableInput
-                    class="sm:col-span-4 "
+                    class="sm:col-span-4"
                     label="Color"
                     :value="animal.color"
                     :edit="true"
@@ -70,7 +70,7 @@ const downloadFile = () => {
                     @update="(newValue) => updateValue('birth_date', newValue)"
                 />
                 <VUpgradeableInput
-                    class="sm:col-span-1 "
+                    class="sm:col-span-1"
                     label="Peso (kg)"
                     :value="animal.weight"
                     :edit="true"
@@ -91,7 +91,7 @@ const downloadFile = () => {
                     @update="(newValue) => updateValue('description', newValue)"
                 />
                 <VButton
-                    class="flex w-fit px-6 mx-auto sm:col-span-8"
+                    class="mx-auto flex w-fit px-6 sm:col-span-8 mt-2"
                     label="Descargar Historial Médico"
                     @click="downloadFile()"
                 />

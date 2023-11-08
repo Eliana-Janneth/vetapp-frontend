@@ -24,7 +24,7 @@ const onSubmit = async (id: string, value: boolean) => {
     <img class="h-20" :src="loader" v-if="farmerRequests === undefined" />
     <p v-else-if="farmerRequests === null">No hay solicitudes nuevas</p>
     <div v-else class="flex flex-wrap" v-for="request in farmerRequests" :key="request.id">
-        <div class=" mb-2 w-72  gap-2 bg-white">
+        <div class=" mb-2 w-72 flex justify-center gap-2 bg-white">
             <VCardAnimal
                 :nameAnimal="request.animal_name"
                 :specie="request.specie_name"
