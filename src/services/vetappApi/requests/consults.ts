@@ -50,7 +50,6 @@ export const updateDiagnosis = async (idAnimal: string, idMedicalHistory: string
         });
 
         if (!response.ok) {
-            
             const errorData = await response.json();
             if (errorData && typeof errorData === 'object') {
                 const firstKey = Object.keys(errorData)[0];
