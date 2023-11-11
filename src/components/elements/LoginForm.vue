@@ -6,6 +6,9 @@ import { VInput } from '@elements';
 import * as yup from 'yup';
 import { TLoginPayload, vetappApi } from '@/services';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const router = useRouter();
 const passwordIcon = ref(LockClosedIcon);
@@ -15,8 +18,8 @@ const values: TLoginPayload = reactive({
 });
 
 const schema = yup.object({
-    username: yup.string().required('Por favor ingrese un correo').email('Debes ingresar un correo valido'),
-    password: yup.string().required('Por favor ingrese una contraseña'),
+    username: yup.string().required(t('LoginPage.username')).email(t('LoginPage.validemail')),
+    password: yup.string().required(t('LoginPage.logpass')),
 });
 
 const { handleSubmit, defineComponentBinds, errors, meta } = useForm<TLoginPayload>({
@@ -51,11 +54,11 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
 
 <template>
     <form class="flex flex-col items-center gap-2 rounded-xl bg-white p-4" @submit.prevent="onSubmit">
-        <h1 class="text-2xl font-medium text-indigo-900">Iniciar Sesión</h1>
+        <h1 class="text-2xl font-medium text-indigo-900">{{ $t("LoginPage.login") }}</h1>
 
         <VInput
             v-bind="email"
-            placeholder="Correo Electrónico"
+            :placeholder="$t('LoginPage.email')"
             name="email"
             type="email"
             :icon="EnvelopeIcon"
@@ -64,7 +67,7 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
 
         <VInput
             v-bind="password"
-            placeholder="Contraseña"
+            :placeholder="$t('LoginPage.password')"
             type="password"
             name="password"
             :icon="passwordIcon"
@@ -73,13 +76,13 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
             @blur="passwordIcon = LockClosedIcon"
         />
 
-        <a href="" class="text-indigo-900">¿Olvidó su contraseña?</a>
+        <a href="" class="text-indigo-900">{{ $t("LoginPage.olvpass") }}</a>
         <button
             :disabled="!meta.valid"
             :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
             type="submit"
         >
-            Iniciar Sesión
+            {{ $t("LoginPage.login2") }}
         </button>
     </form>
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>

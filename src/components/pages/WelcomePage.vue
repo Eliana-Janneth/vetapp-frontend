@@ -9,8 +9,8 @@
                         <h1 class="text-3xl font-semibold text-indigo-700 hover:text-indigo-900 lg:text-4xl">VetApp</h1>
                     </div>
                     <div class="flex items-center gap-2">
-                        <router-link :to="{ name: 'login' }" class="welcome-button">Iniciar Sesión</router-link>
-                        <router-link :to="{ name: 'register' }" class="welcome-button">Registrarse</router-link>
+                        <router-link :to="{ name: 'login' }" class="welcome-button">{{ $t("WelcomePage.login") }}</router-link>
+                        <router-link :to="{ name: 'register' }" class="welcome-button">{{ $t("WelcomePage.register") }}</router-link>
                     </div>
                 </header>
 
@@ -19,11 +19,11 @@
                     <div
                         class="flex w-full flex-col items-center justify-center gap-4 p-8 font-medium text-indigo-700 hover:text-indigo-900"
                     >
-                        <h2 class="text-xl">Atención veterinaria</h2>
-                        <h3 class="text-5xl">Granjeros y Veterinarios</h3>
-                        <h4 class="text-xl">Tu Vínculo con la Salud de tus Animales ¡Ahora Online!</h4>
+                        <h2 class="text-xl">{{ $t("WelcomePage.attention") }}</h2>
+                        <h3 class="text-5xl">{{ $t("WelcomePage.vetfarm") }}</h3>
+                        <h4 class="text-xl">{{ $t("WelcomePage.slogan") }}</h4>
                         <div>
-                            <button class="welcome-button">Sobre nosotros</button>
+                            <button class="welcome-button">{{ $t("WelcomePage.we") }}</button>
                         </div>
                     </div>
                     <div class="flex w-full justify-center">
@@ -46,17 +46,8 @@
             <section class="flex w-full flex-col items-center gap-6 p-6">
                 <div class="grid flex-col gap-6 lg:grid-cols-2 lg:flex-row">
                     <div class="flex flex-col items-center lg:p-20">
-                        <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">Misión</h2>
-                        <p class="rounded-3xl bg-white p-4 text-center text-sm lg:rounded-full lg:p-16">
-                            Nuestra misión es facilitar y mejorar la atención de la salud animal en las áreas rurales,
-                            proporcionando a granjeros y veterinarios una plataforma en línea de comunicación eficiente
-                            y accesible. Nos comprometemos a reducir las barreras geográficas y a empoderar a los
-                            profesionales agrícolas y veterinarios, brindando una herramienta efectiva para la
-                            realización de chequeos rutinarios y la atención de emergencias, sin necesidad de
-                            desplazamientos. Valoramos el bienestar de los animales y la tranquilidad de los granjeros,
-                            y estamos dedicados a fortalecer la conexión vital entre ellos y los expertos en salud
-                            animal.
-                        </p>
+                        <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">{{ $t("WelcomePage.mision") }}</h2>
+                        <p class="rounded-3xl bg-white p-4 text-center text-sm lg:rounded-full lg:p-16">{{ $t("WelcomePage.pmision") }}</p>
                     </div>
                     <div class="flex w-full items-center justify-center">
                         <img
@@ -75,16 +66,8 @@
                         />
                     </div>
                     <div class="flex flex-col items-center lg:p-20">
-                        <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">Visión</h2>
-                        <p class="rounded-3xl bg-white p-4 text-center text-sm lg:rounded-full lg:p-16">
-                            Nuestra visión es convertirnos en el referente líder en soluciones de atención veterinaria
-                            en línea para el sector agrícola. Visualizamos un futuro en el que todos los granjeros y
-                            veterinarios rurales tengan acceso a una plataforma confiable y eficaz para la comunicación
-                            y atención de animales, lo que permitirá una industria agrícola más saludable y sostenible.
-                            Nos esforzamos por ser reconocidos por nuestro impacto positivo en la salud animal, la
-                            eficiencia de los granjeros y la promoción del bienestar animal en comunidades rurales de
-                            todo el mundo.
-                        </p>
+                        <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">{{ $t("WelcomePage.vision") }}</h2>
+                        <p class="rounded-3xl bg-white p-4 text-center text-sm lg:rounded-full lg:p-16">{{ $t("WelcomePage.pvision") }}</p>
                     </div>
                 </div>
             </section>

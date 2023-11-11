@@ -4,6 +4,9 @@ import { VInput, VSelect } from '@elements';
 import type { TRegisterFormAccount } from './types';
 import * as yup from 'yup';
 import { AtSymbolIcon, LockClosedIcon } from '@heroicons/vue/24/outline';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const emit = defineEmits(['done']);
 
@@ -12,23 +15,23 @@ const props = defineProps<{ initialValues?: TRegisterFormAccount }>();
 const validationSchema = yup.object({
     email: yup
         .string()
-        .required('Por favor ingrese un correo')
-        .email('Debes ingresar un correo valido "alguien@example.com"')
-        .min(10, 'El correo debe tener al menos 10 caracteres'),
+        .required(t('RegisterPage.requiredemail'))
+        .email(t('RegisterPage.erroremail'))
+        .min(10, t('RegisterPage.lengthemail')),
     password: yup
         .string()
-        .required('Por favor ingrese una contraseña')
-        .min(8, 'La contraseña debe tener al menos 8 caracteres')
-        .max(200, 'La contraseña debe tener un máximo de 200 caracteres'),
+        .required(t('RegisterPage.requiredpass'))
+        .min(8, t('RegisterPage.minpass'))
+        .max(200, t('RegisterPage.maxpass')),
     profile: yup
         .string()
-        .oneOf(['farmer', 'vet'], 'Por favor seleccione un perfil')
-        .required('Por favor seleccione un perfil'),
+        .oneOf(['farmer', 'vet'], t('RegisterPage.oneprofile'))
+        .required(t('RegisterPage.oneprofile')),
     confirmPassword: yup
         .string()
-        .required('Confirme su contraseña')
-        .min(8, 'La contraseña debe tener al menos 8 caracteres')
-        .oneOf([yup.ref('password')], 'Las contraseñas deben coincidir'),
+        .required(t('RegisterPage.requiredpass2'))
+        .min(8, t('RegisterPage.confirmminpass'))
+        .oneOf([yup.ref('password')], t('RegisterPage.onepass')),
 });
 
 const { handleSubmit, defineComponentBinds, errors, meta } = useForm<TRegisterFormAccount>({
@@ -46,8 +49,8 @@ const onSubmit = handleSubmit((values) => {
 });
 
 const profiles = [
-    { text: 'Granjero', value: 'farmer' },
-    { text: 'Veterinario', value: 'vet' },
+    { text: t('RegisterPage.farm'), value: 'farmer' },
+    { text: t('RegisterPage.vet'), value: 'vet' },
 ];
 </script>
 
@@ -56,7 +59,7 @@ const profiles = [
         <VSelect
             :options="profiles"
             v-bind="profile"
-            label="Perfil"
+            :label="$t('RegisterPage.profile')"
             placeholder="Seleccione su pefil"
             name="profile"
             :error="errors.profile"
@@ -65,7 +68,7 @@ const profiles = [
         <VInput
             v-bind="email"
             label="Email"
-            placeholder="alguien@example.com"
+            :placeholder="$t('RegisterPage.alertemail')"
             type="email"
             name="email"
             :icon="AtSymbolIcon"
@@ -75,8 +78,8 @@ const profiles = [
 
         <VInput
             v-bind="password"
-            label="Contraseña"
-            placeholder="Ingresa tu contraseña"
+            :label="$t('RegisterPage.password')"
+            :placeholder="$t('RegisterPage.alertpass')"
             type="password"
             name="password"
             :icon="LockClosedIcon"
@@ -86,8 +89,8 @@ const profiles = [
 
         <VInput
             v-bind="confirmPassword"
-            label="Confirmar contraseña"
-            placeholder="Confirma tu contraseña"
+            :label="$t('RegisterPage.confirmpass')"
+            :placeholder="$t('RegisterPage.alertconfirmpass')"
             type="password"
             name="password"
             :icon="LockClosedIcon"
@@ -101,9 +104,9 @@ const profiles = [
                 type="submit"
                 :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
             >
-                Siguiente
+              {{ $t("RegisterPage.next") }}
             </button>
-            <router-link :to="{ name: 'welcome' }" class="btn btn-primary">Cancelar</router-link>
+            <router-link :to="{ name: 'welcome' }" class="btn btn-primary">{{ $t("RegisterPage.cancel") }}</router-link>
         </div>
     </form>
 </template>

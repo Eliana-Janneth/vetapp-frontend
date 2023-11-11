@@ -11,41 +11,44 @@ import {
     BuildingOffice2Icon,
     HomeIcon,
 } from '@heroicons/vue/24/outline';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const emit = defineEmits(['done', 'cancel']);
 
 const validationSchema = yup.object({
     firstName: yup
         .string()
-        .required('Por favor ingrese su nombre')
-        .min(2, 'El nombre debe tener al menos 2 caracteres')
-        .max(40, 'El nombre debe tener un máximo de 40 caracteres'),
+        .required(t('RegisterPage.valname'))
+        .min(2, t('RegisterPage.valminname'))
+        .max(40, t('RegisterPage.valmaxname')),
     lastName: yup
         .string()
-        .required('Por favor ingrese su apellido')
-        .min(2, 'El apellido debe tener al menos 2 caracteres')
-        .max(40, 'El apellido debe tener un máximo de 40 caracteres'),
+        .required(t('RegisterPage.vallastname'))
+        .min(2, t('RegisterPage.valminlastname'))
+        .max(40, t('RegisterPage.valmaxlastname')),
     document: yup
         .string()
-        .required('Por favor ingrese su Cédula')
-        .matches(/^\d+$/, 'Por favor ingrese solo números')
-        .max(10, 'La cédula debe tener un máximo de 10 dígitos'),
+        .required(t('RegisterPage.valdocument'))
+        .matches(/^\d+$/, t('RegisterPage.valmatchdocument'))
+        .max(10, t('RegisterPage.valmaxdocument')),
     phone: yup
         .string()
-        .required('Por favor ingrese su número de contacto')
-        .matches(/^[\d+]+$/, 'Por favor ingrese solo números y el símbolo "+"')
-        .max(15, 'El número de contacto debe tener un máximo de 15 dígitos')
-        .min(7, 'El número de contacto debe tener al menos 7 dígitos'),
+        .required(t('RegisterPage.valcell'))
+        .matches(/^[\d+]+$/, t('RegisterPage.valmatchescell'))
+        .max(15, t('RegisterPage.valmaxcell'))
+        .min(7, t('RegisterPage.valmincell')),
     city: yup
         .string()
-        .required('Por favor ingrese su municipio')
-        .min(2, 'El municipio debe tener al menos 2 caracteres')
-        .max(50, 'El municipio debe tener un máximo de 50 caracteres'),
+        .required(t('RegisterPage.valmun'))
+        .min(2, t('RegisterPage.valminmun'))
+        .max(50, t('RegisterPage.valmaxmun')),
     address: yup
         .string()
-        .required('Por favor ingrese su dirección de residencia')
-        .min(5, 'La dirección debe tener al menos 5 caracteres')
-        .max(100, 'La dirección debe tener un máximo de 100 caracteres'),
+        .required(t('RegisterPage.valaddress'))
+        .min(5, t('RegisterPage.valminaddress'))
+        .max(100, t('RegisterPage.valmaxaddress')),
 });
 
 const { handleSubmit, defineComponentBinds, errors, meta } = useForm<TRegisterFormProfile>({ validationSchema });
@@ -67,9 +70,9 @@ const onSubmit = handleSubmit((values) => {
         <div class="flex w-full flex-col gap-4 lg:flex-row">
             <VInput
                 v-bind="firstName"
-                label="Nombre"
+                :label="$t('RegisterPage.name')"
                 name="name"
-                placeholder="Nombre"
+                :placeholder="$t('RegisterPage.name')"
                 :icon="UserIcon"
                 :maxlength="40"
                 :error="errors.firstName"
@@ -77,8 +80,8 @@ const onSubmit = handleSubmit((values) => {
 
             <VInput
                 v-bind="lastName"
-                label="Apellido"
-                placeholder="Apellido"
+                :label="$t('RegisterPage.lastname')"
+                :placeholder="$t('RegisterPage.lastname')"
                 name="lastName"
                 :icon="UserPlusIcon"
                 :maxlength="40"
@@ -88,8 +91,8 @@ const onSubmit = handleSubmit((values) => {
 
         <VInput
             v-bind="document"
-            label="Identificación"
-            placeholder="Cédula"
+            :label="$t('RegisterPage.id')"
+            :placeholder="$t('RegisterPage.id2')"
             type="number"
             name="document"
             :icon="IdentificationIcon"
@@ -99,8 +102,8 @@ const onSubmit = handleSubmit((values) => {
 
         <VInput
             v-bind="phone"
-            label="Celular"
-            placeholder="Número de contacto"
+            :label="$t('RegisterPage.cell')"
+            :placeholder="$t('RegisterPage.cell2')"
             type="number"
             name="phone"
             :icon="PhoneIcon"
@@ -110,8 +113,8 @@ const onSubmit = handleSubmit((values) => {
 
         <VInput
             v-bind="city"
-            label="Municipio"
-            placeholder="Municipio de residencia"
+            :label="$t('RegisterPage.mun')"
+            :placeholder="$t('RegisterPage.mun2')"
             name="city"
             :icon="BuildingOffice2Icon"
             :maxlength="50"
@@ -120,8 +123,8 @@ const onSubmit = handleSubmit((values) => {
 
         <VInput
             v-bind="address"
-            label="Dirección"
-            placeholder="Dirección"
+            :label="$t('RegisterPage.address')"
+            :placeholder="$t('RegisterPage.address')"
             name="address"
             :icon="HomeIcon"
             :maxlength="100"
@@ -134,9 +137,9 @@ const onSubmit = handleSubmit((values) => {
                 type="submit"
                 :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
             >
-                Registrarse
+                {{ $t("RegisterPage.register2") }}
             </button>
-            <button @click="emit('cancel')" class="btn btn-primary">Cancelar</button>
+            <button @click="emit('cancel')" class="btn btn-primary">{{ $t("RegisterPage.cancelar") }}</button>
         </div>
     </form>
 </template>
