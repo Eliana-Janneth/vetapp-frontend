@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate';
 import { useStyleStore } from '@/stores';
+import { twMerge } from 'tailwind-merge';
 
 defineEmits(['update:modelValue']);
 
@@ -16,12 +17,15 @@ const { value } = useField(props.name);
 
 const computedId = props.id || String(Symbol());
 
-console.log('computedId', computedId);
 </script>
 
 <template>
     <div class="flex items-center gap-2">
-        <input :id="computedId" :class="['w-2', styleStore.getInputStyle]" v-model="value" type="checkbox" />
-        <label :for="computedId" :class="['block text-lg font-medium select-none cursor-pointer',styleStore.getLabelStyle]">{{ label }}</label>
+        <input :id="computedId" :class="twMerge(styleStore.getInputStyle, 'w-2')" v-model="value" type="checkbox" />
+        <label
+            :for="computedId"
+            :class="['block cursor-pointer select-none text-lg font-medium', styleStore.getLabelStyle]"
+            >{{ label }}</label
+        >
     </div>
 </template>

@@ -54,24 +54,22 @@ getVets();
                 <VButton label="Solicitudes Rechazadas" @click="(openRequestSend = true), (request = 'reject')" />
             </div>
         </div>
-        <div class="m-4 ml-0 flex items-center justify-between gap-2">
-            <div class="flex flex-col items-center gap-4">
-                <VInput
-                    class="w-56 lg:max-w-md"
-                    v-model="searchVet"
-                    placeholder="Buscar por nombre, raza o especie "
-                    :icon="MagnifyingGlassIcon"
-                />
-                <div class="flex w-80 gap-2">
-                    <VButton label="Buscar" type="submit" @click="searchVets()" />
-                    <VButton label="Limpiar" type="submit" @click="getVets()" />
-                </div>
+        <div class="m-4 ml-0 flex flex-col items-center  gap-2 md:flex-row">
+            <VInput
+                class="w-56 lg:max-w-sm"
+                v-model="searchVet"
+                placeholder="Buscar por nombre, raza o especie "
+                :icon="MagnifyingGlassIcon"
+            />
+            <div class="flex w-80 gap-2">
+                <VButton label="Buscar" type="submit" @click="searchVets()" />
+                <VButton label="Limpiar" type="submit" @click="getVets()" />
             </div>
         </div>
         <div class="mt-8 flow-root">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                    <table class="min-w-min divide-y divide-emerald-300 ">
+                    <table class="min-w-min divide-y divide-emerald-300">
                         <thead>
                             <tr>
                                 <th
@@ -109,9 +107,9 @@ getVets();
                                 <td class="whitespace-nowrap px-3 py-4 text-base text-emerald-500">
                                     <VButton
                                         @click="(openRequestForm = true), (idVet = vet.id)"
-                                        class="flex items-center bg-transparent text-base px-0 w-min text-emerald-600 hover:text-emerald-500"
+                                        class="flex w-min items-center bg-transparent px-0 text-base text-emerald-600 hover:text-emerald-500"
                                         ><ChatBubbleOvalLeftEllipsisIcon class="h-6 w-6" />
-                                        <span class="invisible ml-2 font-medium md:visible "> Consultar </span></VButton
+                                        <span class="invisible ml-2 font-medium md:visible"> Consultar </span></VButton
                                     >
                                 </td>
                             </tr>

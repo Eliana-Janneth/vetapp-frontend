@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VText, VCard, VTitle, VLoader, VButton, VetAcademicForm, VetWorkForm, VCheckbox } from '@elements';
+import { VText, VCard, VTitle, VLoader, VButton, VetAcademicForm,VetInfoForm, VetWorkForm, VCheckbox } from '@elements';
 import { vetappApi } from '@/services';
 import { SModal } from '@placetopay/spartan-vue';
 import { ref } from 'vue';
@@ -31,6 +31,7 @@ const workExperience = ref<TWorkExperience[]>([]);
 
 const openAcademicForm = ref(false);
 const openWorkForm = ref(false);
+const openVetForm = ref(false);
 
 vetappApi.getUser().then((data) => {
     userData.value = data;
@@ -65,10 +66,20 @@ const changeAvailability = (value: boolean) => {
             <VetWorkForm @end="openWorkForm = false" />
         </VCard>
     </SModal>
+
+    <SModal class="z-50" :open="openVetForm" @close="openVetForm = false">
+        <VCard class="w-full sm:w-fit lg:ml-[224px]" bodyClass="p-8">
+            <VetInfoForm @end="openVetForm = false" />
+        </VCard>
+    </SModal>
     
     <div class="container mx-auto flex flex-col items-center">
-        <VTitle class="mb-2">Perfil</VTitle>
-
+        <div class="mb-2 flex items-center gap-2">
+                <VTitle>Perfil</VTitle>
+                <VButton class="flex w-fit items-center rounded-full p-1" @click="openVetForm = true"
+                    ><PlusCircleIcon class="h-7 w-7"
+                /></VButton>
+            </div>
         <VCard class="mb-8 w-full lg:w-fit" :loading="!userData">
             <template #header>
                 <UserCircleIcon class="h-5 w-5" />

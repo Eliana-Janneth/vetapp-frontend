@@ -48,11 +48,15 @@ const onSubmit = (profileValues: TRegisterFormProfile) => {
     values.city = profileValues.city;
     values.address = profileValues.address;
 
-    console.log('Form submitted!', values);
-    vetappApi.register(values).then(() => {
-        console.log('User registered!');
-        router.push({ name: 'login' });
-    });
+    vetappApi
+        .register(values)
+        .then((response) => {
+            if (response.ok) {
+                router.push({ name: 'login' });
+            } else {
+                return response.json();
+            }
+        });
 };
 </script>
 

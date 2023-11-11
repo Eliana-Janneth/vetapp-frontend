@@ -1,5 +1,11 @@
 import { notify } from '@kyvg/vue3-notification';
-import { TRegisterPayload, TLoginPayload, TAcademicInformationPayload, TWorkExperiencePayload, TVetInformationPayload } from '../types';
+import {
+    TRegisterPayload,
+    TLoginPayload,
+    TAcademicInformationPayload,
+    TWorkExperiencePayload,
+    TVetInformationPayload,
+} from '../types';
 import { useUserStore, useStyleStore } from '@/stores';
 import { adaptAcademicInformation, adaptVetInformation, adaptWorkExperience } from '../adapters';
 import { service } from '@/services/service';
@@ -9,39 +15,38 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const register = async (data: TRegisterPayload) => {
     const farmerUrl = `${API_URL}/farmers/`;
     const vetUrl = `${API_URL}/vets/`;
-
-    const response = await fetch(data.profile === 'farmer' ? farmerUrl : vetUrl, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-        .then((response) => response.json())
-        .then((data) => data)
-        .catch((error) => error);
-
-    if (response.status === 400) {
-        alert(response.message);
-        notify({
-            title: 'Authorization',
-            text: 'You have been logged in!',
+    try {
+        const response = await fetch(data.profile === 'farmer' ? farmerUrl : vetUrl, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
-    } else if (response.status === 201) {
-        alert(response.message);
-    } else {
-        // alert(response.message);
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                notify({
+                    title: errorData.response,
+                    type: 'error',
+                });
+            }
+            return errorData;
+        }
+
+        const responseData = await response.json();
         notify({
-            title: 'Authorization',
-            text: 'You have been logged in!',
+            title: 'Te has registrado exitosamente 🎉',
+            type: 'success',
         });
+
+        return responseData;
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
     }
-
-    return response;
 };
 export const login = async (data: TLoginPayload) => {
     const apiUrl = `${API_URL}/auth/login/`;
-    console.log(JSON.stringify(data, null, 2));
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -67,8 +72,8 @@ export const login = async (data: TLoginPayload) => {
         userStore.create(responseData);
         styleStore.role = responseData.user.role;
         notify({
-            title: "Usuario Logueado exitosamente🎉",
-            type: 'success'
+            title: 'Usuario Logueado exitosamente🎉',
+            type: 'success',
         });
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
@@ -94,13 +99,12 @@ export const logout = async () => {
 };
 
 export const getUser = async () => {
-    const response = (await service.get(`userinfo/`)) ;
-    return (response);
+    const response = await service.get(`userinfo/`);
+    return response;
 };
 
 export const createAcademicInformation = async (data: TAcademicInformationPayload) => {
     await service.post('vet-academic-information', data);
-
 };
 
 export const createWorkExperiencie = async (data: TWorkExperiencePayload) => {
@@ -131,7 +135,6 @@ export const getVetInformation = async (id: string) => {
     const response = (await service.get(`vets/${id}/`)) as TVetInformationPayload;
     return adaptVetInformation(response);
 };
-
 
 export const updateAvailability = async (data: Record<string, boolean>) => {
     const apiUrl = `${API_URL}/vet-availability/`;
