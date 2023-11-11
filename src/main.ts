@@ -11,8 +11,10 @@ const i18n = createI18n({
     locale: window.navigator.language.substring(0, 2) || 'es',
     fallbackLocale: 'en',
     availableLocales: ['es', 'en'],
-    messages,
-    welcomePage
+    messages:{
+        messages, welcomePage
+    }
+    
 });
 
 const pinia = createPinia();

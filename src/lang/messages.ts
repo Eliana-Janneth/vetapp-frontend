@@ -1,7 +1,6 @@
 export const messages = {
     en: {
         RegisterPage: {
-
             //Registro inicial
 
             register: 'Register',
@@ -36,11 +35,11 @@ export const messages = {
 
             name: 'Name',
             lastname: 'Last name',
-            id: 'Personal identification', 
+            id: 'Personal identification',
             id2: 'Identification card',
-            cell: 'Cell', 
+            cell: 'Cell',
             cell2: 'Cell phone number',
-            mun: 'Municipality', 
+            mun: 'Municipality',
             mun2: 'Municipality of residence',
             address: 'Address',
             cancelar: 'Cancel',
@@ -81,8 +80,7 @@ export const messages = {
 
             valaddress: 'Please enter your residential address',
             valminaddress: 'The address must be at least 5 characters',
-            valmaxaddress: 'The address must be a maximum of 100 characters'
-
+            valmaxaddress: 'The address must be a maximum of 100 characters',
         },
 
         LoginPage: {
@@ -94,22 +92,14 @@ export const messages = {
             olvpass: 'Forgot your password?',
             login2: 'Log in',
 
-
-
-
-
             //Validación usuario
             username: 'Please enter an email',
             validemail: 'You must enter a valid email',
-            logpass: 'Please enter a password'
-
-
-        }
+            logpass: 'Please enter a password',
+        },
     },
     es: {
-
         RegisterPage: {
-
             //Registro inicial
 
             register: 'Registrarse',
@@ -144,11 +134,11 @@ export const messages = {
 
             name: 'Nombre',
             lastname: 'Apellido',
-            id: 'Identificación', 
+            id: 'Identificación',
             id2: 'Cédula',
-            cell: 'Celular', 
+            cell: 'Celular',
             cell2: 'Número de contacto',
-            mun: 'Municipio', 
+            mun: 'Municipio',
             mun2: 'Municipio de residencia',
             address: 'Dirección',
             cancelar: 'Cancelar',
@@ -189,7 +179,7 @@ export const messages = {
 
             valaddress: 'Por favor ingrese su dirección de residencia',
             valminaddress: 'La dirección debe tener al menos 5 caracteres',
-            valmaxaddress: 'La dirección debe tener un máximo de 100 caracteres'
+            valmaxaddress: 'La dirección debe tener un máximo de 100 caracteres',
         },
 
         LoginPage: {
@@ -201,13 +191,10 @@ export const messages = {
             olvpass: '¿Olvidó su contraseña?',
             login2: 'Iniciar Sesión',
 
-
             //Validación usuario
             username: 'Por favor ingrese un correo',
             validemail: 'Debes ingresar un correo valido',
-            logpass: 'Por favor ingrese una contraseña'
-
-        }
-
+            logpass: 'Por favor ingrese una contraseña',
+        },
     },
-}
+};
