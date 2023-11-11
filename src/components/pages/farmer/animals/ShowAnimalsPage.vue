@@ -20,14 +20,9 @@ vetappApi.getAnimal(animalId.value).then((res) => {
 
 const diagnosisAnimal = ref<TDiagnosis[]>();
 
-vetappApi
-    .getDiagnosisFarmer(animalId.value)
-    .then((res) => {
-        diagnosisAnimal.value = res;
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+vetappApi.getDiagnosisFarmer(animalId.value).then((res) => {
+    diagnosisAnimal.value = res;
+});
 
 const updateValue = (name: string, newValue: string) => {
     vetappApi.updateAnimal(animalId.value, { [name]: newValue }).then((res) => {
@@ -48,71 +43,82 @@ const downloadFile = () => {
         <img class="h-20" :src="loader" v-if="animal === undefined" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else>
-            <div class="m-4 gap-2 border border-x-2 border-emerald-200/50 p-2">
+            <div class="m-2 grid grid-cols-1 rounded-xl sm:grid-cols-8 lg:gap-2">
                 <VUpgradeableInput
+                    class="sm:col-span-2"
                     label="Nombre"
                     :value="animal.name"
                     :edit="true"
                     @update="(newValue) => updateValue('name', newValue)"
                 />
-                <VUpgradeableInput label="Especie" :edit="false" :value="animal.specie" />
-                <VUpgradeableInput label="Raza" :edit="false" :value="animal.race" />
+                <VUpgradeableInput class="sm:col-span-2" label="Especie" :edit="false" :value="animal.specie" />
+                <VUpgradeableInput class="sm:col-span-2" label="Raza" :edit="false" :value="animal.race" />
+                <VUpgradeableInput class="sm:col-span-2" label="Genero" :edit="false" :value="animal.gender" />
+
                 <VUpgradeableInput
+                    class="sm:col-span-4"
                     label="Color"
                     :value="animal.color"
                     :edit="true"
                     @update="(newValue) => updateValue('color', newValue)"
                 />
-                <VUpgradeableInput label="Genero" :edit="false" :value="animal.gender" />
                 <VUpgradeableInput
+                    class="sm:col-span-2"
                     label="Fecha de Nacimiento"
                     :value="animal.birthdate"
                     :edit="true"
-                    @update="(newValue) => updateValue('gender', newValue)"
+                    @update="(newValue) => updateValue('birth_date', newValue)"
                 />
                 <VUpgradeableInput
-                    label="Peso"
+                    class="sm:col-span-1"
+                    label="Peso (kg)"
                     :value="animal.weight"
                     :edit="true"
                     @update="(newValue) => updateValue('weight', newValue)"
                 />
                 <VUpgradeableInput
-                    label="Altura"
+                    class="sm:col-span-1"
+                    label="Altura (cm) "
                     :value="animal.height"
                     :edit="true"
                     @update="(newValue) => updateValue('height', newValue)"
                 />
                 <VUpgradeableInput
+                    class="sm:col-span-8"
                     label="Descripción"
                     :value="animal.description"
                     :edit="true"
                     @update="(newValue) => updateValue('description', newValue)"
                 />
                 <VButton
-                    class="w-fit items-center justify-end px-6"
+                    class="mx-auto flex w-fit px-6 sm:col-span-8 mt-2"
                     label="Descargar Historial Médico"
                     @click="downloadFile()"
                 />
             </div>
 
-            <div v-if="diagnosisAnimal" class="m-2 flex flex-col">
-                <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
-                    <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
-                        <VDetails
-                            custom-class="font-semibold"
-                            label="Fecha"
-                            :description="formatDate(diagnosisA.createDate)"
-                        />
-                        <VDetails
-                            v-if="diagnosisA.updateDate != diagnosisA.createDate"
-                            label="Fecha Modificación"
-                            :description="formatDate(diagnosisA.updateDate)"
-                        />
-                        <VDetails label="Diagnostico" :description="diagnosisA.diagnosis" />
-                        <VDetails label="Tratamiento" :description="diagnosisA.treatment" />
-                        <VDetails label="Veterinario" :description="diagnosisA.vet" />
-                    </div>
+            <div
+                v-if="diagnosisAnimal"
+                class="m-4 flex flex-col rounded-lg bg-emerald-100/70 p-2"
+                v-for="diagnosisA in diagnosisAnimal"
+                :key="diagnosisA.id"
+            >
+                <div class="flex flex-col justify-start md:flex-row">
+                    <VDetails
+                        custom-class="font-semibold"
+                        label="Fecha"
+                        :description="formatDate(diagnosisA.createDate)"
+                    />
+                    <VDetails
+                        v-if="diagnosisA.updateDate != diagnosisA.createDate"
+                        label="Fecha Modificación"
+                        :description="formatDate(diagnosisA.updateDate)"
+                    />
+                    <VDetails label="Veterinario" :description="diagnosisA.vet" />
                 </div>
+
+                <VDetails label="Diagnostico" :description="diagnosisA.diagnosis" />
+                <VDetails label="Tratamiento" :description="diagnosisA.treatment" />
             </div>
         </div>
     </div>

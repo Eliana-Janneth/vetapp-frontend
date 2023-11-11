@@ -9,8 +9,10 @@ const props = defineProps<{
 }>();
 
 const owner = computed(() => {
-    return props.role === props.message.role;
+    return props.message.role == props.role
+    //return props.message.role.includes(props.role);
 });
+if (props.message.role =='veterinarian') props.message.role = 'vet';
 </script>
 
 <template>
@@ -23,16 +25,16 @@ const owner = computed(() => {
         <div class="flex flex-col">
             <div
                 :class="[
-                    'flex w-full flex-col rounded-2xl bg-emerald-200 p-2 shadow-sm',
-                    owner ? 'rounded-br-none' : 'rounded-bl-none',
+                    'flex w-full flex-col rounded-2xl p-2 shadow-sm',
+                    owner ? 'rounded-br-none  bg-emerald-200' : 'rounded-bl-none  bg-sky-200',
                 ]"
             >
                 <span class="font-medium text-gray-900">{{ message.sender }}</span>
                 <span class="pl-2 font-normal text-gray-900">{{ message.message }}</span>
             </div>
-            <small :class="['font-light text-white', owner ? 'self-end' : 'self-start']">{{
-                formatDate(message.date)
-            }}</small>
+            <small :class="['font-light text-white', owner ? 'self-end' : 'self-start']">
+                {{ formatDate(message.date) }}
+            </small>
         </div>
     </div>
 </template>

@@ -38,15 +38,22 @@ export const service = {
                 },
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                if (errorData && errorData.response) {
-                    alert(`Error del servidor: ${errorData.response}`);
-                } else {
-                    alert('Error en la solicitud al servidor.');
+         
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && typeof errorData === 'object') {
+                const firstKey = Object.keys(errorData)[0];
+                if (Array.isArray(errorData[firstKey]) && errorData[firstKey].length > 0) {
+                    notify({
+                        title: errorData[firstKey][0],
+                        type: 'error',
+                    });
                 }
-                return;
             }
+            //window.location.reload();
+            return
+        }
+
             const responseData = await response.json();
             console.log(JSON.stringify(responseData, null, 2));
             notify({

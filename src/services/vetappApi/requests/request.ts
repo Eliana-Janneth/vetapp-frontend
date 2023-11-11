@@ -1,23 +1,23 @@
 import {
     TOption as TAOption,
-    TSendRequestPayload,
-    TRejectRequestPayload,
+    TRequestPayload,
     TRegisterFarmerRequestPayload,
     TVetAvailablePayload,
+    TRequestFarmerPayload,
 } from '../types';
 import { service } from '../../service';
-import { adaptRejectedRequest, adaptSendRequest, adaptVetAvailable } from '../adapters';
+import { adaptRequest, adaptRequestFarmer, adaptVetAvailable } from '../adapters';
 import type { TOption } from '@/types';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const getSendRequest = async () => {
-    const response = (await service.get('request/0/')) as TSendRequestPayload[];
-    return adaptSendRequest(response);
+    const response = (await service.get('request/0/')) as TRequestPayload[];
+    return adaptRequest(response);
 };
 export const getRejectedRequest = async () => {
-    const response = (await service.get('request/2/')) as TRejectRequestPayload[];
-    return adaptRejectedRequest(response);
+    const response = (await service.get('request/2/')) as TRequestPayload[];
+    return adaptRequest(response);
 };
 
 export const createFarmerRequest = async (data: TRegisterFarmerRequestPayload) => {
@@ -40,8 +40,8 @@ export const getAnimalsRequest = async (): Promise<TOption[]> => {
 };
 
 export const getFarmerRequests = async () => {
-    const response = await service.get(`vet-requests/`);
-    return response;
+    const response = (await service.get(`vet-requests/`)) as TRequestFarmerPayload[];
+    return adaptRequestFarmer(response);
 };
 
 export const responseToFarmerRequest = async (id: string, vetResponse: boolean) => {

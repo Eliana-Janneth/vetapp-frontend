@@ -6,18 +6,6 @@ import { TRegisterAnimalPayload, vetappApi } from '@/services';
 import type { TRegisterAnimal } from './types';
 import * as yup from 'yup';
 
-// const values: TRegisterAnimalPayload = reactive({
-//     name: '',
-//     birth_date: '',
-//     color: '',
-//     description: '',
-//     gender: '',
-//     height: '',
-//     weight: '',
-//     race: '',
-//     specie: '',
-// });
-
 const validationSchema = yup.object({
     name: yup.string().required('Por favor ingrese un nombre').min(3, 'El nombre debe tener al menos 3 caracteres'),
     specie: yup.string().required('Por favor seleccione una especie'),
@@ -29,22 +17,13 @@ const validationSchema = yup.object({
     gender: yup.string().required('Por favor seleccione un género'),
 });
 
-const { handleSubmit, isSubmitting } = useForm<TRegisterAnimal>({
+const { handleSubmit, isSubmitting, resetForm } = useForm<TRegisterAnimal>({
     validationSchema,
 });
+
 const species = ref<{ text: string; value: string }[]>([]);
 const races = ref<{ text: string; value: string }[]>([]);
 const selectedSpeciesId = ref('');
-
-// const name = defineComponentBinds('name');
-// const specie = defineComponentBinds('specie');
-// const race = defineComponentBinds('race');
-// const gender = defineComponentBinds('gender');
-// const birthdate = defineComponentBinds('birthdate');
-// const weight = defineComponentBinds('weight');
-// const height = defineComponentBinds('height');
-// const color = defineComponentBinds('color');
-// const description = defineComponentBinds('description');
 
 onMounted(async () => {
     try {
@@ -85,12 +64,16 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
         };
         await vetappApi.createAnimal(payload);
         console.log(JSON.stringify(values, null, 2));
+        resetForm();
     } catch (error) {}
 });
 </script>
 
 <template>
-    <form class="grid grid-cols-1 gap-4 rounded-lg bg-emerald-100/70 p-4 sm:grid-cols-8" @submit="onSubmit">
+    <form
+        class="grid grid-cols-1 items-center gap-4 rounded-lg bg-emerald-100/70 p-4 sm:grid-cols-6"
+        @submit="onSubmit"
+    >
         <VTextField
             container-class="sm:col-span-2"
             label="Nombre"
@@ -100,7 +83,6 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
         />
         <VSelect
             container-class="sm:col-span-2"
-            custom-class="form-farmer"
             placeholder="Seleccione la especie"
             label="Especie"
             name="specie"
@@ -110,81 +92,58 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
 
         <VSelect
             container-class="sm:col-span-2"
-            custom-class="form-farmer"
             label="Raza"
             name="race"
             placeholder="Seleccione la raza"
             :options="races"
         />
-        <VTextField container-class="sm:col-span-2" label="Fecha de Nacimiento" type="date" name="birthdate" />
 
-        <div class="sm:col-span-2 flex justify-between">
-        <span class="block text-lg font-medium text-emerald-800 ">Género:</span>
+        <VTextField class="w-min sm:col-span-1" label="Macho" type="radio" name="gender" value="Macho" />
+        <VTextField class="w-min sm:col-span-1" label="Hembra" type="radio" name="gender" value="Hembra" />
+
         <VTextField
-            container-class=""
-            class="w-min"
-            label="Macho"
-            type="radio"
-            name="gender"
-            model-value="Macho"
-        />
-        <VTextField
-            container-class=""
-            class="w-min"
-            label="Hembra"
-            type="radio"
-            name="gender"
-            model-value="Hembra"
-        />
-    </div>
-        <VTextField
-            container-class="sm:col-span-2"
-            class="w-min"
-            label="Peso"
+            class="sm:w-min-xs sm:col-span-1"
+            label="Peso (Kg)"
             placeholder="Ingresa su peso"
             type="number"
             name="weight"
         />
         <VTextField
-            container-class="sm:col-span-2"
-            class="w-min"
-            label="Altura"
+            class="sm:w-min-xs sm:col-span-1"
+            label="Altura (Cm)"
             placeholder="Ingresa su altura"
             type="number"
             name="height"
         />
+
+        <VTextField container-class="sm:col-span-2" label="Fecha de Nacimiento" type="date" name="birthdate" />
+
         <VTextArea
-            container-class="sm:col-span-4"
+            container-class="sm:col-span-3"
             label="Color"
             placeholder="Describe su aspecto fisico"
             name="color"
         />
         <VTextArea
-            container-class="sm:col-span-4"
+            container-class="sm:col-span-3"
             label="Descripción"
             placeholder="Describe alguna caracteristica importante"
             name="description"
         />
-
-        <VButton
-            custom-class="py-0 items-center"
-            class="w-full sm:col-span-2"
-            label="Cancelar"
-            variant="danger"
-            @click="$router.push({ name: 'animals.index' })"
-        />
-        <VButton
-            label="Guardar"
-            class="w-full sm:col-span-2"
-            type="submit"
-            variant="success"
-          
-        >
-            <div v-if="isSubmitting" class="flex items-center gap-2">
-                <VLoader class="h-6" />
-                <span>Enviando</span>
-            </div>
-        </VButton>
+        <div class="flex w-full justify-center gap-2 sm:col-span-6">
+            <VButton
+                class="w-max-lg"
+                label="Cancelar"
+                variant="danger"
+                @click="$router.push({ name: 'animals.index' })"
+            />
+            <VButton label="Guardar" class="w-max-lg" type="submit" variant="success">
+                <div v-if="isSubmitting" class="flex items-center gap-2">
+                    <VLoader class="h-6" />
+                    <span>Guardando</span>
+                </div>
+            </VButton>
+        </div>
         <!-- <VButton
             label="Guardar"
             class="w-full sm:col-span-2"

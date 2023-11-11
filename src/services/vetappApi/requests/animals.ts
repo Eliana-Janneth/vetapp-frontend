@@ -83,21 +83,28 @@ export const updateAnimal = async (id: string, data: Record<string, string>) => 
         });
 
         if (!response.ok) {
+            
             const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
+            if (errorData && typeof errorData === 'object') {
+                const firstKey = Object.keys(errorData)[0];
+                if (Array.isArray(errorData[firstKey]) && errorData[firstKey].length > 0) {
+                    notify({
+                        title: errorData[firstKey][0],
+                        type: 'error',
+                    });
+                }
             }
-            return;
+            window.location.reload();
+            return
         }
-        // Si la respuesta es exitosa
+
         const responseData = await response.json();
         notify({
             title: 'Animal actualizado exitosamente🎉',
             type: 'success',
         });
-        return responseData;
+
+        return adaptAnimal(responseData);
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }

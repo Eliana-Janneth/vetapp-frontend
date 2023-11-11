@@ -18,12 +18,6 @@ export type TAcademicInformation = {
 };
 
 
-export type TRegisterFarmerRequest={
-    message : string;
-    animal : string;
-    vet:    string; 
-}
-
 export type TVetInformation={
     id: string;
     name: string;
