@@ -14,3 +14,5 @@ export type TChat = {
     date: string,
     file: null,
 };
+
+export type TChatMsg = string | { data: string; format: string }

@@ -1,10 +1,10 @@
 import { vetappApi } from '@/services';
-import { TChat } from '@/types';
+import { TChat, TChatMsg } from '@/types';
 import { defineStore } from 'pinia';
 
 type State = {
     active: TChat['id'] | null;
-    chats: (TChat & { send: ((msg: string) => void) | null; close: WebSocket['close'] | null })[];
+    chats: (TChat & { send: ((msg: TChatMsg) => void) | null; close: WebSocket['close'] | null })[];
 };
 
 export const useChatStore = defineStore('chat', {

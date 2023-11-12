@@ -15,11 +15,9 @@ const userStore = useUserStore();
 const chatStore = useChatStore();
 
 const message = ref('');
-const attachment: { data?: string; format?: string } = {};
 
 function handleImageUpload(event: Event) {
     const selectedImage = (event.target as HTMLInputElement).files?.[0];
-    console.log('Imagen seleccionada:', selectedImage);
     if (selectedImage) {
         const reader = new FileReader();
         reader.readAsDataURL(selectedImage);
@@ -27,10 +25,13 @@ function handleImageUpload(event: Event) {
             const binaryData = String(reader.result);
             if (binaryData) {
                 let attachmentParts = binaryData.split(',');
-                attachment.format = attachmentParts[0].split(';')[0].split('/')[1];
-                attachment.data = attachmentParts[1];
-                console.log('Data: ', attachment.data);
-                console.log('Format: ', attachment.format);
+                const format = attachmentParts[0].split(';')[0].split('/')[1];
+                const data = attachmentParts[1];
+
+                if (chatStore.activeChat && chatStore.activeChat.send) {
+                    chatStore.activeChat!.send!({ data, format });
+                    message.value = '';
+                }
             }
         };
     }
