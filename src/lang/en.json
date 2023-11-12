@@ -3,6 +3,7 @@
         "en": "English",
         "es": "Spanish"
     },
+
     "WelcomePage": {
         "login": "Login",
        "register": "Register",
@@ -17,12 +18,21 @@
         "pvision":
             "Our vision is to become the leading reference in online veterinary care solutions for the agricultural sector. We envision a future where all farmers and rural veterinarians have access to a reliable and effective platform for animal care and communication, enabling a healthier and more sustainable agricultural industry. We strive to be recognized for our positive impact on animal health, farmer efficiency and the promotion of animal welfare in rural communities around the world."
     },
+
     "LoginPage": {
-        "title": "Login",
-        "username": "Username",
-        "password": "Password",
-        "button": "Login"
+        "createaccount": "Do you want to create an account?",
+            "register": "Sign up here",
+            "login": "Log In",
+            "email": "Email",
+            "password": "Password",
+            "olvpass": "Forgot your password?",
+            "login2": "Log in",
+
+            "username": "Please enter an email",
+            "validemail": "You must enter a valid email",
+            "logpass": "Please enter a password"
     },
+    
     "RegisterPage": {
 
         "register": "Register",

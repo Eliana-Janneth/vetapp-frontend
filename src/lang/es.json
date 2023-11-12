@@ -3,6 +3,7 @@
         "en": "Inglés",
         "es": "Español"
     },
+    
     "WelcomePage": {
         "login": "Iniciar Sesión",
         "register": "Registrarse",
@@ -17,14 +18,22 @@
         "pvision":
             "Nuestra visión es convertirnos en el referente líder en soluciones de atención veterinaria en línea para el sector agrícola. Visualizamos un futuro en el que todos los granjeros y veterinarios rurales tengan acceso a una plataforma confiable y eficaz para la comunicación y atención de animales, lo que permitirá una industria agrícola más saludable y sostenible. Nos esforzamos por ser reconocidos por nuestro impacto positivo en la salud animal, la eficiencia de los granjeros y la promoción del bienestar animal en comunidades rurales de todo el mundo."
     },
-    "LoginPage": {
-        "title": "Inicio de sesión",
-        "username": "Usuario",
-        "password": "Contraseña",
-        "button": "Ingresar"
-    },
-    "RegisterPage": {
 
+    "LoginPage": {
+        "createaccount": "¿Deseas crear una cuenta?",
+        "register": "Registrate aquí",
+        "login": "Iniciar Sesión",
+        "email": "Correo Electrónico",
+        "password": "Contraseña",
+        "olvpass": "¿Olvidó su contraseña?",
+        "login2": "Iniciar Sesión",
+
+        "username": "Por favor ingrese un correo",
+        "validemail": "Debes ingresar un correo valido",
+        "logpass": "Por favor ingrese una contraseña"
+    },
+
+    "RegisterPage": {
         "register": "Registrarse",
         "profile": "Perfil",
         "vet": "Veterinario",
