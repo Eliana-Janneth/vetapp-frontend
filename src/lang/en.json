@@ -22,5 +22,69 @@
         "username": "Username",
         "password": "Password",
         "button": "Login"
+    },
+    "RegisterPage": {
+
+        "register": "Register",
+        "profile": "Profile",
+        "vet": "Veterinarian",
+        "farm": "Farmer",
+        "alertemail": "someone@example.com",
+        "password": "Password",
+        "alertpass": "Enter your password",
+        "confirmpass": "Confirm Password",
+        "alertconfirmpass": "Confirm your password",
+        "next": "Next",
+        "cancel": "Cancel",
+
+        "requiredemail": "Please enter an email",
+        "erroremail": "You must enter a valid email 'someone@example.com'",
+        "lengthemail": "The email must be at least 10 characters",
+
+        "requiredpass": "Please enter a password",
+        "minpass": "Password must be at least 8 characters",
+        "maxpass": "Password must be a maximum of 200 characters",
+        "requiredpass2": "Confirm your password",
+        "confirmminpass": "Password must be at least 8 characters",
+        "onepass": "Password must match",
+
+        "oneprofile": "Please select a profile",
+
+        "name": "Name",
+        "lastname": "Last name",
+        "id": "Personal identification",
+        "id2": "Identification card",
+        "cell": "Cell",
+        "cell2": "Cell phone number",
+        "mun": "Municipality",
+        "mun2": "Municipality of residence",
+        "address": "Address",
+        "cancelar": "Cancel",
+        "register2": "Sign In",
+
+        "valname": "Please enter your name",
+        "valminname": "The name must be at least 2 characters",
+        "valmaxname": "The name must be a maximum of 40 characters",
+
+        "vallastname": "Please enter your last name",
+        "valminlastname": "Last name must be at least 2 characters",
+        "valmaxlastname": "The last name must be a maximum of 40 characters",
+
+        "valdocument": "Please enter your identification card",
+        "valmatchdocument": "Please enter only numbers",
+        "valmaxdocument": "The ID must have a maximum of 10 digits",
+
+        "valcell": "Please enter your contact number",
+        "valmatchescell": "Please enter only numbers and the '+' symbol",
+        "valmaxcell": "The contact number must be a maximum of 15 digits",
+        "valmincell": "The Contact number must be at least 7 digits",
+
+        "valmun": "Please enter your municipality",
+        "valminmun": "The municipality must have at least 2 characters",
+        "valmaxmun": "The municipality must have a maximum of 50 characters",
+
+        "valaddress": "Please enter your residential address",
+        "valminaddress": "The address must be at least 5 characters",
+        "valmaxaddress": "The address must be a maximum of 100 characters"
     }
 }

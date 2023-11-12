@@ -33,10 +33,5 @@ export const useChatStore = defineStore('chat', {
                     });
             });
         },
-        // closeConnection(){
-        //     this.chats.forEach((chat) => {
-        //         chat?.close();
-        //     });
-        // }
     },
 });
