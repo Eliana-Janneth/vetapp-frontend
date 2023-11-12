@@ -19,6 +19,7 @@ export const adaptMessage = (response: TMessagePayload): TMessage => {
         message: response.message,
         date: response.date_sent,
         file: response.file,
+        hasFile: response.has_file,
     };
 }
 

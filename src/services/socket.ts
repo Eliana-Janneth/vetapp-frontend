@@ -26,6 +26,7 @@ export const connectToChat = (chatId: number): Promise<{send: (msg: TChatMsg) =>
                     message: data.message,
                     date: data.date_sent,
                     file: data.file,
+                    hasFile: data.has_file,
                 });
         };
 
@@ -43,7 +44,7 @@ export const connectToChat = (chatId: number): Promise<{send: (msg: TChatMsg) =>
             if (socket.readyState === WebSocket.OPEN) {
                 let message = null;
                 if (typeof msg === 'string') message = { message: msg };
-                else message = { message: 'null', attachment: {...msg} };
+                else message = { message: '', attachment: {...msg} };
 
                 const jsonMessage = JSON.stringify(message);
                 socket.send(jsonMessage);

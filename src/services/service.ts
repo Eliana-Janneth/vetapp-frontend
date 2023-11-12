@@ -50,7 +50,12 @@ export const service = {
                     });
                 }
             }
-            //window.location.reload();
+            if (errorData && errorData.response) {
+                notify({
+                    title: errorData.response,
+                    type: 'error',
+                });
+            }
             return
         }
 

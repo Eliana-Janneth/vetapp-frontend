@@ -22,13 +22,8 @@ const { handleSubmit, isSubmitting } = useForm<TRegisterFarmerRequest>({
 const animals = ref<{ text: string; value: string }[]>([]);
 
 onMounted(async () => {
-    try {
-        const response = await vetappApi.getAnimalsRequest();
-        animals.value = response;
-        console.log(animals.value);
-    } catch (error) {
-        console.error('Error al cargar los datos:');
-    }
+    const response = await vetappApi.getAnimalsRequest();
+    animals.value = response;
 });
 
 const onSubmit = handleSubmit(async (values: TRegisterFarmerRequest) => {
@@ -49,27 +44,27 @@ const onSubmit = handleSubmit(async (values: TRegisterFarmerRequest) => {
 </script>
 
 <template>
-        <form class="grid grid-cols-1 sm:grid-cols-8 gap-4 " @submit="onSubmit">
-            <VTextArea
-                containerClass="sm:col-span-8"
-                label="Escribir mensaje"
-                name="message"
-                placeholder="Escribe el motivo por el cual quieres realizar una consulta con el veterinario"
-            />
-            <VSelect
-                containerClass="sm:col-span-8"
-                placeholder="Seleccione el animal"
-                name="animal"
-                label="Animal a consultar"
-                :options="animals"
-            />
-                <VButton class="w-full sm:col-span-3" @click="$emit('end')" label="Cancelar" variant="danger" />
-                <VButton class="w-full sm:col-span-3" type="submit" variant="success">
-                    <div v-if="isSubmitting" class="flex items-center gap-2">
-                        <VLoader class="h-6" />
-                        <span>Enviando</span>
-                    </div>
-                    <template v-else> Enviar Solicitud </template>
-                </VButton>
-        </form>
+    <form class="grid grid-cols-1 gap-4 sm:grid-cols-8" @submit="onSubmit">
+        <VTextArea
+            containerClass="sm:col-span-8"
+            label="Escribir mensaje"
+            name="message"
+            placeholder="Escribe el motivo por el cual quieres realizar una consulta con el veterinario"
+        />
+        <VSelect
+            containerClass="sm:col-span-8"
+            placeholder="Seleccione el animal"
+            name="animal"
+            label="Animal a consultar"
+            :options="animals"
+        />
+        <VButton class="w-full sm:col-span-3" @click="$emit('end')" label="Cancelar" variant="danger" />
+        <VButton class="w-full sm:col-span-3" type="submit" variant="success">
+            <div v-if="isSubmitting" class="flex items-center gap-2">
+                <VLoader class="h-6" />
+                <span>Enviando</span>
+            </div>
+            <template v-else> Enviar Solicitud </template>
+        </VButton>
+    </form>
 </template>

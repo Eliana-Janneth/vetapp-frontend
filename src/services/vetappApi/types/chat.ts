@@ -11,5 +11,6 @@ export type TMessagePayload = {
     sender_role: string,
     message: string,
     date_sent: string,
-    file: null,
+    file: string,
+    has_file: boolean,
 };

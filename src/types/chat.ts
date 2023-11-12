@@ -12,7 +12,8 @@ export type TChat = {
     role: string,
     message: string,
     date: string,
-    file: null,
+    file: string,
+    hasFile: boolean
 };
 
 export type TChatMsg = string | { data: string; format: string }
