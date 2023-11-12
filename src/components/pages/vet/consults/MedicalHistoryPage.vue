@@ -18,16 +18,11 @@ vetappApi.getAnimalAuthorized(route.params.id.toString()).then((res) => {
 });
 vetappApi.getDiagnosisVet(animalId.value).then((res) => {
     diagnosisAnimal.value = res;
-    console.log(diagnosisAnimal.value);
 });
 
 const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) => {
-    vetappApi.updateDiagnosis(animalId.value, diagnosisId, { [name]: newValue }).then((res) => {
+    vetappApi.updateDiagnosis(animalId.value, diagnosisId, { [name]: newValue }).then(() => {
         window.location.reload();
-        // const update = diagnosisAnimal.value?.findIndex((diagnosis) => diagnosis.id === diagnosisId);
-        // console.log(update);
-        // diagnosisAnimal.value![update as any] = res[0]; 
-        // console.log(diagnosisAnimal.value![update as any])
     });
 };
 
@@ -93,15 +88,21 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
 
                     <VUpgradeableTextarea
                         label="Diagnostico"
-                        :edit="true"
+                        :edit="diagnosisA.edit"
                         :value="diagnosisA.diagnosis"
                         @update="(newValue) => onUpdateDiagnosis('diagnosis', newValue, diagnosisA.id)"
                     />
                     <VUpgradeableTextarea
                         label="Tratamiento"
-                        :edit="true"
+                        :edit="diagnosisA.edit"
                         :value="diagnosisA.treatment"
                         @update="(newValue) => onUpdateDiagnosis('treatment', newValue, diagnosisA.id)"
+                    />
+                    <VUpgradeableTextarea
+                        custom-class="font-semibold"
+                        label="Veterinario"
+                        :value="diagnosisA.vet"
+                        :edit="false"
                     />
                 </div>
             </div>

@@ -10,6 +10,7 @@ export type TDiagnosis = {
     createDate: string;
     updateDate: string;
     vet: string;
+    edit: boolean;
 };
 
 export type TAnimalAuthorized = {

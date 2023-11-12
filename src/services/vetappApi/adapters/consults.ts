@@ -9,6 +9,7 @@ export const adaptDiagnosis = (response: TDiagnosisPayload[]): TDiagnosis[] => {
         createDate: diagnosis.create_date,
         updateDate: diagnosis.update_date,
         vet: diagnosis.vet_name,
+        edit: diagnosis.can_modify,
     }));
 };
 function mapAnimal(animal: TAnimalAuthorizedPayload): TAnimalAuthorized {
