@@ -4,7 +4,7 @@ import { defineStore } from 'pinia';
 
 type State = {
     active: TChat['id'] | null;
-    chats: (TChat & { send: ((msg: string) => void) | null})[];
+    chats: (TChat & { send: ((msg: string, attachment?: { data: string ; format: string }) => void) | null; socket?: WebSocket })[];
 };
 
 export const useChatStore = defineStore('chat', {
@@ -32,5 +32,10 @@ export const useChatStore = defineStore('chat', {
                     });
             });
         },
+        // closeConnection(){
+        //     this.chats.forEach((chat) => {
+        //         chat?.close();
+        //     });
+        // }
     },
 });

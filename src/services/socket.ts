@@ -1,7 +1,9 @@
 import { adaptMessages } from './vetappApi/adapters';
 import { useChatStore } from '@/stores';
 
-export const connectToChat = (chatId: number): Promise<(msg: string) => void> => {
+export const connectToChat = (
+    chatId: number,
+): Promise<(msg: string, attachment: { data: string; format: string }) => void> => {
     const chatStore = useChatStore();
     const chat = chatStore.chats.find((c) => c.id === chatId);
 
@@ -17,17 +19,17 @@ export const connectToChat = (chatId: number): Promise<(msg: string) => void> =>
             const data = JSON.parse(event.data);
 
             if (data.messages) chat!.messages = adaptMessages(data.messages);
-            else chat!.messages!.push({
-                id: data.id,
-                sender: data.sender_name,
-                role: data.sender_role,
-                message: data.message,
-                date: data.date_sent,
-                file: data.file,
-            });
-            
+            else
+                chat!.messages!.push({
+                    id: data.id,
+                    sender: data.sender_name,
+                    role: data.sender_role,
+                    message: data.message,
+                    date: data.date_sent,
+                    file: data.file,
+                });
         };
-        
+
         socket.onclose = (event) => {
             if (event.wasClean) {
                 console.log(`Conexión cerrada limpiamente, código=${event.code}, razón=${event.reason}`);
@@ -38,9 +40,9 @@ export const connectToChat = (chatId: number): Promise<(msg: string) => void> =>
         };
 
         // Función para enviar mensajes al servidor en formato JSON
-        const sendMessage = (message: string) => {
+        const sendMessage = (message: string, attachment: { data: string; format: string }) => {
             if (socket.readyState === WebSocket.OPEN) {
-                const jsonMessage = JSON.stringify({ message });
+                const jsonMessage = JSON.stringify({ message, attachment });
                 socket.send(jsonMessage);
                 console.log('Mensaje JSON enviado al servidor:', jsonMessage);
             } else {
@@ -48,6 +50,11 @@ export const connectToChat = (chatId: number): Promise<(msg: string) => void> =>
             }
         };
 
+        // Función para cerrar la conexión
+        const closeConnection = () => {
+            socket.close();
+            console.log('Conexión cerrada desde afuera.');
+        };
         resolve(sendMessage);
     });
 };

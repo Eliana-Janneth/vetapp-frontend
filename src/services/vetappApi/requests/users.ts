@@ -58,12 +58,13 @@ export const login = async (data: TLoginPayload) => {
 
         if (!response.ok) {
             const errorData = await response.json();
-            if (errorData && errorData.response) {
-                alert(`Error del servidor: ${errorData.response}`);
-            } else {
-                alert('Error en la solicitud al servidor.');
+            if (errorData && errorData.non_field_errors) {
+                notify({
+                    title: 'Credenciales incorrectas, intente nuevamente',
+                    type: 'error',
+                });
             }
-            return;
+            return errorData;
         }
         // Si la respuesta es exitosa
         const responseData = await response.json();

@@ -11,10 +11,7 @@ const i18n = createI18n({
     locale: window.navigator.language.substring(0, 2) || 'es',
     fallbackLocale: 'en',
     availableLocales: ['es', 'en'],
-    messages:{
-        messages, welcomePage
-    }
-    
+    messages: { ...welcomePage, ...messages },
 });
 
 const pinia = createPinia();
@@ -25,4 +22,3 @@ app.use(router);
 app.use(i18n);
 app.use(Notifications);
 app.mount('#app');
-

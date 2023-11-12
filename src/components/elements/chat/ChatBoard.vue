@@ -15,10 +15,25 @@ const userStore = useUserStore();
 const chatStore = useChatStore();
 
 const message = ref('');
+const attachment: { data?: string; format?: string } = {};
 
 function handleImageUpload(event: Event) {
     const selectedImage = (event.target as HTMLInputElement).files?.[0];
     console.log('Imagen seleccionada:', selectedImage);
+    if (selectedImage) {
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedImage);
+        reader.onload = () => {
+            const binaryData = String(reader.result);
+            if (binaryData) {
+                let attachmentParts = binaryData.split(',');
+                attachment.format = attachmentParts[0].split(';')[0].split('/')[1];
+                attachment.data = attachmentParts[1];
+                console.log('Data: ', attachment.data);
+                console.log('Format: ', attachment.format);
+            }
+        };
+    }
 }
 function handleDocumentUpload(event: Event) {
     const selectedDocument = (event.target as HTMLInputElement).files?.[0];
@@ -26,9 +41,11 @@ function handleDocumentUpload(event: Event) {
 }
 
 const send = () => {
-    chatStore.activeChat!.send!(message.value);
-    message.value = '';
-}
+    if (chatStore.activeChat && chatStore.activeChat.send) {
+        chatStore.activeChat!.send!(message.value, {attachment.data, attachment.format });
+        message.value = '';
+    }
+};
 </script>
 
 <template>
@@ -59,7 +76,7 @@ const send = () => {
             </div>
         </div>
 
-        <div class="scroll-style flex-grow overflow-auto p-4">
+        <div class="scroll-style flex-grow overflow-y-auto p-4">
             <ChatMessage v-for="message in chatStore.activeChat.messages" :message="message" :role="userStore.role" />
         </div>
 
