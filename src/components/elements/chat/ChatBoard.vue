@@ -42,7 +42,7 @@ function handleDocumentUpload(event: Event) {
 
 const send = () => {
     if (chatStore.activeChat && chatStore.activeChat.send) {
-        chatStore.activeChat!.send!(message.value, {attachment.data, attachment.format });
+        chatStore.activeChat!.send!(message.value);
         message.value = '';
     }
 };

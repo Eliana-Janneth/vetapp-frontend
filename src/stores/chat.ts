@@ -4,7 +4,7 @@ import { defineStore } from 'pinia';
 
 type State = {
     active: TChat['id'] | null;
-    chats: (TChat & { send: ((msg: string, attachment?: { data: string ; format: string }) => void) | null; socket?: WebSocket })[];
+    chats: (TChat & { send: ((msg: string) => void) | null; close: WebSocket['close'] | null })[];
 };
 
 export const useChatStore = defineStore('chat', {
@@ -17,15 +17,16 @@ export const useChatStore = defineStore('chat', {
     },
     actions: {
         updateChats(chats: TChat[]) {
-            this.chats = chats.map((chat) => ({ ...chat, send: null }));
+            this.chats = chats.map((chat) => ({ ...chat, send: null, close: null }));
             this.fillChatMessages();
         },
         fillChatMessages() {
             this.chats.forEach((chat) => {
                 vetappApi
                     .connectToChat(chat.id)
-                    .then((sender) => {
-                        chat.send = sender;
+                    .then(({ send, close }) => {
+                        chat.send = send;
+                        chat.close = close;
                     })
                     .catch((error) => {
                         console.error('Error en la conexión WebSocket:', error);

@@ -1,9 +1,7 @@
 import { adaptMessages } from './vetappApi/adapters';
 import { useChatStore } from '@/stores';
 
-export const connectToChat = (
-    chatId: number,
-): Promise<(msg: string, attachment: { data: string; format: string }) => void> => {
+export const connectToChat = (chatId: number): Promise<{send: (msg: string) => void; close: WebSocket['close']}> => {
     const chatStore = useChatStore();
     const chat = chatStore.chats.find((c) => c.id === chatId);
 
@@ -40,9 +38,9 @@ export const connectToChat = (
         };
 
         // Función para enviar mensajes al servidor en formato JSON
-        const sendMessage = (message: string, attachment: { data: string; format: string }) => {
+        const sendMessage = (message: string) => {
             if (socket.readyState === WebSocket.OPEN) {
-                const jsonMessage = JSON.stringify({ message, attachment });
+                const jsonMessage = JSON.stringify({ message });
                 socket.send(jsonMessage);
                 console.log('Mensaje JSON enviado al servidor:', jsonMessage);
             } else {
@@ -50,11 +48,6 @@ export const connectToChat = (
             }
         };
 
-        // Función para cerrar la conexión
-        const closeConnection = () => {
-            socket.close();
-            console.log('Conexión cerrada desde afuera.');
-        };
-        resolve(sendMessage);
+        resolve({ send: sendMessage, close: () => socket.close() });
     });
 };
