@@ -5,13 +5,13 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import Notifications from '@kyvg/vue3-notification';
 import { createI18n } from 'vue-i18n';
-import { messages, welcomePage } from './lang';
+import { es, en } from './lang';
 
 const i18n = createI18n({
-    locale: window.navigator.language.substring(0, 2) || 'es',
+    locale: import.meta.env.VITE_I18N_LOCALE || 'en',
     fallbackLocale: 'en',
     availableLocales: ['es', 'en'],
-    messages: { ...welcomePage, ...messages },
+    messages: { es, en },
 });
 
 const pinia = createPinia();

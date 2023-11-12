@@ -1,0 +1,26 @@
+{
+    "locale": {
+        "en": "English",
+        "es": "Spanish"
+    },
+    "WelcomePage": {
+        "login": "Login",
+       "register": "Register",
+        "attention": "Veterinary care",
+        "vetfarm": "Farmers and Veterinarians",
+        "slogan": "The link to your Animals Health, ¡Now online!",
+        "we": "About us",
+        "mision": "Mission",
+        "pmision":
+            "Our mission is to facilitate and improve animal health care in rural areas by providing farmers and veterinarians with an efficient and accessible online communication platform. We are committed to reducing geographical barriers and empowering agricultural and veterinary professionals by providing an effective tool for routine check-ups and emergency care, without the need for travel. We value animal welfare and farmers peace of mind, and are dedicated to strengthening the vital connection between them and animal health experts.",
+        "vision": "Vision",
+        "pvision":
+            "Our vision is to become the leading reference in online veterinary care solutions for the agricultural sector. We envision a future where all farmers and rural veterinarians have access to a reliable and effective platform for animal care and communication, enabling a healthier and more sustainable agricultural industry. We strive to be recognized for our positive impact on animal health, farmer efficiency and the promotion of animal welfare in rural communities around the world."
+    },
+    "LoginPage": {
+        "title": "Login",
+        "username": "Username",
+        "password": "Password",
+        "button": "Login"
+    }
+}

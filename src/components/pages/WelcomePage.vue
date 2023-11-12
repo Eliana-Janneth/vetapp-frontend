@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import LanguageSwitch from '../elements/LanguageSwitch.vue';
+</script>
 
 <template>
     <div>
+        <language-switch />
         <div class="bg-gradient-to-r from-indigo-500/50 via-indigo-600/50 to-indigo-800/70">
             <div class="container mx-auto">
                 <header class="flex justify-between px-8 py-4">

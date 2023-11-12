@@ -1,4 +1,4 @@
 export * from './messages';
-export * from './welcomePage';
 
-
+export { default as en } from './en.json';
+export { default as es } from './es.json';

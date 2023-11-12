@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CameraIcon, ClipboardIcon } from '@heroicons/vue/24/outline';
 import VButton from '../VButton.vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import VTextField from '../VTextField.vue';
 import ChatMessage from './ChatMessage.vue';
 import { useStyleStore, useChatStore, useUserStore } from '@/stores';
@@ -10,6 +10,8 @@ import noChatsIllustration from '@/assets/illustrations/no_chats.svg';
 import pet from '@/assets/icons/pet.svg';
 
 const style = useStyleStore();
+
+const board = ref<HTMLElement | null>(null);
 
 const userStore = useUserStore();
 const chatStore = useChatStore();
@@ -47,6 +49,15 @@ const send = () => {
         message.value = '';
     }
 };
+
+watch(
+    () => chatStore.activeChat,
+    () => {
+        if (board.value) {
+            board.value.scrollTop = board.value.scrollHeight;
+        }
+    },
+);
 </script>
 
 <template>
@@ -77,7 +88,7 @@ const send = () => {
             </div>
         </div>
 
-        <div class="scroll-style flex-grow overflow-y-auto p-4">
+        <div ref="board" class="scroll-style flex-grow overflow-y-auto p-4">
             <ChatMessage v-for="message in chatStore.activeChat.messages" :message="message" :role="userStore.role" />
         </div>
 

@@ -22,6 +22,7 @@ export { default as VSkeleton } from './VSkeleton.vue';
 export { default as VLoader } from './VLoader.vue';
 export { default as VCheckbox } from './VCheckbox.vue';
 export { default as VTextField } from './VTextField.vue';
+export { default as LanguageSwitch } from './LanguageSwitch.vue';
 
 export * from './forms';
 export * from './VSidebar';
