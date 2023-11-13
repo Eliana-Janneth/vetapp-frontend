@@ -8,6 +8,9 @@ import { useStyleStore, useChatStore, useUserStore } from '@/stores';
 import { createAvatar } from '@/helpers';
 import noChatsIllustration from '@/assets/illustrations/no_chats.svg';
 import pet from '@/assets/icons/pet.svg';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const style = useStyleStore();
 
@@ -97,7 +100,7 @@ watch(
                 <VTextField
                     v-model="message"
                     type="text"
-                    placeholder="Escribe tu mensaje ..."
+                    :placeholder="t('FarmPage.chatm')"
                     class="font-base w-full rounded-lg bg-gray-100 px-4 py-3 pr-20 text-base focus:outline-none"
                     @keyup.enter="send"
                     />
@@ -128,7 +131,7 @@ watch(
                 </div>
             </div>
 
-            <VButton class="w-fit" @click="send">Enviar</VButton>
+            <VButton class="w-fit" @click="send">{{ $t("FarmPage.chatsend") }}</VButton>
         </div>
     </section>
     <div v-else :class="[style.getBackgroundChat, 'flex items-center justify-center text-2xl text-white']">

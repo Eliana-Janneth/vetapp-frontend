@@ -5,16 +5,19 @@ import { useForm } from 'vee-validate';
 import { TRegisterAnimalPayload, vetappApi } from '@/services';
 import type { TRegisterAnimal } from './types';
 import * as yup from 'yup';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const validationSchema = yup.object({
-    name: yup.string().required('Por favor ingrese un nombre').min(3, 'El nombre debe tener al menos 3 caracteres'),
-    specie: yup.string().required('Por favor seleccione una especie'),
-    race: yup.string().required('Por favor seleecione una raza'),
-    birthdate: yup.string().required('Por favor ingrese una fecha de nacimiento'),
-    weight: yup.number().required('Por favor ingrese un peso'),
-    height: yup.number().required('Por favor ingrese una altura'),
-    color: yup.string().required('Por favor ingrese un color'),
-    gender: yup.string().required('Por favor seleccione un género'),
+    name: yup.string().required(t('FarmPage.valname2')).min(3, t('FarmPage.valminname')),
+    specie: yup.string().required(t('FarmPage.valspecie')),
+    race: yup.string().required(t('FarmPage.valbreed2')),
+    birthdate: yup.string().required(t('FarmPage.valbdate')),
+    weight: yup.number().required(t('FarmPage.valpeso2')),
+    height: yup.number().required(t('FarmPage.valalt2')),
+    color: yup.string().required(t('FarmPage.valcolor2')),
+    gender: yup.string().required(t('FarmPage.valgender')),
 });
 
 const { handleSubmit, isSubmitting, resetForm } = useForm<TRegisterAnimal>({
@@ -76,15 +79,15 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
     >
         <VTextField
             container-class="sm:col-span-2"
-            label="Nombre"
-            placeholder="Escribe su nombre"
+            :label="t('FarmPage.name')"
+            :placeholder="t('FarmPage.valname')"
             type="text"
             name="name"
         />
         <VSelect
             container-class="sm:col-span-2"
             placeholder="Seleccione la especie"
-            label="Especie"
+            :label="t('FarmPage.specie')"
             name="specie"
             :options="species"
             @update:modelValue="loadRaces"
@@ -92,55 +95,55 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
 
         <VSelect
             container-class="sm:col-span-2"
-            label="Raza"
+            :label="t('FarmPage.breed')"
             name="race"
-            placeholder="Seleccione la raza"
+            :placeholder="t('FarmPage.valbreed')"
             :options="races"
         />
 
-        <VTextField class="w-min sm:col-span-1" label="Macho" type="radio" name="gender" value="Macho" />
-        <VTextField class="w-min sm:col-span-1" label="Hembra" type="radio" name="gender" value="Hembra" />
+        <VTextField class="w-min sm:col-span-1" :label="t('FarmPage.male')" type="radio" name="gender" value="Macho" />
+        <VTextField class="w-min sm:col-span-1" :label="t('FarmPage.female')" type="radio" name="gender" value="Hembra" />
 
         <VTextField
             class="sm:w-min-xs sm:col-span-1"
-            label="Peso (Kg)"
-            placeholder="Ingresa su peso"
+            :label="t('FarmPage.peso')"
+            :placeholder="t('FarmPage.valpeso1')"
             type="number"
             name="weight"
         />
         <VTextField
             class="sm:w-min-xs sm:col-span-1"
-            label="Altura (Cm)"
-            placeholder="Ingresa su altura"
+            :label="t('FarmPage.alt')"
+            :placeholder="t('FarmPage.valalt')"
             type="number"
             name="height"
         />
 
-        <VTextField container-class="sm:col-span-2" label="Fecha de Nacimiento" type="date" name="birthdate" />
+        <VTextField container-class="sm:col-span-2" :label="t('FarmPage.bdate')" type="date" name="birthdate" />
 
         <VTextArea
             container-class="sm:col-span-3"
-            label="Color"
-            placeholder="Describe su aspecto fisico"
+            :label="t('FarmPage.color')"
+            :placeholder="t('FarmPage.valcolor')"
             name="color"
         />
         <VTextArea
             container-class="sm:col-span-3"
-            label="Descripción"
-            placeholder="Describe alguna caracteristica importante"
+            :label="t('FarmPage.description')"
+            :placeholder="t('FarmPage.valdescription')"
             name="description"
         />
         <div class="flex w-full justify-center gap-2 sm:col-span-6">
             <VButton
                 class="w-max-lg"
-                label="Cancelar"
+                :label="t('VetPage.cancel')"
                 variant="danger"
                 @click="$router.push({ name: 'animals.index' })"
             />
-            <VButton label="Guardar" class="w-max-lg" type="submit" variant="success">
+            <VButton :label="t('VetPage.save')" class="w-max-lg" type="submit" variant="success">
                 <div v-if="isSubmitting" class="flex items-center gap-2">
                     <VLoader class="h-6" />
-                    <span>Guardando</span>
+                    <span>{{ $t("FarmPage.saving") }}</span>
                 </div>
             </VButton>
         </div>

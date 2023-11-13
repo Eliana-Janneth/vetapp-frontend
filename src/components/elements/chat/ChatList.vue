@@ -4,6 +4,9 @@ import { vetappApi } from '@/services';
 import { ref } from 'vue';
 import { useUserStore, useChatStore } from '@/stores';
 import VTextField from '../VTextField.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 defineEmits(['activeChat']);
 
@@ -44,7 +47,7 @@ const searchData = () => {
         
         <VTextField
         class="lg:w-full w-56"
-            :placeholder="`Buscar por Animal o ${user.isFarmer ? 'Veterinario' : 'Granjero'}`"
+            :placeholder="t('FarmPage.chatsearch')"
             v-model="search"
             @input="searchData"
         />

@@ -23,9 +23,9 @@ const variantProfile = {
 const variant = ref(userStore.isFarmer ? 'farmer' : 'vet');
 
 const farmerSidebarItems = ref([
-    { route: 'animals.index', label: 'Mis animales', icon: StarIcon },
-    { route: 'vetsAvailables.index', label: 'Veterinarios', icon: UserGroupIcon },
-    { route: 'chat', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
+    { route: 'animals.index', label: t('FarmPage.selectanimals'), icon: StarIcon },
+    { route: 'vetsAvailables.index', label: t('FarmPage.selectvets'), icon: UserGroupIcon },
+    { route: 'chat', label: t('FarmPage.selectconsul'), icon: ChatBubbleLeftEllipsisIcon },
 ]);
 const vetSidebarItems = ref([
     { route: 'patients.index', label: t('VetPage.selectpatient'), icon: ChatBubbleLeftEllipsisIcon },

@@ -114,6 +114,21 @@
         "buttonsearch": "Buscar",
         "buttonclear": "Limpiar",
 
+        "medform": "Formula Médica",
+
+        "hismed": "Historial Médico",
+        "infanimal": "Información Detallada De:",
+
+        "date": "Fecha",
+        "datemod": "Fecha de modificación",
+        "diag": "Diagnostico",
+        "valdiag": "Escribe su Diagnostico",
+        "valdiag2": "Por favor ingrese un diagnostico",
+        "trat": "Tratamiento",
+        "valtrat": "Escribe su tratamiento",
+        "valtrat2": "Por favor ingrese un tratamiento",
+        "agreg": "Agregar",
+
         "profile": "Perfil",
         "email": "Correo",
         "doc": "Documento",
@@ -171,5 +186,60 @@
         "acept": "Aceptar",
 
         "chats": "No hay chats seleccionados"
+    },
+
+    "FarmPage": {
+        "selectanimals": "Mis animales",
+        "selectvets": "Veterinarios",
+        "selectconsul": "Consultas",
+        "searchfor": "Buscar por nombre, raza, o especie",
+        "name": "Nombre",
+        "specie": "Especie",
+        "breed": "Raza",
+        "gender": "Género",
+        "buttonsearch": "Buscar",
+        "buttonclear": "Limpiar",
+        "buttoncreate": "Crear",
+
+        "valname": "Escribe su nombre",
+        "valname2": "Por favor ingrese un nombre",
+        "valminname": "El nombre debe tener al menos 3 caracteres",
+        "valspecie": "Por favor seleccione una especie",
+        "valbreed": "Seleccione la raza",
+        "valbreed2": "Por favor seleccione una raza",
+        "male": "Macho",
+        "female": "Hembra",
+        "bdate": "Fecha de Nacimiento",
+        "valbdate": "Por favor ingrese una fecha de nacimiento",
+        "peso": "Peso[Kg]",
+        "valpeso1": "Ingresa su peso",
+        "valpeso2": "Por favor ingrese un peso",
+        "alt": "Altura[Cm]",
+        "valalt": "Ingresa su altura",
+        "valalt2": "Por favor ingrese una altura",
+        "color": "Color",
+        "valcolor": "Describe su color",
+        "valcolor2": "Por favor ingrese un color",
+        "description": "Descripción",
+        "valdescription": "Describe alguna caracteristica importante",
+        "valgender": "Por favor seleccione un género",
+        "saving": "Guardando",
+
+        "availablevets": "Veterinarios Disponibles",
+        "profile": "Perfil",
+        "viewp": "Ver Perfil",
+        "consult": "Consultar",
+
+        "wrequest": "Solicitudes En Espera",
+        "vet": "Veterinario",
+        "message": "Mensaje",
+        "animal": "Animal",
+        "rrequest": "Solicitudes Rechazadas",
+
+        "deshist": "Descargar Historial Médico",
+
+        "chatm": "Escribe tu mensaje...",
+        "chatsend": "Enviar",
+        "chatsearch": "Buscar por Animal o Veterinario"
     }
 }

@@ -7,6 +7,9 @@ import { ref, computed } from 'vue';
 import { formatDate } from '@/helpers';
 import { TAnimalAuthorized, TDiagnosis } from '@/types';
 import { ArrowLeftCircleIcon } from '@heroicons/vue/24/outline';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const route = useRoute();
 const animal = ref<TAnimalAuthorized>();
@@ -37,34 +40,34 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
                 ><ArrowLeftCircleIcon class="h-7 w-7"
             /></VButton>
 
-            <VTitle class="pl-4">Fórmula Médica</VTitle>
+            <VTitle class="pl-4">{{ $t("VetPage.medform") }}</VTitle>
         </div>
         <VetDiagnosisForm />
-        <VTitle class="pl-16 pt-6">Historial Médico</VTitle>
+        <VTitle class="pl-16 pt-6">{{ $t("VetPage.hismed") }}</VTitle>
 
         <img class="h-20" :src="loader" v-if="animal === undefined" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else class="m-4 border border-x-2 border-sky-200/50 p-8">
             <VDetails
                 custom-class="font-semibold text-lg"
-                label="Información Detallada De:"
+                :label="t('VetPage.infanimal')"
                 :description="animal.name"
             />
             <div class="flex flex-col lg:flex-row">
-                <VDetails label="Especie" :description="animal.specie" />
-                <VDetails label="Raza" :description="animal.race" />
+                <VDetails :label="t('VetPage.specie')" :description="animal.specie" />
+                <VDetails :label="t('VetPage.breed')" :description="animal.race" />
             </div>
             <div class="flex flex-col lg:flex-row">
-                <VDetails label="Fecha de Nacimiento" :description="animal.birthdate" />
-                <VDetails label="Género" :description="animal.gender" />
+                <VDetails :label="t('FarmPage.bdate')" :description="animal.birthdate" />
+                <VDetails :label="t('VetPage.gender')" :description="animal.gender" />
             </div>
             <div class="flex flex-col lg:flex-row">
-                <VDetails label="Peso" :description="animal.weight" />
-                <VDetails label="Altura" :description="animal.height" />
+                <VDetails :label="t('FarmPage.peso')" :description="animal.weight" />
+                <VDetails :label="t('FarmPage.alt')" :description="animal.height" />
             </div>
             <div class="flex flex-col lg:flex-row">
                 <VDetails class="border-b-0" label="Color" :description="animal.color" />
-                <VDetails class="border-b-0" label="Descripción" :description="animal.description" />
+                <VDetails class="border-b-0" :label="t('FarmPage.description')" :description="animal.description" />
             </div>
         </div>
 
@@ -75,32 +78,32 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
                 <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
                     <VUpgradeableTextarea
                         custom-class="font-semibold"
-                        label="Fecha"
+                        :label="t('VetPage.date')"
                         :value="formatDate(diagnosisA.createDate)"
                         :edit="false"
                     />
                     <VUpgradeableTextarea
                         v-if="diagnosisA.updateDate != diagnosisA.createDate"
-                        label="Fecha Modificación"
+                        :label="t('VetPage.datemod')"
                         :value="formatDate(diagnosisA.updateDate)"
                         :edit="false"
                     />
 
                     <VUpgradeableTextarea
-                        label="Diagnostico"
+                        :label="t('VetPage.diag')"
                         :edit="diagnosisA.edit"
                         :value="diagnosisA.diagnosis"
                         @update="(newValue) => onUpdateDiagnosis('diagnosis', newValue, diagnosisA.id)"
                     />
                     <VUpgradeableTextarea
-                        label="Tratamiento"
+                        :label="t('VetPage.trat')"
                         :edit="diagnosisA.edit"
                         :value="diagnosisA.treatment"
                         @update="(newValue) => onUpdateDiagnosis('treatment', newValue, diagnosisA.id)"
                     />
                     <VUpgradeableTextarea
                         custom-class="font-semibold"
-                        label="Veterinario"
+                        :label="t('FarmPage.vet')"
                         :value="diagnosisA.vet"
                         :edit="false"
                     />

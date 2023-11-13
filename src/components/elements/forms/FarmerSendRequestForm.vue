@@ -4,6 +4,9 @@ import { vetappApi } from '@/services';
 import { VTitle, VButton } from '@elements';
 import { TRequest } from '@/types/request';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps<{
     request: string;
@@ -15,12 +18,12 @@ if (props.request === 'send') {
     vetappApi.getSendRequest().then((response) => {
         requests.value = response;
     });
-    title = 'Solicitudes En Espera';
+    title = t('FarmPage.wrequest');
 } else {
     vetappApi.getRejectedRequest().then((response) => {
         requests.value = response;
     });
-    title = 'Solicitudes Rechazadas';
+    title = t('FarmPage.rrequest');
 
 }
 </script>
@@ -45,31 +48,31 @@ if (props.request === 'send') {
                                         scope="col"
                                         class="text-md py-3.5 pl-4 pr-3 text-left font-semibold text-emerald-900 sm:pl-3"
                                     >
-                                        Verinario
+                                        {{ $t("FarmPage.vet") }}
                                     </th>
                                     <th
                                         scope="col"
                                         class="text-md px-3 py-3.5 text-left font-semibold text-emerald-900"
                                     >
-                                        Animal
+                                        {{ $t("FarmPage.animal") }}
                                     </th>
                                     <th
                                         scope="col"
                                         class="text-md px-3 py-3.5 text-left font-semibold text-emerald-900"
                                     >
-                                        Especie
+                                        {{ $t("FarmPage.specie") }}
                                     </th>
                                     <th
                                         scope="col"
                                         class="text-md px-3 py-3.5 text-left font-semibold text-emerald-900"
                                     >
-                                        Raza
+                                        {{ $t("FarmPage.breed") }}
                                     </th>
                                     <th
                                         scope="col"
                                         class="text-md px-3 py-3.5 text-left font-semibold text-emerald-900"
                                     >
-                                        Mensaje
+                                        {{ $t("FarmPage.message") }}
                                     </th>
                                 </tr>
                             </thead>

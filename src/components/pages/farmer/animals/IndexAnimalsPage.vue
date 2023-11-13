@@ -5,6 +5,9 @@ import { vetappApi } from '@/services';
 import { EyeIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 import { VInput, VButton, VTitle } from '@elements';
 import { TAnimal } from '@/types';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const searchQuery = ref<string>('');
 const animals = ref<TAnimal[]>([]);
@@ -39,19 +42,19 @@ getAnimals();
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <VTitle>Mis animales</VTitle>
+                            <VTitle>{{ $t("FarmPage.selectanimals") }}</VTitle>
                             <div class="m-4 ml-0 flex w-full flex-col items-center gap-4 lg:flex-row">
                                 <VInput
                                     class="max-w-xs"
                                     v-model="searchQuery"
-                                    placeholder="Buscar por nombre, raza o especie "
+                                    :placeholder="t('FarmPage.searchfor')"
                                     :icon="MagnifyingGlassIcon"
                                 />
                                 <div class="flex w-80 justify-between gap-2 md:w-full">
-                                    <VButton label="Buscar" type="submit" @click="searchAnimal()" />
-                                    <VButton label="Limpiar" type="submit" @click="getAnimals()" />
+                                    <VButton :label="t('FarmPage.buttonsearch')" type="submit" @click="searchAnimal()" />
+                                    <VButton :label="t('FarmPage.buttonclear')" type="submit" @click="getAnimals()" />
                                     <VButton
-                                        label="Crear"
+                                        :label="t('FarmPage.buttoncreate')"
                                         type="submit"
                                         @click="$router.push({ name: 'animals.create' })"
                                     />
@@ -75,25 +78,25 @@ getAnimals();
                                                 scope="col"
                                                 class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-emerald-600 sm:pl-0"
                                             >
-                                                Nombre
+                                                {{ $t("FarmPage.name") }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
                                             >
-                                                Especie
+                                                {{ $t("FarmPage.specie") }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
                                             >
-                                                Raza
+                                                {{ $t("FarmPage.breed") }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
                                             >
-                                                Género
+                                                {{ $t("FarmPage.gender") }}
                                             </th>
                                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0"></th>
                                         </tr>

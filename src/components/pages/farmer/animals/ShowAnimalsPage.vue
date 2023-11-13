@@ -8,6 +8,9 @@ import loader from '@/assets/loader.svg';
 import { TAnimal } from '@/types/animal';
 import { TDiagnosis } from '@/types';
 import { ArrowLeftCircleIcon } from '@heroicons/vue/24/outline';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const route = useRoute();
 const animal = ref<TAnimal>();
@@ -46,14 +49,14 @@ const downloadFile = () => {
             <div class="m-2 grid grid-cols-1 rounded-xl sm:grid-cols-8 lg:gap-2">
                 <VUpgradeableInput
                     class="sm:col-span-2"
-                    label="Nombre"
+                    :label="t('FarmPage.name')"
                     :value="animal.name"
                     :edit="true"
                     @update="(newValue) => updateValue('name', newValue)"
                 />
-                <VUpgradeableInput class="sm:col-span-2" label="Especie" :edit="false" :value="animal.specie" />
-                <VUpgradeableInput class="sm:col-span-2" label="Raza" :edit="false" :value="animal.race" />
-                <VUpgradeableInput class="sm:col-span-2" label="Genero" :edit="false" :value="animal.gender" />
+                <VUpgradeableInput class="sm:col-span-2" :label="t('FarmPage.specie')" :edit="false" :value="animal.specie" />
+                <VUpgradeableInput class="sm:col-span-2" :label="t('FarmPage.breed')" :edit="false" :value="animal.race" />
+                <VUpgradeableInput class="sm:col-span-2" :label="t('FarmPage.gender')" :edit="false" :value="animal.gender" />
 
                 <VUpgradeableInput
                     class="sm:col-span-4"
@@ -64,35 +67,35 @@ const downloadFile = () => {
                 />
                 <VUpgradeableInput
                     class="sm:col-span-2"
-                    label="Fecha de Nacimiento"
+                    :label="t('FarmPage.bdate')"
                     :value="animal.birthdate"
                     :edit="true"
                     @update="(newValue) => updateValue('birth_date', newValue)"
                 />
                 <VUpgradeableInput
                     class="sm:col-span-1"
-                    label="Peso (kg)"
+                    :label="t('FarmPage.peso')"
                     :value="animal.weight"
                     :edit="true"
                     @update="(newValue) => updateValue('weight', newValue)"
                 />
                 <VUpgradeableInput
                     class="sm:col-span-1"
-                    label="Altura (cm) "
+                    :label="t('FarmPage.alt')"
                     :value="animal.height"
                     :edit="true"
                     @update="(newValue) => updateValue('height', newValue)"
                 />
                 <VUpgradeableInput
                     class="sm:col-span-8"
-                    label="Descripción"
+                    :label="t('FarmPage.description')"
                     :value="animal.description"
                     :edit="true"
                     @update="(newValue) => updateValue('description', newValue)"
                 />
                 <VButton
                     class="mx-auto flex w-fit px-6 sm:col-span-8 mt-2"
-                    label="Descargar Historial Médico"
+                    :label="t('FarmPage.deshist')"
                     @click="downloadFile()"
                 />
             </div>

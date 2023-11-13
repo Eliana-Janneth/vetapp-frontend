@@ -114,6 +114,21 @@
         "buttonsearch": "Search",
         "buttonclear": "Clear",
 
+        "medform": "Medical formula",
+
+        "hismed": "Medical history",
+        "infanimal": "Detailed Information Of:",
+
+        "date": "Date",
+        "datemod": "Modification date",
+        "diag": "Diagnosis",
+        "valdiag": "Write its diagnosis",
+        "valdiag2": "Please enter a diagnosis",
+        "trat": "Treatment",
+        "valtrat": "Write its treatment",
+        "valtrat2": "Please enter a treatment",
+        "agreg": "Add",
+
         "profile": "Profile",
         "email": "Email",
         "doc": "Document",
@@ -171,5 +186,60 @@
         "acept": "Accept",
 
         "chats": "No chats selected"
+    },
+
+    "FarmPage": {
+        "selectanimals": "My animals",
+        "selectvets": "Veterinarians",
+        "selectconsul": "Consults",
+        "searchfor": "Search by name, breed or species",
+        "name": "Name",
+        "specie": "Specie",
+        "breed": "Breed",
+        "gender": "Gender",
+        "buttonsearch": "Search",
+        "buttonclear": "Clear",
+        "buttoncreate": "Create",
+
+        "valname": "Write its name",
+        "valname2": "Please enter a name",
+        "valminname": "The name must be at least 3 characters",
+        "valspecie": "Please select a specie",
+        "valbreed": "Select the breed",
+        "valbreed2": "Please select a breed",
+        "male": "Male",
+        "female": "Female",
+        "bdate": "Birthdate",
+        "valbdate": "Please enter a Birthdate",
+        "peso": "Weight[Kg]",
+        "valpeso1": "Enter a weight",
+        "valpeso2": "Please enter a weight",
+        "alt": "Height[Cm]",
+        "valalt": "Enter its height",
+        "valalt2": "Please enter a height",
+        "color": "Color",
+        "valcolor": "Describe its color",
+        "valcolor2": "Please enter a color",
+        "description": "Description",
+        "valdescription": "Describe some important characteristic",
+        "valgender": "Please select a gender",
+        "saving": "Saving",
+
+        "availablevets": "Veterinarians Available",
+        "profile": "Profile",
+        "viewp": "View profile",
+        "consult": "Consult",
+
+        "wrequest": "Waiting Requests",
+        "vet": "Veterinarian",
+        "message": "Message",
+        "animal": "Animal",
+        "rrequest": "Rejected Requests",
+
+        "deshist": "Download Medical History",
+
+        "chatm": "Write your message...",
+        "chatsend": "Send",
+        "chatsearch": "Search by Animal or Veterinarian"
     }
 }

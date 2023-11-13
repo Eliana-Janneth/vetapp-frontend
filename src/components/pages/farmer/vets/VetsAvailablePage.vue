@@ -5,6 +5,9 @@ import { UserCircleIcon, ChatBubbleOvalLeftEllipsisIcon, MagnifyingGlassIcon } f
 import { VTitle, VButton, VInput, FarmerRequestForm, VCard, FarmerSendRequestForm } from '@elements';
 import { SModal } from '@placetopay/spartan-vue';
 import { TVetAvailable } from '@/types/request';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const vetAvailables = ref<TVetAvailable[]>([]);
 const openRequestForm = ref(false);
@@ -48,22 +51,22 @@ getVets();
 
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="text-center sm:flex sm:justify-between">
-            <VTitle class="mb-2">Veterinarios Disponibles</VTitle>
+            <VTitle class="mb-2">{{ $t("FarmPage.availablevets") }}</VTitle>
             <div class="flex justify-end gap-2">
-                <VButton label="Solicitudes En Espera" @click="(openRequestSend = true), (request = 'send')" />
-                <VButton label="Solicitudes Rechazadas" @click="(openRequestSend = true), (request = 'reject')" />
+                <VButton :label="t('FarmPage.wrequest')" @click="(openRequestSend = true), (request = 'send')" />
+                <VButton :label="t('FarmPage.rrequest')" @click="(openRequestSend = true), (request = 'reject')" />
             </div>
         </div>
         <div class="m-4 ml-0 flex flex-col items-center  gap-2 md:flex-row">
             <VInput
                 class="w-56 lg:max-w-sm"
                 v-model="searchVet"
-                placeholder="Buscar por nombre, raza o especie "
+                :placeholder="t('FarmPage.searchfor')"
                 :icon="MagnifyingGlassIcon"
             />
             <div class="flex w-80 gap-2">
-                <VButton label="Buscar" type="submit" @click="searchVets()" />
-                <VButton label="Limpiar" type="submit" @click="getVets()" />
+                <VButton :label="t('FarmPage.buttonsearch')" type="submit" @click="searchVets()" />
+                <VButton :label="t('FarmPage.buttonclear')" type="submit" @click="getVets()" />
             </div>
         </div>
         <div class="mt-8 flow-root">
@@ -76,13 +79,13 @@ getVets();
                                     scope="col"
                                     class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-emerald-600 sm:pl-3"
                                 >
-                                    Nombre
+                                    {{ $t("FarmPage.name") }}
                                 </th>
                                 <th scope="col" class="py-3.5 text-left text-lg font-semibold text-emerald-600">
-                                    Perfil
+                                    {{ $t("FarmPage.profile") }}
                                 </th>
                                 <th scope="col" class="py-3.5 text-left text-lg font-semibold text-emerald-600">
-                                    Consultar
+                                    {{ $t("FarmPage.consult") }}
                                 </th>
                             </tr>
                         </thead>
@@ -99,7 +102,7 @@ getVets();
                                         class="flex items-center text-emerald-600 hover:text-emerald-500"
                                         ><UserCircleIcon class="h-6 w-6" />
                                         <span class="invisible ml-2 font-medium md:visible">
-                                            Ver Perfil
+                                            {{ $t("FarmPage.viewp") }}
                                         </span></router-link
                                     >
                                 </td>
@@ -109,7 +112,7 @@ getVets();
                                         @click="(openRequestForm = true), (idVet = vet.id)"
                                         class="flex w-min items-center bg-transparent px-0 text-base text-emerald-600 hover:text-emerald-500"
                                         ><ChatBubbleOvalLeftEllipsisIcon class="h-6 w-6" />
-                                        <span class="invisible ml-2 font-medium md:visible"> Consultar </span></VButton
+                                        <span class="invisible ml-2 font-medium md:visible">{{ $t("FarmPage.consult") }}</span></VButton
                                     >
                                 </td>
                             </tr>
