@@ -93,7 +93,7 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
                 </VText>
                 <VText :icon="BookOpenIcon">
                     <span class="font-bold">Estudio:&nbsp;</span>
-                    <span>{{ info?.currentlystudying }}&nbsp;</span>
+                    <span>{{ info?.currentlyStudying? 'Actualmente':'Terminado' }}&nbsp;</span>
                 </VText>
             </VCard>
         </div>
@@ -127,7 +127,7 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
                 </VText>
                 <VText :icon="BriefcaseIcon">
                     <span class="font-bold">Trabajo:&nbsp;</span>
-                    <span>{{ work?.currentlyWorking }}&nbsp;</span>
+                    <span>{{ work?.currentlyWorking? 'Actualmente':'Terminado' }}&nbsp;</span>
                 </VText>
             </VCard>
         </div>

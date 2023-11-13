@@ -22,6 +22,7 @@ const { handleSubmit, isSubmitting} = useForm<TWorkExperience>({
 
 const onSubmit = handleSubmit(async (values: TWorkExperience) => {
     try {
+        if (!values.currentlyWorking) values.currentlyWorking = false;
         const payload: TWorkExperiencePayload = {
             title: values.position,
             company: values.company,
@@ -31,8 +32,11 @@ const onSubmit = handleSubmit(async (values: TWorkExperience) => {
             country: values.country,
             currently: values.currentlyWorking,
         };
+
         await vetappApi.createWorkExperiencie(payload);
         emit('end');
+        window.location.reload();
+        
     } catch (error) {}
 });
 </script>

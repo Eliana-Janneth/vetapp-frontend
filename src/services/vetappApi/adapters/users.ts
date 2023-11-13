@@ -9,7 +9,7 @@ export const adaptWorkExperience = (response: TWorkExperiencePayload[]): TWorkEx
         startDate: work.start_date,
         endDate: work.end_date,
         country: work.country,
-        currentlyWorking: work.currently
+        currentlyWorking: work.currently,
     }));
 };
 
@@ -21,7 +21,7 @@ export const adaptAcademicInformation = (response: TAcademicInformationPayload[]
         year: academic.year,
         country: academic.country,
         academicDegree: academic.academic_degree,
-        currentlystudying: academic.currently,
+        currentlyStudying: academic.currently,
          
     }));
 };

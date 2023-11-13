@@ -14,7 +14,7 @@ export type TAcademicInformation = {
     year: string;
     country: string;
     academicDegree: string;
-    currentlystudying: boolean;
+    currentlyStudying: boolean;
 };
 
 

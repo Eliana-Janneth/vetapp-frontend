@@ -52,7 +52,7 @@ export type TWorkExperiencePayload = {
     start_date: string;
     end_date: string;
     country: string;
-    currently: boolean;
+    currently : boolean;
 };
 
 export type TAcademicInformationPayload = {

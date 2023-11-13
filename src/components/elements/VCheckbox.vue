@@ -16,12 +16,16 @@ const props = defineProps<{
 const { value } = useField(props.name);
 
 const computedId = props.id || String(Symbol());
-
 </script>
 
 <template>
     <div class="flex items-center gap-2">
-        <input :id="computedId" :class="twMerge(styleStore.getInputStyle, 'w-2')" v-model="value" type="checkbox" />
+        <input
+            :id="computedId"
+            :class="twMerge(styleStore.getInputStyle, 'w-2')"
+            v-model="value"
+            type="checkbox"
+        />
         <label
             :for="computedId"
             :class="['block cursor-pointer select-none text-lg font-medium', styleStore.getLabelStyle]"
