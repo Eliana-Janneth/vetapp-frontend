@@ -45,6 +45,11 @@ export type TVetInformationPayload = {
     available: boolean;
 };
 
+export type TUpdateVetInformationPayload = {
+    license_number: string;
+    license_expiry_date: Date;
+}
+
 export type TWorkExperiencePayload = {
     title: string;
     company: string;

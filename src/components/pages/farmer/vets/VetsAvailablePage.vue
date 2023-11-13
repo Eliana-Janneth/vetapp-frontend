@@ -57,7 +57,7 @@ getVets();
                 <VButton :label="t('FarmPage.rrequest')" @click="(openRequestSend = true), (request = 'reject')" />
             </div>
         </div>
-        <div class="m-4 ml-0 flex flex-col items-center  gap-2 md:flex-row">
+        <div class="m-4 ml-0 flex flex-col items-center gap-2 md:flex-row">
             <VInput
                 class="w-56 lg:max-w-sm"
                 v-model="searchVet"
@@ -108,12 +108,12 @@ getVets();
                                 </td>
 
                                 <td class="whitespace-nowrap px-3 py-4 text-base text-emerald-500">
-                                    <VButton
+                                    <button
                                         @click="(openRequestForm = true), (idVet = vet.id)"
-                                        class="flex w-min items-center bg-transparent px-0 text-base text-emerald-600 hover:text-emerald-500"
+                                        class="flex w-min items-center px-0 text-base text-emerald-600 hover:text-emerald-500"
                                         ><ChatBubbleOvalLeftEllipsisIcon class="h-6 w-6" />
-                                        <span class="invisible ml-2 font-medium md:visible">{{ $t("FarmPage.consult") }}</span></VButton
-                                    >
+                                        <span class="invisible ml-2 font-medium md:visible">{{ $t("FarmPage.consult") }}</span>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

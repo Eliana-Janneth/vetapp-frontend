@@ -11,6 +11,7 @@ const props = defineProps<{
     id?: string;
     name: string;
     label?: string;
+    checked?: boolean;
 }>();
 
 const { value } = useField(props.name);
@@ -25,6 +26,7 @@ const computedId = props.id || String(Symbol());
             :class="twMerge(styleStore.getInputStyle, 'w-2')"
             v-model="value"
             type="checkbox"
+            :checked="checked"
         />
         <label
             :for="computedId"

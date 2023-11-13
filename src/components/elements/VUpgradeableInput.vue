@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { PencilSquareIcon, XCircleIcon, CheckCircleIcon } from '@heroicons/vue/24/solid';
 import { useStyleStore } from '@/stores';
 
+
 const emit = defineEmits(['update']);
 
 const props = defineProps<{
@@ -53,5 +54,6 @@ const cancel = () => {
                 </button>
             </div>
         </div>
+
     </div>
 </template>

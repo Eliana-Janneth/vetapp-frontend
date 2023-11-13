@@ -24,6 +24,7 @@ const { handleSubmit, isSubmitting } = useForm<TAcademicInformation>({
 
 const onSubmit = handleSubmit(async (values: TAcademicInformation) => {
     try {
+        if (!values.currentlyStudying) values.currentlyStudying = false;
         const payload: TAcademicInformationPayload = {
             title: values.title,
             university: values.university,
@@ -33,11 +34,11 @@ const onSubmit = handleSubmit(async (values: TAcademicInformation) => {
             currently: values.currentlyStudying,
 
         };
-        console.log('cur', values.currentlyStudying)
-
+        
         await vetappApi.createAcademicInformation(payload);
-
         emit('end');
+        window.location.reload();
+
     } catch (error) {}
 });
 </script>
@@ -50,10 +51,8 @@ const onSubmit = handleSubmit(async (values: TAcademicInformation) => {
             <VTextField containerClass="sm:col-span-2" name="country" :label="t('VetPage.country')" :placeholder="t('VetPage.valcountry')" :maxlength="60" />
             <VTextField containerClass="sm:col-span-2" name="academicDegree" :label="t('VetPage.academicg')" :placeholder="t('VetPage.academicg')" :maxlength="60" />
    
-
             <VCheckbox class="sm:col-span-6 w-2" name="currentlyStudying" :label="t('VetPage.actualstudy')" />
     
-
             <VButton class="sm:col-span-3 w-full" @click="$emit('end')" :label="t('VetPage.cancel')" variant="danger" />
             <VButton class="sm:col-span-3 w-full" type="submit" variant="success">
                 <div v-if="isSubmitting" class="flex items-center gap-2">

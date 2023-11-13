@@ -76,14 +76,14 @@ const changeAvailability = (value: boolean) => {
     <div class="container mx-auto flex flex-col items-center">
         <div class="mb-2 flex items-center gap-2">
                 <VTitle>{{ $t("VetPage.profile") }}</VTitle>
-                <VButton class="flex w-fit items-center rounded-full p-1" @click="openVetForm = true"
+                <VButton v-if="user.isVet" class="flex w-fit items-center rounded-full p-1" @click="openVetForm = true"
                     ><PlusCircleIcon class="h-7 w-7"
                 /></VButton>
             </div>
         <VCard class="mb-8 w-full lg:w-fit" :loading="!userData">
             <template #header>
                 <UserCircleIcon class="h-5 w-5" />
-                <span>{{ userData?.first_name }}&nbsp;</span>
+                <span>{{ userData?.first_name }}</span>
                 <span>{{ userData?.last_name }}</span>
             </template>
 

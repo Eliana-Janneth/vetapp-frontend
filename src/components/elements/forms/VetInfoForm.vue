@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { VButton, VTextField, VLoader } from '@elements';
 import * as yup from 'yup';
-import type { TWorkExperience } from '@/types';
+import type { TUpdateVetInformation } from '@/types';
 import { useForm } from 'vee-validate';
-import { vetappApi, TWorkExperiencePayload } from '@/services';
+import { vetappApi, TUpdateVetInformationPayload } from '@/services';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -11,27 +11,23 @@ const { t } = useI18n();
 const emit = defineEmits(['end']);
 
 const validationSchema = yup.object({
-    license: yup.string().required(t('VetPage.vallicense')),
-    licenseExpirity: yup.string().required(t('VetPage.valexp')),
+    license: yup.number().required(t('VetPage.vallicense')),
+    licenseExpiryDate: yup.string().required(t('VetPage.valexp')),
 });
 
-const { handleSubmit, isSubmitting } = useForm<TWorkExperience>({
+const { handleSubmit, isSubmitting } = useForm<TUpdateVetInformation>({
     validationSchema,
 });
 
-const onSubmit = handleSubmit(async (values: TWorkExperience) => {
+const onSubmit = handleSubmit(async (values: TUpdateVetInformation) => {
     try {
-        const payload: TWorkExperiencePayload = {
-            title: values.position,
-            company: values.company,
-            functions: values.functions,
-            start_date: values.startDate,
-            end_date: values.endDate,
-            country: values.country,
-            currently: values.currentlyWorking,
+        const payload: TUpdateVetInformationPayload = {
+            license_number: values.license,
+            license_expiry_date: values.licenseExpiryDate,
         };
-        await vetappApi.createWorkExperiencie(payload);
+        await vetappApi.updateVetInformation(payload);
         emit('end');
+        window.location.reload();
     } catch (error) {}
 });
 </script>
@@ -41,13 +37,14 @@ const onSubmit = handleSubmit(async (values: TWorkExperience) => {
         <VTextField
             containerClass="sm:col-span-3"
             name="license"
+            type="number"
             :label="t('VetPage.license')"
             :placeholder="t('VetPage.license2')"
         />
 
         <VTextField
             containerClass="sm:col-span-3"
-            name="licenseExpirity"
+            name="licenseExpiryDate"
             :label="t('VetPage.expdate')"
             type="date"
         />

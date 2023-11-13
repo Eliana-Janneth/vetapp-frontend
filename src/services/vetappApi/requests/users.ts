@@ -5,6 +5,7 @@ import {
     TAcademicInformationPayload,
     TWorkExperiencePayload,
     TVetInformationPayload,
+    TUpdateVetInformationPayload
 } from '../types';
 import { useUserStore, useStyleStore } from '@/stores';
 import { adaptAcademicInformation, adaptVetInformation, adaptWorkExperience } from '../adapters';
@@ -159,9 +160,43 @@ export const updateAvailability = async (data: Record<string, boolean>) => {
             }
             return;
         }
-        // Si la respuesta es exitosa
+        
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
+};
+
+export const updateVetInformation = async (data: TUpdateVetInformationPayload) => {
+    const apiUrl = `${API_URL}/vets/auth/`;
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('accessToken')}`,
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            if (errorData && errorData.response) {
+                notify({
+                    title: errorData.response,
+                    type: 'error',
+                });
+            }
+            return errorData;
+        }
         const responseData = await response.json();
         console.log(JSON.stringify(responseData, null, 2));
+        notify({
+            title: 'Credenciales creadas correctamente🎉',
+            type: 'success',
+        });
+        return responseData;
+
+        
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }

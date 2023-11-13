@@ -1,4 +1,4 @@
-import type { TAnimalAuthorizedPayload, TDiagnosisPayload, TDiagnosisCreatePayload} from '../types';
+import type { TAnimalAuthorizedPayload, TDiagnosisPayload, TDiagnosisCreatePayload } from '../types';
 import { service } from '../../service';
 import { adaptAnimalAuthorized, adaptAnimalsAuthorized, adaptDiagnosis } from '../adapters/consults';
 import { notify } from '@kyvg/vue3-notification';
@@ -8,12 +8,12 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const getAnimalsAuthorized = async () => {
     const response = (await service.get('authorized-animals/')) as TAnimalAuthorizedPayload[];
     return adaptAnimalsAuthorized(response);
-}
+};
 
 export const getAnimalAuthorized = async (id: string) => {
     const response = (await service.get(`vet-animal-info/${id}/`)) as TAnimalAuthorizedPayload;
     return adaptAnimalAuthorized(response);
-}
+};
 
 export const searchAnimalsAuthorized = async (name: string) => {
     const response = (await service.get(`authorized-animals/search/?by=${name}`)) as TAnimalAuthorizedPayload[];
@@ -23,19 +23,17 @@ export const searchAnimalsAuthorized = async (name: string) => {
 export const createDiagnosis = async (data: TDiagnosisCreatePayload, id: string) => {
     await service.post(`vet-medical-historys/${id}`, data);
     window.location.reload();
-}
+};
 
 export const getDiagnosisVet = async (id: string) => {
     const response = (await service.get(`vet-medical-historys/${id}/`)) as TDiagnosisPayload[];
     return adaptDiagnosis(response);
 };
 
-
 export const getDiagnosisFarmer = async (id: string) => {
-    const response = (await service.get('farmer-medical-historys/' + id+'/')) as TDiagnosisPayload[];
+    const response = (await service.get('farmer-medical-historys/' + id + '/')) as TDiagnosisPayload[];
     return adaptDiagnosis(response);
 };
-
 
 export const updateDiagnosis = async (idAnimal: string, idMedicalHistory: string, data: Record<string, string>) => {
     const apiUrl = `${API_URL}/vet-medical-historys/${idAnimal}/${idMedicalHistory}/`;
@@ -61,7 +59,7 @@ export const updateDiagnosis = async (idAnimal: string, idMedicalHistory: string
                 }
             }
             window.location.reload();
-            return
+            return;
         }
 
         const responseData = await response.json();
@@ -71,7 +69,6 @@ export const updateDiagnosis = async (idAnimal: string, idMedicalHistory: string
         });
 
         return responseData;
-
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
@@ -84,13 +81,17 @@ export const downloadMedicalHistoryFarmer = async (id: string) => {
             },
         });
         if (!response.ok) {
-            throw new Error('No se pudo cargar los datos');
+            notify({
+                title: 'No hay historial para descargar',
+                type: 'warn',
+            });
+        } else {
+            const blob = await response.blob();
+            const downloadLink = document.createElement('a');
+            downloadLink.href = window.URL.createObjectURL(blob);
+            downloadLink.setAttribute('download', 'historial_medico.pdf');
+            downloadLink.click();
         }
-        const blob = await response.blob();
-        const downloadLink = document.createElement('a');
-        downloadLink.href = window.URL.createObjectURL(blob);
-        downloadLink.setAttribute('download', 'historial_medico.pdf');
-        downloadLink.click();
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }

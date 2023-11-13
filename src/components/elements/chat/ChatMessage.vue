@@ -33,7 +33,9 @@ function openImageInNewTab() {
             <div
                 :class="[
                     'flex w-full flex-col rounded-2xl p-2 shadow-sm',
-                    owner ? 'rounded-br-none  bg-emerald-200' : 'rounded-bl-none  bg-sky-200',
+                    owner
+                        ? `rounded-br-none ${props.role === 'farmer' ? 'bg-emerald-200' : 'bg-sky-200'}`
+                        : `rounded-bl-none ${props.role === 'vet' ? 'bg-emerald-200' : 'bg-sky-200'}`,
                 ]"
             >
                 <span class="font-medium text-gray-900">{{ message.sender }}</span>

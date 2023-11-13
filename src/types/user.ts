@@ -33,3 +33,8 @@ export type TVetInformation={
     licenseExpiryDate: string;
     available: boolean;
 }
+
+export type TUpdateVetInformation={
+    license: string;
+    licenseExpiryDate: Date;
+}

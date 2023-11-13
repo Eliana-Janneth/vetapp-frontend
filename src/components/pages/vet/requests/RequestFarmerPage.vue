@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { vetappApi } from '@/services';
-import { VCard, VButton, VText } from '@elements';
+import { VCard, VButton, VText, VTitle } from '@elements';
 import loader from '@/assets/loader.svg';
 import { UserCircleIcon} from '@heroicons/vue/24/outline';
 import { TRequestFarmer } from '@/types';
@@ -25,6 +25,7 @@ const onSubmit = async (id: string, value: boolean) => {
 </script>
 <template>
     <div class="container mx-auto flex flex-wrap items-center justify-center gap-2">
+        <VTitle>Solicitudes Pendientes</VTitle>
         <img class="h-20" :src="loader" v-if="farmerRequests === undefined" />
         <p v-else-if="farmerRequests === null">No hay solicitudes nuevas</p>
         <div v-else class="flex flex-wrap" v-for="request in farmerRequests" :key="request.id">

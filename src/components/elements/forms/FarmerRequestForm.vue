@@ -58,8 +58,8 @@ const onSubmit = handleSubmit(async (values: TRegisterFarmerRequest) => {
             label="Animal a consultar"
             :options="animals"
         />
-        <VButton class="w-full sm:col-span-3" @click="$emit('end')" label="Cancelar" variant="danger" />
-        <VButton class="w-full sm:col-span-3" type="submit" variant="success">
+        <VButton class="w-full sm:col-span-4" @click="$emit('end')" label="Cancelar" variant="danger" />
+        <VButton class="w-full sm:col-span-4" type="submit" variant="success">
             <div v-if="isSubmitting" class="flex items-center gap-2">
                 <VLoader class="h-6" />
                 <span>Enviando</span>
