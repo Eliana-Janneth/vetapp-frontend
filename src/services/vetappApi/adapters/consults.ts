@@ -2,7 +2,7 @@ import { TAnimalAuthorized, TDiagnosis } from '@/types/consults';
 import { TAnimalAuthorizedPayload, TDiagnosisPayload } from '../types';
 
 export const adaptDiagnosis = (response: TDiagnosisPayload[]): TDiagnosis[] => {
-    return response.map((diagnosis) => ({
+  return response.map((diagnosis) => ({
         id: diagnosis.id,
         diagnosis: diagnosis.diagnosis,
         treatment: diagnosis.treatment,

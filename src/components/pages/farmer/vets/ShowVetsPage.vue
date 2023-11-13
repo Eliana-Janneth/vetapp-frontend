@@ -80,18 +80,22 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
                     <BuildingLibraryIcon class="h-5 w-5" />
                     <span>{{ info?.university }}&nbsp;</span>
                 </template>
+
                 <VText :icon="CalendarDaysIcon">
                     <span class="font-bold">{{ $t('VetPage.year') }}:&nbsp;</span>
                     <span>{{ info?.year }}&nbsp;</span>
                 </VText>
+
                 <VText :icon="GlobeAmericasIcon">
                     <span class="font-bold">{{ $t('VetPage.country') }}:&nbsp;</span>
                     <span>{{ info?.country }}&nbsp;</span>
                 </VText>
+
                 <VText :icon="AcademicCapIcon">
                     <span class="font-bold">{{ $t('VetPage.academicg') }}:&nbsp;</span>
                     <span>{{ info?.academicDegree }}&nbsp;</span>
                 </VText>
+
                 <VText :icon="BookOpenIcon">
                     <span class="font-bold">{{ $t('VetPage.study') }}:&nbsp;</span>
                     <span>{{ info?.currentlyStudying? 'Actualmente':'Terminado' }}&nbsp;</span>
@@ -110,22 +114,27 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
                     <BuildingOfficeIcon class="h-5 w-5" />
                     <span>{{ work?.company }}&nbsp;</span>
                 </template>
+
                 <VText :icon="ListBulletIcon">
                     <span class="font-bold">{{ $t('VetPage.features2') }}:&nbsp;</span>
                     <span>{{ work?.functions }}&nbsp;</span>
                 </VText>
+
                 <VText :icon="CalendarDaysIcon">
                     <span class="font-bold">{{ $t('VetPage.datei') }}:&nbsp;</span>
                     <span>{{ work?.startDate }}&nbsp;</span>
                 </VText>
+
                 <VText :icon="CalendarDaysIcon">
                     <span class="font-bold">{{ $t('VetPage.datef') }}:&nbsp;</span>
                     <span>{{ work?.endDate }}&nbsp;</span>
                 </VText>
+
                 <VText :icon="GlobeAmericasIcon">
                     <span class="font-bold">{{ $t('VetPage.country') }}:&nbsp;</span>
                     <span>{{ work?.country }}&nbsp;</span>
                 </VText>
+                
                 <VText :icon="BriefcaseIcon">
                     <span class="font-bold">{{ $t('VetPage.work') }}:&nbsp;</span>
                     <span>{{ work?.currentlyWorking? 'Actualmente':'Terminado' }}&nbsp;</span>

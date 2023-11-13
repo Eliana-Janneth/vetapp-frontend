@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { vetappApi } from '@/services';
-import { VTitle, VButton } from '@elements';
+import { VTitle, VButton, VLoader } from '@elements';
 import { TRequest } from '@/types/request';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
 
@@ -11,17 +11,22 @@ const props = defineProps<{
 
 const requests = ref<TRequest[]>([]);
 let title = '';
+const loading = ref<boolean>(true);
+
 if (props.request === 'send') {
+    loading.value = true;
     vetappApi.getSendRequest().then((response) => {
         requests.value = response;
+        loading.value = false;
     });
     title = 'Solicitudes En Espera';
 } else {
+    loading.value = true;
     vetappApi.getRejectedRequest().then((response) => {
         requests.value = response;
+        loading.value = false;
     });
     title = 'Solicitudes Rechazadas';
-
 }
 </script>
 <template>
@@ -38,7 +43,9 @@ if (props.request === 'send') {
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="max-h-96 overflow-y-auto">
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                        <table class="min-w-full divide-y divide-emerald-300">
+                        <VLoader v-if="loading" />
+                        <VTitle v-if="!requests.length" class="text-xl">No Hay {{ title }} !!</VTitle>
+                        <table v-else class="min-w-full divide-y divide-emerald-300">
                             <thead class="sticky top-0 z-10 bg-emerald-100">
                                 <tr>
                                     <th
