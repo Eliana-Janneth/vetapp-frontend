@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores';
-import { ArrowLeftOnRectangleIcon, UserCircleIcon } from '@heroicons/vue/24/solid';
+import { ArrowLeftOnRectangleIcon, UserCircleIcon, GlobeAltIcon } from '@heroicons/vue/24/solid';
 import { vetappApi } from '@/services';
 import { useRouter } from 'vue-router';
+import LanguageSwitch from '../LanguageSwitch.vue';
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -22,7 +23,6 @@ const onLogout = async () => {
         console.error('Error al cargar los datos:', error);
     }
 };
-
 </script>
 <template>
     <div
@@ -39,5 +39,6 @@ const onLogout = async () => {
             <ArrowLeftOnRectangleIcon class="mr-2 h-6 w-6" />
             Cerrar Sesión
         </button>
+        <div class="flex"><GlobeAltIcon class="mr-2 h-6 w-6" /><language-switch /></div>
     </div>
 </template>

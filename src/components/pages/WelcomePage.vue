@@ -4,7 +4,6 @@ import LanguageSwitch from '../elements/LanguageSwitch.vue';
 
 <template>
     <div>
-        <language-switch />
         <div class="bg-gradient-to-r from-indigo-500/50 via-indigo-600/50 to-indigo-800/70">
             <div class="container mx-auto">
                 <header class="flex justify-between px-8 py-4">
@@ -12,8 +11,13 @@ import LanguageSwitch from '../elements/LanguageSwitch.vue';
                         <h1 class="text-3xl font-semibold text-indigo-700 hover:text-indigo-900 lg:text-4xl">VetApp</h1>
                     </div>
                     <div class="flex items-center gap-2">
-                        <router-link :to="{ name: 'login' }" class="welcome-button">{{ $t("WelcomePage.login") }}</router-link>
-                        <router-link :to="{ name: 'register' }" class="welcome-button">{{ $t("WelcomePage.register") }}</router-link>
+                        <router-link :to="{ name: 'login' }" class="welcome-button">{{
+                            $t('WelcomePage.login')
+                        }}</router-link>
+                        <router-link :to="{ name: 'register' }" class="welcome-button">{{
+                            $t('WelcomePage.register')
+                        }}</router-link>
+                        <language-switch />
                     </div>
                 </header>
 
@@ -22,11 +26,11 @@ import LanguageSwitch from '../elements/LanguageSwitch.vue';
                     <div
                         class="flex w-full flex-col items-center justify-center gap-4 p-8 font-medium text-indigo-700 hover:text-indigo-900"
                     >
-                        <h2 class="text-xl">{{ $t("WelcomePage.attention") }}</h2>
-                        <h3 class="text-5xl">{{ $t("WelcomePage.vetfarm") }}</h3>
-                        <h4 class="text-xl">{{ $t("WelcomePage.slogan") }}</h4>
+                        <h2 class="text-xl">{{ $t('WelcomePage.attention') }}</h2>
+                        <h3 class="text-5xl">{{ $t('WelcomePage.vetfarm') }}</h3>
+                        <h4 class="text-xl">{{ $t('WelcomePage.slogan') }}</h4>
                         <div>
-                            <button class="welcome-button">{{ $t("WelcomePage.we") }}</button>
+                            <button class="welcome-button">{{ $t('WelcomePage.we') }}</button>
                         </div>
                     </div>
                     <div class="flex w-full justify-center">
@@ -49,8 +53,12 @@ import LanguageSwitch from '../elements/LanguageSwitch.vue';
             <section class="flex w-full flex-col items-center gap-6 p-6">
                 <div class="grid flex-col gap-6 lg:grid-cols-2 lg:flex-row">
                     <div class="flex flex-col items-center lg:p-20">
-                        <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">{{ $t("WelcomePage.mision") }}</h2>
-                        <p class="rounded-3xl bg-white p-4 text-center text-sm lg:rounded-full lg:p-16">{{ $t("WelcomePage.pmision") }}</p>
+                        <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">
+                            {{ $t('WelcomePage.mision') }}
+                        </h2>
+                        <p class="rounded-3xl bg-white p-4 text-center text-sm lg:rounded-full lg:p-16">
+                            {{ $t('WelcomePage.pmision') }}
+                        </p>
                     </div>
                     <div class="flex w-full items-center justify-center">
                         <img
@@ -69,8 +77,12 @@ import LanguageSwitch from '../elements/LanguageSwitch.vue';
                         />
                     </div>
                     <div class="flex flex-col items-center lg:p-20">
-                        <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">{{ $t("WelcomePage.vision") }}</h2>
-                        <p class="rounded-3xl bg-white p-4 text-center text-sm lg:rounded-full lg:p-16">{{ $t("WelcomePage.pvision") }}</p>
+                        <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">
+                            {{ $t('WelcomePage.vision') }}
+                        </h2>
+                        <p class="rounded-3xl bg-white p-4 text-center text-sm lg:rounded-full lg:p-16">
+                            {{ $t('WelcomePage.pvision') }}
+                        </p>
                     </div>
                 </div>
             </section>
