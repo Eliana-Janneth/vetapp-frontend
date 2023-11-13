@@ -27,7 +27,7 @@ const onSubmit = async (id: string, value: boolean) => {
     <div class="container mx-auto flex flex-wrap items-center justify-center gap-2">
         <VTitle>{{ $t("VetPage.solp") }}</VTitle>
         <img class="h-20" :src="loader" v-if="farmerRequests === undefined" />
-        <p v-else-if="farmerRequests === null">No hay solicitudes nuevas</p>
+        <p v-else-if="farmerRequests === null">{{ $t("VetPage.nosol") }}</p>
         <div v-else class="flex flex-wrap" v-for="request in farmerRequests" :key="request.id">
             <VCard class="mb-8 w-full lg:max-w-lg" :loading="!farmerRequests">
                 <template #header>

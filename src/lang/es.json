@@ -187,7 +187,10 @@
 
         "chats": "No hay chats seleccionados",
 
-        "solp": "Solicitudes Pendientes"
+        "no": "No hay",
+        "solp": "Solicitudes Pendientes",
+
+        "nosol": "No hay solicitudes nuevas"
     },
 
     "FarmPage": {
