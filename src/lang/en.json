@@ -185,7 +185,9 @@
         "rechazar": "Decline",
         "acept": "Accept",
 
-        "chats": "No chats selected"
+        "chats": "No chats selected",
+
+        "solp": "Awaiting Requests"
     },
 
     "FarmPage": {

@@ -185,7 +185,9 @@
         "rechazar": "Rechazar",
         "acept": "Aceptar",
 
-        "chats": "No hay chats seleccionados"
+        "chats": "No hay chats seleccionados",
+
+        "solp": "Solicitudes Pendientes"
     },
 
     "FarmPage": {
