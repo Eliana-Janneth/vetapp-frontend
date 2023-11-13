@@ -4,6 +4,7 @@ import VPopover from '../VPopover.vue';
 import VItem from './VItem.vue';
 import VDropdown from './VDropdown.vue';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import {
     ChatBubbleLeftEllipsisIcon,
     ArrowPathRoundedSquareIcon,
@@ -11,6 +12,8 @@ import {
     ChevronUpIcon,
     UserGroupIcon,
 } from '@heroicons/vue/24/solid';
+
+const { t } = useI18n();
 
 const userStore = useUserStore();
 const variantProfile = {
@@ -25,9 +28,9 @@ const farmerSidebarItems = ref([
     { route: 'chat', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
 ]);
 const vetSidebarItems = ref([
-    { route: 'patients.index', label: 'Mis Pacientes', icon: ChatBubbleLeftEllipsisIcon },
-    { route: 'requests.show', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
-    { route: 'chat', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
+    { route: 'patients.index', label: t('VetPage.selectpatient'), icon: ChatBubbleLeftEllipsisIcon },
+    { route: 'requests.show', label: t('VetPage.selectsoli'), icon: ArrowPathRoundedSquareIcon },
+    { route: 'chat', label: t('VetPage.selectconsul'), icon: ChatBubbleLeftEllipsisIcon },
 
 ]);
 </script>

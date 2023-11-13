@@ -30,7 +30,8 @@
 
         "username": "Por favor ingrese un correo",
         "validemail": "Debes ingresar un correo valido",
-        "logpass": "Por favor ingrese una contraseña"
+        "logpass": "Por favor ingrese una contraseña",
+        "errorlogin": "Credenciales incorrectas, intente de nuevo"
     },
 
     "RegisterPage": {
@@ -95,5 +96,80 @@
         "valaddress": "Por favor ingrese su dirección de residencia",
         "valminaddress": "La dirección debe tener al menos 5 caracteres",
         "valmaxaddress": "La dirección debe tener un máximo de 100 caracteres"
+    },
+
+    "VetPage": {
+        "selectpatient": "Mis pacientes",
+        "selectsoli": "Solicitudes",
+        "selectconsul": "Consultas",
+        "myprofile": "Mi Perfil",
+        "off": "Cerrar Sesión",
+        "patients": "Mis Pacientes",
+        "searchfor": "Buscar por animal, granjero, especie o raza",
+        "farm": "Granjero",
+        "name": "Nombre",
+        "specie": "Especie",
+        "breed": "Raza",
+        "gender": "Género",
+        "buttonsearch": "Buscar",
+        "buttonclear": "Limpiar",
+
+        "profile": "Perfil",
+        "email": "Correo",
+        "doc": "Documento",
+        "tel": "Telefono",
+        "city": "Ciudad",
+        "address": "Dirección",
+        "license": "Licencia",
+        "expdate": "Fecha de Expiración",
+        "disp": "Disponibilidad",
+        "license2": "Licencia de Veterinario",
+        "vallicense": "Por favor ingrese su licencia",
+        "valexp": "Por favor ingrese la fecha de expiración",
+        "cancel": "Cancelar",
+        "send": "Enviando",
+        "save": "Guardar",
+
+        "infoacademic": "Información Académica",
+        "titulo": "Título Académico",
+        "valtitulo": "Escribe tu título universitario",
+        "val2titulo": "Por favor ingrese un título",
+        "u": "Universidad",
+        "valu": "Universidad en la que estudiaste",
+        "valu2": "Por favor ingrese una universidad",
+        "datei": "Fecha de inicio",
+        "valdatei": "Por favor ingrese una fecha de inicio",
+        "country": "Pais",
+        "valcountry": "Pais en el que estudiaste",
+        "valcountry2": "Por favor ingrese un pais",
+        "academicg": "Grado académico",
+        "valacademicg": "Por favor ingrese un grado académico",
+        "actualstudy": "¿Estudiando actualmente?",
+        "study": "Estudio",
+        "year": "Año",
+
+        "explab": "Experiencia Laboral",
+        "position": "Cargo",
+        "valposition": "Cargo que desempeñaste",
+        "valposition2": "Por favor ingrese un cargo",
+        "comp": "Empresa",
+        "valcomp": "Lugar donde trabajaste",
+        "valcomp2": "Por favor ingrese una empresa",
+        "datef": "Fecha de finalización",
+        "valdatef": "Por favor ingrese una fecha de finalización",
+        "features": "Funciones desempeñadas",
+        "valfeatures": "Ingresa las funciones que realizaste en el cargo",
+        "valfeatures2": "Por favor ingrese las funciones desempeñadas",
+        "valcountry3": "Pais en el que trabajaste",
+        "actualwork": "¿Estás trabajando actualmente?",
+        "work": "Trabajo",
+        "features2": "Funciones",
+
+        "message": "Mensaje",
+        "animal": "Animal",
+        "rechazar": "Rechazar",
+        "acept": "Aceptar",
+
+        "chats": "No hay chats seleccionados"
     }
 }

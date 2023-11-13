@@ -4,6 +4,9 @@ import { ArrowLeftOnRectangleIcon, UserCircleIcon,GlobeAltIcon } from '@heroicon
 import { vetappApi } from '@/services';
 import { useRouter } from 'vue-router';
 import LanguageSwitch from '../LanguageSwitch.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -35,11 +38,11 @@ const onLogout = async () => {
     >
         <router-link :to="{ name: 'profile' }" :class="[variantClass[variant]]">
             <UserCircleIcon class="mr-2 h-6 w-6" />
-            Mi Perfil
+            {{ t("VetPage.myprofile") }}
         </router-link>
         <button :class="[variantClass[variant]]" @click="onLogout">
             <ArrowLeftOnRectangleIcon class="mr-2 h-6 w-6" />
-            Cerrar Sesión
+            {{ t("VetPage.off") }}
         </button>
         <div class="flex"><GlobeAltIcon class="h-6 w-6" /><language-switch /></div>
     

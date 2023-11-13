@@ -12,6 +12,7 @@ import { service } from '@/services/service';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+
 export const register = async (data: TRegisterPayload) => {
     const farmerUrl = `${API_URL}/farmers/`;
     const vetUrl = `${API_URL}/vets/`;
@@ -60,7 +61,7 @@ export const login = async (data: TLoginPayload) => {
             const errorData = await response.json();
             if (errorData && errorData.non_field_errors) {
                 notify({
-                    title: 'Credenciales incorrectas, intente nuevamente',
+                    title: "Error en las credenciales",
                     type: 'error',
                 });
             }

@@ -133,7 +133,7 @@ watch(
     </section>
     <div v-else :class="[style.getBackgroundChat, 'flex items-center justify-center text-2xl text-white']">
         <img class="p-20" :src="noChatsIllustration" alt="No chats" />
-        <span>No hay chats seleccionados</span>
+        <span>{{ $t("VetPage.chats") }}</span>
     </div>
 </template>
 

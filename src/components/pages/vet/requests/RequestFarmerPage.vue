@@ -5,6 +5,9 @@ import { VCard, VButton, VText } from '@elements';
 import loader from '@/assets/loader.svg';
 import { UserCircleIcon} from '@heroicons/vue/24/outline';
 import { TRequestFarmer } from '@/types';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const farmerRequests = ref<TRequestFarmer[]>([]);
 
@@ -32,30 +35,30 @@ const onSubmit = async (id: string, value: boolean) => {
                 </template>
 
                 <VText>
-                    <span class="font-bold">Mensaje:&nbsp;</span>
+                    <span class="font-bold">{{ $t("VetPage.message") }}:&nbsp;</span>
                     <span class="text-justify">{{ request.message }}&nbsp;</span>
                 </VText>
                 <VText class="justify-center">
-                    <span class="font-bold">Animal:&nbsp;</span>
+                    <span class="font-bold">{{ $t("VetPage.animal") }}:&nbsp;</span>
                     <span>{{ request.animal }}&nbsp;</span>
                 </VText>
                 <VText>
-                    <span class="font-bold">Especie:&nbsp;</span>
+                    <span class="font-bold">{{ $t("VetPage.specie") }}:&nbsp;</span>
                     <span>{{ request.specie }}&nbsp;</span>
                 </VText>
                 <VText>
-                    <span class="font-bold">Raza:&nbsp;</span>
+                    <span class="font-bold">{{ $t("VetPage.breed") }}:&nbsp;</span>
                     <span>{{ request.race }}&nbsp;</span>
                 </VText>
                 <div class="flex w-full justify-center gap-2 mt-2">
                     <VButton
                         class="w-min py-1"
                         @click="onSubmit(request.id, false)"
-                        label="Rechazar"
+                        :label="t('VetPage.rechazar')"
                         variant="danger"
                     />
                     <VButton class="w-min py-1" @click="onSubmit(request.id, true)" variant="success">
-                        Aceptar
+                        {{ $t("VetPage.acept") }}
                     </VButton>
                 </div>
             </VCard>

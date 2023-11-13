@@ -4,12 +4,15 @@ import * as yup from 'yup';
 import type { TWorkExperience } from '@/types';
 import { useForm } from 'vee-validate';
 import { vetappApi, TWorkExperiencePayload } from '@/services';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const emit = defineEmits(['end']);
 
 const validationSchema = yup.object({
-    license: yup.string().required('Por favor ingrese su licencia'),
-    licenseExpirity: yup.string().required('Por favor ingrese la fecha de expiración'),
+    license: yup.string().required(t('VetPage.vallicense')),
+    licenseExpirity: yup.string().required(t('VetPage.valexp')),
 });
 
 const { handleSubmit, isSubmitting } = useForm<TWorkExperience>({
@@ -38,24 +41,24 @@ const onSubmit = handleSubmit(async (values: TWorkExperience) => {
         <VTextField
             containerClass="sm:col-span-3"
             name="license"
-            label="Licencia"
-            placeholder="Licencia de Veterinario"
+            :label="t('VetPage.license')"
+            :placeholder="t('VetPage.license2')"
         />
 
         <VTextField
             containerClass="sm:col-span-3"
             name="licenseExpirity"
-            label="Fecha de Expiración"
+            :label="t('VetPage.expdate')"
             type="date"
         />
 
-        <VButton class="w-full sm:col-span-3" @click="$emit('end')" label="Cancelar" variant="danger" />
+        <VButton class="w-full sm:col-span-3" @click="$emit('end')" :label="t('VetPage.cancel')" variant="danger" />
         <VButton class="w-full sm:col-span-3" type="submit" variant="success">
             <div v-if="isSubmitting" class="flex items-center gap-2">
                 <VLoader class="h-6" />
-                <span>Enviando</span>
+                <span>{{ $t("VetPage.send") }}</span>
             </div>
-            <template v-else> Guardar </template>
+            <template v-else>{{ $t("VetPage.save") }}</template>
         </VButton>
     </form>
 </template>

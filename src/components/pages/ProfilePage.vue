@@ -75,7 +75,7 @@ const changeAvailability = (value: boolean) => {
     
     <div class="container mx-auto flex flex-col items-center">
         <div class="mb-2 flex items-center gap-2">
-                <VTitle>Perfil</VTitle>
+                <VTitle>{{ $t("VetPage.profile") }}</VTitle>
                 <VButton class="flex w-fit items-center rounded-full p-1" @click="openVetForm = true"
                     ><PlusCircleIcon class="h-7 w-7"
                 /></VButton>
@@ -88,42 +88,42 @@ const changeAvailability = (value: boolean) => {
             </template>
 
             <VText :icon="EnvelopeIcon">
-                <span class="font-bold">Correo:&nbsp;</span>
+                <span class="font-bold">{{ $t("VetPage.email") }}:&nbsp;</span>
                 <span>{{ userData?.email }}&nbsp;</span>
             </VText>
 
             <VText :icon="IdentificationIcon">
-                <span class="font-bold">Documento:&nbsp;</span>
+                <span class="font-bold">{{ $t("VetPage.doc") }}:&nbsp;</span>
                 <span>{{ userData?.document_number }}&nbsp;</span>
             </VText>
 
             <VText :icon="PhoneIcon">
-                <span class="font-bold">Teléfono:&nbsp;</span>
+                <span class="font-bold">{{ $t("VetPage.tel") }}:&nbsp;</span>
                 <span>{{ userData?.phone_number }}&nbsp;</span>
             </VText>
 
             <VText :icon="MapIcon">
-                <span class="font-bold">Ciudad:&nbsp;</span>
+                <span class="font-bold">{{ $t("VetPage.city") }}:&nbsp;</span>
                 <span>{{ userData?.city }}&nbsp;</span>
             </VText>
 
             <VText :icon="MapPinIcon">
-                <span class="font-bold">Dirección:&nbsp;</span>
+                <span class="font-bold">{{ $t("VetPage.address") }}:&nbsp;</span>
                 <span>{{ userData?.address }}&nbsp;</span>
             </VText>
 
             <template v-if="user.isVet">
                 <VText :icon="IdentificationIcon">
-                    <span class="font-bold">Licencia:&nbsp;</span>
+                    <span class="font-bold">{{ $t("VetPage.license") }}:&nbsp;</span>
                     <span>{{ userData?.license_number }}&nbsp;</span>
                 </VText>
 
                 <VText :icon="CalendarDaysIcon">
-                    <span class="font-bold">Fecha de Expiración:&nbsp;</span>
+                    <span class="font-bold">{{ $t("VetPage.expdate") }}:&nbsp;</span>
                     <span>{{ userData?.license_expiry_date }}&nbsp;</span>
                 </VText>
                 <VText :icon="PowerIcon">
-                    <span class="font-bold">Disponibilidad:&nbsp;</span>
+                    <span class="font-bold">{{ $t("VetPage.disp") }}:&nbsp;</span>
                     <VCheckbox name="availabe" :checked="userData.available" :value="userData.available"  @click="changeAvailability" />
                 </VText>
             </template>
@@ -131,7 +131,7 @@ const changeAvailability = (value: boolean) => {
 
         <template v-if="user.isVet">
             <div class="mb-2 flex items-center gap-2">
-                <VTitle>Información Académica</VTitle>
+                <VTitle>{{ $t('VetPage.infoacademic') }}</VTitle>
                 <VButton class="flex w-fit items-center rounded-full p-1" @click="openAcademicForm = true"
                     ><PlusCircleIcon class="h-7 w-7"
                 /></VButton>
@@ -145,30 +145,30 @@ const changeAvailability = (value: boolean) => {
                         <span>{{ info?.title }}&nbsp;</span>
                     </template>
                     <VText :icon="BuildingLibraryIcon">
-                        <span class="font-bold">Universidad:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.u') }}:&nbsp;</span>
                         <span>{{ info?.university }}&nbsp;</span>
                     </VText>
                     <VText :icon="CalendarDaysIcon">
-                        <span class="font-bold">Año:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.year') }}:&nbsp;</span>
                         <span>{{ info?.year }}&nbsp;</span>
                     </VText>
                     <VText :icon="GlobeAmericasIcon">
-                        <span class="font-bold">País:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.country') }}:&nbsp;</span>
                         <span>{{ info?.country }}&nbsp;</span>
                     </VText>
                     <VText :icon="AcademicCapIcon">
-                        <span class="font-bold">Grado Académico:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.academicg') }}:&nbsp;</span>
                         <span>{{ info?.academicDegree }}&nbsp;</span>
                     </VText>
                     <VText :icon="BookOpenIcon">
-                        <span class="font-bold">Estudio:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.study') }}:&nbsp;</span>
                         <span>{{ info?.currentlyStudying? 'Actualmente':'Terminado' }}&nbsp;</span>
                     </VText>
                 </VCard>
             </div>
 
             <div class="mb-2 flex items-center gap-2">
-                <VTitle>Experiencia Laboral</VTitle>
+                <VTitle>{{ $t('VetPage.explab') }}</VTitle>
                 <VButton class="flex w-fit items-center rounded-full p-1"  @click="openWorkForm = true"
                     ><PlusCircleIcon class="h-7 w-7"
                 /></VButton>
@@ -182,27 +182,27 @@ const changeAvailability = (value: boolean) => {
                         <span>{{ work?.position }}&nbsp;</span>
                     </template>
                     <VText :icon="BuildingOfficeIcon">
-                        <span class="font-bold">Empresa:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.comp') }}:&nbsp;</span>
                         <span>{{ work?.company }}&nbsp;</span>
                     </VText>
                     <VText :icon="ListBulletIcon">
-                        <span class="font-bold">Funciones:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.features') }}:&nbsp;</span>
                         <span>{{ work?.functions }}&nbsp;</span>
                     </VText>
                     <VText :icon="CalendarDaysIcon">
-                        <span class="font-bold">Fecha Inicio:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.datei') }}:&nbsp;</span>
                         <span>{{ work?.startDate }}&nbsp;</span>
                     </VText>
                     <VText :icon="CalendarDaysIcon">
-                        <span class="font-bold">Fecha Final:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.datef') }}:&nbsp;</span>
                         <span>{{ work?.endDate }}&nbsp;</span>
                     </VText>
                     <VText :icon="GlobeAmericasIcon">
-                        <span class="font-bold">País:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.country') }}:&nbsp;</span>
                         <span>{{ work?.country }}&nbsp;</span>
                     </VText>
                     <VText :icon="BriefcaseIcon">
-                        <span class="font-bold">Trabajo:&nbsp;</span>
+                        <span class="font-bold">{{ $t('VetPage.work') }}:&nbsp;</span>
                         <span>{{ work?.currentlyWorking? 'Actualmente':'Terminado' }}&nbsp;</span>
                     </VText>
                 </VCard>

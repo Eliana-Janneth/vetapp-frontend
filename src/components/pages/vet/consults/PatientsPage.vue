@@ -32,18 +32,18 @@ getAnimalsAuthorized();
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <VTitle>Mis Pacientes</VTitle>
+                            <VTitle>{{ $t("VetPage.patients") }}</VTitle>
                             <div class="m-4 ml-0 flex w-full flex-auto items-center justify-start gap-2">
                                 <VInput
                                     class="max-w-sm"
                                     v-model="searchAnimal"
-                                    placeholder="Buscar por animal, granjero, especie o raza"
+                                    :placeholder= "$t('VetPage.searchfor')"
                                     :icon="MagnifyingGlassIcon"
                                 />
-                                <VButton class="w-min lg:w-56" label="Buscar" type="submit" @click="searchAnimals()" />
+                                <VButton class="w-min lg:w-56" :label="$t('VetPage.buttonsearch')" type="submit" @click="searchAnimals()" />
                                 <VButton
                                     class="w-min lg:w-56"
-                                    label="Limpiar"
+                                    :label="$t('VetPage.buttonclear')"
                                     type="submit"
                                     @click="getAnimalsAuthorized()"
                                 />
@@ -63,31 +63,31 @@ getAnimalsAuthorized();
                                                 scope="col"
                                                 class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-sky-600 sm:pl-0"
                                             >
-                                                Granjero
+                                                {{ $t("VetPage.farm") }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
                                             >
-                                                Nombre
+                                                {{ $t("VetPage.name") }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
                                             >
-                                                Especie
+                                                {{ $t("VetPage.specie") }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
                                             >
-                                                Raza
+                                                {{ $t("VetPage.breed") }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
                                             >
-                                                Género
+                                                {{ $t("VetPage.gender") }}
                                             </th>
                                         </tr>
                                     </thead>

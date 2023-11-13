@@ -4,16 +4,19 @@ import * as yup from 'yup';
 import type { TWorkExperience } from '@/types';
 import { useForm } from 'vee-validate';
 import { vetappApi, TWorkExperiencePayload } from '@/services';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const emit = defineEmits(['end']);
 
 const validationSchema = yup.object({
-    position: yup.string().required('Por favor ingrese un título'),
-    company: yup.string().required('Por favor ingrese una empresa'),
-    functions: yup.string().required('Por favor ingrese las funciones desempeñadas'),
-    startDate: yup.string().required('Por favor ingrese una fecha de inicio'),
-    endDate: yup.string().required('Por favor ingrese una fecha de finalización'),
-    country: yup.string().required('Por favor ingrese un país'),
+    position: yup.string().required(t('VetPage.valposition2')),
+    company: yup.string().required(t('VetPage.valcomp2')),
+    functions: yup.string().required(t('VetPage.valfeatures2')),
+    startDate: yup.string().required(t('VetPage.valdatei')),
+    endDate: yup.string().required(t('VetPage.valdatef')),
+    country: yup.string().required(t('VetPage.valcountry2')),
 });
 
 const { handleSubmit, isSubmitting} = useForm<TWorkExperience>({
@@ -43,50 +46,50 @@ const onSubmit = handleSubmit(async (values: TWorkExperience) => {
 <template>
     <ShowWorkExperience />
     <form @submit="onSubmit" class="grid grid-cols-1 gap-4 sm:grid-cols-6">
-        <VTextField containerClass="sm:col-span-3" name="position" label="Cargo" placeholder="Cargo que desempeñaste" />
+        <VTextField containerClass="sm:col-span-3" name="position" :label="t('VetPage.position')" :placeholder="t('VetPage.valposition')" />
 
         <VTextField
             containerClass="sm:col-span-3"
             name="company"
-            label="Empresa"
-            placeholder="Lugar donde trabajaste"
+            :label="t('VetPage.comp')"
+            :placeholder="t('VetPage.valcomp')"
         />
         <VTextField
             containerClass="sm:col-span-2"
             name="startDate"
-            label="Fecha de inicio"
+            :label="t('VetPage.datei')"
             type="date"
             :maxlength="4"
         />
         <VTextField
             containerClass="sm:col-span-2"
             name="endDate"
-            label="Fecha de finalización"
+            :label="t('VetPage.datef')"
             type="date"
             :maxlength="4"
         />
         <VTextField
             containerClass="sm:col-span-2"
             name="country"
-            label="País"
-            placeholder="País en el que trabajaste"
+            :label="t('VetPage.country')"
+            :placeholder="t('VetPage.valcountry3')"
             :maxlength="60"
         />
         <VTextField
             containerClass="sm:col-span-6"
             name="functions"
-            label="Funciones Desempeñadas"
-            placeholder="Ingresa las funciones que realizaste en el cargo"
+            :label="t('VetPage.features')"
+            :placeholder="t('VetPage.valfeatures')"
             :maxlength="500"
         />
-        <VCheckbox class="sm:col-span-6" name="currentlyWorking" label="¿Estás trabajando actualmente?" />
-        <VButton class="w-full sm:col-span-3" @click="$emit('end')" label="Cancelar" variant="danger" />
+        <VCheckbox class="sm:col-span-6" name="currentlyWorking" :label="t('VetPage.actualwork')" />
+        <VButton class="w-full sm:col-span-3" @click="$emit('end')" :label="t('VetPage.cancel')" variant="danger" />
         <VButton class="w-full sm:col-span-3" type="submit" variant="success">
             <div v-if="isSubmitting" class="flex items-center gap-2">
                 <VLoader class="h-6" />
-                <span>Enviando</span>
+                <span>{{ $t("VetPage.send") }}</span>
             </div>
-            <template v-else> Guardar </template>
+            <template v-else>{{ $t("VetPage.save") }}</template>
         </VButton>
     </form>
 </template>

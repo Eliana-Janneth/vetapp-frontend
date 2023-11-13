@@ -17,6 +17,7 @@ import {
     ArrowLeftCircleIcon,
 } from '@heroicons/vue/24/outline';
 
+
 const userData = ref<TVetInformation>();
 const academicInfo = ref<TAcademicInformation[]>([]);
 const workExperience = ref<TWorkExperience[]>([]);
@@ -43,7 +44,7 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
     /></VButton>
 
     <div class="container mx-auto flex flex-col items-center">
-        <VTitle class="mb-2">Perfil</VTitle>
+        <VTitle class="mb-2">{{ $t('VetPage.profile') }}</VTitle>
 
         <VCard class="mb-8 w-full lg:w-fit" :loading="!userData">
             <template #header>
@@ -53,23 +54,23 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
             </template>
 
             <VText :icon="MapIcon">
-                <span class="font-bold">Ciudad:&nbsp;</span>
+                <span class="font-bold">{{ $t('VetPage.city') }}:&nbsp;</span>
                 <span>{{ userData?.city }}&nbsp;</span>
             </VText>
 
             <VText :icon="IdentificationIcon">
-                <span class="font-bold">Licencia:&nbsp;</span>
+                <span class="font-bold">{{ $t('VetPage.license') }}:&nbsp;</span>
                 <span>{{ userData?.license }}&nbsp;</span>
             </VText>
 
             <VText :icon="CalendarDaysIcon">
-                <span class="font-bold">Fecha de Expiración:&nbsp;</span>
+                <span class="font-bold">{{ $t('VetPage.expdate') }}:&nbsp;</span>
                 <span>{{ userData?.licenseExpiryDate }}&nbsp;</span>
             </VText>
         </VCard>
 
         <div class="mb-2 flex items-center gap-2">
-            <VTitle>Información Académica</VTitle>
+            <VTitle>{{ $t('VetPage.infoacademic') }}</VTitle>
         </div>
 
         <VLoader v-if="!academicInfo.length" />
@@ -80,26 +81,26 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
                     <span>{{ info?.university }}&nbsp;</span>
                 </template>
                 <VText :icon="CalendarDaysIcon">
-                    <span class="font-bold">Año:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.year') }}:&nbsp;</span>
                     <span>{{ info?.year }}&nbsp;</span>
                 </VText>
                 <VText :icon="GlobeAmericasIcon">
-                    <span class="font-bold">País:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.country') }}:&nbsp;</span>
                     <span>{{ info?.country }}&nbsp;</span>
                 </VText>
                 <VText :icon="AcademicCapIcon">
-                    <span class="font-bold">Grado Académico:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.academicg') }}:&nbsp;</span>
                     <span>{{ info?.academicDegree }}&nbsp;</span>
                 </VText>
                 <VText :icon="BookOpenIcon">
-                    <span class="font-bold">Estudio:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.study') }}:&nbsp;</span>
                     <span>{{ info?.currentlyStudying? 'Actualmente':'Terminado' }}&nbsp;</span>
                 </VText>
             </VCard>
         </div>
 
         <div class="mb-2 flex items-center gap-2">
-            <VTitle>Experiencia Laboral</VTitle>
+            <VTitle>{{ $t('VetPage.explab') }}</VTitle>
         </div>
 
         <VLoader v-if="!workExperience.length" />
@@ -110,23 +111,23 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
                     <span>{{ work?.company }}&nbsp;</span>
                 </template>
                 <VText :icon="ListBulletIcon">
-                    <span class="font-bold">Funciones:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.features2') }}:&nbsp;</span>
                     <span>{{ work?.functions }}&nbsp;</span>
                 </VText>
                 <VText :icon="CalendarDaysIcon">
-                    <span class="font-bold">Fecha Inicio:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.datei') }}:&nbsp;</span>
                     <span>{{ work?.startDate }}&nbsp;</span>
                 </VText>
                 <VText :icon="CalendarDaysIcon">
-                    <span class="font-bold">Fecha Final:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.datef') }}:&nbsp;</span>
                     <span>{{ work?.endDate }}&nbsp;</span>
                 </VText>
                 <VText :icon="GlobeAmericasIcon">
-                    <span class="font-bold">País:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.country') }}:&nbsp;</span>
                     <span>{{ work?.country }}&nbsp;</span>
                 </VText>
                 <VText :icon="BriefcaseIcon">
-                    <span class="font-bold">Trabajo:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.work') }}:&nbsp;</span>
                     <span>{{ work?.currentlyWorking? 'Actualmente':'Terminado' }}&nbsp;</span>
                 </VText>
             </VCard>
