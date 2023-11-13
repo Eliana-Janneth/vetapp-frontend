@@ -9,5 +9,5 @@ initialize();
         <router-view />
     </component>
 
-    <notifications :duration="3000" classes="my-notification" />
+    <notifications :duration="4000" classes="my-notification" position="top center" />
 </template>

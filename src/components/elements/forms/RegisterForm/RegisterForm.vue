@@ -53,8 +53,6 @@ const onSubmit = (profileValues: TRegisterFormProfile) => {
         .then((response) => {
             if (response.ok) {
                 router.push({ name: 'login' });
-            } else {
-                return response.json();
             }
         });
 };

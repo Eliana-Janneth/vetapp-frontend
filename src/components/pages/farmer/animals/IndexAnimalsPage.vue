@@ -8,18 +8,21 @@ import { TAnimal } from '@/types';
 
 const searchQuery = ref<string>('');
 const animals = ref<TAnimal[]>([]);
+const loading = ref<boolean>(true);
 
 const searchAnimal = () => {
-    //animals.value = null;
+    loading.value = true;
     vetappApi.searchAnimals(searchQuery.value).then((response) => {
         animals.value = response;
+        loading.value = false;
     });
 };
 
 const getAnimals = () => {
-    //animals.value = null;
+    loading.value = true;
     vetappApi.getAnimals().then((response) => {
         animals.value = response;
+        loading.value = false;
     });
 
     searchQuery.value = '';
@@ -59,8 +62,8 @@ getAnimals();
                     <div class="mt-8 flow-root">
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                                <img class="h-20" :src="loader" v-if="!animals.length" />
-                                <p v-else-if="!animals">No hay animales</p>
+                                <img class="h-20" :src="loader" v-if="loading" />
+                                <VTitle v-if="!animals.length" class="text-xl">No hay animales</VTitle>
                                 <table
                                     v-else
                                     class="min-w-full divide-y divide-emerald-600 hover:divide-emerald-400"

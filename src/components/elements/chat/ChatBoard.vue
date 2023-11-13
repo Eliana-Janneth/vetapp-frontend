@@ -99,7 +99,8 @@ watch(
                     type="text"
                     placeholder="Escribe tu mensaje ..."
                     class="font-base w-full rounded-lg bg-gray-100 px-4 py-3 pr-20 text-base focus:outline-none"
-                />
+                    @keyup.enter="send"
+                    />
                 <div class="absolute inset-y-0 right-0 flex items-center gap-4 pr-2 lg:pr-4">
                     <div class="relative">
                         <VButton class="w-10 bg-transparent p-0 text-gray-500">

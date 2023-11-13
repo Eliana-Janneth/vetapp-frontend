@@ -53,8 +53,8 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
 </script>
 
 <template>
-    <form class="flex flex-col items-center gap-2 rounded-xl bg-white p-4" @submit.prevent="onSubmit">
-        <h1 class="text-2xl font-medium text-indigo-900">{{ $t("LoginPage.login") }}</h1>
+    <form class="flex flex-col items-center gap-2 rounded-xl bg-white p-4" @submit.prevent="onSubmit" @keyup.enter="onSubmit">
+        <h1 class="text-2xl font-medium text-indigo-900">{{ $t('LoginPage.login') }}</h1>
 
         <VInput
             v-bind="email"
@@ -75,14 +75,12 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
             @focus="passwordIcon = LockOpenIcon"
             @blur="passwordIcon = LockClosedIcon"
         />
-
-        <a href="" class="text-indigo-900">{{ $t("LoginPage.olvpass") }}</a>
         <button
             :disabled="!meta.valid"
             :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
             type="submit"
         >
-            {{ $t("LoginPage.login2") }}
+            {{ $t('LoginPage.login2') }}
         </button>
     </form>
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>

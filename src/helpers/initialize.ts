@@ -2,7 +2,6 @@ import { useUserStore, useStyleStore } from '@/stores';
 import { useI18n } from 'vue-i18n';
 
 export const initialize = async () => {
-    console.log('initialize');
 
     const browserLang = window.navigator.language.substring(0, 2) as 'es' | 'en';
     const { locale } = useI18n();
