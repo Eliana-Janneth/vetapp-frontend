@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CameraIcon, ClipboardIcon } from '@heroicons/vue/24/outline';
+import { CameraIcon} from '@heroicons/vue/24/outline';
 import VButton from '../VButton.vue';
 import { ref, watch } from 'vue';
 import VTextField from '../VTextField.vue';
@@ -37,10 +37,6 @@ function handleImageUpload(event: Event) {
             }
         };
     }
-}
-function handleDocumentUpload(event: Event) {
-    const selectedDocument = (event.target as HTMLInputElement).files?.[0];
-    console.log('Documento seleccionado:', selectedDocument);
 }
 
 const send = () => {
@@ -111,18 +107,6 @@ watch(
                                 @change="handleImageUpload"
                             />
                             <CameraIcon class="h-6 w-6" />
-                        </VButton>
-                    </div>
-
-                    <div class="relative">
-                        <VButton class="w-10 bg-transparent p-0 text-gray-500">
-                            <input
-                                type="file"
-                                class="absolute inset-0 cursor-pointer opacity-0"
-                                accept=".pdf, .doc, .docx"
-                                @change="handleDocumentUpload"
-                            />
-                            <ClipboardIcon class="h-6 w-6" />
                         </VButton>
                     </div>
                 </div>
