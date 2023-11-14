@@ -245,6 +245,13 @@
 
         "chatm": "Escribe tu mensaje...",
         "chatsend": "Enviar",
-        "chatsearch": "Buscar por Animal o Veterinario"
+        "chatsearch": "Buscar por Animal o Veterinario",
+
+        "writesol": "Escribir mensaje",
+        "valwritesol2": "Por favor ingresa un mensaje",
+        "valwritesol": "Escribe el motivo por el cual quieres realizar una consulta con el veterinario",
+        "consulanimal": "Animal a consultar",
+        "valconsulanimal": "Por favor seleccione un animal",
+        "sendsol": "Enviar Solicitud"
     }
 }
