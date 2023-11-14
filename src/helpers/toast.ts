@@ -1,6 +1,6 @@
 import { notify } from '@kyvg/vue3-notification';
 
-export const pushErrorToast = (title, text) => {
+export const pushErrorToast = () => {
     notify({
         title: 'Error',
         text: 'Something went wrong',
