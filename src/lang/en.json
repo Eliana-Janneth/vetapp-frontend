@@ -187,7 +187,10 @@
 
         "chats": "No chats selected",
 
-        "solp": "Awaiting Requests"
+        "no": "There aren't",
+        "solp": "Awaiting Requests",
+
+        "nosol": "There are no new requests"
     },
 
     "FarmPage": {

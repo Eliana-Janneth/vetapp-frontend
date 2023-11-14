@@ -47,7 +47,7 @@ if (props.request === 'send') {
                 <div class="max-h-96 overflow-y-auto">
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                         <VLoader v-if="loading" />
-                        <VTitle v-if="!requests.length" class="text-xl">No Hay {{ title }} !!</VTitle>
+                        <VTitle v-if="!requests.length" class="text-xl">{{ $t("VetPage.no") }} {{ title }} !!</VTitle>
                         <table v-else class="min-w-full divide-y divide-emerald-300">
                             <thead class="sticky top-0 z-10 bg-emerald-100">
                                 <tr>
