@@ -42,7 +42,7 @@ getAnimals();
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <VTitle>{{ $t("FarmPage.selectanimals") }}</VTitle>
+                            <VTitle>{{ $t('FarmPage.selectanimals') }}</VTitle>
                             <div class="m-4 ml-0 flex w-full flex-col items-center gap-4 lg:flex-row">
                                 <VInput
                                     class="max-w-xs"
@@ -51,7 +51,11 @@ getAnimals();
                                     :icon="MagnifyingGlassIcon"
                                 />
                                 <div class="flex w-80 justify-between gap-2 md:w-full">
-                                    <VButton :label="t('FarmPage.buttonsearch')" type="submit" @click="searchAnimal()" />
+                                    <VButton
+                                        :label="t('FarmPage.buttonsearch')"
+                                        type="submit"
+                                        @click="searchAnimal()"
+                                    />
                                     <VButton :label="t('FarmPage.buttonclear')" type="submit" @click="getAnimals()" />
                                     <VButton
                                         :label="t('FarmPage.buttoncreate')"
@@ -74,31 +78,32 @@ getAnimals();
                                 >
                                     <thead>
                                         <tr>
+                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0"></th>
+
                                             <th
                                                 scope="col"
                                                 class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-emerald-600 sm:pl-0"
                                             >
-                                                {{ $t("FarmPage.name") }}
+                                                {{ $t('FarmPage.name') }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
                                             >
-                                                {{ $t("FarmPage.specie") }}
+                                                {{ $t('FarmPage.specie') }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
                                             >
-                                                {{ $t("FarmPage.breed") }}
+                                                {{ $t('FarmPage.breed') }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
                                             >
-                                                {{ $t("FarmPage.gender") }}
+                                                {{ $t('FarmPage.gender') }}
                                             </th>
-                                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0"></th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-emerald-600 hover:divide-emerald-400">
@@ -107,6 +112,16 @@ getAnimals();
                                             :key="animal.id"
                                             class="text-base font-medium text-emerald-700"
                                         >
+                                            <td class="relative py-4 pl-3 pr-4 text-right sm:pr-0">
+                                                <div class="flex justify-center">
+                                                    <router-link
+                                                        :to="{ name: 'animals.show', params: { id: animal.id } }"
+                                                        class="flex items-center text-emerald-600 hover:text-emerald-500"
+                                                    >
+                                                        <EyeIcon class="h-5 w-5" />
+                                                    </router-link>
+                                                </div>
+                                            </td>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 sm:pl-0">
                                                 {{ animal.name }}
                                             </td>
@@ -118,16 +133,6 @@ getAnimals();
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4">
                                                 {{ animal.gender }}
-                                            </td>
-                                            <td class="relative py-4 pl-3 pr-4 text-right sm:pr-0">
-                                                <div class="flex justify-center">
-                                                    <router-link
-                                                        :to="{ name: 'animals.show', params: { id: animal.id } }"
-                                                        class="flex items-center text-emerald-600 hover:text-emerald-500"
-                                                    >
-                                                        <EyeIcon class="h-5 w-5" />
-                                                    </router-link>
-                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -32,18 +32,23 @@ const workExperience = ref<TWorkExperience[]>([]);
 const openAcademicForm = ref(false);
 const openWorkForm = ref(false);
 const openVetForm = ref(false);
+const loading = ref<boolean>(true);
+
 
 vetappApi.getUser().then((data) => {
     userData.value = data;
 });
 
 if (user.isVet) {
+    loading.value = true;
     vetappApi.getWorkExperience().then((response) => {
         workExperience.value = response;
+        loading.value = false;
     });
 
     vetappApi.getAcademicInformation().then((response) => {
         academicInfo.value = response;
+        loading.value = false;
     });
 }
 
@@ -124,7 +129,7 @@ const changeAvailability = (value: boolean) => {
                 </VText>
                 <VText :icon="PowerIcon">
                     <span class="font-bold">{{ $t("VetPage.disp") }}:&nbsp;</span>
-                    <VCheckbox name="availabe" :checked="userData.available" :value="userData.available"  @click="changeAvailability" />
+                    <VCheckbox name="available" :checked="userData.available" :value="userData.available"  @click="changeAvailability" />
                 </VText>
             </template>
         </VCard>
@@ -137,7 +142,9 @@ const changeAvailability = (value: boolean) => {
                 /></VButton>
             </div>
 
-            <VLoader v-if="!academicInfo.length" />
+            <VLoader v-if="loading" />
+            <VTitle v-if="!academicInfo.length" class="text-xl mt-5 mb-5">No hay información académica</VTitle>
+
             <div v-else class="mb-8 flex flex-wrap justify-center gap-4">
                 <VCard class="w-full lg:w-fit" v-for="info in academicInfo">
                     <template #header>
@@ -174,7 +181,8 @@ const changeAvailability = (value: boolean) => {
                 /></VButton>
             </div>
 
-            <VLoader v-if="!workExperience.length" />
+            <VLoader v-if="loading" />
+            <VTitle v-if="!workExperience.length" class="text-xl mt-5">No hay experiencia laboral</VTitle>
             <div v-else class="flex flex-wrap justify-center gap-4">
                 <VCard class="w-full lg:w-fit" v-for="work in workExperience">
                     <template #header>

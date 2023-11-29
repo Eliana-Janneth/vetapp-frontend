@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
 import { dirname, resolve } from 'node:path';
-import workbox from 'workbox-build';
+//import workbox from 'workbox-build';
 
 export default defineConfig({
     plugins: [
@@ -23,21 +23,21 @@ export default defineConfig({
             '@': fileURLToPath(new URL("./src", import.meta.url)),
         },
     },
-    build: {
-      rollupOptions: {
-        plugins: [
-          {
-            writeBundle: async () => {
-              await workbox.generateSW({
-                globDirectory: 'dist',
-                globPatterns: ['**/*.{html,js,css,ts,vue}'],
-                swDest: 'dist/sw.js', // Nombre del archivo Service Worker
-              });
-            },
-          } as any,
-        ],
-      },
-    },
+    // build: {
+    //   rollupOptions: {
+    //     plugins: [
+    //       {
+    //         writeBundle: async () => {
+    //           await workbox.generateSW({
+    //             globDirectory: 'dist',
+    //             globPatterns: ['**/*.{html,js,css,ts,vue}'],
+    //             swDest: 'dist/sw.js', // Nombre del archivo Service Worker
+    //           });
+    //         },
+    //       } as any,
+    //     ],
+    //   },
+    // },
   });
   
   

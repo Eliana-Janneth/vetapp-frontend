@@ -26,8 +26,8 @@ const onSubmit = handleSubmit(async (values: TUpdateVetInformation) => {
             license_expiry_date: values.licenseExpiryDate,
         };
         await vetappApi.updateVetInformation(payload);
-        emit('end');
-        window.location.reload();
+       // emit('end');
+       // window.location.reload();
     } catch (error) {}
 });
 </script>

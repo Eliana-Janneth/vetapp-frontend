@@ -41,7 +41,7 @@ export type TVetInformationPayload = {
     password: string;
     repeat_password: string;
     license_number: string;
-    license_expiry_date: string;
+    license_expiry_date: Date;
     available: boolean;
 };
 

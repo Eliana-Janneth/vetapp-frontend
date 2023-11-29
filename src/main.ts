@@ -22,36 +22,36 @@ app.use(router);
 app.use(i18n);
 app.use(Notifications);
 
-// Agregar registro del Service Worker
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then((registration) => {
-      console.log('Service Worker registrado con éxito:', registration);
+// // Agregar registro del Service Worker
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('/sw.js').then((registration) => {
+//       console.log('Service Worker registrado con éxito:', registration);
 
-      if (registration.active) {
-        // Manejo de eventos de conectividad
-        window.addEventListener('online', () => {
-          // Actualiza la interfaz para indicar que la aplicación está en línea
-          console.log('La aplicación está en línea');
-        });
+//       if (registration.active) {
+//         // Manejo de eventos de conectividad
+//         window.addEventListener('online', () => {
+//           // Actualiza la interfaz para indicar que la aplicación está en línea
+//           console.log('La aplicación está en línea');
+//         });
       
-        window.addEventListener('offline', () => {
-          // Actualiza la interfaz para indicar que la aplicación está fuera de línea
-          console.log('La aplicación está fuera de línea');
-        });
+//         window.addEventListener('offline', () => {
+//           // Actualiza la interfaz para indicar que la aplicación está fuera de línea
+//           console.log('La aplicación está fuera de línea');
+//         });
       
-        // Notificaciones de actualización
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          // Notificar al usuario sobre la actualización y recargar la página
-          console.log('Service Worker actualizado. Recargando la página...');
-          window.location.reload();
-        });
+//         // Notificaciones de actualización
+//         navigator.serviceWorker.addEventListener('controllerchange', () => {
+//           // Notificar al usuario sobre la actualización y recargar la página
+//           console.log('Service Worker actualizado. Recargando la página...');
+//           window.location.reload();
+//         });
       
-        registration.active.postMessage({ type: 'SKIP_WAITING' });
-      }
-    }).catch((error) => {
-      console.error('Error al registrar el Service Worker:', error);
-    });
-  }
+//         registration.active.postMessage({ type: 'SKIP_WAITING' });
+//       }
+//     }).catch((error) => {
+//       console.error('Error al registrar el Service Worker:', error);
+//     });
+//   }
 
 
 app.mount('#app');
