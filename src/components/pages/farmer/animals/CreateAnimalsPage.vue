@@ -74,7 +74,7 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
 
 <template>
     <form
-        class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-4 rounded-lg bg-emerald-100/70 p-4 sm:grid-cols-4"
+        class="mx-auto grid max-w-3xl grid-cols-1 items-center gap-4 rounded-lg bg-emerald-100/70 p-4 sm:grid-cols-4"
         @submit="onSubmit"
     >
         <VTextField
