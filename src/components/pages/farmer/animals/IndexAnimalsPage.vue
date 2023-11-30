@@ -6,6 +6,7 @@ import { EyeIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 import { VInput, VButton, VTitle } from '@elements';
 import { TAnimal } from '@/types';
 import { useI18n } from 'vue-i18n';
+import { TrashIcon } from '@heroicons/vue/24/outline';
 
 const { t } = useI18n();
 
@@ -42,26 +43,38 @@ getAnimals();
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <VTitle>{{ $t('FarmPage.selectanimals') }}</VTitle>
-                            <div class="m-4 ml-0 flex w-full flex-col items-center gap-4 lg:flex-row">
-                                <VInput
-                                    class="max-w-xs"
-                                    v-model="searchQuery"
-                                    :placeholder="t('FarmPage.searchfor')"
-                                    :icon="MagnifyingGlassIcon"
+                            <div class="flex items-center justify-between">
+                                <VTitle>{{ $t('FarmPage.selectanimals') }}</VTitle>
+                                <VButton
+                                    class="flex h-9 w-fit items-center px-4"
+                                    :label="t('FarmPage.buttoncreate')"
+                                    type="submit"
+                                    @click="$router.push({ name: 'animals.create' })"
                                 />
-                                <div class="flex w-80 justify-between gap-2 md:w-full">
+                            </div>
+                            <div class="m-4 ml-0 flex w-full flex-col items-center gap-4 lg:flex-row">
+                                <div class="w-full lg:w-min lg:min-w-[280px]">
+                                    <VInput
+                                        v-model="searchQuery"
+                                        :placeholder="t('FarmPage.searchfor')"
+                                        :icon="MagnifyingGlassIcon"
+                                    />
+                                </div>
+                                <div class="flex gap-2">
                                     <VButton
+                                        class="flex h-9 w-fit items-center px-4"
                                         :label="t('FarmPage.buttonsearch')"
                                         type="submit"
                                         @click="searchAnimal()"
                                     />
-                                    <VButton :label="t('FarmPage.buttonclear')" type="submit" @click="getAnimals()" />
                                     <VButton
-                                        :label="t('FarmPage.buttoncreate')"
+                                        v-if="searchQuery"
+                                        class="flex h-9 w-fit items-center px-2"
                                         type="submit"
-                                        @click="$router.push({ name: 'animals.create' })"
-                                    />
+                                        @click="getAnimals()"
+                                    >
+                                        <TrashIcon class="h-5 w-5 text-emerald-100/70" />
+                                    </VButton>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +83,7 @@ getAnimals();
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <img class="h-20" :src="loader" v-if="loading" />
-                                <VTitle v-if="!animals.length" class="text-xl">No hay animales</VTitle>
+                                <VTitle v-if="!animals.length" class="text-xl ml-4">No hay animales</VTitle>
                                 <table
                                     v-else
                                     class="min-w-full divide-y divide-emerald-600 hover:divide-emerald-400"
