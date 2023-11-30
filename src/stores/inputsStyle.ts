@@ -63,7 +63,7 @@ export const selectLanguaje = cva(
                     'bg-sky-500 active:border-sky-200 hover:bg-sky-600',
                 ],
                 base: [
-                    'bg-indigo-500 active:border-indigo-200 hover:bg-indigo-600 py-2',
+                    'bg-indigo-600 active:border-indigo-200 hover:bg-indigo-700 py-2',
                 ],
             },
         },

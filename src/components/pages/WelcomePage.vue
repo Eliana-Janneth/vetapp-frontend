@@ -5,19 +5,20 @@ import LanguageSwitch from '../elements/LanguageSwitch.vue';
 <template>
     <div>
         <div class="bg-gradient-to-r from-indigo-500/50 via-indigo-600/50 to-indigo-800/70">
-            <div class="container mx-auto">
-                <header class="flex justify-between px-8 py-4">
-                    <div>
+            <div class="container mx-auto ">
+                <header class="flex bg:flex-row flex-col justify-between bg:px-8 px-4 py-4">
+                    <div class="flex justify-between mb-2">
                         <h1 class="text-3xl font-semibold text-indigo-700 hover:text-indigo-900 lg:text-4xl">VetApp</h1>
+                        <language-switch />
                     </div>
-                    <div class="flex items-center gap-2">
+
+                    <div class="flex justify-end items-center gap-2">
                         <router-link :to="{ name: 'login' }" class="welcome-button">{{
                             $t('WelcomePage.login')
                         }}</router-link>
                         <router-link :to="{ name: 'register' }" class="welcome-button">{{
                             $t('WelcomePage.register')
                         }}</router-link>
-                        <language-switch />
                     </div>
                 </header>
 
@@ -29,9 +30,7 @@ import LanguageSwitch from '../elements/LanguageSwitch.vue';
                         <h2 class="text-xl">{{ $t('WelcomePage.attention') }}</h2>
                         <h3 class="text-5xl">{{ $t('WelcomePage.vetfarm') }}</h3>
                         <h4 class="text-xl">{{ $t('WelcomePage.slogan') }}</h4>
-                        <div>
-                            <button class="welcome-button">{{ $t('WelcomePage.we') }}</button>
-                        </div>
+                       
                     </div>
                     <div class="flex w-full justify-center">
                         <div class="relative h-[166px] w-[150px] pt-4 lg:h-[407px] lg:w-[375px] lg:pt-8">
@@ -56,13 +55,13 @@ import LanguageSwitch from '../elements/LanguageSwitch.vue';
                         <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">
                             {{ $t('WelcomePage.mision') }}
                         </h2>
-                        <p class="rounded-3xl bg-white p-4 text-center text-sm lg:rounded-full lg:p-16">
+                        <p class="rounded-xl bg-white p-4 text-center text-sm  lg:p-16">
                             {{ $t('WelcomePage.pmision') }}
                         </p>
                     </div>
                     <div class="flex w-full items-center justify-center">
                         <img
-                            class="relative h-[300px] rounded-full lg:h-[300px]"
+                            class="relative h-[300px]  lg:h-[350px]"
                             src="/src/assets/imageWelcome4.png"
                             alt="farmer"
                         />
@@ -71,7 +70,7 @@ import LanguageSwitch from '../elements/LanguageSwitch.vue';
                 <div class="grid flex-col gap-4 lg:grid-cols-2 lg:flex-row">
                     <div class="flex w-full items-center justify-center">
                         <img
-                            class="relative h-[300px] rounded-full lg:h-[300px]"
+                            class="relative h-[300px] lg:h-[350px]"
                             src="/src/assets/imageWelcome3.png"
                             alt="farmer"
                         />
@@ -80,7 +79,7 @@ import LanguageSwitch from '../elements/LanguageSwitch.vue';
                         <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">
                             {{ $t('WelcomePage.vision') }}
                         </h2>
-                        <p class="rounded-3xl bg-white p-4 text-center text-sm lg:rounded-full lg:p-16">
+                        <p class="rounded-xl bg-white p-4 text-center text-sm  lg:p-16">
                             {{ $t('WelcomePage.pvision') }}
                         </p>
                     </div>
