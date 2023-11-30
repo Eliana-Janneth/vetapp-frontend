@@ -33,7 +33,7 @@ export const register = async (data: TRegisterPayload) => {
                     type: 'error',
                 });
             }
-            return errorData;
+            return { error: errorData.response };
         }
 
         const responseData = await response.json();
