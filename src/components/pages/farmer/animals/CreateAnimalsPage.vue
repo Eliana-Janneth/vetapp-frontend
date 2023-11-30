@@ -74,7 +74,7 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
 
 <template>
     <form
-        class="grid grid-cols-1 items-center gap-4 rounded-lg bg-emerald-100/70 p-4 sm:grid-cols-6"
+        class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-4 rounded-lg bg-emerald-100/70 p-4 sm:grid-cols-4"
         @submit="onSubmit"
     >
         <VTextField
@@ -84,8 +84,8 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
             type="text"
             name="name"
         />
+
         <VSelect
-            container-class="sm:col-span-2"
             placeholder="Seleccione la especie"
             :label="t('FarmPage.specie')"
             name="specie"
@@ -93,16 +93,9 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
             @update:modelValue="loadRaces"
         />
 
-        <VSelect
-            container-class="sm:col-span-2"
-            :label="t('FarmPage.breed')"
-            name="race"
-            :placeholder="t('FarmPage.valbreed')"
-            :options="races"
-        />
+        <VSelect :label="t('FarmPage.breed')" name="race" :placeholder="t('FarmPage.valbreed')" :options="races" />
 
-        <VTextField class="w-min sm:col-span-1" :label="t('FarmPage.male')" type="radio" name="gender" value="Macho" />
-        <VTextField class="w-min sm:col-span-1" :label="t('FarmPage.female')" type="radio" name="gender" value="Hembra" />
+        <VTextField container-class="sm:col-span-2" :label="t('FarmPage.bdate')" type="date" name="birthdate" />
 
         <VTextField
             class="sm:w-min-xs sm:col-span-1"
@@ -119,46 +112,51 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
             name="height"
         />
 
-        <VTextField container-class="sm:col-span-2" :label="t('FarmPage.bdate')" type="date" name="birthdate" />
-
         <VTextArea
-            container-class="sm:col-span-3"
+            container-class="sm:col-span-2"
             :label="t('FarmPage.color')"
             :placeholder="t('FarmPage.valcolor')"
             name="color"
         />
         <VTextArea
-            container-class="sm:col-span-3"
+            container-class="sm:col-span-2"
             :label="t('FarmPage.description')"
             :placeholder="t('FarmPage.valdescription')"
             name="description"
         />
-        <div class="flex w-full justify-center gap-2 sm:col-span-6">
-            <VButton
-                class="w-max-lg"
-                :label="t('VetPage.cancel')"
-                variant="danger"
-                @click="$router.push({ name: 'animals.index' })"
-            />
-            <VButton :label="t('VetPage.save')" class="w-max-lg" type="submit" variant="success">
-                <div v-if="isSubmitting" class="flex items-center gap-2">
-                    <VLoader class="h-6" />
-                    <span>{{ $t("FarmPage.saving") }}</span>
-                </div>
-            </VButton>
-        </div>
-        <!-- <VButton
-            label="Guardar"
-            class="w-full sm:col-span-2"
-            type="submit"
-            variant="success"
-            :disabled="!meta.valid"
-            :class="['form-button-farmer ', !meta.valid && 'pointer-events-none opacity-50']"
-        >
-            <div v-if="isSubmitting" class="flex items-center gap-2">
-                <VLoader class="h-6" />
-                <span>Enviando</span>
+
+        <div class="flex w-full justify-between gap-2 sm:col-span-4">
+            <div class="flex gap-4">
+                <VTextField
+                    class="w-min sm:col-span-1"
+                    :label="t('FarmPage.male')"
+                    type="radio"
+                    name="gender"
+                    value="Macho"
+                />
+                <VTextField
+                    class="w-min sm:col-span-1"
+                    :label="t('FarmPage.female')"
+                    type="radio"
+                    name="gender"
+                    value="Hembra"
+                />
             </div>
-        </VButton> -->
+
+            <div class="flex gap-4">
+                <VButton
+                    class="w-max-lg"
+                    :label="t('VetPage.cancel')"
+                    variant="danger"
+                    @click="$router.push({ name: 'animals.index' })"
+                />
+                <VButton :label="t('VetPage.save')" class="w-max-lg" type="submit" variant="success">
+                    <div v-if="isSubmitting" class="flex items-center gap-2">
+                        <VLoader class="h-6" />
+                        <span>{{ $t('FarmPage.saving') }}</span>
+                    </div>
+                </VButton>
+            </div>
+        </div>
     </form>
 </template>
