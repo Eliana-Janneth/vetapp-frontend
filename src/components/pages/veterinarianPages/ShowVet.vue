@@ -29,7 +29,7 @@ vetappApi.getUser().then((response) => {
 
 </script>
 <template>
-    <img class="h-20" :src="loader" v-if="vetInformation === undefined" alt="Cargando información"/>
+    <img class="h-20" :src="loader" v-if="vetInformation === undefined" />
     <p v-else-if="vetInformation === null">El animal no existe</p>
     <form v-else class="mx-auto flex w-80 flex-col items-center gap-2 rounded-lg bg-sky-100/70 p-2">
         <div class="flex flex-col gap-2 lg:flex-row">

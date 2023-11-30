@@ -11,7 +11,7 @@ vetappApi.getAnimalsAuthorized().then((response) => {
 });
 </script>
 <template>
-    <img class="h-20" :src="loader" v-if="!animals" alt="Cargando información" />
+    <img class="h-20" :src="loader" v-if="!animals" />
 
     <div class="max-h-96 overflow-y-scroll">
         <table class="min-w-full table-auto" summary="Animals Authorized">

@@ -26,7 +26,7 @@ vetappApi
     });
 </script>
 <template>
-     <img class="h-20" :src="loader" v-if="academicInformation === undefined" alt="Cargando información"/>
+     <img class="h-20" :src="loader" v-if="academicInformation === undefined" />
     <p v-else-if="academicInformation === null">El Veterinario no tiene información académica</p>
     <div v-else class="inline-block " v-for="information in academicInformation" :key="information.title">
         <form class="mx-auto mb-2 ml-2 mr-2 flex w-60 flex-col items-center gap-4 rounded-lg bg-emerald-100/70 p-2">

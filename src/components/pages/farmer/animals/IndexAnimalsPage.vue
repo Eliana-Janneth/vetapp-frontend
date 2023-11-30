@@ -50,7 +50,7 @@ getAnimals();
     </div>
 
     
-    <img class="h-20" :src="loader" v-if="!animals" alt="Cargando información"/>
+    <img class="h-20" :src="loader" v-if="!animals" />
     <p v-else-if="!animals.length">no hay animales</p>
     <table v-else class="w-full" summary="List of Animals">
         <thead class="bg-emerald-600 font-bold text-white">
