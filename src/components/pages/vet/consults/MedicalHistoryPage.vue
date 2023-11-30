@@ -40,19 +40,17 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
                 ><ArrowLeftCircleIcon class="h-7 w-7"
             /></VButton>
 
-            <VTitle class="pl-4">{{ $t("VetPage.medform") }}</VTitle>
+            <VTitle class="pl-4">{{ $t('VetPage.medform') }}</VTitle>
         </div>
         <VetDiagnosisForm />
-        <VTitle class="pl-16 pt-6">{{ $t("VetPage.hismed") }}</VTitle>
-
+        <div class="flex pl-16 pt-6 ">
+            <img src="/src/assets/icons/medicalHistory.svg" class="mr-2 h-7 hover:scale-110 hover:bluescale-0 hover:text-sky-600" />
+            <VTitle>{{ $t('VetPage.hismed') }}</VTitle>
+        </div>
         <img class="h-20" :src="loader" v-if="animal === undefined" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else class="m-4 border border-x-2 border-sky-200/50 p-8">
-            <VDetails
-                custom-class="font-semibold text-lg"
-                :label="t('VetPage.infanimal')"
-                :description="animal.name"
-            />
+            <VDetails custom-class="font-semibold text-lg" :label="t('VetPage.infanimal')" :description="animal.name" />
             <div class="flex flex-col lg:flex-row">
                 <VDetails :label="t('VetPage.specie')" :description="animal.specie" />
                 <VDetails :label="t('VetPage.breed')" :description="animal.race" />
