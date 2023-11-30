@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { button, buttonTab } from './buttonStyle';
-import { input, alert, label, icon } from './inputsStyle';
+import { input, alert, label, icon, selectLanguaje } from './inputsStyle';
+import { backgroundChat } from './backgroundStyle';
 
 type Role = 'farmer' | 'veterinarian' | 'base';
 
@@ -15,17 +16,14 @@ export const useStyleStore = defineStore({
     }),
 
     getters: {
-        getLabelStyle: (state) => label({intent: state.role}),
+        getLabelStyle: (state) => label({ intent: state.role }),
         getInputStyle: (state) => input({ intent: state.role }),
-        getAlertStyle: (state) => alert({ intent: state.role }), 
-        getButtonStyle: (state) => button({ intent: state.role }), 
-        getTabButtonStyle: (state) => buttonTab({ intent: state.role }), 
+        getAlertStyle: (state) => alert({ intent: state.role }),
+        getButtonStyle: (state) => button({ intent: state.role }),
+        getTabButtonStyle: (state) => buttonTab({ intent: state.role }),
         getIconStyle: (state) => icon({ intent: state.role }),
-      },
-    actions: {
-        create(data: { token: string; user: { name: string; role: 'farmer' | 'veterinarian' } }) {
-            this.role = data.user.role;
-            if (data.user.role === null) this.role = 'base';
-        },
+        getBackgroundChat: (state) => backgroundChat({ intent: state.role }),
+        getSelectLanguage: (state) => selectLanguaje({ intent: state.role })
+
     },
 });

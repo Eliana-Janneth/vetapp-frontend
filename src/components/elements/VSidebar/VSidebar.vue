@@ -4,14 +4,14 @@ import VPopover from '../VPopover.vue';
 import VItem from './VItem.vue';
 import VDropdown from './VDropdown.vue';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import {
-    
     ChatBubbleLeftEllipsisIcon,
-    ArrowPathRoundedSquareIcon,
-    StarIcon,
     ChevronUpIcon,
     UserGroupIcon,
 } from '@heroicons/vue/24/solid';
+
+const { t } = useI18n();
 
 const userStore = useUserStore();
 const variantProfile = {
@@ -21,13 +21,15 @@ const variantProfile = {
 const variant = ref(userStore.isFarmer ? 'farmer' : 'vet');
 
 const farmerSidebarItems = ref([
-    { route: 'animals.index', label: 'Mis animales', icon: StarIcon },
-    { route: 'consults.index', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
-    { route: 'requestsFarmer', label: 'Veterinarios', icon: UserGroupIcon },
+    { route: 'animals.index', label: t('FarmPage.selectanimals'), svg: '/src/assets/icons/animalFarmer.svg' },
+    { route: 'vetsAvailables.index', label: t('FarmPage.selectvets'), icon: UserGroupIcon },
+    { route: 'chat', label: t('FarmPage.selectconsul'), icon: ChatBubbleLeftEllipsisIcon },
 ]);
 const vetSidebarItems = ref([
-    { route: 'consults', label: 'Consultas', icon: ChatBubbleLeftEllipsisIcon },
-    { route: 'requestsVet', label: 'Solicitudes', icon: ArrowPathRoundedSquareIcon },
+    { route: 'patients.index', label: t('VetPage.selectpatient'), svg: '/src/assets/icons/animalVet.svg' },
+    { route: 'requests.show', label: t('VetPage.selectsoli'), svg: '/src/assets/icons/request.svg' },
+    { route: 'chat', label: t('VetPage.selectconsul'), icon: ChatBubbleLeftEllipsisIcon },
+
 ]);
 </script>
 
@@ -36,7 +38,6 @@ const vetSidebarItems = ref([
         <div class="p-4">
             <h1 class="text-center text-3xl font-semibold text-white">VetApp</h1>
         </div>
-
         <div class="px-4">
             <hr :class="['w-full', userStore.isFarmer ? 'border-emerald-200' : 'border-sky-200']" />
         </div>
@@ -48,6 +49,7 @@ const vetSidebarItems = ref([
                         :route="farmerItem.route"
                         :custom-class="variantProfile.farmer"
                         :label="farmerItem.label"
+                        :svg="farmerItem.svg"
                         :icon="farmerItem.icon"
                     />
                 </li>
@@ -57,6 +59,7 @@ const vetSidebarItems = ref([
                         :custom-class="variantProfile.vet"
                         :label="vetItem.label"
                         :icon="vetItem.icon"
+                        :svg="vetItem.svg"
                     />
                 </li>
             </ul>
