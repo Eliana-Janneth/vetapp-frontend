@@ -5,6 +5,7 @@ import { EyeIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 import loader from '@/assets/loader.svg';
 import { VTitle, VInput, VButton } from '@elements';
 import { TAnimalAuthorized } from '@/types';
+import { TrashIcon } from '@heroicons/vue/24/outline';
 
 const animals = ref<TAnimalAuthorized[]>([]);
 const searchAnimal = ref<string>('');
@@ -32,29 +33,43 @@ getAnimalsAuthorized();
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <VTitle>{{ $t("VetPage.patients") }}</VTitle>
-                            <div class="m-4 ml-0 flex w-full flex-auto items-center justify-start gap-2">
-                                <VInput
-                                    class="max-w-sm"
-                                    v-model="searchAnimal"
-                                    :placeholder= "$t('VetPage.searchfor')"
-                                    :icon="MagnifyingGlassIcon"
-                                />
-                                <VButton class="w-min lg:w-56" :label="$t('VetPage.buttonsearch')" type="submit" @click="searchAnimals()" />
-                                <VButton
-                                    class="w-min lg:w-56"
-                                    :label="$t('VetPage.buttonclear')"
-                                    type="submit"
-                                    @click="getAnimalsAuthorized()"
-                                />
+                            <div class="flex items-center justify-between">
+                                <VTitle>{{ $t('VetPage.patients') }}</VTitle>
                             </div>
-                            <img class="h-20" :src="loader" v-if="!animals" />
+                            <div class="m-4 ml-0 flex w-full flex-col items-center gap-4 lg:flex-row">
+                                <div class="w-full lg:w-min lg:min-w-[280px]">
+                                    <VInput
+                                        class="max-w-sm"
+                                        v-model="searchAnimal"
+                                        :placeholder="$t('VetPage.searchfor')"
+                                        :icon="MagnifyingGlassIcon"
+                                    />
+                                </div>
+                                <div class="flex gap-2">
+                                    <VButton
+                                        class="flex h-9 w-fit items-center px-4"
+                                        :label="$t('VetPage.buttonsearch')"
+                                        type="submit"
+                                        @click="searchAnimals()"
+                                    />
+                                    <VButton
+                                        v-if="searchAnimal"
+                                        class="flex h-9 w-fit items-center px-2"
+                                        type="submit"
+                                        @click="getAnimalsAuthorized()"
+                                    >
+                                        <TrashIcon class="h-5 w-5 text-emerald-100/70" />
+                                    </VButton>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="mt-8 flow-root">
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                                <table class="min-w-full divide-y divide-sky-600" summary="Animals Authorized">
+                                <img class="h-20" :src="loader" v-if="!animals" />
+                                <VTitle v-if="!animals.length" class="text-xl ml-4">No hay animales</VTitle>
+                                <table v-else class="min-w-full divide-y divide-sky-600" summary="Animals Authorized">
                                     <thead>
                                         <tr>
                                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">&nbsp;</th>
@@ -63,31 +78,31 @@ getAnimalsAuthorized();
                                                 scope="col"
                                                 class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-sky-600 sm:pl-0"
                                             >
-                                                {{ $t("VetPage.farm") }}
+                                                {{ $t('VetPage.farm') }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
                                             >
-                                                {{ $t("VetPage.name") }}
+                                                {{ $t('VetPage.name') }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
                                             >
-                                                {{ $t("VetPage.specie") }}
+                                                {{ $t('VetPage.specie') }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
                                             >
-                                                {{ $t("VetPage.breed") }}
+                                                {{ $t('VetPage.breed') }}
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
                                             >
-                                                {{ $t("VetPage.gender") }}
+                                                {{ $t('VetPage.gender') }}
                                             </th>
                                         </tr>
                                     </thead>

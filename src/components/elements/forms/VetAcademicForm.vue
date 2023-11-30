@@ -51,7 +51,7 @@ const onSubmit = handleSubmit(async (values: TAcademicInformation) => {
             <VTextField containerClass="sm:col-span-2" name="country" :label="t('VetPage.country')" :placeholder="t('VetPage.valcountry')" :maxlength="60" />
             <VTextField containerClass="sm:col-span-2" name="academicDegree" :label="t('VetPage.academicg')" :placeholder="t('VetPage.academicg')" :maxlength="60" />
    
-            <VCheckbox class="sm:col-span-6 w-2" name="currentlyStudying" :label="t('VetPage.actualstudy')" />
+            <VCheckbox class="sm:col-span-6" name="currentlyStudying" :label="t('VetPage.actualstudy')" />
     
             <VButton class="sm:col-span-3 w-full" @click="$emit('end')" :label="t('VetPage.cancel')" variant="danger" />
             <VButton class="sm:col-span-3 w-full" type="submit" variant="success">

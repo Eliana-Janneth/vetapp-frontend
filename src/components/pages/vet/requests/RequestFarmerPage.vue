@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { vetappApi } from '@/services';
 import { VCard, VButton, VText, VTitle } from '@elements';
 import loader from '@/assets/loader.svg';
-import { UserCircleIcon} from '@heroicons/vue/24/outline';
+import { UserCircleIcon } from '@heroicons/vue/24/outline';
 import { TRequestFarmer } from '@/types';
 import { useI18n } from 'vue-i18n';
 
@@ -24,11 +24,14 @@ const onSubmit = async (id: string, value: boolean) => {
 };
 </script>
 <template>
+    <div class="flex justify-center mb-4">
+    <VTitle>{{ $t('VetPage.solp') }}</VTitle>
+</div>
     <div class="container mx-auto flex flex-wrap items-center justify-center gap-2">
-        <VTitle>{{ $t("VetPage.solp") }}</VTitle>
         <img class="h-20" :src="loader" v-if="farmerRequests === undefined" />
-        <p v-else-if="farmerRequests === null">{{ $t("VetPage.nosol") }}</p>
-        <div v-else class="flex flex-wrap" v-for="request in farmerRequests" :key="request.id">
+        <p v-else-if="farmerRequests === null">{{ $t('VetPage.nosol') }}</p>
+
+        <div v-else v-for="request in farmerRequests" :key="request.id">
             <VCard class="mb-8 w-full lg:max-w-lg" :loading="!farmerRequests">
                 <template #header>
                     <UserCircleIcon class="h-5 w-5" />
@@ -36,22 +39,22 @@ const onSubmit = async (id: string, value: boolean) => {
                 </template>
 
                 <VText>
-                    <span class="font-bold">{{ $t("VetPage.message") }}:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.message') }}:&nbsp;</span>
                     <span class="text-justify">{{ request.message }}&nbsp;</span>
                 </VText>
                 <VText class="justify-center">
-                    <span class="font-bold">{{ $t("VetPage.animal") }}:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.animal') }}:&nbsp;</span>
                     <span>{{ request.animal }}&nbsp;</span>
                 </VText>
                 <VText>
-                    <span class="font-bold">{{ $t("VetPage.specie") }}:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.specie') }}:&nbsp;</span>
                     <span>{{ request.specie }}&nbsp;</span>
                 </VText>
                 <VText>
-                    <span class="font-bold">{{ $t("VetPage.breed") }}:&nbsp;</span>
+                    <span class="font-bold">{{ $t('VetPage.breed') }}:&nbsp;</span>
                     <span>{{ request.race }}&nbsp;</span>
                 </VText>
-                <div class="flex w-full justify-center gap-2 mt-2">
+                <div class="mt-2 flex w-full justify-center gap-2">
                     <VButton
                         class="w-min py-1"
                         @click="onSubmit(request.id, false)"
@@ -59,7 +62,7 @@ const onSubmit = async (id: string, value: boolean) => {
                         variant="danger"
                     />
                     <VButton class="w-min py-1" @click="onSubmit(request.id, true)" variant="success">
-                        {{ $t("VetPage.acept") }}
+                        {{ $t('VetPage.acept') }}
                     </VButton>
                 </div>
             </VCard>
