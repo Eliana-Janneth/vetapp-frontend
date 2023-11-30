@@ -125,8 +125,8 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
             name="description"
         />
 
-        <div class="flex w-full justify-between gap-2 sm:col-span-4">
-            <div class="flex gap-4">
+        <div class="sm:col-span-2">
+            <div class="flex gap-4 w-fit">
                 <VTextField
                     class="w-min sm:col-span-1"
                     :label="t('FarmPage.male')"
@@ -142,21 +142,21 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
                     value="Hembra"
                 />
             </div>
+        </div>
 
-            <div class="flex gap-4">
-                <VButton
-                    class="w-max-lg"
-                    :label="t('VetPage.cancel')"
-                    variant="danger"
-                    @click="$router.push({ name: 'animals.index' })"
-                />
-                <VButton :label="t('VetPage.save')" class="w-max-lg" type="submit" variant="success">
-                    <div v-if="isSubmitting" class="flex items-center gap-2">
-                        <VLoader class="h-6" />
-                        <span>{{ $t('FarmPage.saving') }}</span>
-                    </div>
-                </VButton>
-            </div>
+        <div class="flex gap-4 sm:col-span-2">
+            <VButton
+                class="w-max-lg"
+                :label="t('VetPage.cancel')"
+                variant="danger"
+                @click="$router.push({ name: 'animals.index' })"
+            />
+            <VButton :label="t('VetPage.save')" class="w-max-lg" type="submit" variant="success">
+                <div v-if="isSubmitting" class="flex items-center gap-2">
+                    <VLoader class="h-6" />
+                    <span>{{ $t('FarmPage.saving') }}</span>
+                </div>
+            </VButton>
         </div>
     </form>
 </template>
