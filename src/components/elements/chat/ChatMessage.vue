@@ -12,7 +12,6 @@ const props = defineProps<{
 
 const owner = computed(() => {
     return props.message.role == props.role;
-    //return props.message.role.includes(props.role);
 });
 if (props.message.role == 'veterinarian') props.message.role = 'vet';
 

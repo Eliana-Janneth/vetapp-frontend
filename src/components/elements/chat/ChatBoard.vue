@@ -125,13 +125,6 @@ watch(
 </template>
 
 <style scoped>
-/* .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' '#FFF',
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
-} */
 
 /* width */
 .scroll-style::-webkit-scrollbar {

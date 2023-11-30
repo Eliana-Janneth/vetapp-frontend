@@ -11,39 +11,6 @@ export const createAnimal = async (data: TRegisterAnimalPayload) => {
     await service.post('animals', data);
 };
 
-// export const createAnimal = async (data: TRegisterAnimalPayload) => {
-//     const apiUrl = `${API_URL}/animals/`;
-//     try {
-//         const response = await fetch(apiUrl, {
-//             method: 'POST',
-//             body: JSON.stringify(data),
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
-//             },
-//         });
-
-//         if (!response.ok) {
-//             const errorData = await response.json();
-//             if (errorData && errorData.response) {
-//                 alert(`Error del servidor: ${errorData.response}`);
-//             } else {
-//                 alert('Error en la solicitud al servidor.');
-//             }
-//             return;
-//         }
-//         // Si la respuesta es exitosa
-//         const responseData = await response.json();
-//         console.log(JSON.stringify(responseData, null, 2));
-//         notify({
-//             title: 'Animal creado exitosamente🎉',
-//             type: 'success',
-//         });
-//     } catch (error) {
-//         console.error('Error al realizar la solicitud:', error);
-//     }
-// };
-
 export const getAnimals = async () => {
     const response = (await service.get('animals/')) as TAnimalPayload[];
     return adaptAnimals(response);
