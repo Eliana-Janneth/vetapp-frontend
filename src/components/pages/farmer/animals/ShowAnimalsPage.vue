@@ -43,7 +43,7 @@ const downloadFile = () => {
         <VButton class="flex w-fit items-center rounded-full p-1" @click="$router.push({ name: 'animals.index' })"
             ><ArrowLeftCircleIcon class="h-7 w-7"
         /></VButton>
-        <img class="h-20" :src="loader" v-if="animal === undefined" />
+        <img class="h-20" :src="loader" v-if="animal === undefined" alt="loader"/>
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else>
             <div class="m-2 grid grid-cols-1 rounded-xl sm:grid-cols-8 lg:gap-2">

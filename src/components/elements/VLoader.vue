@@ -8,4 +8,4 @@ defineProps<{
 
 </script>
 
-<template><img :class="twMerge('h-20', $props.class)" :src="loader"/></template>
+<template><img :class="twMerge('h-20', $props.class)" :src="loader" alt="loader"/></template>

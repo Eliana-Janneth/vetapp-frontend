@@ -82,7 +82,7 @@ getAnimals();
                     <div class="mt-8 flow-root ">
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                                <img class="h-20" :src="loader" v-if="loading" />
+                                <img class="h-20" :src="loader" v-if="loading" alt="loader" />
                                 <VTitle v-if="!animals.length" class="text-xl ml-4">No hay animales</VTitle>
                                 <table
                                     v-else
