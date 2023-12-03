@@ -30,7 +30,7 @@ export type TVetInformation={
     password: string;
     repeatPassword: string;
     license: string;
-    licenseExpiryDate: string;
+    licenseExpiryDate: Date;
     available: boolean;
 }
 
