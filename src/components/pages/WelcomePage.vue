@@ -19,10 +19,10 @@ const openVision = ref(false);
                     /></VButton>
                 </div>
                 <div class="flex flex-col items-center">
-                    <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">
+                    <h2 class="text-3xl font-medium text-indigo-800 hover:text-indigo-900">
                         {{ $t('WelcomePage.mision') }}
                     </h2>
-                    <p class="rounded-xl bg-indigo-100/80 p-4 text-center text-sm">
+                    <p class="rounded-xl bg-indigo-100/80 p-4 text-center text-xs md:text-base">
                         {{ $t('WelcomePage.pmision') }}
                     </p>
                 </div>
@@ -37,12 +37,14 @@ const openVision = ref(false);
                         ><XMarkIcon class="h-7 w-7"
                     /></VButton>
                 </div>
-                <h2 class="text-2xl font-medium text-indigo-800 hover:text-indigo-900">
-                    {{ $t('WelcomePage.vision') }}
-                </h2>
-                <p class="rounded-xl bg-indigo-100/80 p-4 text-center text-sm">
-                    {{ $t('WelcomePage.pvision') }}
-                </p>
+                <div class="flex flex-col items-center">
+                    <h2 class="text-3xl font-medium text-indigo-800 hover:text-indigo-900">
+                        {{ $t('WelcomePage.vision') }}
+                    </h2>
+                    <p class="rounded-xl bg-indigo-100/80 p-4 text-center text-xs md:text-base">
+                        {{ $t('WelcomePage.pvision') }}
+                    </p>
+                </div>
             </div>
         </VCard>
     </SModal>
@@ -60,7 +62,7 @@ const openVision = ref(false);
                                 $t('WelcomePage.register')
                             }}</router-link>
                         </div>
-                            <language-switch />
+                        <language-switch />
                     </div>
                 </div>
             </header>
