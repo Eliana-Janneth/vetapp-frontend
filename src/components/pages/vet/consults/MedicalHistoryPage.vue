@@ -29,7 +29,6 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
     });
 };
 
-//TODO: cargar el veterinario
 //TODO: Cuadrar el boton cancelae
 </script>
 
@@ -43,11 +42,15 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
             <VTitle class="pl-4">{{ $t('VetPage.medform') }}</VTitle>
         </div>
         <VetDiagnosisForm />
-        <div class="flex pl-16 pt-6 ">
-            <img src="/src/assets/icons/medicalHistory.svg" class="mr-2 h-7 hover:scale-110 hover:bluescale-0 hover:text-sky-600" alt="medical history" />
+        <div class="flex pl-16 pt-6">
+            <img
+                src="/src/assets/icons/medicalHistory.svg"
+                class="hover:bluescale-0 mr-2 h-7 hover:scale-110 hover:text-sky-600"
+                alt="medical history"
+            />
             <VTitle>{{ $t('VetPage.hismed') }}</VTitle>
         </div>
-        <img class="h-20" :src="loader" v-if="animal === undefined"  alt="loader"/>
+        <img class="h-20" :src="loader" v-if="animal === undefined" alt="loader" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else class="m-4 border border-x-2 border-sky-200/50 p-8">
             <VDetails custom-class="font-semibold text-lg" :label="t('VetPage.infanimal')" :description="animal.name" />
@@ -69,24 +72,32 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
             </div>
         </div>
 
-        <img class="h-20" :src="loader" v-if="animal === undefined" alt="loader"/>
+        <img class="h-20" :src="loader" v-if="animal === undefined" alt="loader" />
         <p v-else-if="diagnosisAnimal === null">El animal no tiene diagnosticos</p>
         <div v-else class="m-2 flex flex-col">
             <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
-                <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col items-center rounded-lg bg-sky-100/70 p-2">
-                    <VUpgradeableTextarea
-                        custom-class="font-semibold"
-                        :label="t('VetPage.date')"
-                        :value="formatDate(diagnosisA.createDate)"
-                        :edit="false"
-                    />
-                    <VUpgradeableTextarea
-                        v-if="diagnosisA.updateDate != diagnosisA.createDate"
-                        :label="t('VetPage.datemod')"
-                        :value="formatDate(diagnosisA.updateDate)"
-                        :edit="false"
-                    />
+                <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col  rounded-lg bg-sky-100/70 p-2">
+                    <div class="flex flex-col justify-start md:flex-row">
+                        <VUpgradeableTextarea
+                            custom-class="font-semibold"
+                            :label="t('VetPage.date')"
+                            :value="formatDate(diagnosisA.createDate)"
+                            :edit="false"
+                        />
+                        <VUpgradeableTextarea
+                            v-if="diagnosisA.updateDate != diagnosisA.createDate"
+                            :label="t('VetPage.datemod')"
+                            :value="formatDate(diagnosisA.updateDate)"
+                            :edit="false"
+                        />
 
+                        <VUpgradeableTextarea
+                            custom-class="font-semibold"
+                            :label="t('FarmPage.vet')"
+                            :value="diagnosisA.vet"
+                            :edit="false"
+                        />
+                    </div>
                     <VUpgradeableTextarea
                         :label="t('VetPage.diag')"
                         :edit="diagnosisA.edit"
@@ -98,12 +109,6 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
                         :edit="diagnosisA.edit"
                         :value="diagnosisA.treatment"
                         @update="(newValue) => onUpdateDiagnosis('treatment', newValue, diagnosisA.id)"
-                    />
-                    <VUpgradeableTextarea
-                        custom-class="font-semibold"
-                        :label="t('FarmPage.vet')"
-                        :value="diagnosisA.vet"
-                        :edit="false"
                     />
                 </div>
             </div>

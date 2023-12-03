@@ -42,6 +42,7 @@ const onSubmit = handleSubmit(async (values: TWorkExperience) => {
         
     } catch (error) {}
 });
+//TODO: boton cancelar
 </script>
 <template>
     <ShowWorkExperience />

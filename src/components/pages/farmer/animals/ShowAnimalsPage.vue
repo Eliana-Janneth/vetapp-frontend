@@ -14,12 +14,19 @@ const { t } = useI18n();
 
 const route = useRoute();
 const animal = ref<TAnimal>();
-
+let isValid = true;
 const animalId = computed(() => String(route.params.id));
 
-vetappApi.getAnimal(animalId.value).then((res) => {
-    animal.value = res;
-});
+vetappApi
+    .getAnimal(animalId.value)
+    .then((res) => {
+        animal.value = res;
+    })
+    .catch(() => {
+        console.log('Holaaaaaa');
+        isValid = false;
+        console.log(isValid);
+    });
 
 const diagnosisAnimal = ref<TDiagnosis[]>();
 
@@ -36,14 +43,22 @@ const updateValue = (name: string, newValue: string) => {
 const downloadFile = () => {
     vetappApi.downloadMedicalHistoryFarmer(animalId.value);
 };
+//TODO: ERROR 404 cuando el animal no existe
 </script>
 
 <template>
+
     <div>
         <VButton class="flex w-fit items-center rounded-full p-1" @click="$router.push({ name: 'animals.index' })"
             ><ArrowLeftCircleIcon class="h-7 w-7"
         /></VButton>
-        <img class="h-20" :src="loader" v-if="animal === undefined" alt="loader"/>
+        <img
+            v-if="!isValid"
+            class="rounded-lg lg:h-[600px] lg:w-[700px]"
+            src="@/assets/img/Error404.jpg"
+            alt="404"
+        />
+        <img class="h-20" :src="loader" v-if="animal === undefined" alt="loader" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else>
             <div class="m-2 grid grid-cols-1 rounded-xl sm:grid-cols-8 lg:gap-2">
@@ -54,9 +69,24 @@ const downloadFile = () => {
                     :edit="true"
                     @update="(newValue) => updateValue('name', newValue)"
                 />
-                <VUpgradeableInput class="sm:col-span-2" :label="t('FarmPage.specie')" :edit="false" :value="animal.specie" />
-                <VUpgradeableInput class="sm:col-span-2" :label="t('FarmPage.breed')" :edit="false" :value="animal.race" />
-                <VUpgradeableInput class="sm:col-span-2" :label="t('FarmPage.gender')" :edit="false" :value="animal.gender" />
+                <VUpgradeableInput
+                    class="sm:col-span-2"
+                    :label="t('FarmPage.specie')"
+                    :edit="false"
+                    :value="animal.specie"
+                />
+                <VUpgradeableInput
+                    class="sm:col-span-2"
+                    :label="t('FarmPage.breed')"
+                    :edit="false"
+                    :value="animal.race"
+                />
+                <VUpgradeableInput
+                    class="sm:col-span-2"
+                    :label="t('FarmPage.gender')"
+                    :edit="false"
+                    :value="animal.gender"
+                />
 
                 <VUpgradeableInput
                     class="sm:col-span-4"
@@ -94,7 +124,7 @@ const downloadFile = () => {
                     @update="(newValue) => updateValue('description', newValue)"
                 />
                 <VButton
-                    class="mx-auto flex w-fit px-6 sm:col-span-8 mt-2"
+                    class="mx-auto mt-2 flex w-fit px-6 sm:col-span-8"
                     :label="t('FarmPage.deshist')"
                     @click="downloadFile()"
                 />
@@ -124,5 +154,6 @@ const downloadFile = () => {
                 <VDetails label="Tratamiento" :description="diagnosisA.treatment" />
             </div>
         </div>
+      
     </div>
 </template>

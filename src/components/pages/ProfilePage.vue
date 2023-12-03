@@ -56,7 +56,6 @@ const changeAvailability = (value: boolean) => {
     vetappApi.updateAvailability({'available': value});
 };
 
-//TODO: Mostrar checked
 </script>
 
 <template>

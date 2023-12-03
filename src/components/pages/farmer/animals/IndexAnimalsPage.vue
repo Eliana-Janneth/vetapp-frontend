@@ -31,8 +31,6 @@ const getAnimals = () => {
 
     searchQuery.value = '';
 };
-//TODO: Cuadrar valores null
-//TODO: Cuando el animal no existe mostrar 404
 getAnimals();
 </script>
 
