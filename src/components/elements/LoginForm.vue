@@ -79,13 +79,16 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
             @focus="passwordIcon = LockOpenIcon"
             @blur="passwordIcon = LockClosedIcon"
         />
-        <button
-            :disabled="!meta.valid"
-            :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
-            type="submit"
-        >
-            {{ $t('LoginPage.login2') }}
-        </button>
+        <div class="flex gap-6">
+            <router-link :to="{ name: 'welcome' }" class="btn btn-primary">Volver</router-link>
+            <button
+                :disabled="!meta.valid"
+                :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
+                type="submit"
+            >
+                {{ $t('LoginPage.login2') }}
+            </button>
+        </div>
     </form>
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
 </template>
