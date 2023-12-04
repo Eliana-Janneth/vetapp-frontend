@@ -84,7 +84,6 @@ export const login = async (data: TLoginPayload) => {
 
 export const logout = async () => {
     try {
-        console.log('Antes de la solicitud de logout');
         await fetch(`${API_URL}/api/auth/logout/`, {
             method: 'POST',
             headers: {
@@ -187,7 +186,6 @@ export const updateVetInformation = async (data: TUpdateVetInformationPayload) =
             return errorData;
         }
         const responseData = await response.json();
-        console.log(JSON.stringify(responseData, null, 2));
         notify({
             title: 'Credenciales creadas correctamente🎉',
             type: 'success',

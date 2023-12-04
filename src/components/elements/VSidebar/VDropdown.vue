@@ -21,7 +21,6 @@ const onLogout = async () => {
     try {
         await vetappApi.logout().then(() => {
             router.push({ name: 'welcome' });
-            window.location.reload();
         });
     } catch (error) {
         console.error('Error al cargar los datos:', error);

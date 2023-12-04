@@ -23,9 +23,7 @@ vetappApi
         animal.value = res;
     })
     .catch(() => {
-        console.log('Holaaaaaa');
         isValid = false;
-        console.log(isValid);
     });
 
 const diagnosisAnimal = ref<TDiagnosis[]>();

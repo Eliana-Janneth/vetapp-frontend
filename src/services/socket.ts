@@ -50,7 +50,6 @@ export const connectToChat = (
 
                 const jsonMessage = JSON.stringify(message);
                 socket.send(jsonMessage);
-                console.log('Mensaje JSON enviado al servidor:', jsonMessage);
             } else {
                 console.error('La conexión no está abierta.');
             }

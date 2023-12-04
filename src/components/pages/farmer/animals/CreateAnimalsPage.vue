@@ -31,7 +31,6 @@ const selectedSpeciesId = ref('');
 onMounted(async () => {
     try {
         species.value = await vetappApi.getSpecies();
-        console.log(species);
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
@@ -66,7 +65,6 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
             weight: values.weight,
         };
         await vetappApi.createAnimal(payload);
-        console.log(JSON.stringify(values, null, 2));
         resetForm();
     } catch (error) {}
 });

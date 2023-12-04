@@ -57,9 +57,6 @@ export const service = {
                 }
                 return;
             }
-
-            const responseData = await response.json();
-            console.log(JSON.stringify(responseData, null, 2));
             notify({
                 title: 'Creado exitosamente 🎉',
                 type: 'success',
