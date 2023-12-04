@@ -17,13 +17,13 @@ const variantProfile = {
 const variant = ref(userStore.isFarmer ? 'farmer' : 'vet');
 
 const farmerSidebarItems = ref([
-    { route: 'animals.index', label: t('FarmPage.selectanimals'), svg: '/src/assets/icons/animalFarmer.svg' },
+    { route: 'animals.index', label: t('FarmPage.selectanimals'), svg: '@/assets/icons/animalFarmer.svg' },
     { route: 'vetsAvailables.index', label: t('FarmPage.selectvets'), icon: UserGroupIcon },
     { route: 'chat', label: t('FarmPage.selectconsul'), icon: ChatBubbleLeftEllipsisIcon },
 ]);
 const vetSidebarItems = ref([
-    { route: 'patients.index', label: t('VetPage.selectpatient'), svg: '/src/assets/icons/animalVet.svg' },
-    { route: 'requests.show', label: t('VetPage.selectsoli'), svg: '/src/assets/icons/request.svg' },
+    { route: 'patients.index', label: t('VetPage.selectpatient'), svg: '@/assets/icons/animalVet.svg' },
+    { route: 'requests.show', label: t('VetPage.selectsoli'), svg: '@/assets/icons/request.svg' },
     { route: 'chat', label: t('VetPage.selectconsul'), icon: ChatBubbleLeftEllipsisIcon },
 ]);
 </script>

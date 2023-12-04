@@ -3,7 +3,6 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
 import { dirname, resolve } from 'node:path';
-//import workbox from 'workbox-build';
 
 export default defineConfig({
     plugins: [
