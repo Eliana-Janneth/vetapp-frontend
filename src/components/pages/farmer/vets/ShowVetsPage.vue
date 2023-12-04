@@ -20,6 +20,7 @@ import {
 const userData = ref<TVetInformation>();
 const academicInfo = ref<TAcademicInformation[]>([]);
 const workExperience = ref<TWorkExperience[]>([]);
+const loading = ref<boolean>(true);
 
 const route = useRoute();
 const idVet = route.params.id.toString();
@@ -30,10 +31,12 @@ vetappApi.getVetInformation(idVet).then((data) => {
 
 vetappApi.getWorkExperienceVet(idVet).then((response) => {
     workExperience.value = response;
+    loading.value = false;
 });
 
 vetappApi.getAcademicInformationVet(idVet).then((response) => {
     academicInfo.value = response;
+    loading.value = false;
 });
 </script>
 
@@ -72,7 +75,8 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
             <VTitle>{{ $t('VetPage.infoacademic') }}</VTitle>
         </div>
 
-        <VLoader v-if="!academicInfo.length" />
+        <VLoader v-if="loading" />
+        <VTitle v-if="!academicInfo.length" class="mb-5 mt-5 text-xl">No hay información académica</VTitle>
         <div v-else class="mb-8 flex flex-wrap justify-center gap-4">
             <VCard class="w-full lg:w-fit" v-for="info in academicInfo">
                 <template #header>
@@ -106,7 +110,8 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
             <VTitle>{{ $t('VetPage.explab') }}</VTitle>
         </div>
 
-        <VLoader v-if="!workExperience.length" />
+        <VLoader v-if="loading" />
+        <VTitle v-if="!workExperience.length" class="mt-5 text-xl">No hay experiencia laboral</VTitle>
         <div v-else class="flex flex-wrap justify-center gap-4">
             <VCard class="w-full lg:w-fit" v-for="work in workExperience">
                 <template #header>

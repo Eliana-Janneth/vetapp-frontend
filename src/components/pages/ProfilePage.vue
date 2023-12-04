@@ -192,9 +192,9 @@ const changeAvailability = (value: boolean) => {
                     ><PlusCircleIcon class="h-7 w-7"
                 /></VButton>
             </div>
-
+        
             <VLoader v-if="loading" />
-            <VTitle v-if="!workExperience.length" class="mt-5 text-xl">No hay experiencia laboral</VTitle>
+            <VTitle v-if="!workExperience.length" class="mt5 text-xl">No hay experiencia laboral</VTitle>
             <div v-else class="flex flex-wrap justify-center gap-4">
                 <VCard class="w-full lg:w-fit" v-for="work in workExperience">
                     <template #header>
