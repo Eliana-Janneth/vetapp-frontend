@@ -84,7 +84,7 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
         />
 
         <VSelect
-            placeholder="Seleccione la especie"
+            :placeholder="t('FarmPage.valspecie2')"
             :label="t('FarmPage.specie')"
             name="specie"
             :options="species"
