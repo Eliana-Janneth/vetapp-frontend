@@ -35,7 +35,7 @@ withDefaults(
 </script>
 
 <template>
-    <div :class="['relative', width ]">
+    <div :class="['relative', width]">
         <span v-if="label" :class="['block text-lg font-medium', styleStore.getLabelStyle]">{{ label }}</span>
 
         <div class="relative">

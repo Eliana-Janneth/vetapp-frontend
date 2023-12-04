@@ -28,7 +28,6 @@ export type TRegisterPayload = {
     address: string;
 };
 
-
 export type TVetInformationPayload = {
     id: string;
     first_name: string;
@@ -48,7 +47,7 @@ export type TVetInformationPayload = {
 export type TUpdateVetInformationPayload = {
     license_number: string;
     license_expiry_date: Date;
-}
+};
 
 export type TWorkExperiencePayload = {
     title: string;
@@ -57,7 +56,7 @@ export type TWorkExperiencePayload = {
     start_date: string;
     end_date: string;
     country: string;
-    currently : boolean;
+    currently: boolean;
 };
 
 export type TAcademicInformationPayload = {
@@ -69,13 +68,11 @@ export type TAcademicInformationPayload = {
     currently: boolean;
 };
 
-
-export type TCreateAvailabilityPayload={
+export type TCreateAvailabilityPayload = {
     available: boolean;
-}
+};
 
 export type TOption = {
     name: string;
     id: string;
 };
-

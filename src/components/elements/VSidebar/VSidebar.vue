@@ -5,11 +5,7 @@ import VItem from './VItem.vue';
 import VDropdown from './VDropdown.vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import {
-    ChatBubbleLeftEllipsisIcon,
-    ChevronUpIcon,
-    UserGroupIcon,
-} from '@heroicons/vue/24/solid';
+import { ChatBubbleLeftEllipsisIcon, ChevronUpIcon, UserGroupIcon } from '@heroicons/vue/24/solid';
 
 const { t } = useI18n();
 
@@ -29,7 +25,6 @@ const vetSidebarItems = ref([
     { route: 'patients.index', label: t('VetPage.selectpatient'), svg: '/src/assets/icons/animalVet.svg' },
     { route: 'requests.show', label: t('VetPage.selectsoli'), svg: '/src/assets/icons/request.svg' },
     { route: 'chat', label: t('VetPage.selectconsul'), icon: ChatBubbleLeftEllipsisIcon },
-
 ]);
 </script>
 

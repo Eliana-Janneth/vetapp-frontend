@@ -126,7 +126,7 @@ const onSubmit = handleSubmit(async (values: TRegisterAnimal) => {
         />
 
         <div class="sm:col-span-2">
-            <div class="flex gap-4 w-fit">
+            <div class="flex w-fit gap-4">
                 <VTextField
                     class="w-min sm:col-span-1"
                     :label="t('FarmPage.male')"

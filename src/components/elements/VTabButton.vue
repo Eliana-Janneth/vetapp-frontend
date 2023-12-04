@@ -13,11 +13,7 @@ defineProps<{
 <template>
     <router-link
         :to="{ name: route }"
-        :class="[
-            customClass,
-            styleStore.getTabButtonStyle,
-            { 'border-b-2': active },
-        ]"
+        :class="[customClass, styleStore.getTabButtonStyle, { 'border-b-2': active }]"
         @click="active"
     >
         {{ label }}

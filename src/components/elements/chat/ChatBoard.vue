@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CameraIcon} from '@heroicons/vue/24/outline';
+import { CameraIcon } from '@heroicons/vue/24/outline';
 import VButton from '../VButton.vue';
 import { ref, watch } from 'vue';
 import VTextField from '../VTextField.vue';
@@ -99,7 +99,7 @@ watch(
                     :placeholder="t('FarmPage.chatm')"
                     class="font-base w-full rounded-lg bg-gray-100 px-4 py-3 pr-20 text-base focus:outline-none"
                     @keyup.enter="send"
-                    />
+                />
                 <div class="absolute inset-y-0 right-0 flex items-center gap-4 pr-2 lg:pr-4">
                     <div class="relative">
                         <VButton class="w-10 bg-transparent p-0 text-gray-500">
@@ -115,17 +115,16 @@ watch(
                 </div>
             </div>
 
-            <VButton class="w-fit" @click="send">{{ $t("FarmPage.chatsend") }}</VButton>
+            <VButton class="w-fit" @click="send">{{ $t('FarmPage.chatsend') }}</VButton>
         </div>
     </section>
     <div v-else :class="[style.getBackgroundChat, 'flex items-center justify-center text-2xl text-white']">
         <img class="p-20" :src="noChatsIllustration" alt="No chats" />
-        <span>{{ $t("VetPage.chats") }}</span>
+        <span>{{ $t('VetPage.chats') }}</span>
     </div>
 </template>
 
 <style scoped>
-
 /* width */
 .scroll-style::-webkit-scrollbar {
     width: 7px;

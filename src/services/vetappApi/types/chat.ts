@@ -6,11 +6,11 @@ export type TChatPayload = {
 };
 
 export type TMessagePayload = {
-    id: number,
-    sender_name: string,
-    sender_role: string,
-    message: string,
-    date_sent: string,
-    file: string,
-    has_file: boolean,
+    id: number;
+    sender_name: string;
+    sender_role: string;
+    message: string;
+    date_sent: string;
+    file: string;
+    has_file: boolean;
 };

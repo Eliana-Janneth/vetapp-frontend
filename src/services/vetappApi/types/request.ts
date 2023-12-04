@@ -1,4 +1,3 @@
-
 export type TRequestPayload = {
     id: number;
     specie_name: string;

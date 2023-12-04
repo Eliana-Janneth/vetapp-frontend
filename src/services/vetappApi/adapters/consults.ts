@@ -2,7 +2,7 @@ import { TAnimalAuthorized, TDiagnosis } from '@/types/consults';
 import { TAnimalAuthorizedPayload, TDiagnosisPayload } from '../types';
 
 export const adaptDiagnosis = (response: TDiagnosisPayload[]): TDiagnosis[] => {
-  return response.map((diagnosis) => ({
+    return response.map((diagnosis) => ({
         id: diagnosis.id,
         diagnosis: diagnosis.diagnosis,
         treatment: diagnosis.treatment,
@@ -14,22 +14,22 @@ export const adaptDiagnosis = (response: TDiagnosisPayload[]): TDiagnosis[] => {
 };
 function mapAnimal(animal: TAnimalAuthorizedPayload): TAnimalAuthorized {
     return {
-      birthdate: animal.birth_date,
-      color: animal.color,
-      description: animal.description,
-      farmer: animal.farmer_name,
-      gender: animal.gender,
-      height: animal.height,
-      id: animal.id,
-      name: animal.name,
-      race: animal.race_name,
-      specie: animal.specie_name,
-      weight: animal.weight,
+        birthdate: animal.birth_date,
+        color: animal.color,
+        description: animal.description,
+        farmer: animal.farmer_name,
+        gender: animal.gender,
+        height: animal.height,
+        id: animal.id,
+        name: animal.name,
+        race: animal.race_name,
+        specie: animal.specie_name,
+        weight: animal.weight,
     };
-  }
-  
-  export const adaptAnimalsAuthorized = (response: TAnimalAuthorizedPayload[]): TAnimalAuthorized[] => {
+}
+
+export const adaptAnimalsAuthorized = (response: TAnimalAuthorizedPayload[]): TAnimalAuthorized[] => {
     return response.map(mapAnimal);
-  };
-  
-  export const adaptAnimalAuthorized = (animal: TAnimalAuthorizedPayload): TAnimalAuthorized => mapAnimal(animal);
+};
+
+export const adaptAnimalAuthorized = (animal: TAnimalAuthorizedPayload): TAnimalAuthorized => mapAnimal(animal);

@@ -47,39 +47,39 @@ if (props.request === 'send') {
                 <div class="max-h-96 overflow-y-auto">
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                         <VLoader v-if="loading" />
-                        <VTitle v-if="!requests.length" class="text-xl">{{ $t("VetPage.no") }} {{ title }} !!</VTitle>
-                        <table v-else class="min-w-full divide-y divide-emerald-300" summary="farmer send request" >
+                        <VTitle v-if="!requests.length" class="text-xl">{{ $t('VetPage.no') }} {{ title }} !!</VTitle>
+                        <table v-else class="min-w-full divide-y divide-emerald-300" summary="farmer send request">
                             <thead class="sticky top-0 z-10 bg-emerald-100">
                                 <tr>
                                     <th
                                         scope="col"
                                         class="text-md py-3.5 pl-4 pr-3 text-left font-semibold text-emerald-900 sm:pl-3"
                                     >
-                                        {{ $t("FarmPage.vet") }}
+                                        {{ $t('FarmPage.vet') }}
                                     </th>
                                     <th
                                         scope="col"
                                         class="text-md px-3 py-3.5 text-left font-semibold text-emerald-900"
                                     >
-                                        {{ $t("FarmPage.animal") }}
+                                        {{ $t('FarmPage.animal') }}
                                     </th>
                                     <th
                                         scope="col"
                                         class="text-md px-3 py-3.5 text-left font-semibold text-emerald-900"
                                     >
-                                        {{ $t("FarmPage.specie") }}
+                                        {{ $t('FarmPage.specie') }}
                                     </th>
                                     <th
                                         scope="col"
                                         class="text-md px-3 py-3.5 text-left font-semibold text-emerald-900"
                                     >
-                                        {{ $t("FarmPage.breed") }}
+                                        {{ $t('FarmPage.breed') }}
                                     </th>
                                     <th
                                         scope="col"
                                         class="text-md px-3 py-3.5 text-left font-semibold text-emerald-900"
                                     >
-                                        {{ $t("FarmPage.message") }}
+                                        {{ $t('FarmPage.message') }}
                                     </th>
                                 </tr>
                             </thead>

@@ -23,7 +23,7 @@ const computedId = props.id || String(Symbol());
     <div class="flex items-center gap-2">
         <input
             :id="computedId"
-            :class="twMerge(styleStore.getInputStyle, 'w-6 h-4 text-green-500')"
+            :class="twMerge(styleStore.getInputStyle, 'h-4 w-6 text-green-500')"
             v-model="value"
             type="checkbox"
             :checked="checked"

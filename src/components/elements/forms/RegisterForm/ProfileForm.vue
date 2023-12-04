@@ -137,9 +137,9 @@ const onSubmit = handleSubmit((values) => {
                 type="submit"
                 :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
             >
-                {{ $t("RegisterPage.register2") }}
+                {{ $t('RegisterPage.register2') }}
             </button>
-            <button @click="emit('cancel')" class="btn btn-primary">{{ $t("RegisterPage.cancelar") }}</button>
+            <button @click="emit('cancel')" class="btn btn-primary">{{ $t('RegisterPage.cancelar') }}</button>
         </div>
     </form>
 </template>

@@ -53,7 +53,11 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
 </script>
 
 <template>
-    <form class="flex flex-col items-center gap-2 rounded-xl bg-white p-4" @submit.prevent="onSubmit" @keyup.enter="onSubmit">
+    <form
+        class="flex flex-col items-center gap-2 rounded-xl bg-white p-4"
+        @submit.prevent="onSubmit"
+        @keyup.enter="onSubmit"
+    >
         <h1 class="text-2xl font-medium text-indigo-900">{{ $t('LoginPage.login') }}</h1>
 
         <VInput

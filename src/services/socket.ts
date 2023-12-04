@@ -2,7 +2,9 @@ import { TChatMsg } from '@/types';
 import { adaptMessages } from './vetappApi/adapters';
 import { useChatStore } from '@/stores';
 
-export const connectToChat = (chatId: number): Promise<{send: (msg: TChatMsg) => void; close: WebSocket['close']}> => {
+export const connectToChat = (
+    chatId: number,
+): Promise<{ send: (msg: TChatMsg) => void; close: WebSocket['close'] }> => {
     const chatStore = useChatStore();
     const chat = chatStore.chats.find((c) => c.id === chatId);
 
@@ -44,7 +46,7 @@ export const connectToChat = (chatId: number): Promise<{send: (msg: TChatMsg) =>
             if (socket.readyState === WebSocket.OPEN) {
                 let message = null;
                 if (typeof msg === 'string') message = { message: msg };
-                else message = { message: '', attachment: {...msg} };
+                else message = { message: '', attachment: { ...msg } };
 
                 const jsonMessage = JSON.stringify(message);
                 socket.send(jsonMessage);

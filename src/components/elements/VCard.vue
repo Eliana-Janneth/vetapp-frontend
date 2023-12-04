@@ -31,13 +31,22 @@ const style = styles[user.role];
 </script>
 
 <template>
-    <div :class="twMerge(style.container, 'w-fit overflow-hidden rounded-md shadow flex flex-col', $props.class, $props.loading && 'lg:w-[200px] w-[200px]')">
+    <div
+        :class="
+            twMerge(
+                style.container,
+                'flex w-fit flex-col overflow-hidden rounded-md shadow',
+                $props.class,
+                $props.loading && 'w-[200px] lg:w-[200px]',
+            )
+        "
+    >
         <header v-if="hasSlotContent($slots.header)" :class="twMerge('leading-none', style.header, 'font-semibold')">
             <VSkeleton v-if="loading" :class="[style.loader, 'h-6']" />
             <slot v-else name="header" />
         </header>
 
-        <main :class="twMerge('flex flex-col gap-1 border-2 px-4 py-2 h-full rounded-b-md', style.body, bodyClass)">
+        <main :class="twMerge('flex h-full flex-col gap-1 rounded-b-md border-2 px-4 py-2', style.body, bodyClass)">
             <template v-if="loading">
                 <VSkeleton :class="[style.loader, 'h-5']" />
                 <VSkeleton :class="[style.loader, 'h-5 w-[80%]']" />

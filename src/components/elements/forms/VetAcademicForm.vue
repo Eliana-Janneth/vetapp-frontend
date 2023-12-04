@@ -32,34 +32,54 @@ const onSubmit = handleSubmit(async (values: TAcademicInformation) => {
             country: values.country,
             academic_degree: values.academicDegree,
             currently: values.currentlyStudying,
-
         };
-        
+
         await vetappApi.createAcademicInformation(payload);
         emit('end');
         window.location.reload();
-
     } catch (error) {}
 });
 </script>
 <template>
-    <form @submit="onSubmit" class="grid grid-cols-1 sm:grid-cols-6 gap-4">
-        <VTextField containerClass="sm:col-span-3" name="title" :label="t('VetPage.titulo')" :placeholder="t('VetPage.valtitulo')" />
-        <VTextField containerClass="sm:col-span-3" name="university" :label="t('VetPage.u')" :placeholder="t('VetPage.valu')" />
+    <form @submit="onSubmit" class="grid grid-cols-1 gap-4 sm:grid-cols-6">
+        <VTextField
+            containerClass="sm:col-span-3"
+            name="title"
+            :label="t('VetPage.titulo')"
+            :placeholder="t('VetPage.valtitulo')"
+        />
+        <VTextField
+            containerClass="sm:col-span-3"
+            name="university"
+            :label="t('VetPage.u')"
+            :placeholder="t('VetPage.valu')"
+        />
 
-            <VTextField containerClass="sm:col-span-2" name="year" :label="t('VetPage.datei')" type="date" :maxlength="4" />
-            <VTextField containerClass="sm:col-span-2" name="country" :label="t('VetPage.country')" :placeholder="t('VetPage.valcountry')" :maxlength="60" />
-            <VTextField containerClass="sm:col-span-2" name="academicDegree" :label="t('VetPage.academicg')" :placeholder="t('VetPage.academicg')" :maxlength="60" />
-   
-            <VCheckbox class="sm:col-span-6" name="currentlyStudying" :label="t('VetPage.actualstudy')" />
-    
-            <VButton class="sm:col-span-3 w-full" @click="$emit('end')" :label="t('VetPage.cancel')" variant="danger" />
-            <VButton class="sm:col-span-3 w-full" type="submit" variant="success">
-                <div v-if="isSubmitting" class="flex items-center gap-2">
-                    <VLoader class="h-6" />
-                    <span>{{ $t("VetPage.send") }}</span>
-                </div>
-                <template v-else>{{ $t("VetPage.save") }}</template>
-            </VButton>
+        <VTextField containerClass="sm:col-span-2" name="year" :label="t('VetPage.datei')" type="date" :maxlength="4" />
+        <VTextField
+            containerClass="sm:col-span-2"
+            name="country"
+            :label="t('VetPage.country')"
+            :placeholder="t('VetPage.valcountry')"
+            :maxlength="60"
+        />
+        <VTextField
+            containerClass="sm:col-span-2"
+            name="academicDegree"
+            :label="t('VetPage.academicg')"
+            :placeholder="t('VetPage.academicg')"
+            :maxlength="60"
+        />
+
+        <VCheckbox class="sm:col-span-6" name="currentlyStudying" :label="t('VetPage.actualstudy')" />
+
+        <VButton class="w-full sm:col-span-3" @click="$emit('end')" :label="t('VetPage.cancel')" variant="danger" />
+        <VButton class="w-full sm:col-span-3" type="submit" variant="success">
+            <div v-if="isSubmitting" class="flex items-center gap-2">
+                <VLoader class="h-6" />
+                <span>{{ $t('VetPage.send') }}</span>
+            </div>
+            <template v-else>{{ $t('VetPage.save') }}</template>
+        </VButton>
     </form>
 </template>

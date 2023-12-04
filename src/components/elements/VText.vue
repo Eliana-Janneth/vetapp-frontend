@@ -17,7 +17,7 @@ const styleStore = useStyleStore();
 </script>
 
 <template>
-    <div :class="twMerge('relative w-full flex items-center gap-1', containerClass)">
+    <div :class="twMerge('relative flex w-full items-center gap-1', containerClass)">
         <component :is="icon" :class="['h-5 w-5 shrink-0', styleStore.getIconStyle]" />
 
         <span :class="twMerge('flex leading-none', styleStore.getLabelStyle, props.class)">

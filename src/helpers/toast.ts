@@ -8,7 +8,6 @@ export const pushErrorToast = () => {
     });
 };
 
-
 export function formatDate(dateString: string): string {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -18,5 +17,4 @@ export function formatDate(dateString: string): string {
     const minute = date.getMinutes().toString().padStart(2, '0');
     const second = date.getSeconds().toString().padStart(2, '0');
     return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
-  }
-  
+}

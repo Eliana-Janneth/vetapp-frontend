@@ -17,8 +17,7 @@ export type TAcademicInformation = {
     currentlyStudying: boolean;
 };
 
-
-export type TVetInformation={
+export type TVetInformation = {
     id: string;
     name: string;
     lastName: string;
@@ -32,9 +31,9 @@ export type TVetInformation={
     license: string;
     licenseExpiryDate: Date;
     available: boolean;
-}
+};
 
-export type TUpdateVetInformation={
+export type TUpdateVetInformation = {
     license: string;
     licenseExpiryDate: Date;
-}
+};

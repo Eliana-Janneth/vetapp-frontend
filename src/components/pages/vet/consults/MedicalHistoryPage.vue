@@ -76,7 +76,7 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
         <p v-else-if="diagnosisAnimal === null">El animal no tiene diagnosticos</p>
         <div v-else class="m-2 flex flex-col">
             <div class="" v-for="diagnosisA in diagnosisAnimal" :key="diagnosisA.id">
-                <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col  rounded-lg bg-sky-100/70 p-2">
+                <div class="mx-auto mb-2 ml-2 mr-2 flex flex-col rounded-lg bg-sky-100/70 p-2">
                     <div class="flex flex-col justify-start md:flex-row">
                         <VUpgradeableTextarea
                             custom-class="font-semibold"

@@ -21,8 +21,8 @@ export const adaptMessage = (response: TMessagePayload): TMessage => {
         file: response.file,
         hasFile: response.has_file,
     };
-}
+};
 
 export const adaptMessages = (response: TMessagePayload[]): TMessage[] => {
-    return response.map((message) => (adaptMessage(message)));
+    return response.map((message) => adaptMessage(message));
 };

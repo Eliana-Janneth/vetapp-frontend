@@ -6,9 +6,9 @@ import { useChatStore } from '@/stores';
 
 onBeforeRouteLeave((...args) => {
     const chatStore = useChatStore();
-    chatStore.chats.forEach(chat => {
+    chatStore.chats.forEach((chat) => {
         chat.close!();
-    })
+    });
     args[2]();
 });
 </script>

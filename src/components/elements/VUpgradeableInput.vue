@@ -3,7 +3,6 @@ import { ref } from 'vue';
 import { PencilSquareIcon, XCircleIcon, CheckCircleIcon } from '@heroicons/vue/24/solid';
 import { useStyleStore } from '@/stores';
 
-
 const emit = defineEmits(['update']);
 
 const props = defineProps<{
@@ -39,12 +38,12 @@ const cancel = () => {
         </div>
         <div v-else>
             <input
-                class="rounded-md border w-full border-emerald-500 p-1 focus:border-emerald-400"
+                class="w-full rounded-md border border-emerald-500 p-1 focus:border-emerald-400"
                 type="text"
                 v-model="text"
             />
 
-            <div class="mt-2 justify-center flex">
+            <div class="mt-2 flex justify-center">
                 <button @click="cancel">
                     <XCircleIcon class="h-7 w-7 text-red-700 hover:text-red-500" />
                 </button>
@@ -54,6 +53,5 @@ const cancel = () => {
                 </button>
             </div>
         </div>
-
     </div>
 </template>

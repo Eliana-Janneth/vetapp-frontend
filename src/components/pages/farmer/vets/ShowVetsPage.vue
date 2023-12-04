@@ -17,7 +17,6 @@ import {
     ArrowLeftCircleIcon,
 } from '@heroicons/vue/24/outline';
 
-
 const userData = ref<TVetInformation>();
 const academicInfo = ref<TAcademicInformation[]>([]);
 const workExperience = ref<TWorkExperience[]>([]);
@@ -98,7 +97,7 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
 
                 <VText :icon="BookOpenIcon">
                     <span class="font-bold">{{ $t('VetPage.study') }}:&nbsp;</span>
-                    <span>{{ info?.currentlyStudying? 'Actualmente':'Terminado' }}&nbsp;</span>
+                    <span>{{ info?.currentlyStudying ? 'Actualmente' : 'Terminado' }}&nbsp;</span>
                 </VText>
             </VCard>
         </div>
@@ -134,10 +133,10 @@ vetappApi.getAcademicInformationVet(idVet).then((response) => {
                     <span class="font-bold">{{ $t('VetPage.country') }}:&nbsp;</span>
                     <span>{{ work?.country }}&nbsp;</span>
                 </VText>
-                
+
                 <VText :icon="BriefcaseIcon">
                     <span class="font-bold">{{ $t('VetPage.work') }}:&nbsp;</span>
-                    <span>{{ work?.currentlyWorking? 'Actualmente':'Terminado' }}&nbsp;</span>
+                    <span>{{ work?.currentlyWorking ? 'Actualmente' : 'Terminado' }}&nbsp;</span>
                 </VText>
             </VCard>
         </div>

@@ -14,7 +14,6 @@ url.searchParams.append('bold', 'true');
 url.searchParams.append('uppercase', 'true');
 
 //            <p class="leading-none text-gray-900">{{ chat[props.role === 'farmer' ? 'vet' : 'farmer'] ?? 'nadie' }}</p>
-
 </script>
 
 <template>

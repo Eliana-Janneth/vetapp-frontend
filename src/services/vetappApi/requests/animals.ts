@@ -36,7 +36,6 @@ export const getRaces = async (specieId: string): Promise<TOption[]> => {
     return response.map((race: TAOption) => ({ text: race.name, value: race.id }));
 };
 
-
 export const updateAnimal = async (id: string, data: Record<string, string>) => {
     const apiUrl = `${API_URL}/animals/${id}/`;
     try {
@@ -50,7 +49,6 @@ export const updateAnimal = async (id: string, data: Record<string, string>) => 
         });
 
         if (!response.ok) {
-            
             const errorData = await response.json();
             if (errorData && typeof errorData === 'object') {
                 const firstKey = Object.keys(errorData)[0];
@@ -62,7 +60,7 @@ export const updateAnimal = async (id: string, data: Record<string, string>) => 
                 }
             }
             window.location.reload();
-            return
+            return;
         }
 
         const responseData = await response.json();

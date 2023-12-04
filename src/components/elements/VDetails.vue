@@ -16,7 +16,7 @@ const userStore = useUserStore();
 <template>
     <div
         :class="[
-            'mx-auto w-full border border-x-0 border-t-0 lg:w-full p-2',
+            'mx-auto w-full border border-x-0 border-t-0 p-2 lg:w-full',
             userStore.isVet ? 'border-sky-200/50' : 'border-emerald-200/50',
         ]"
     >

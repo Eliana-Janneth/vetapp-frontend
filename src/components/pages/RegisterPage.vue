@@ -12,7 +12,7 @@ import { RegisterForm } from '@elements/forms';
             />
         </div>
         <div class="mx-auto flex w-full max-w-lg flex-col justify-center bg-white p-4">
-            <h1 class="pb-6 text-center text-4xl font-medium text-indigo-800">{{ $t("RegisterPage.register") }}</h1>
+            <h1 class="pb-6 text-center text-4xl font-medium text-indigo-800">{{ $t('RegisterPage.register') }}</h1>
             <RegisterForm />
         </div>
     </div>

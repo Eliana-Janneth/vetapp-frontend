@@ -50,21 +50,13 @@ export const icon = cva([], {
 });
 
 export const selectLanguaje = cva(
-    [
-        'block w-28 appearance-none rounded-lg border-none py-1 leading-tight text-white/80 focus:outline-none',
-    ],
+    ['block w-28 appearance-none rounded-lg border-none py-1 leading-tight text-white/80 focus:outline-none'],
     {
         variants: {
             intent: {
-                farmer: [
-                    'bg-emerald-500 active:border-emerald-200 hover:bg-emerald-600',
-                ],
-                veterinarian: [
-                    'bg-sky-500 active:border-sky-200 hover:bg-sky-600',
-                ],
-                base: [
-                    'bg-indigo-600 active:border-indigo-200 hover:bg-indigo-700 py-2',
-                ],
+                farmer: ['bg-emerald-500 active:border-emerald-200 hover:bg-emerald-600'],
+                veterinarian: ['bg-sky-500 active:border-sky-200 hover:bg-sky-600'],
+                base: ['bg-indigo-600 active:border-indigo-200 hover:bg-indigo-700 py-2'],
             },
         },
     },

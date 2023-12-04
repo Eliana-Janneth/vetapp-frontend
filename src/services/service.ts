@@ -38,26 +38,25 @@ export const service = {
                 },
             });
 
-         
-        if (!response.ok) {
-            const errorData = await response.json();
-            if (errorData && typeof errorData === 'object') {
-                const firstKey = Object.keys(errorData)[0];
-                if (Array.isArray(errorData[firstKey]) && errorData[firstKey].length > 0) {
+            if (!response.ok) {
+                const errorData = await response.json();
+                if (errorData && typeof errorData === 'object') {
+                    const firstKey = Object.keys(errorData)[0];
+                    if (Array.isArray(errorData[firstKey]) && errorData[firstKey].length > 0) {
+                        notify({
+                            title: errorData[firstKey][0],
+                            type: 'error',
+                        });
+                    }
+                }
+                if (errorData && errorData.response) {
                     notify({
-                        title: errorData[firstKey][0],
+                        title: errorData.response,
                         type: 'error',
                     });
                 }
+                return;
             }
-            if (errorData && errorData.response) {
-                notify({
-                    title: errorData.response,
-                    type: 'error',
-                });
-            }
-            return
-        }
 
             const responseData = await response.json();
             console.log(JSON.stringify(responseData, null, 2));

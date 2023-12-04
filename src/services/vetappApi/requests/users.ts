@@ -5,14 +5,13 @@ import {
     TAcademicInformationPayload,
     TWorkExperiencePayload,
     TVetInformationPayload,
-    TUpdateVetInformationPayload
+    TUpdateVetInformationPayload,
 } from '../types';
 import { useUserStore, useStyleStore } from '@/stores';
 import { adaptAcademicInformation, adaptVetInformation, adaptWorkExperience } from '../adapters';
 import { service } from '@/services/service';
 
 const API_URL = import.meta.env.VITE_API_URL;
-
 
 export const register = async (data: TRegisterPayload) => {
     const farmerUrl = `${API_URL}/farmers/`;
@@ -62,7 +61,7 @@ export const login = async (data: TLoginPayload) => {
             const errorData = await response.json();
             if (errorData && errorData.non_field_errors) {
                 notify({
-                    title: "Error en las credenciales",
+                    title: 'Error en las credenciales',
                     type: 'error',
                 });
             }
@@ -160,7 +159,6 @@ export const updateAvailability = async (data: Record<string, boolean>) => {
             }
             return;
         }
-        
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }
@@ -195,8 +193,6 @@ export const updateVetInformation = async (data: TUpdateVetInformationPayload) =
             type: 'success',
         });
         return responseData;
-
-        
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
     }

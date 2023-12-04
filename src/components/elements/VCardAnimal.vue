@@ -19,29 +19,26 @@ defineProps<{
 </script>
 
 <template>
-        <div class="w-64 overflow-hidden rounded bg-sky-100/70 shadow-lg">
-            <div class="flex flex-col items-center px-6 py-4">
-                <div class="mb-2 text-xl font-bold text-sky-700">{{ farmer }}</div>
-                <p class="text-base text-sky-900">{{ message }}</p>
-            </div>
-            <div class="px-6 py-4">
-                <VSpan name="Animal" :label="nameAnimal" />
-                <VSpan name="Especie" :label="specie" />
-                <VSpan name="Raza" :label="race" />
-            </div>
-            <div class="flex justify-between px-6 py-4">
-                <button
-                    class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
-                    @click="$emit('accept')"
-                >
-                    Aceptar
-                </button>
-                <button
-                    class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
-                    @click="$emit('reject')"
-                >
-                    Rechazar
-                </button>
-            </div>
+    <div class="w-64 overflow-hidden rounded bg-sky-100/70 shadow-lg">
+        <div class="flex flex-col items-center px-6 py-4">
+            <div class="mb-2 text-xl font-bold text-sky-700">{{ farmer }}</div>
+            <p class="text-base text-sky-900">{{ message }}</p>
         </div>
+        <div class="px-6 py-4">
+            <VSpan name="Animal" :label="nameAnimal" />
+            <VSpan name="Especie" :label="specie" />
+            <VSpan name="Raza" :label="race" />
+        </div>
+        <div class="flex justify-between px-6 py-4">
+            <button
+                class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
+                @click="$emit('accept')"
+            >
+                Aceptar
+            </button>
+            <button class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700" @click="$emit('reject')">
+                Rechazar
+            </button>
+        </div>
+    </div>
 </template>

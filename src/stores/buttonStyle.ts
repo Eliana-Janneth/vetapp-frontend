@@ -1,9 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const button = cva(
-    [
-        'px-2 py-2 flex w-48 justify-center rounded-md text-lg text-white/70 hover:text-white focus:outline-none',
-    ],
+    ['px-2 py-2 flex w-48 justify-center rounded-md text-lg text-white/70 hover:text-white focus:outline-none'],
     {
         variants: {
             intent: {
@@ -25,7 +23,7 @@ export const buttonTab = cva(['w-1/3 px-4 py-2 text-center text-lg font-medium  
         intent: {
             farmer: ['text-emerald-800 hover:bg-emerald-100/70 border-emerald-600'],
             veterinarian: ['text-sky-800 hover:bg-sky-100/70 border-sky-600'],
-            base:[''],
+            base: [''],
         },
     },
 });

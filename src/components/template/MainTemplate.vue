@@ -13,7 +13,7 @@ const leftContentModal = ref();
         </LeftContentModal>
 
         <VSidebar class="hidden w-56 lg:flex" />
-        <div class="flex flex-1 flex-col p-4 overflow-y-auto">
+        <div class="flex flex-1 flex-col overflow-y-auto p-4">
             <slot />
         </div>
     </div>

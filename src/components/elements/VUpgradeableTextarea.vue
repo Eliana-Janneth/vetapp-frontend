@@ -40,11 +40,11 @@ const cancel = () => {
             {{ label }}</span
         >
         <div v-if="!editMode" class="flex items-center gap-2">
-            <span :class="['block font-medium text-justify', styleStore.getLabelStyle, customClass]">{{ value }}</span>
+            <span :class="['block text-justify font-medium', styleStore.getLabelStyle, customClass]">{{ value }}</span>
             <button v-if="edit" @click="editMode = true">
                 <PencilSquareIcon :class="['h-8 w-8 font-bold text-orange-600']" />
             </button>
-        </div>  
+        </div>
         <div v-else>
             <textarea class="form-textarea h-auto w-full resize-y rounded-md border p-2" type="text" v-model="text" />
 

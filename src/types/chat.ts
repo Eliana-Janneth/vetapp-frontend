@@ -6,14 +6,14 @@ export type TChat = {
     messages: TMessage[] | null;
 };
 
- export type TMessage = {
-    id: number,
-    sender: string,
-    role: string,
-    message: string,
-    date: string,
-    file: string,
-    hasFile: boolean
+export type TMessage = {
+    id: number;
+    sender: string;
+    role: string;
+    message: string;
+    date: string;
+    file: string;
+    hasFile: boolean;
 };
 
-export type TChatMsg = string | { data: string; format: string }
+export type TChatMsg = string | { data: string; format: string };

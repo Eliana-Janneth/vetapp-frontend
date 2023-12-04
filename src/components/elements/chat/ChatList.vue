@@ -37,23 +37,19 @@ const searchData = () => {
         }
     }
 };
-
-
-
 </script>
 
 <template>
     <div class="scroll-style flex min-w-[300px] gap-4 overflow-x-auto bg-gray-100 p-4 lg:flex-col">
-        
         <VTextField
-        class="lg:w-full w-56"
+            class="w-56 lg:w-full"
             :placeholder="t('FarmPage.chatsearch')"
             v-model="search"
             @input="searchData"
         />
         <ChatListItem
             v-for="chat in chatStore.chats"
-            @click="() => chatStore.active = chat.id"
+            @click="() => (chatStore.active = chat.id)"
             :key="chat.id"
             :chat="chat"
             :role="user.role"

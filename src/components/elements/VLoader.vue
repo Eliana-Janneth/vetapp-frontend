@@ -5,7 +5,6 @@ import { twMerge } from 'tailwind-merge';
 defineProps<{
     class?: string;
 }>();
-
 </script>
 
-<template><img :class="twMerge('h-20', $props.class)" :src="loader" alt="loader"/></template>
+<template><img :class="twMerge('h-20', $props.class)" :src="loader" alt="loader" /></template>

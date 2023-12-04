@@ -47,17 +47,11 @@ const downloadFile = () => {
 </script>
 
 <template>
-
     <div>
         <VButton class="flex w-fit items-center rounded-full p-1" @click="$router.push({ name: 'animals.index' })"
             ><ArrowLeftCircleIcon class="h-7 w-7"
         /></VButton>
-        <img
-            v-if="!isValid"
-            class="rounded-lg lg:h-[600px] lg:w-[700px]"
-            src="@/assets/img/Error404.jpg"
-            alt="404"
-        />
+        <img v-if="!isValid" class="rounded-lg lg:h-[600px] lg:w-[700px]" src="@/assets/img/Error404.jpg" alt="404" />
         <img class="h-20" :src="loader" v-if="animal === undefined" alt="loader" />
         <p v-else-if="animal === null">El animal no existe</p>
         <div v-else>
@@ -154,6 +148,5 @@ const downloadFile = () => {
                 <VDetails label="Tratamiento" :description="diagnosisA.treatment" />
             </div>
         </div>
-      
     </div>
 </template>

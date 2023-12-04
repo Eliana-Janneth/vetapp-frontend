@@ -1,4 +1,3 @@
-
 import { MainTemplate } from '@/components/template';
 import { PatientsPage, RequestsFarmerPage, MedicalHistoryPage } from '@pages';
 
@@ -8,7 +7,6 @@ export const vetRoutes = [
         path: '/pacientes',
         component: PatientsPage,
         meta: { layout: MainTemplate },
-        
     },
 
     {

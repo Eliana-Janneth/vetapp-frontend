@@ -51,11 +51,11 @@ getVets();
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="text-center sm:flex sm:justify-between">
                         <div class="sm:flex-auto">
-                            <div class="flex items-center flex-col lg:flex-row justify-between">
-                                <VTitle class="mb-2" >{{ $t('FarmPage.availablevets') }}</VTitle>
+                            <div class="flex flex-col items-center justify-between lg:flex-row">
+                                <VTitle class="mb-2">{{ $t('FarmPage.availablevets') }}</VTitle>
                                 <div class="flex justify-end gap-2">
                                     <VButton
-                                        class="flex h-9 w-fit items-center lg:px-4 px-2"
+                                        class="flex h-9 w-fit items-center px-2 lg:px-4"
                                         :label="t('FarmPage.wrequest')"
                                         @click="(openRequestSend = true), (request = 'send')"
                                     />
@@ -98,7 +98,10 @@ getVets();
                     <div class="mt-8 flow-root">
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                                <table class="min-w-max mx-auto divide-y divide-emerald-300" summary="list of vets availables">
+                                <table
+                                    class="mx-auto min-w-max divide-y divide-emerald-300"
+                                    summary="list of vets availables"
+                                >
                                     <thead>
                                         <tr>
                                             <th
@@ -115,7 +118,7 @@ getVets();
                                             </th>
                                             <th
                                                 scope="col"
-                                                class=" py-3.5 text-center text-lg font-semibold text-emerald-600"
+                                                class="py-3.5 text-center text-lg font-semibold text-emerald-600"
                                             >
                                                 {{ $t('FarmPage.consult') }}
                                             </th>

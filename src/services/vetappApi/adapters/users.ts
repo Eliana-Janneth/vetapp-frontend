@@ -1,5 +1,5 @@
-import { TAcademicInformation, TVetInformation, TWorkExperience } from "@/types";
-import { TAcademicInformationPayload, TVetInformationPayload, TWorkExperiencePayload } from "../types";
+import { TAcademicInformation, TVetInformation, TWorkExperience } from '@/types';
+import { TAcademicInformationPayload, TVetInformationPayload, TWorkExperiencePayload } from '../types';
 
 export const adaptWorkExperience = (response: TWorkExperiencePayload[]): TWorkExperience[] => {
     return response.map((work) => ({
@@ -15,19 +15,17 @@ export const adaptWorkExperience = (response: TWorkExperiencePayload[]): TWorkEx
 
 export const adaptAcademicInformation = (response: TAcademicInformationPayload[]): TAcademicInformation[] => {
     return response.map((academic) => ({
-
         university: academic.university,
         title: academic.title,
         year: academic.year,
         country: academic.country,
         academicDegree: academic.academic_degree,
         currentlyStudying: academic.currently,
-         
     }));
 };
 
 export const adaptVetInformation = (response: TVetInformationPayload): TVetInformation => {
-    const vet = response; 
+    const vet = response;
     return {
         id: vet.id,
         name: vet.first_name,
@@ -41,6 +39,6 @@ export const adaptVetInformation = (response: TVetInformationPayload): TVetInfor
         repeatPassword: vet.repeat_password,
         license: vet.license_number,
         licenseExpiryDate: vet.license_expiry_date,
-        available: vet.available
+        available: vet.available,
     };
 };

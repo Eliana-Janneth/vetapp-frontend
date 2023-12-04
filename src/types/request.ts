@@ -7,11 +7,11 @@ export type TRequest = {
     vet: string;
 };
 
-export type TRegisterFarmerRequest={
-    message : string;
-    animal : string;
-    vet:    string; 
-}
+export type TRegisterFarmerRequest = {
+    message: string;
+    animal: string;
+    vet: string;
+};
 export type TVetAvailable = {
     id: string;
     name: string;
@@ -21,7 +21,7 @@ export type TVetAvailable = {
     expiryDate: string;
 };
 
-export type TRequestFarmer= {
+export type TRequestFarmer = {
     id: string;
     message: string;
     animal: string;

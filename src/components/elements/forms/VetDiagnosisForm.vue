@@ -41,9 +41,9 @@ const onSubmit = handleSubmit(async (values) => {
             <VButton type="submit" variant="success">
                 <div v-if="isSubmitting" class="flex items-center gap-2">
                     <VLoader class="h-6" />
-                    <span>{{  $t("VetPage.send") }}</span>
+                    <span>{{ $t('VetPage.send') }}</span>
                 </div>
-                <template v-else>{{  $t("VetPage.agreg") }}</template>
+                <template v-else>{{ $t('VetPage.agreg') }}</template>
             </VButton>
         </div>
     </form>

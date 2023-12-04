@@ -4,7 +4,7 @@ export type TDiagnosisPayload = {
     treatment: string;
     create_date: string;
     update_date: string;
-    vet_name:string;
+    vet_name: string;
     can_modify: boolean;
 };
 

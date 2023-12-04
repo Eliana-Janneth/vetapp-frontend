@@ -77,11 +77,11 @@ getAnimals();
                             </div>
                         </div>
                     </div>
-                    <div class="mt-8 flow-root ">
+                    <div class="mt-8 flow-root">
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <img class="h-20" :src="loader" v-if="loading" alt="loader" />
-                                <VTitle v-if="!animals.length" class="text-xl ml-4">No hay animales</VTitle>
+                                <VTitle v-if="!animals.length" class="ml-4 text-xl">No hay animales</VTitle>
                                 <table
                                     v-else
                                     class="min-w-full divide-y divide-emerald-600 hover:divide-emerald-400"
@@ -123,7 +123,7 @@ getAnimals();
                                             :key="animal.id"
                                             class="text-base font-medium text-emerald-700"
                                         >
-                                            <td class="relative py-4 pl-3 pr-4 sm:pr-0 text-center">
+                                            <td class="relative py-4 pl-3 pr-4 text-center sm:pr-0">
                                                 <div class="flex justify-center">
                                                     <router-link
                                                         :to="{ name: 'animals.show', params: { id: animal.id } }"
@@ -133,7 +133,7 @@ getAnimals();
                                                     </router-link>
                                                 </div>
                                             </td>
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 sm:pl-0 text-center">
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-center sm:pl-0">
                                                 {{ animal.name }}
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-center">

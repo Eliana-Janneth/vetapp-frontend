@@ -23,7 +23,6 @@ export const useStyleStore = defineStore({
         getTabButtonStyle: (state) => buttonTab({ intent: state.role }),
         getIconStyle: (state) => icon({ intent: state.role }),
         getBackgroundChat: (state) => backgroundChat({ intent: state.role }),
-        getSelectLanguage: (state) => selectLanguaje({ intent: state.role })
-
+        getSelectLanguage: (state) => selectLanguaje({ intent: state.role }),
     },
 });

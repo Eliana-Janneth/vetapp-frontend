@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {VButton, VTextField, VCheckbox,VLoader } from '@elements';
+import { VButton, VTextField, VCheckbox, VLoader } from '@elements';
 import * as yup from 'yup';
 import type { TWorkExperience } from '@/types';
 import { useForm } from 'vee-validate';
@@ -19,7 +19,7 @@ const validationSchema = yup.object({
     country: yup.string().required(t('VetPage.valcountry2')),
 });
 
-const { handleSubmit, isSubmitting} = useForm<TWorkExperience>({
+const { handleSubmit, isSubmitting } = useForm<TWorkExperience>({
     validationSchema,
 });
 
@@ -39,7 +39,6 @@ const onSubmit = handleSubmit(async (values: TWorkExperience) => {
         await vetappApi.createWorkExperiencie(payload);
         emit('end');
         window.location.reload();
-        
     } catch (error) {}
 });
 //TODO: boton cancelar
@@ -47,7 +46,12 @@ const onSubmit = handleSubmit(async (values: TWorkExperience) => {
 <template>
     <ShowWorkExperience />
     <form @submit="onSubmit" class="grid grid-cols-1 gap-4 sm:grid-cols-6">
-        <VTextField containerClass="sm:col-span-3" name="position" :label="t('VetPage.position')" :placeholder="t('VetPage.valposition')" />
+        <VTextField
+            containerClass="sm:col-span-3"
+            name="position"
+            :label="t('VetPage.position')"
+            :placeholder="t('VetPage.valposition')"
+        />
 
         <VTextField
             containerClass="sm:col-span-3"
@@ -88,9 +92,9 @@ const onSubmit = handleSubmit(async (values: TWorkExperience) => {
         <VButton class="w-full sm:col-span-3" type="submit" variant="success">
             <div v-if="isSubmitting" class="flex items-center gap-2">
                 <VLoader class="h-6" />
-                <span>{{ $t("VetPage.send") }}</span>
+                <span>{{ $t('VetPage.send') }}</span>
             </div>
-            <template v-else>{{ $t("VetPage.save") }}</template>
+            <template v-else>{{ $t('VetPage.save') }}</template>
         </VButton>
     </form>
 </template>

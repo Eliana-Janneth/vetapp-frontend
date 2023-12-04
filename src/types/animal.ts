@@ -10,4 +10,3 @@ export type TAnimal = {
     specie: string;
     weight: string;
 };
-

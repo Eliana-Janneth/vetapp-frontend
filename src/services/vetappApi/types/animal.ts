@@ -1,4 +1,3 @@
-
 export type TRegisterAnimalPayload = {
     birth_date: string;
     color: string;
@@ -23,4 +22,3 @@ export type TAnimalPayload = {
     specie_name: string;
     weight: string;
 };
-

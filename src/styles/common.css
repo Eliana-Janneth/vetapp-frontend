@@ -17,4 +17,3 @@
 .btn-menu-vet {
     @apply bg-sky-600  py-2 text-white/80 hover:bg-gradient-to-r hover:from-sky-800 hover:via-sky-600 hover:to-sky-800 hover:text-white focus:outline-none focus:ring-sky-500 active:bg-gradient-to-r active:from-sky-700 active:via-sky-900 active:to-sky-700 active:text-sky-400;
 }
-

@@ -24,11 +24,11 @@ const onSubmit = async (id: string, value: boolean) => {
 };
 </script>
 <template>
-    <div class="flex justify-center mb-4">
-    <VTitle>{{ $t('VetPage.solp') }}</VTitle>
-</div>
+    <div class="mb-4 flex justify-center">
+        <VTitle>{{ $t('VetPage.solp') }}</VTitle>
+    </div>
     <div class="container mx-auto flex flex-wrap items-center justify-center gap-2">
-        <img class="h-20" :src="loader" v-if="farmerRequests === undefined" alt="loader"/>
+        <img class="h-20" :src="loader" v-if="farmerRequests === undefined" alt="loader" />
         <p v-else-if="farmerRequests === null">{{ $t('VetPage.nosol') }}</p>
 
         <div v-else v-for="request in farmerRequests" :key="request.id">

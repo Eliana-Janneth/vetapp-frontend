@@ -1,11 +1,5 @@
 import { MainTemplate } from '@/components/template';
-import {
-    IndexAnimalsPage,
-    ShowAnimalsPage,
-    CreateAnimalsPage,
-    VetsAvailablePage,
-    ShowVetsPage,
-} from '@pages';
+import { IndexAnimalsPage, ShowAnimalsPage, CreateAnimalsPage, VetsAvailablePage, ShowVetsPage } from '@pages';
 
 export const farmerRoutes = [
     { name: 'animals.index', path: '/animales', component: IndexAnimalsPage, meta: { layout: MainTemplate } },
@@ -19,5 +13,4 @@ export const farmerRoutes = [
         component: VetsAvailablePage,
         meta: { layout: MainTemplate },
     },
-  
 ];

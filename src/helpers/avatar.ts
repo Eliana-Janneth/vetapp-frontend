@@ -9,7 +9,7 @@ export const createAvatar = (name: string, role: 'farmer' | 'vet') => {
             background: '#bae6fd',
             color: '#0284c7',
         },
-    }
+    };
 
     url.searchParams.append('name', name);
     url.searchParams.append('background', colors[role].background);

@@ -23,10 +23,7 @@ const validationSchema = yup.object({
         .required(t('RegisterPage.requiredpass'))
         .min(8, t('RegisterPage.minpass'))
         .max(200, t('RegisterPage.maxpass')),
-    profile: yup
-        .string()
-        .oneOf(['farmer', 'vet'], t('RegisterPage.oneprofile'))
-        .required(t('RegisterPage.oneprofile')),
+    profile: yup.string().oneOf(['farmer', 'vet'], t('RegisterPage.oneprofile')).required(t('RegisterPage.oneprofile')),
     confirmPassword: yup
         .string()
         .required(t('RegisterPage.requiredpass2'))
@@ -104,9 +101,9 @@ const profiles = [
                 type="submit"
                 :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
             >
-              {{ $t("RegisterPage.next") }}
+                {{ $t('RegisterPage.next') }}
             </button>
-            <router-link :to="{ name: 'welcome' }" class="btn btn-primary">{{ $t("RegisterPage.cancel") }}</router-link>
+            <router-link :to="{ name: 'welcome' }" class="btn btn-primary">{{ $t('RegisterPage.cancel') }}</router-link>
         </div>
     </form>
 </template>

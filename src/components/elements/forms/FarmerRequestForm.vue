@@ -42,9 +42,7 @@ const onSubmit = handleSubmit(async (values: TRegisterFarmerRequest) => {
     }
     //TODO:colocar aqui
     //;        $emit('end');
-
 });
-
 </script>
 
 <template>
@@ -66,9 +64,9 @@ const onSubmit = handleSubmit(async (values: TRegisterFarmerRequest) => {
         <VButton class="w-full sm:col-span-1" type="submit" variant="success" @click="onSubmit">
             <div v-if="isSubmitting" class="flex items-center gap-2">
                 <VLoader class="h-6" />
-                <span>{{ $t("VetPage.send") }}</span>
+                <span>{{ $t('VetPage.send') }}</span>
             </div>
-            <template v-else>{{ $t("FarmPage.sendsol") }}</template>
+            <template v-else>{{ $t('FarmPage.sendsol') }}</template>
         </VButton>
     </form>
 </template>
