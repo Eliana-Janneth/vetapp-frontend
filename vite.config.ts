@@ -23,21 +23,6 @@ export default defineConfig({
             '@': fileURLToPath(new URL("./src", import.meta.url)),
         },
     },
-    // build: {
-    //   rollupOptions: {
-    //     plugins: [
-    //       {
-    //         writeBundle: async () => {
-    //           await workbox.generateSW({
-    //             globDirectory: 'dist',
-    //             globPatterns: ['**/*.{html,js,css,ts,vue}'],
-    //             swDest: 'dist/sw.js', // Nombre del archivo Service Worker
-    //           });
-    //         },
-    //       } as any,
-    //     ],
-    //   },
-    // },
   });
   
   

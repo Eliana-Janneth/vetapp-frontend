@@ -93,25 +93,25 @@ getAnimals();
 
                                             <th
                                                 scope="col"
-                                                class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-emerald-600 sm:pl-0"
+                                                class="py-3.5 pl-4 pr-3 text-center text-lg font-semibold text-emerald-600 sm:pl-0"
                                             >
                                                 {{ $t('FarmPage.name') }}
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
+                                                class="px-3 py-3.5 text-center text-lg font-semibold text-emerald-600"
                                             >
                                                 {{ $t('FarmPage.specie') }}
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
+                                                class="px-3 py-3.5 text-center text-lg font-semibold text-emerald-600"
                                             >
                                                 {{ $t('FarmPage.breed') }}
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-lg font-semibold text-emerald-600"
+                                                class="px-3 py-3.5 text-center text-lg font-semibold text-emerald-600"
                                             >
                                                 {{ $t('FarmPage.gender') }}
                                             </th>
@@ -123,7 +123,7 @@ getAnimals();
                                             :key="animal.id"
                                             class="text-base font-medium text-emerald-700"
                                         >
-                                            <td class="relative py-4 pl-3 pr-4 text-right sm:pr-0">
+                                            <td class="relative py-4 pl-3 pr-4 sm:pr-0 text-center">
                                                 <div class="flex justify-center">
                                                     <router-link
                                                         :to="{ name: 'animals.show', params: { id: animal.id } }"
@@ -133,16 +133,16 @@ getAnimals();
                                                     </router-link>
                                                 </div>
                                             </td>
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 sm:pl-0">
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 sm:pl-0 text-center">
                                                 {{ animal.name }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4">
+                                            <td class="whitespace-nowrap px-3 py-4 text-center">
                                                 {{ animal.specie }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4">
+                                            <td class="whitespace-nowrap px-3 py-4 text-center">
                                                 {{ animal.race }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4">
+                                            <td class="whitespace-nowrap px-3 py-4 text-center">
                                                 {{ animal.gender }}
                                             </td>
                                         </tr>

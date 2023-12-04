@@ -19,14 +19,12 @@ const idVet = ref('');
 const searchVet = ref<string>('');
 
 const searchVets = () => {
-    // vetAvailables.value = null;
     vetappApi.searchVetAvailables(searchVet.value).then((response) => {
         vetAvailables.value = response;
     });
 };
 
 const getVets = () => {
-    // vetAvailables.value = null;
     vetappApi.getVetAvailables().then((response) => {
         vetAvailables.value = response;
     });
@@ -105,19 +103,19 @@ getVets();
                                         <tr>
                                             <th
                                                 scope="col"
-                                                class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-emerald-600 sm:pl-3"
+                                                class="py-3.5 pl-4 pr-3 text-center text-lg font-semibold text-emerald-600 sm:pl-3"
                                             >
                                                 {{ $t('FarmPage.name') }}
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="py-3.5 text-left text-lg font-semibold text-emerald-600"
+                                                class="py-3.5 text-center text-lg font-semibold text-emerald-600"
                                             >
                                                 {{ $t('FarmPage.profile') }}
                                             </th>
                                             <th
                                                 scope="col"
-                                                class=" py-3.5 text-left text-lg font-semibold text-emerald-600"
+                                                class=" py-3.5 text-center text-lg font-semibold text-emerald-600"
                                             >
                                                 {{ $t('FarmPage.consult') }}
                                             </th>

@@ -36,33 +36,34 @@ const onSubmit = handleSubmit(async (values: TRegisterFarmerRequest) => {
             message: values.message,
             veterinarian: props.idVet,
         };
-
         await vetappApi.createFarmerRequest(payload);
     } catch (error) {
         console.error('Error al enviar la solicitud:', error);
     }
     //TODO:colocar aqui
-    //emit('end');
+    //;        $emit('end');
+
 });
+
 </script>
 
 <template>
-    <form class="grid grid-cols-1 gap-4 sm:grid-cols-8" @submit="onSubmit">
+    <form class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <VTextArea
-            containerClass="sm:col-span-8"
+            containerClass="sm:col-span-2"
             :label="t('FarmPage.writesol')"
             name="message"
             placeholder="Escribe el motivo por el cual quieres realizar una consulta con el veterinario"
         />
         <VSelect
-            containerClass="sm:col-span-8"
+            containerClass="sm:col-span-2"
             placeholder="Seleccione el animal"
             name="animal"
             :label="t('FarmPage.consulanimal')"
             :options="animals"
         />
-        <VButton class="w-full sm:col-span-4" @click="$emit('end')" :label="t('VetPage.cancel')" variant="danger" />
-        <VButton class="w-full sm:col-span-4" type="submit" variant="success">
+        <VButton class="w-full sm:col-span-1" @click="$emit('end')" :label="t('VetPage.cancel')" variant="danger" />
+        <VButton class="w-full sm:col-span-1" type="submit" variant="success" @click="onSubmit">
             <div v-if="isSubmitting" class="flex items-center gap-2">
                 <VLoader class="h-6" />
                 <span>{{ $t("VetPage.send") }}</span>
