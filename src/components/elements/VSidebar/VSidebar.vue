@@ -6,6 +6,9 @@ import VDropdown from './VDropdown.vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { ChatBubbleLeftEllipsisIcon, ChevronUpIcon, UserGroupIcon } from '@heroicons/vue/24/solid';
+import animalFarmer from '@/assets/icons/animalFarmer.svg';
+import animalVet from '@/assets/icons/animalVet.svg';
+import request from '@/assets/icons/request.svg';
 
 const { t } = useI18n();
 
@@ -17,13 +20,13 @@ const variantProfile = {
 const variant = ref(userStore.isFarmer ? 'farmer' : 'vet');
 
 const farmerSidebarItems = ref([
-    { route: 'animals.index', label: t('FarmPage.selectanimals'), svg: '@/assets/icons/animalFarmer.svg' },
+    { route: 'animals.index', label: t('FarmPage.selectanimals'), svg: animalFarmer },
     { route: 'vetsAvailables.index', label: t('FarmPage.selectvets'), icon: UserGroupIcon },
     { route: 'chat', label: t('FarmPage.selectconsul'), icon: ChatBubbleLeftEllipsisIcon },
 ]);
 const vetSidebarItems = ref([
-    { route: 'patients.index', label: t('VetPage.selectpatient'), svg: '@/assets/icons/animalVet.svg' },
-    { route: 'requests.show', label: t('VetPage.selectsoli'), svg: '@/assets/icons/request.svg' },
+    { route: 'patients.index', label: t('VetPage.selectpatient'), svg: animalVet },
+    { route: 'requests.show', label: t('VetPage.selectsoli'), svg: request },
     { route: 'chat', label: t('VetPage.selectconsul'), icon: ChatBubbleLeftEllipsisIcon },
 ]);
 </script>
