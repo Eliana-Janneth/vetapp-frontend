@@ -33,7 +33,7 @@ function handleImageUpload(event: Event) {
                 const format = attachmentParts[0].split(';')[0].split('/')[1];
                 const data = attachmentParts[1];
 
-                if (chatStore.activeChat && chatStore.activeChat.send) {
+                if (chatStore.activeChat?.send) {
                     chatStore.activeChat!.send!({ data, format });
                     message.value = '';
                 }
@@ -43,7 +43,7 @@ function handleImageUpload(event: Event) {
 }
 
 const send = () => {
-    if (chatStore.activeChat && chatStore.activeChat.send) {
+    if (chatStore.activeChat?.send) {
         chatStore.activeChat!.send!(message.value);
         message.value = '';
     }

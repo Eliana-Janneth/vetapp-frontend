@@ -26,7 +26,7 @@ export const register = async (data: TRegisterPayload) => {
         });
         if (!response.ok) {
             const errorData = await response.json();
-            if (errorData && errorData.response) {
+            if (errorData?.response) {
                 notify({
                     title: errorData.response,
                     type: 'error',
@@ -67,7 +67,7 @@ export const login = async (data: TLoginPayload) => {
             }
             return errorData;
         }
-        // Si la respuesta es exitosa
+
         const responseData = await response.json();
         const userStore = useUserStore();
         const styleStore = useStyleStore();
