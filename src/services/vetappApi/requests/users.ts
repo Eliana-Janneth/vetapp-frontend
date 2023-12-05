@@ -151,7 +151,7 @@ export const updateAvailability = async (data: Record<string, boolean>) => {
 
         if (!response.ok) {
             const errorData = await response.json();
-            if (errorData && errorData.response) {
+            if (errorData?.response) {
                 alert(`Error del servidor: ${errorData.response}`);
             } else {
                 alert('Error en la solicitud al servidor.');
@@ -177,7 +177,7 @@ export const updateVetInformation = async (data: TUpdateVetInformationPayload) =
 
         if (!response.ok) {
             const errorData = await response.json();
-            if (errorData && errorData.response) {
+            if (errorData?.response) {
                 notify({
                     title: errorData.response,
                     type: 'error',

@@ -49,7 +49,7 @@ export const service = {
                         });
                     }
                 }
-                if (errorData && errorData.response) {
+                if (errorData?.response) {
                     notify({
                         title: errorData.response,
                         type: 'error',

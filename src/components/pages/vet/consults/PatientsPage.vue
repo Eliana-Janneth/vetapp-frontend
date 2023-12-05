@@ -11,7 +11,6 @@ const animals = ref<TAnimalAuthorized[]>([]);
 const searchAnimal = ref<string>('');
 
 const getAnimalsAuthorized = () => {
-    //animals.value = null;
     vetappApi.getAnimalsAuthorized().then((response) => {
         animals.value = response;
     });
@@ -19,7 +18,6 @@ const getAnimalsAuthorized = () => {
 };
 
 const searchAnimals = () => {
-    //animals.value = null;
     vetappApi.searchAnimalsAuthorized(searchAnimal.value).then((response) => {
         animals.value = response;
     });

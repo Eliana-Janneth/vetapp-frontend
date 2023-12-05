@@ -1,7 +1,6 @@
 import { notify } from '@kyvg/vue3-notification';
-import type { TOption as TAOption, TRegisterAnimalPayload } from '../types';
+import type { TOption as TAOption, TRegisterAnimalPayload, TAnimalPayload } from '../types';
 import type { TOption } from '@/types';
-import { TAnimalPayload } from '../types';
 import { service } from '../../service';
 import { adaptAnimal, adaptAnimals } from '../adapters/animals';
 
