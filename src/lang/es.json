@@ -25,6 +25,7 @@
         "password": "Contraseña",
         "olvpass": "¿Olvidó su contraseña?",
         "login2": "Iniciar Sesión",
+        "return": "Volver",
 
         "username": "Por favor ingrese un correo",
         "validemail": "Debes ingresar un correo valido",
@@ -188,7 +189,10 @@
         "no": "No hay",
         "solp": "Solicitudes Pendientes",
 
-        "nosol": "No hay solicitudes nuevas"
+        "nosol": "No hay solicitudes nuevas",
+        "noanimals": "No hay animales",
+        "noinfacademic": "No hay información académica",
+        "noinflab": "No hay experiencia laboral"
     },
 
     "FarmPage": {

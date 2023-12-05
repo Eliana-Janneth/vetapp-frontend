@@ -68,7 +68,7 @@ getAnimalsAuthorized();
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <img class="h-20" :src="loader" v-if="!animals" alt="loader" />
-                                <VTitle v-if="!animals.length" class="ml-4 text-xl">No hay animales</VTitle>
+                                <VTitle v-if="!animals.length" class="ml-4 text-xl">{{ $t('VetPage.noanimals') }}</VTitle>
                                 <table v-else class="min-w-full divide-y divide-sky-600" summary="Animals Authorized">
                                     <thead>
                                         <tr>

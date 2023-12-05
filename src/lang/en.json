@@ -25,6 +25,7 @@
         "password": "Password",
         "olvpass": "Forgot your password?",
         "login2": "Log in",
+        "return": "Return",
 
         "username": "Please enter an email",
         "validemail": "You must enter a valid email",
@@ -188,7 +189,10 @@
         "no": "There aren't",
         "solp": "Awaiting Requests",
 
-        "nosol": "There are no new requests"
+        "nosol": "There are no new requests",
+        "noanimals": "There aren't animals",
+        "noinfacademic": "There is no academic information",
+        "noinflab": "There is no work experience"
     },
 
     "FarmPage": {

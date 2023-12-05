@@ -155,7 +155,7 @@ const changeAvailability = (value: boolean) => {
             </div>
 
             <VLoader v-if="loading" />
-            <VTitle v-if="!academicInfo.length" class="mb-5 mt-5 text-xl">No hay información académica</VTitle>
+            <VTitle v-if="!academicInfo.length" class="mb-5 mt-5 text-xl">{{  $t('VetPage.noinfacademic') }}</VTitle>
 
             <div v-else class="mb-8 flex flex-wrap justify-center gap-4">
                 <VCard class="w-full lg:w-fit" v-for="info in academicInfo">
@@ -194,7 +194,7 @@ const changeAvailability = (value: boolean) => {
             </div>
         
             <VLoader v-if="loading" />
-            <VTitle v-if="!workExperience.length" class="mt5 text-xl">No hay experiencia laboral</VTitle>
+            <VTitle v-if="!workExperience.length" class="mt5 text-xl">{{  $t('VetPage.noinflab') }}</VTitle>
             <div v-else class="flex flex-wrap justify-center gap-4">
                 <VCard class="w-full lg:w-fit" v-for="work in workExperience">
                     <template #header>

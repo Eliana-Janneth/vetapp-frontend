@@ -80,7 +80,7 @@ const onSubmit = handleSubmit((loginValues: TLoginPayload) => {
             @blur="passwordIcon = LockClosedIcon"
         />
         <div class="flex gap-6">
-            <router-link :to="{ name: 'welcome' }" class="btn btn-primary">Volver</router-link>
+            <router-link :to="{ name: 'welcome' }" class="btn btn-primary">{{  $t('LoginPage.return') }}</router-link>
             <button
                 :disabled="!meta.valid"
                 :class="['btn btn-primary', !meta.valid && 'pointer-events-none opacity-50']"
