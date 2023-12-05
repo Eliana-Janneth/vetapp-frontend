@@ -1,7 +1,13 @@
 import { Comment, Text, type Slot, type VNode, Fragment } from 'vue';
 
 function asArray<T>(arg: T | T[] | null) {
-    return Array.isArray(arg) ? arg : arg !== null ? [arg] : [];
+    if (Array.isArray(arg)) {
+        return arg;
+    } else if (arg !== null) {
+        return [arg];
+    } else {
+        return [];
+    }
 }
 
 function isVNodeEmpty(vnode: VNode | VNode[] | undefined | null) {

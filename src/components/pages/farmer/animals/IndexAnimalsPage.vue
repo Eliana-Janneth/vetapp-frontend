@@ -81,12 +81,10 @@ getAnimals();
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <img class="h-20" :src="loader" v-if="loading" alt="loader" />
-                                <VTitle v-if="!animals.length" class="ml-4 text-xl">{{ $t('VetPage.noanimals') }}</VTitle>
-                                <table
-                                    v-else
-                                    class="min-w-full divide-y divide-emerald-600 hover:divide-emerald-400"
-                                    summary="List of Animals"
-                                >
+                                <VTitle v-if="!animals.length" class="ml-4 text-xl">{{
+                                    $t('VetPage.noanimals')
+                                }}</VTitle>
+                                <table v-else class="min-w-full divide-y divide-emerald-600 hover:divide-emerald-400">
                                     <thead>
                                         <tr>
                                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0"></th>

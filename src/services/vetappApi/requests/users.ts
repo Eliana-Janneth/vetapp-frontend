@@ -59,7 +59,7 @@ export const login = async (data: TLoginPayload) => {
 
         if (!response.ok) {
             const errorData = await response.json();
-            if (errorData && errorData.non_field_errors) {
+            if  (errorData?.non_field_errors) {
                 notify({
                     title: 'Error en las credenciales',
                     type: 'error',

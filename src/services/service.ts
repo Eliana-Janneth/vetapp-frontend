@@ -14,7 +14,7 @@ export const service = {
             const responseData = await response.json();
 
             if (!response.ok) {
-                if (responseData && responseData.response) {
+                if (responseData?.response) {
                     console.error(`Error del servidor: ${responseData.response}`);
                 } else {
                     console.error('Error en la solicitud al servidor.');

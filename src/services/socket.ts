@@ -20,7 +20,7 @@ export const connectToChat = (
             const data = JSON.parse(event.data);
 
             if (data.messages) chat!.messages = adaptMessages(data.messages);
-            else
+            else {
                 chat!.messages!.push({
                     id: data.id,
                     sender: data.sender_name,
@@ -30,6 +30,7 @@ export const connectToChat = (
                     file: data.file,
                     hasFile: data.has_file,
                 });
+            }
         };
 
         socket.onclose = (event) => {
