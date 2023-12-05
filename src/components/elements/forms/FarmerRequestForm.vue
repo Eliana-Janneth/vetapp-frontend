@@ -40,8 +40,7 @@ const onSubmit = handleSubmit(async (values: TRegisterFarmerRequest) => {
     } catch (error) {
         console.error('Error al enviar la solicitud:', error);
     }
-    //TODO:colocar aqui
-    //;        $emit('end');
+
 });
 </script>
 

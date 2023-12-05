@@ -68,7 +68,9 @@ getAnimalsAuthorized();
                         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <img class="h-20" :src="loader" v-if="!animals" alt="loader" />
-                                <VTitle v-if="!animals.length" class="ml-4 text-xl">{{ $t('VetPage.noanimals') }}</VTitle>
+                                <VTitle v-if="!animals.length" class="ml-4 text-xl">{{
+                                    $t('VetPage.noanimals')
+                                }}</VTitle>
                                 <table v-else class="min-w-full divide-y divide-sky-600" summary="Animals Authorized">
                                     <thead>
                                         <tr>
@@ -76,31 +78,31 @@ getAnimalsAuthorized();
 
                                             <th
                                                 scope="col"
-                                                class="py-3.5 pl-4 pr-3 text-left text-lg font-semibold text-sky-600 sm:pl-0"
+                                                class="py-3.5 pl-4 pr-3 text-center text-lg font-semibold text-sky-600 sm:pl-0"
                                             >
                                                 {{ $t('VetPage.farm') }}
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
+                                                class="px-3 py-3.5 text-center text-lg font-semibold text-sky-600"
                                             >
                                                 {{ $t('VetPage.name') }}
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
+                                                class="px-3 py-3.5 text-center text-lg font-semibold text-sky-600"
                                             >
                                                 {{ $t('VetPage.specie') }}
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
+                                                class="px-3 py-3.5 text-center text-lg font-semibold text-sky-600"
                                             >
                                                 {{ $t('VetPage.breed') }}
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-lg font-semibold text-sky-600"
+                                                class="px-3 py-3.5 text-center text-lg font-semibold text-sky-600"
                                             >
                                                 {{ $t('VetPage.gender') }}
                                             </th>
@@ -109,7 +111,7 @@ getAnimalsAuthorized();
                                     <tbody class="divide-y divide-sky-600">
                                         <tr v-for="animal in animals" :key="animal.id">
                                             <td
-                                                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-base font-medium sm:pr-0"
+                                                class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-base font-medium sm:pr-0"
                                             >
                                                 <router-link
                                                     :to="{ name: 'medicalHistory', params: { id: animal.id } }"
@@ -118,20 +120,20 @@ getAnimalsAuthorized();
                                                 </router-link>
                                             </td>
                                             <td
-                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-base font-medium text-sky-700 sm:pl-0"
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-center text-base font-medium text-sky-700 sm:pl-0"
                                             >
                                                 {{ animal.farmer }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-base text-sky-700">
+                                            <td class="whitespace-nowrap px-3 py-4 text-center text-base text-sky-700">
                                                 {{ animal.name }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-base text-sky-700">
+                                            <td class="whitespace-nowrap px-3 py-4 text-center text-base text-sky-700">
                                                 {{ animal.specie }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-base text-sky-700">
+                                            <td class="whitespace-nowrap px-3 py-4 text-center text-base text-sky-700">
                                                 {{ animal.race }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-base text-sky-700">
+                                            <td class="whitespace-nowrap px-3 py-4 text-center text-base text-sky-700">
                                                 {{ animal.gender }}
                                             </td>
                                         </tr>

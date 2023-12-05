@@ -41,7 +41,6 @@ const updateValue = (name: string, newValue: string) => {
 const downloadFile = () => {
     vetappApi.downloadMedicalHistoryFarmer(animalId.value);
 };
-//TODO: ERROR 404 cuando el animal no existe
 </script>
 
 <template>

@@ -41,7 +41,6 @@ const onSubmit = handleSubmit(async (values: TWorkExperience) => {
         window.location.reload();
     } catch (error) {}
 });
-//TODO: boton cancelar
 </script>
 <template>
     <ShowWorkExperience />

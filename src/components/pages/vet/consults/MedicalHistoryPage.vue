@@ -29,7 +29,6 @@ const onUpdateDiagnosis = (name: string, newValue: string, diagnosisId: string) 
     });
 };
 
-//TODO: Cuadrar el boton cancelae
 </script>
 
 <template>
