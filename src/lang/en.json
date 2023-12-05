@@ -255,6 +255,8 @@
         "valwritesol2": "Write the reason why you want to consult with the veterinarian",
         "consulanimal": "Animal to consult",
         "valconsulanimal": "Please select an animal",
-        "sendsol": "Send request"
+        "sendsol": "Send request",
+        "noanimal": "The animal hasn't diagnoses",
+        "animalnoexist": "The animal does not exist"
     }
 }

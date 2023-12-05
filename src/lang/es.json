@@ -255,6 +255,8 @@
         "valwritesol": "Escribe el motivo por el cual quieres realizar una consulta con el veterinario",
         "consulanimal": "Animal a consultar",
         "valconsulanimal": "Por favor seleccione un animal",
-        "sendsol": "Enviar Solicitud"
+        "sendsol": "Enviar Solicitud",
+        "noanimal": "El animal no tiene diagnosticos",
+        "animalnoexist": "El animal no existe"
     }
 }

@@ -51,7 +51,7 @@ const downloadFile = () => {
         /></VButton>
         <img v-if="!isValid" class="rounded-lg lg:h-[600px] lg:w-[700px]" src="@/assets/img/Error404.jpg" alt="404" />
         <img class="h-20" :src="loader" v-if="animal === undefined" alt="loader" />
-        <p v-else-if="animal === null">El animal no existe</p>
+        <p v-else-if="animal === null">{{  $t('FarmPage.animalnoexist') }}</p>
         <div v-else>
             <div class="m-2 grid grid-cols-1 rounded-xl sm:grid-cols-8 lg:gap-2">
                 <VUpgradeableInput
